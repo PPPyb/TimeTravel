@@ -1,0 +1,2 @@
+com/mygdx/testprogram/desktop/DesktopLauncher.java
+ com.mygdx.testprogram.desktop.DesktopLauncher
