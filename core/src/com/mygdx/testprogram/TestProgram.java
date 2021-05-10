@@ -15,8 +15,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -42,8 +41,21 @@ public class TestProgram extends ApplicationAdapter {
 	Music music2;
 	Music rag;
 	Sound biu;
+	//510
+	Texture azuna;
+	Animation ani;
+	TextureRegion[] azunaWalk;
+	double stateTime = 0;
 	@Override
 	public void create() {
+		azuna = new Texture("azuna.png");
+		TextureRegion[][] tempp1 = TextureRegion.split(azuna,azuna.getWidth()/4,azuna.getHeight()/4);
+		azunaWalk = new TextureRegion[4];
+		for(int i = 0;i < 4;i++)
+			azunaWalk[i] = tempp1[0][i];
+		ani = new Animation(0.15f,azunaWalk);
+		ani.setPlayMode(Animation.PlayMode.LOOP);
+
 		testMusic =  Gdx.audio.newMusic(Gdx.files.internal("TestBGM.mp3"));
 		music2 = Gdx.audio.newMusic(Gdx.files.internal("killbill.mp3"));
 		biu =  Gdx.audio.newSound(Gdx.files.internal("biu.mp3"));
@@ -87,7 +99,7 @@ public class TestProgram extends ApplicationAdapter {
 		int y = 885;
 		int fps = Gdx.graphics.getFramesPerSecond();
 
-		myfpsfont.draw(batch,"FPS:"+fps,x,y);
+		myfpsfont.draw(batch,"FPS:"+stateTime,x,y);
 		myfpsfont.setColor(0,1,0,1);
 	}
 	private void renderGuiExplain(SpriteBatch batch)
@@ -102,6 +114,7 @@ public class TestProgram extends ApplicationAdapter {
 
 	@Override
 	public void render() {
+		stateTime += Gdx.graphics.getDeltaTime();
 		if(!testMusic.isPlaying()&&!musicplayed&&!music2.isPlaying())
 		{
 			testMusic.play();
@@ -114,7 +127,12 @@ public class TestProgram extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//camera.update();
 		batch.begin();
+
 		batch.draw(img, 0, 0);
+
+		TextureRegion curFrame = (TextureRegion) ani.getKeyFrame((float)stateTime,true);
+
+		batch.draw(curFrame,900,100,azuna.getWidth(),azuna.getHeight());
 		for (int i = 0; i < player[1].bulnum; i++)
 			batch.draw(player[1].bullet[i].img, (int) player[1].bullet[i].x, (int) player[1].bullet[i].y);
 		for (int i = 0; i < player[2].bulnum; i++)
