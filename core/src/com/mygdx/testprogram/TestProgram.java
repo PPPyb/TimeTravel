@@ -132,7 +132,7 @@ public class TestProgram extends ApplicationAdapter {
 
 		TextureRegion curFrame = (TextureRegion) ani.getKeyFrame((float)stateTime,true);
 
-		batch.draw(curFrame,900,100,azuna.getWidth(),azuna.getHeight());
+		batch.draw(curFrame,900,100,azuna.getWidth()*4,azuna.getHeight()*4);
 		for (int i = 0; i < player[1].bulnum; i++)
 			batch.draw(player[1].bullet[i].img, (int) player[1].bullet[i].x, (int) player[1].bullet[i].y);
 		for (int i = 0; i < player[2].bulnum; i++)
