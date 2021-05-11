@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,9 +17,12 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.timetravel.Constants ;
 
+//这个类用来渲染世界
 public class WorldRenderer implements Disposable {
 
     private WorldController worldController;
+    private OrthographicCamera cam;
+    TestMap testMap;
 
     public WorldRenderer(WorldController worldController)
     {
@@ -27,12 +31,14 @@ public class WorldRenderer implements Disposable {
     }
     private void init()
     {
-
+        cam = new OrthographicCamera();
+        cam.setToOrtho(false,720,720);
+        testMap = new TestMap();
     }
 
     public void render()
     {
-
+        testMap.render();
     }
     public void resize(int width,int height)
     {
