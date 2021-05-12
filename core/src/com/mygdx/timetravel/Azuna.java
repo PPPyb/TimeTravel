@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
 
 import java.awt.*;
 
-public class Azuna extends AbstractGameObject{
-    Texture img;
+public class Azuna extends Creature{
+
     public TextureRegion curFrame;
     TextureRegion[] walkFrames;
     TextureRegion[] walkFrames2;
@@ -19,13 +21,13 @@ public class Azuna extends AbstractGameObject{
     float stateTime;
     String walkState;
     TextureRegion[][] frames;
-    public Azuna()
+    public Azuna(Texture img)
     {
+        super(img,50,400);
         walkState = new String("RIGHT");
         stateTime = 0;
-        this.setX(0);
-        this.setY(360);
-        img = new Texture(Gdx.files.internal("testMap/azuna.png"));
+
+        //img = new Texture(Gdx.files.internal("testMap/azuna.png"));
         frames = TextureRegion.split(img,img.getWidth()/4,img.getHeight()/4);
         walkFrames = new TextureRegion[4];
         for(int i = 0;i < 4;i++)
@@ -35,33 +37,46 @@ public class Azuna extends AbstractGameObject{
             walkFrames2[i] = frames[1][i];
         curFrame = new TextureRegion();
         curFrame = frames[0][0];
-        walkAni = new Animation(0.2f,walkFrames);
+        setWidth(curFrame.getRegionWidth());
+        setHeight(curFrame.getRegionHeight());
+        setBounds();
+        /*walkAni = new Animation(0.2f,walkFrames);
         walkAni.setPlayMode(Animation.PlayMode.LOOP);
         walkAni2= new Animation(0.2f,walkFrames2);
-        walkAni2.setPlayMode(Animation.PlayMode.LOOP);
+        walkAni2.setPlayMode(Animation.PlayMode.LOOP);*/
+        this.setAcceleration(Constants.gravity);
+
     }
 
-    public void update() {
+    public void update(float deltaTime, TiledMap map,String cll) {
+        super.update(deltaTime,map,cll);
+        System.out.println(bounds);
         stateTime += Gdx.graphics.getDeltaTime();
         if(Gdx.input.isKeyPressed(Input.Keys.A))
         {
             walkState = "LEFT";
-            this.setX(this.getX()-5);
+
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D))
+        else if(Gdx.input.isKeyPressed(Input.Keys.D))
         {
             walkState = "RIGHT";
-            this.setX(this.getX()+5);
+
         }
-        if (walkState=="RIGHT")
+        else walkState = "IDLE";
+        move(walkState,200);
+        boolean jumpState = false;
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            jumpState = true;
+        else
+            jumpState = false;
+        jump(jumpState,200);
+
+        /*if (walkState=="RIGHT")
             curFrame = (TextureRegion) walkAni.getKeyFrame(stateTime,true);
         else if(walkState=="LEFT")
             curFrame = (TextureRegion) walkAni2.getKeyFrame(stateTime,true);
         else
-            curFrame = frames[0][0];
+            curFrame = frames[0][0];*/
     }
 
-    public void draw(Batch batch) {
-        batch.draw(curFrame,this.getX(),this.getY());
-    }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+//CameraHelper类帮助测试相机
 public class CameraHelper {
     private final float MAZ_ZOOM_IN = 0.25f;
     private final float MAX_ZOOM_OUT = 10f;

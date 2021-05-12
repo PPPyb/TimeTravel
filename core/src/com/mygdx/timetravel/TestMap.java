@@ -43,7 +43,7 @@ public class TestMap {
         testRender = new OrthogonalTiledMapRenderer(map);
         batch =  new SpriteBatch();
         viewport = new StretchViewport(cam.viewportWidth,cam.viewportHeight);
-        azuna = new Azuna();
+        azuna = new Azuna(new Texture(Gdx.files.internal("testMap/azuna.png")));
         camHp = new CameraHelper();
 
 
@@ -52,7 +52,7 @@ public class TestMap {
     {
         float x = 0;
 
-        azuna.update();
+        azuna.update(Gdx.graphics.getDeltaTime(),map,"ObjectLayer");
         camHp.trackTarget(azuna);
         camHp.applyTo(cam);
         cam.update() ;
@@ -63,7 +63,7 @@ public class TestMap {
 
 
 
-        MapObjects objects =  map.getLayers().get("ObjectLayer").getObjects();
+        /*(MapObjects objects =  map.getLayers().get("ObjectLayer").getObjects();
 
         int cnt = 0;
         for(RectangleMapObject recobj: objects.getByType(RectangleMapObject.class))
@@ -74,7 +74,7 @@ public class TestMap {
             //System.out.println(r2.x+" "+r2.y);
             if(Intersector.overlaps(r1,r2))
                 System.out.println("collision!"+r1.toString());
-        }
+        }*/
 
         batch.draw(azuna.curFrame,azuna.getX(),azuna.getY());
         batch.end();

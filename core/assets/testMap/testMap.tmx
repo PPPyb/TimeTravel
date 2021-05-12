@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="15" height="10" tilewidth="72" tileheight="72" infinite="0" nextlayerid="8" nextobjectid="11">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="15" height="10" tilewidth="72" tileheight="72" infinite="0" nextlayerid="8" nextobjectid="32">
  <tileset firstgid="1" name="spritesheet" tilewidth="72" tileheight="72" tilecount="156" columns="12">
   <image source="spritesheet.png" width="914" height="936"/>
  </tileset>
@@ -7,17 +7,28 @@
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,133,0,0,0,0,0,0,0,0,0,0,0,
-0,0,133,133,0,0,0,0,0,0,0,0,0,0,0,
-104,104,104,104,104,93,0,0,0,0,0,0,0,0,0,
-153,153,153,153,153,0,0,0,0,0,0,0,0,0,0,
-153,153,153,153,153,0,0,0,0,0,0,0,0,0,0,
-153,153,153,153,153,0,0,0,0,0,0,0,0,0,0,
-153,153,153,153,153,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,128,
+0,0,0,133,0,0,0,0,0,0,0,0,0,128,128,
+0,0,133,133,0,0,0,0,0,0,0,0,0,128,128,
+104,104,104,104,104,93,0,0,0,0,0,0,0,128,128,
+153,153,153,153,153,0,0,0,116,104,92,0,0,128,128,
+153,153,153,153,153,0,0,0,0,0,0,0,0,128,128,
+153,153,153,153,153,0,0,0,0,0,0,0,128,128,128,
+153,153,153,153,153,103,103,103,103,103,103,128,128,128,128
 </data>
  </layer>
  <objectgroup id="6" name="ObjectLayer">
-  <object id="10" x="147" y="215" width="135" height="108"/>
+  <object id="15" x="1" y="362" width="360" height="359"/>
+  <object id="19" x="219" y="216" width="66" height="168"/>
+  <object id="20" x="146" y="286" width="140" height="133"/>
+  <object id="21" x="360" y="363" width="69" height="69"/>
+  <object id="22" x="575" y="431" width="215" height="72"/>
+  <object id="23" x="793" y="648" width="306" height="68"/>
+  <object id="24" x="866" y="577" width="257" height="96"/>
+  <object id="25" x="940" y="214" width="135" height="398"/>
+  <object id="26" x="1013" y="146" width="85" height="84"/>
+  <object id="27" x="349" y="710" width="516" height="33"/>
+  <object id="28" x="1078" y="-9" width="29" height="163"/>
+  <object id="31" x="-3" y="-9" width="10" height="391"/>
  </objectgroup>
 </map>
