@@ -14,17 +14,20 @@ import java.awt.*;
 -------------------------------------------------------------------------------------------------
 测试用主角，工具人，用完就删。
  */
-public class Azuna extends Creature{
+public class Azuna extends Player{
 
     TextureRegion[] walkFrames;
     TextureRegion[] walkFrames2;
     Animation walkAni;
     Animation walkAni2;
+    BulletTest[] bulletTest;
+    int bulletCnt;
     public Azuna(float x,float y)
     {
         super(x,y);
         stateTime = 0;
-
+        bulletTest = new BulletTest[1000];
+        bulletCnt = 0;
         img = new Texture(Gdx.files.internal("testMap/azuna.png"));
         frames = TextureRegion.split(img,img.getWidth()/4,img.getHeight()/4);
         walkFrames = new TextureRegion[4];
@@ -45,26 +48,10 @@ public class Azuna extends Creature{
         curHP = maxHP = 100;
     }
 
-    public void update(float deltaTime, TiledMap map,String cll) {
-        super.update(deltaTime,map,cll);
-        stateTime += Gdx.graphics.getDeltaTime();
-        if(Gdx.input.isKeyPressed(Input.Keys.A))
-        {
-            walkState = "LEFT";
+    public void update(float deltaTime,Level level) {
+        super.update(deltaTime,level);
 
-        }
-        else if(Gdx.input.isKeyPressed(Input.Keys.D))
-        {
-            walkState = "RIGHT";
-
-        }
-        else walkState = "IDLE";
         move(200);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-            jumpState = "JUMPING";
-        else
-            jumpState = "IDLE";
         jump(200);
 
         if(jumpState=="JUMPING")
@@ -75,6 +62,31 @@ public class Azuna extends Creature{
             curFrame = (TextureRegion) walkAni2.getKeyFrame(stateTime,true);
         else
             curFrame = frames[0][0];
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.J))
+        {
+            shoot(500,0);
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.K))
+        {
+            shoot(500,500);
+        }
+        for(int i = 0;i < bulletCnt;i++)
+            bulletTest[i].update(deltaTime,level);
     }
 
+    public void shoot(float x, float y)
+    {
+        bulletTest[bulletCnt] = new BulletTest(getX(),getY());
+        bulletTest[bulletCnt].setVelocity(new Vector2(x,y));
+        bulletTest[bulletCnt].setAcceleration(Constants.gravity);
+        bulletCnt++;
+    }
+
+    public void draw(Batch batch)
+    {
+        super.draw(batch);
+        for(int i = 0;i < bulletCnt;i++)
+            bulletTest[i].draw(batch);
+    }
 }

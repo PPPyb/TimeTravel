@@ -19,12 +19,15 @@ public class TestMonster extends Enemy{
         curFrame = frames[0][0];
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
+        setBounds();
+        //System.out.println(bounds);
         this.setAcceleration(Constants.gravity);
-        curHP = maxHP = 100;
+        curHP = maxHP = 20;
     }
 
-    public void update(float deltaTime, TiledMap map, String cll) {
-        super.update(deltaTime,map,cll);
+    public void update(float deltaTime, Level level) {
+        super.update(deltaTime,level);
+
         stateTime += Gdx.graphics.getDeltaTime();
 
         walkState = "IDLE";

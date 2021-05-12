@@ -26,7 +26,7 @@ import com.mygdx.timetravel.Constants;
  */
 
 public class TestMap {
-    Viewport viewport;
+    /*Viewport viewport;
     Azuna azuna;
     SpriteBatch batch;
     TiledMap map;
@@ -34,39 +34,42 @@ public class TestMap {
     OrthogonalTiledMapRenderer testRender;
     CameraHelper camHp;
     TestMonster[] testMonster;
-    int monsterCnt = 0;
+    int monsterCnt = 0;*/
+
+    Level level;
 
     public TestMap()
     {
+        level = new Level();
         init();
     }
     public void init()
     {
-        map = new TmxMapLoader().load("testMap/testMap.tmx");
-        cam = new OrthographicCamera();
-        cam.setToOrtho(false,1280,720);
-        testRender = new OrthogonalTiledMapRenderer(map);
-        batch =  new SpriteBatch();
-        viewport = new StretchViewport(cam.viewportWidth,cam.viewportHeight);
-        camHp = new CameraHelper();
-        testMonster = new TestMonster[10];
+        level.map = new TmxMapLoader().load("testMap/testMap.tmx");
+        level.collisionLayer = new String("ObjectLayer");
+        level.camera = new OrthographicCamera();
+        level.camera.setToOrtho(false,1280,720);
+        level.mapRenderer = new OrthogonalTiledMapRenderer(level.map);
+        level.batch =  new SpriteBatch();
+        level.cameraHelper = new CameraHelper();
+        level.testMonster = new TestMonster[10];
 
 
         {
-            MapObjects objects = map.getLayers().get("PlayerLayer").getObjects();
+            MapObjects objects = level.map.getLayers().get("PlayerLayer").getObjects();
             for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
                 Rectangle r = recObj.getRectangle();
-                azuna = new Azuna(r.x, r.y);
+                level.azuna = new Azuna(r.x, r.y);
             }
         }
         {
-            MapObjects objects = map.getLayers().get("EnemyLayer").getObjects();
+            MapObjects objects = level.map.getLayers().get("EnemyLayer").getObjects();
             for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
                 Rectangle r = recObj.getRectangle();
                 System.out.println(r);
-                testMonster[monsterCnt++] = new TestMonster(r.x,r.y);
+                level.testMonster[level.testMonsterCnt++] = new TestMonster(r.x,r.y);
             }
         }
 
@@ -75,38 +78,24 @@ public class TestMap {
     {
         float x = 0;
 
-        azuna.update(Gdx.graphics.getDeltaTime(),map,"ObjectLayer");
-        for(int i = 0;i < monsterCnt;i++)
-            testMonster[i].update(Gdx.graphics.getDeltaTime(),map,"ObjectLayer");
-        camHp.trackTarget(azuna);
-        camHp.applyTo(cam);
-        cam.update() ;
+        level.azuna.update(Gdx.graphics.getDeltaTime(),level);
+        for(int i = 0;i < level.testMonsterCnt;i++)
+            level.testMonster[i].update(Gdx.graphics.getDeltaTime(),level);
+        level.cameraHelper.trackTarget(level.azuna);
+        level.cameraHelper.applyTo(level.camera);
+        level.camera.update() ;
 
-        batch.setProjectionMatrix(cam.combined);
-        batch.begin();
+        level.batch.setProjectionMatrix(level.camera.combined);
+        level.batch.begin();
 
-        testRender.setView(cam);
-        testRender.render();
+        level.mapRenderer.setView(level.camera);
+        level.mapRenderer.render();
 
-
-
-        /*(MapObjects objects =  map.getLayers().get("ObjectLayer").getObjects();
-
-        int cnt = 0;
-        for(RectangleMapObject recobj: objects.getByType(RectangleMapObject.class))
-        {
-
-            Rectangle r1 = new Rectangle(azuna.getX(),azuna.getY(),azuna.curFrame.getRegionWidth(),azuna.curFrame.getRegionHeight());
-            Rectangle r2 = recobj.getRectangle();
-            //System.out.println(r2.x+" "+r2.y);
-            if(Intersector.overlaps(r1,r2))
-                System.out.println("collision!"+r1.toString());
-        }*/
-        azuna.draw(batch);
-        for(int i = 0;i < monsterCnt;i++)
-            testMonster[i].draw(batch);
+        level.azuna.draw(level.batch);
+        for(int i = 0;i < level.testMonsterCnt;i++)
+            level.testMonster[i].draw(level.batch);
         //batch.draw(azuna.curFrame,azuna.getX(),azuna.getY());
-        batch.end();
+        level.batch.end();
         //stage.draw();
     }
 

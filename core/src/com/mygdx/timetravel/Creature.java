@@ -1,7 +1,9 @@
 package com.mygdx.timetravel;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -18,8 +20,6 @@ public class Creature extends AbstractGameObject{
     //生物的行走\跳跃状态
     String walkState;
     String jumpState;
-    //系统时间
-    float stateTime;
 
     //生物属性
     int maxHP;//最大血量
@@ -38,7 +38,8 @@ public class Creature extends AbstractGameObject{
         this.img = img;
     }
 
-    public void update(float deltaTime,TiledMap map,String collisionLayer) {
+    public void update(float deltaTime,Level level) {
+        stateTime += deltaTime;
         //update velocity
         velocity.x += acceleration.x;
         velocity.y += acceleration.y;
@@ -46,15 +47,16 @@ public class Creature extends AbstractGameObject{
         float xOffset = velocity.x * deltaTime;
         float yOffset = velocity.y * deltaTime;
 
-        if(this.onCollisionWithMap(map,collisionLayer,xOffset,0))
+        if(this.onCollisionWithMap(level,xOffset,0))
             velocity.x = 0;
         else
             position.x += xOffset;
 
-        if(this.onCollisionWithMap(map,collisionLayer,0,yOffset))
+        if(this.onCollisionWithMap(level,0,yOffset))
             velocity.y = 0;
         else
             position.y += yOffset;
+        setBounds();
     }
     public void move(int speed)
     {
@@ -113,18 +115,6 @@ public class Creature extends AbstractGameObject{
         batch.draw(curFrame,this.getX(),this.getY());
     }
 
-    public boolean onCollisionWithMap(TiledMap map,String collisionLayer,float xOffset,float yOffset)
-    {
-        MapObjects objects =  map.getLayers().get(collisionLayer).getObjects();
-        for(RectangleMapObject recObj: objects.getByType(RectangleMapObject.class))
-        {
 
-            Rectangle r1 = new Rectangle(this.getX()+xOffset,this.getY()+yOffset,this.width,this.height);
-            Rectangle r2 = recObj.getRectangle();
-            if(Intersector.overlaps(r1,r2)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 }
