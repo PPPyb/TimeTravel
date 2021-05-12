@@ -11,13 +11,14 @@ import java.awt.*;
 
 public class Azuna extends AbstractGameObject{
     Texture img;
-    TextureRegion curFrame;
+    public TextureRegion curFrame;
     TextureRegion[] walkFrames;
     TextureRegion[] walkFrames2;
     Animation walkAni;
     Animation walkAni2;
-    int stateTime;
+    float stateTime;
     String walkState;
+    TextureRegion[][] frames;
     public Azuna()
     {
         walkState = new String("RIGHT");
@@ -25,7 +26,7 @@ public class Azuna extends AbstractGameObject{
         this.setX(0);
         this.setY(360);
         img = new Texture(Gdx.files.internal("testMap/azuna.png"));
-        TextureRegion[][] frames = TextureRegion.split(img,img.getWidth()/4,img.getHeight()/4);
+        frames = TextureRegion.split(img,img.getWidth()/4,img.getHeight()/4);
         walkFrames = new TextureRegion[4];
         for(int i = 0;i < 4;i++)
             walkFrames[i] = frames[2][i];
@@ -40,8 +41,7 @@ public class Azuna extends AbstractGameObject{
         walkAni2.setPlayMode(Animation.PlayMode.LOOP);
     }
 
-    @Override
-    public void act(float delta) {
+    public void update() {
         stateTime += Gdx.graphics.getDeltaTime();
         if(Gdx.input.isKeyPressed(Input.Keys.A))
         {
@@ -57,10 +57,11 @@ public class Azuna extends AbstractGameObject{
             curFrame = (TextureRegion) walkAni.getKeyFrame(stateTime,true);
         else if(walkState=="LEFT")
             curFrame = (TextureRegion) walkAni2.getKeyFrame(stateTime,true);
+        else
+            curFrame = frames[0][0];
     }
 
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void draw(Batch batch) {
         batch.draw(curFrame,this.getX(),this.getY());
     }
 }
