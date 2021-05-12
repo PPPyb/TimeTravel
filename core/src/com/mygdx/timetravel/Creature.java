@@ -9,14 +9,29 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
+//生物类，包括，主角，敌人，和人畜无害小动物。
 public class Creature extends AbstractGameObject{
+    //生物的图像
     Texture img;
+    TextureRegion[][] frames;
+    TextureRegion curFrame;
+    //生物的行走\跳跃状态
+    String walkState;
+    String jumpState;
+    //系统时间
+    float stateTime;
 
-    public Creature(Texture img,int x,int y)
+    //生物属性
+    int maxHP;//最大血量
+    int curHP;//当前血量
+
+    Boolean isAlive;
+    public Creature(float x,float y)
     {
         super(x,y);
-
-
+        walkState = new String();
+        jumpState = new String();
+        isAlive = true;
     }
 
     public void setImg(Texture img) {
@@ -34,40 +49,68 @@ public class Creature extends AbstractGameObject{
         if(this.onCollisionWithMap(map,collisionLayer,xOffset,0))
             velocity.x = 0;
         else
-        position.x += xOffset;
+            position.x += xOffset;
 
         if(this.onCollisionWithMap(map,collisionLayer,0,yOffset))
             velocity.y = 0;
         else
-        position.y += yOffset;
-
+            position.y += yOffset;
     }
-    public void move(String state,int speed)
+    public void move(int speed)
     {
-        switch (state)
+        switch (walkState)
         {
             case "LEFT":
-                this.velocity.set(-speed,this.velocity.y);
+                this.velocity.x = -speed;
                 break;
             case "RIGHT":
-                this.velocity.set(speed,this.velocity.y);
+                this.velocity.x = speed;
                 break;
             case "IDLE":
-                this.velocity.set(0,this.velocity.y);
+                this.velocity.x = 0;
+                break;
+            default:
                 break;
         }
     }
 
-    public void jump(Boolean state,int speed)
+    public void jump(int speed)
     {
-        if(state)
-            this.velocity.y = speed;
+        switch (jumpState) {
+            case "JUMPING":
+                this.velocity.y = speed;
+                break;
+            case "DROPPING":
+                break;
+            case "IDLE":
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void loseHP(int HP)
+    {
+        if(curHP - HP > 0)
+            curHP -= HP;
+        else
+        {
+            curHP = 0;
+            isAlive = false;//挂了
+        }
+    }
+
+    public void restoreHP(int HP)
+    {
+        if(curHP + HP > maxHP)
+            curHP = maxHP;
+        else
+            curHP += HP;
     }
 
     public void draw(Batch batch)
     {
-        //
-        batch.draw(img,this.getX(),this.getY());
+        batch.draw(curFrame,this.getX(),this.getY());
     }
 
     public boolean onCollisionWithMap(TiledMap map,String collisionLayer,float xOffset,float yOffset)

@@ -4,13 +4,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+//游戏中的抽象物体
 public abstract class AbstractGameObject{
-    Vector2 position = new Vector2();
-    Vector2 velocity = new Vector2();
-    Vector2 acceleration = new Vector2();
-    int width;
-    int height;
-    Rectangle bounds;
+    Vector2 position = new Vector2();//位置
+    Vector2 velocity = new Vector2();//速度
+    Vector2 acceleration = new Vector2();//加速度
+    int width;//宽
+    int height;//高
 
     public AbstractGameObject(float x,float y)
     {
@@ -31,6 +31,10 @@ public abstract class AbstractGameObject{
         this.position.y = y;
     }
 
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
     public float getX() {
         return position.x;
     }
@@ -45,10 +49,6 @@ public abstract class AbstractGameObject{
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public void setBounds() {
-        this.bounds = new Rectangle(this.getX(),this.getY(),this.width,this.height);
     }
 
     public void setVelocity(Vector2 vec)

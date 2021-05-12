@@ -14,22 +14,27 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.timetravel.Constants;
 
+/*
+---------------------------------------------------------------------\
+皇家测试御用地图，用后即焚！
+ */
+
 public class TestMap {
     Viewport viewport;
-    Stage stage;
-    Stage bkgStage;
     Azuna azuna;
     SpriteBatch batch;
     TiledMap map;
     OrthographicCamera cam;
     OrthogonalTiledMapRenderer testRender;
     CameraHelper camHp;
-    boolean cameraTracking = false;
+    TestMonster[] testMonster;
+    int monsterCnt = 0;
 
     public TestMap()
     {
@@ -43,9 +48,27 @@ public class TestMap {
         testRender = new OrthogonalTiledMapRenderer(map);
         batch =  new SpriteBatch();
         viewport = new StretchViewport(cam.viewportWidth,cam.viewportHeight);
-        azuna = new Azuna(new Texture(Gdx.files.internal("testMap/azuna.png")));
         camHp = new CameraHelper();
+        testMonster = new TestMonster[10];
 
+
+        {
+            MapObjects objects = map.getLayers().get("PlayerLayer").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                azuna = new Azuna(r.x, r.y);
+            }
+        }
+        {
+            MapObjects objects = map.getLayers().get("EnemyLayer").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                System.out.println(r);
+                testMonster[monsterCnt++] = new TestMonster(r.x,r.y);
+            }
+        }
 
     }
     public void render()
@@ -53,11 +76,15 @@ public class TestMap {
         float x = 0;
 
         azuna.update(Gdx.graphics.getDeltaTime(),map,"ObjectLayer");
+        for(int i = 0;i < monsterCnt;i++)
+            testMonster[i].update(Gdx.graphics.getDeltaTime(),map,"ObjectLayer");
         camHp.trackTarget(azuna);
         camHp.applyTo(cam);
         cam.update() ;
+
         batch.setProjectionMatrix(cam.combined);
         batch.begin();
+
         testRender.setView(cam);
         testRender.render();
 
@@ -75,9 +102,12 @@ public class TestMap {
             if(Intersector.overlaps(r1,r2))
                 System.out.println("collision!"+r1.toString());
         }*/
-
-        batch.draw(azuna.curFrame,azuna.getX(),azuna.getY());
+        azuna.draw(batch);
+        for(int i = 0;i < monsterCnt;i++)
+            testMonster[i].draw(batch);
+        //batch.draw(azuna.curFrame,azuna.getX(),azuna.getY());
         batch.end();
         //stage.draw();
     }
+
 }

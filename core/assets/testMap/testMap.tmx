@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="15" height="10" tilewidth="72" tileheight="72" infinite="0" nextlayerid="8" nextobjectid="32">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="left-down" width="15" height="10" tilewidth="72" tileheight="72" infinite="0" nextlayerid="10" nextobjectid="44">
  <tileset firstgid="1" name="spritesheet" tilewidth="72" tileheight="72" tilecount="156" columns="12">
   <image source="spritesheet.png" width="914" height="936"/>
  </tileset>
@@ -30,5 +30,17 @@
   <object id="27" x="349" y="710" width="516" height="33"/>
   <object id="28" x="1078" y="-9" width="29" height="163"/>
   <object id="31" x="-3" y="-9" width="10" height="391"/>
+ </objectgroup>
+ <objectgroup id="8" name="PlayerLayer">
+  <object id="35" x="72" y="284"/>
+ </objectgroup>
+ <objectgroup id="9" name="EnemyLayer">
+  <object id="37" x="968" y="90"/>
+  <object id="38" x="684" y="361"/>
+  <object id="39" x="456" y="593"/>
+  <object id="40" x="404" y="188"/>
+  <object id="41" x="763" y="619"/>
+  <object id="42" x="884" y="460"/>
+  <object id="43" x="191" y="195"/>
  </objectgroup>
 </map>
