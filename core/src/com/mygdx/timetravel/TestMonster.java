@@ -8,11 +8,24 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class TestMonster extends Enemy{
+
     public TestMonster(float x,float y,Level level)
     {
         super(x, y,level);
-        stateTime = 0;
+        init();
+    }
 
+    @Override
+    public void init() {
+        initAnime();
+        this.setAcceleration(Constants.GRAVITY);
+        curHP = maxHP = 80f;
+        walkSpeed = 50;
+        enemyAI = new EnemyAITest(this);
+    }
+
+    @Override
+    public void initAnime() {
         img = new Texture(Gdx.files.internal("testMap/monster.png"));
         frames = TextureRegion.split(img,img.getWidth(),img.getHeight());
         curFrame = new TextureRegion();
@@ -20,24 +33,14 @@ public class TestMonster extends Enemy{
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         setBounds();
-        //System.out.println(bounds);
-        this.setAcceleration(Constants.GRAVITY);
-        curHP = maxHP = 80f;
     }
 
+    @Override
     public void update(float deltaTime) {
         if(!isAlive)
             return;
         super.update(deltaTime);
-
-        walkState = "IDLE";
-
-        move(200);
-
-
-        jump(200);
-
-        curFrame = frames[0][0];
+        enemyAI.act();
     }
 
     @Override

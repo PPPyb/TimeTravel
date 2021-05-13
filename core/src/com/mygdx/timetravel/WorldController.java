@@ -40,6 +40,7 @@ public class WorldController {
                 break;
             case 2:
                 curLevel = testWorld;
+                break;
         }
     }
     public void levelManager()

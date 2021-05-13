@@ -53,6 +53,7 @@ public class Creature extends AbstractGameObject{
         dashState = new String();
         isAlive = true;
         curDashPoint = maxDashPoint = 100f;
+        stateTime = 0;
     }
 
     public void setImg(Texture img) {
