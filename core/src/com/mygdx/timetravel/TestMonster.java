@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
@@ -41,6 +42,13 @@ public class TestMonster extends Enemy{
             return;
         super.update(deltaTime);
         enemyAI.act();
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        super.draw(batch);
+        TextureRegion imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+        batch.draw(imgHP,getX(),getY()+height+5,curHP*width/maxHP,5);
     }
 
     @Override

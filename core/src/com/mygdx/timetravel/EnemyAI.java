@@ -6,6 +6,7 @@ import java.math.*;
 public class EnemyAI {
     Enemy enemy;
     float stateTime = 0;
+    int stateCnt = 0;
     int patternTime = 3;
     public EnemyAI(Enemy enemy)
     {
@@ -13,7 +14,9 @@ public class EnemyAI {
     }
     public void act() {
         stateTime += Gdx.graphics.getDeltaTime();
-        if((int)(stateTime*1000)%(patternTime*1000)<20)
+        stateCnt++;
+        //System.out.println((stateTime*1000)%(patternTime*1000));
+        if((int)(stateTime*1000)%(patternTime*1000)<50)
              pattern();
         enemy.move(enemy.walkSpeed);
         enemy.jump(enemy.walkSpeed);

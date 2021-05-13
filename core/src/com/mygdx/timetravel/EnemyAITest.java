@@ -21,7 +21,7 @@ public class EnemyAITest extends EnemyAI{
                 enemy.walkState = "IDLE";
         }
         int jumpDecision = (int)(Math.random()*5);
-        System.out.println(jumpDecision);
+        //System.out.println(jumpDecision);
         switch (jumpDecision)
         {
             case 0:
