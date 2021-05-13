@@ -6,18 +6,20 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class BulletTest extends Bullets{
 
-    public BulletTest(float x,float y)
+    public BulletTest(float x,float y,Level level)
     {
-        super(x,y);
+        super(x,y,level);
         curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/love.png")));
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         damage = 10;
+        MPConsume = 50f;
+        speed = 600;
     }
 
     @Override
-    public void update(float deltaTime, Level level) {
-        super.update(deltaTime, level);
-        collideEnemy(level);
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        collideEnemy();
     }
 }

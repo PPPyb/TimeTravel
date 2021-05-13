@@ -8,9 +8,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public class TestMonster extends Enemy{
-    public TestMonster(float x,float y)
+    public TestMonster(float x,float y,Level level)
     {
-        super(x, y);
+        super(x, y,level);
         stateTime = 0;
 
         img = new Texture(Gdx.files.internal("testMap/monster.png"));
@@ -22,13 +22,13 @@ public class TestMonster extends Enemy{
         setBounds();
         //System.out.println(bounds);
         this.setAcceleration(Constants.GRAVITY);
-        curHP = maxHP = 20;
+        curHP = maxHP = 80f;
     }
 
-    public void update(float deltaTime, Level level) {
+    public void update(float deltaTime) {
         if(!isAlive)
             return;
-        super.update(deltaTime,level);
+        super.update(deltaTime);
 
         walkState = "IDLE";
 

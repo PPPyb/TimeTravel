@@ -20,14 +20,18 @@ public class Bullets extends AbstractGameObject{
     Boolean isDestructed = false;
     //子弹可穿透单位
     Boolean penetrate = false;
-
+    //MP消耗
+    public static float MPConsume;
+    //速度标量
+    public static float speed;
+    //伤害
     int damage;
 
-    public Bullets(float x,float y)
+    public Bullets(float x,float y,Level level)
     {
-        super(x,y);
+        super(x,y,level);
     }
-    public void update(float deltaTime,Level level) {
+    public void update(float deltaTime) {
         if (isDestructed)
             return;
         stateTime += deltaTime;
@@ -38,12 +42,12 @@ public class Bullets extends AbstractGameObject{
         float xOffset = velocity.x * deltaTime;
         float yOffset = velocity.y * deltaTime;
 
-        if(this.onCollisionWithMap(level,xOffset,0))
+        if(this.onCollisionWithMap(xOffset,0))
             this.destructed();
         else
             position.x += xOffset;
 
-        if(this.onCollisionWithMap(level,0,yOffset))
+        if(this.onCollisionWithMap(0,yOffset))
             this.destructed();
         else
             position.y += yOffset;
@@ -59,7 +63,7 @@ public class Bullets extends AbstractGameObject{
         this.setPosition(new Vector2(-10000,-10000));
         isDestructed = true;
     }
-    public void collideEnemy(Level level)
+    public void collideEnemy()
     {
         for(int i = 0;i < level.testMonsterCnt;i++)
         {

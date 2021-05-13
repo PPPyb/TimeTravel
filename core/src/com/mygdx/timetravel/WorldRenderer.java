@@ -21,24 +21,15 @@ import com.mygdx.timetravel.Constants ;
 public class WorldRenderer implements Disposable {
 
     private WorldController worldController;
-    private OrthographicCamera cam;
-    TestMap testMap;
 
     public WorldRenderer(WorldController worldController)
     {
         this.worldController = worldController;
-        init();
-    }
-    private void init()
-    {
-        cam = new OrthographicCamera();
-        cam.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
-        testMap = new TestMap();
     }
 
     public void render()
     {
-        testMap.render();
+        worldController.render();
     }
     public void resize(int width,int height)
     {

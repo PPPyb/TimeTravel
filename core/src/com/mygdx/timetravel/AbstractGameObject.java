@@ -18,8 +18,9 @@ public abstract class AbstractGameObject{
     Rectangle bounds;
     //系统时间
     float stateTime;
+    Level level;
 
-    public AbstractGameObject(float x,float y)
+    public AbstractGameObject(float x,float y,Level level)
     {
         position = new Vector2();
         velocity = new Vector2();
@@ -27,6 +28,7 @@ public abstract class AbstractGameObject{
         this.position.x = x;
         this.position.y = y;
         setBounds();
+        this.level = level;
     }
 
     public void setX(float x)
@@ -61,11 +63,13 @@ public abstract class AbstractGameObject{
 
     public void setVelocity(Vector2 vec)
     {
-        this.velocity = vec;
+        this.velocity.x = vec.x;
+        this.velocity.y = vec.y;
     }
     public void setAcceleration(Vector2 vec)
     {
-        this.acceleration = vec;
+        this.acceleration.x = vec.x;
+        this.acceleration.y = vec.y;
     }
 
     public void setBounds() {
@@ -83,7 +87,7 @@ public abstract class AbstractGameObject{
         setBounds();
         stateTime += deltaTime;
     }
-    public boolean onCollisionWithMap(Level level, float xOffset, float yOffset)
+    public boolean onCollisionWithMap(float xOffset, float yOffset)
     {
         MapObjects objects =  level.map.getLayers().get("CollisionLayer").getObjects();
         for(RectangleMapObject recObj: objects.getByType(RectangleMapObject.class))

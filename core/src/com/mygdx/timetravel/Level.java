@@ -17,6 +17,8 @@ public class Level {
     SpriteBatch batch;
     OrthographicCamera camera;
     CameraHelper cameraHelper;
+    SpriteBatch guiBatch;
+    GUIRenderer guiRenderer;
     //地图
     TiledMap map;
     OrthogonalTiledMapRenderer mapRenderer;
@@ -41,13 +43,15 @@ public class Level {
         camera = new OrthographicCamera();
         camera.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
         cameraHelper = new CameraHelper();
+        guiBatch = new SpriteBatch();
+        guiRenderer = new GUIRenderer(this);
         //地图
         map = new TmxMapLoader().load(mapRoute);
         mapRenderer = new OrthogonalTiledMapRenderer(map);
         //主角
-        curPlayer = new Player(0,0);
-        azuna = new Azuna(0,0);
-        kirito = new Kirito(0,0);
+        curPlayer = new Player(0,0,this);
+        azuna = new Azuna(0,0,this);
+        kirito = new Kirito(0,0,this);
         //敌人
         testMonster = new TestMonster[100];
         testMonsterCnt = 0;
@@ -64,15 +68,18 @@ public class Level {
     {
         //update主角
         choosePlayer();
-        curPlayer.update(Gdx.graphics.getDeltaTime(),this);
+        curPlayer.update(Gdx.graphics.getDeltaTime());
+        //回复所有角色状态
+        azuna.restore();
+        kirito.restore();
         //update怪物
         for(int i = 0;i < testMonsterCnt;i++)
-            testMonster[i].update(Gdx.graphics.getDeltaTime(),this);
+            testMonster[i].update(Gdx.graphics.getDeltaTime());
         //update子弹
         for(int i = 0;i < bulletTestCnt;i++)
-            bulletTest[i].update(deltaTime,this);
+            bulletTest[i].update(deltaTime);
         for(int i = 0;i < bulletTestPenetrateCnt;i++)
-            bulletTestPenetrate[i].update(deltaTime,this);
+            bulletTestPenetrate[i].update(deltaTime);
         //update相机
         cameraHelper.trackTarget(curPlayer);
         cameraHelper.applyTo(camera);
@@ -97,6 +104,11 @@ public class Level {
         curPlayer.draw(batch);
 
         batch.end();
+
+        //绘制GUI
+        guiBatch.begin();
+        guiRenderer.render(guiBatch);
+        guiBatch.end();
     }
     public void render()
     {
@@ -119,7 +131,7 @@ public class Level {
 
             Rectangle r = recObj.getRectangle();
             System.out.println(r);
-            testMonster[testMonsterCnt++] = new TestMonster(r.x,r.y);
+            testMonster[testMonsterCnt++] = new TestMonster(r.x,r.y,this);
         }
     }
     public void choosePlayer()

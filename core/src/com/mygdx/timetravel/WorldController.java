@@ -8,17 +8,20 @@ import com.mygdx.timetravel.Constants;
 但是反正最后我可能还是会瞎放。
 */
 public class WorldController {
+
+    Level testMap;
     public WorldController()
     {
-        init();
+        testMap = new Level("testMap/testMap.tmx");
     }
-    private void init()
-    {
 
-    }
     public void update(float deltaTime)
     {
 
     }
 
+    public void render()
+    {
+        testMap.render();
+    }
 }
