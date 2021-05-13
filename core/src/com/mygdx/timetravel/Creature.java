@@ -99,6 +99,7 @@ public class Creature extends AbstractGameObject{
         {
             curHP = 0;
             isAlive = false;//挂了
+            die();
         }
     }
 
@@ -115,6 +116,10 @@ public class Creature extends AbstractGameObject{
         batch.draw(curFrame,this.getX(),this.getY());
     }
 
+    public void die()
+    {
+
+    }
 
 
 }

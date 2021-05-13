@@ -18,6 +18,8 @@ public class Bullets extends AbstractGameObject{
     TextureRegion curFrame;
     //子弹被销毁
     Boolean isDestructed = false;
+    //子弹可穿透单位
+    Boolean penetrate = false;
 
     int damage;
 
@@ -45,8 +47,6 @@ public class Bullets extends AbstractGameObject{
             this.destructed();
         else
             position.y += yOffset;
-
-        collideEnemy(level);
     }
     public void draw(Batch batch)
     {
@@ -67,7 +67,8 @@ public class Bullets extends AbstractGameObject{
             Rectangle r2 = new Rectangle(level.testMonster[i].getX(),level.testMonster[i].getY(),level.testMonster[i].width,level.testMonster[i].height);
             if(Intersector.overlaps(r1,r2)) {
                 level.testMonster[i].loseHP(damage);
-                this.destructed();
+                if(!penetrate)
+                    this.destructed();
             }
         }
     }

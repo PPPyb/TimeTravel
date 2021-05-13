@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class BulletTest extends Bullets{
+public class BulletTestMonster extends Bullets{
 
-    public BulletTest(float x,float y)
+    public BulletTestMonster(float x, float y)
     {
         super(x,y);
         curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/love.png")));

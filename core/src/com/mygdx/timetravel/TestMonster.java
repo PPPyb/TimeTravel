@@ -21,14 +21,14 @@ public class TestMonster extends Enemy{
         setHeight(curFrame.getRegionHeight());
         setBounds();
         //System.out.println(bounds);
-        this.setAcceleration(Constants.gravity);
+        this.setAcceleration(Constants.GRAVITY);
         curHP = maxHP = 20;
     }
 
     public void update(float deltaTime, Level level) {
+        if(!isAlive)
+            return;
         super.update(deltaTime,level);
-
-        stateTime += Gdx.graphics.getDeltaTime();
 
         walkState = "IDLE";
 
@@ -38,5 +38,11 @@ public class TestMonster extends Enemy{
         jump(200);
 
         curFrame = frames[0][0];
+    }
+
+    @Override
+    public void die() {
+        super.die();
+        curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/coin.png")));
     }
 }

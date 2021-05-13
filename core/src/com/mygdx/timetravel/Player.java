@@ -9,6 +9,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 //玩家类
 public class Player extends Creature{
 
+    String name;
+    int walkSpeed;
+
     public Player(float x,float y){
         super(x,y);
     }
@@ -26,5 +29,7 @@ public class Player extends Creature{
             jumpState = "JUMPING";
         else
             jumpState = "IDLE";
+        move(walkSpeed);
+        jump(walkSpeed);
     }
 }

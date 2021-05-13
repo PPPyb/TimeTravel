@@ -17,7 +17,7 @@
 153,153,153,153,153,103,103,103,103,103,103,128,128,128,128
 </data>
  </layer>
- <objectgroup id="6" name="ObjectLayer">
+ <objectgroup id="6" name="CollisionLayer">
   <object id="15" x="1" y="362" width="360" height="359"/>
   <object id="19" x="219" y="216" width="66" height="168"/>
   <object id="20" x="146" y="286" width="140" height="133"/>

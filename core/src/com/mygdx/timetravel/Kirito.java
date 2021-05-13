@@ -6,28 +6,26 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
-import java.awt.*;
 /*
 -------------------------------------------------------------------------------------------------
 测试用主角，工具人，用完就删。
  */
-public class Azuna extends Player{
+public class Kirito extends Player{
 
     TextureRegion[] walkFrames;
     TextureRegion[] walkFrames2;
     Animation walkAni;
     Animation walkAni2;
 
-    public Azuna(float x,float y)
+    public Kirito(float x, float y)
     {
         super(x,y);
-        name = "AZUNA";
+        name = "KIRITO";
         stateTime = 0;
 
-        img = new Texture(Gdx.files.internal("testMap/azuna.png"));
+        img = new Texture(Gdx.files.internal("testMap/kirito.png"));
         frames = TextureRegion.split(img,img.getWidth()/4,img.getHeight()/4);
         walkFrames = new TextureRegion[4];
         for(int i = 0;i < 4;i++)
@@ -44,8 +42,8 @@ public class Azuna extends Player{
         walkAni2= new Animation(0.2f,walkFrames2);
         walkAni2.setPlayMode(Animation.PlayMode.LOOP);
         this.setAcceleration(Constants.GRAVITY);
-        curHP = maxHP = 100;
-        walkSpeed = 200;
+        curHP = maxHP = 200;
+        walkSpeed = 400;
     }
 
     public void update(float deltaTime,Level level) {
@@ -75,10 +73,9 @@ public class Azuna extends Player{
 
     public void shoot(float x, float y,Level level)
     {
-        level.bulletTest[level.bulletTestCnt] = new BulletTest(getX(),getY());
-        level.bulletTest[level.bulletTestCnt].setVelocity(new Vector2(x,y));
-        level.bulletTest[level.bulletTestCnt].setAcceleration(Constants.GRAVITY);
-        level.bulletTestCnt++;
+        level.bulletTestPenetrate[level.bulletTestPenetrateCnt] = new BulletTestPenetrate(getX(),getY());
+        level.bulletTestPenetrate[level.bulletTestPenetrateCnt].setVelocity(new Vector2(x,y));
+        level.bulletTestPenetrateCnt++;
     }
 
     public void draw(Batch batch)

@@ -40,62 +40,33 @@ public class TestMap {
 
     public TestMap()
     {
-        level = new Level();
-        init();
-    }
-    public void init()
-    {
-        level.map = new TmxMapLoader().load("testMap/testMap.tmx");
-        level.collisionLayer = new String("ObjectLayer");
-        level.camera = new OrthographicCamera();
-        level.camera.setToOrtho(false,1280,720);
-        level.mapRenderer = new OrthogonalTiledMapRenderer(level.map);
-        level.batch =  new SpriteBatch();
-        level.cameraHelper = new CameraHelper();
-        level.testMonster = new TestMonster[10];
-
-
-        {
-            MapObjects objects = level.map.getLayers().get("PlayerLayer").getObjects();
-            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
-
-                Rectangle r = recObj.getRectangle();
-                level.azuna = new Azuna(r.x, r.y);
-            }
-        }
-        {
-            MapObjects objects = level.map.getLayers().get("EnemyLayer").getObjects();
-            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
-
-                Rectangle r = recObj.getRectangle();
-                System.out.println(r);
-                level.testMonster[level.testMonsterCnt++] = new TestMonster(r.x,r.y);
-            }
-        }
+        level = new Level("testMap/testMap.tmx");
 
     }
+
     public void render()
     {
-        float x = 0;
+        level.render();
 
-        level.azuna.update(Gdx.graphics.getDeltaTime(),level);
-        for(int i = 0;i < level.testMonsterCnt;i++)
-            level.testMonster[i].update(Gdx.graphics.getDeltaTime(),level);
-        level.cameraHelper.trackTarget(level.azuna);
+
+        //level.curPlayer.update(Gdx.graphics.getDeltaTime(),level);
+        /*（for(int i = 0;i < level.testMonsterCnt;i++)
+            level.testMonster[i].update(Gdx.graphics.getDeltaTime(),level);*/
+        /*level.cameraHelper.trackTarget(level.azuna);
         level.cameraHelper.applyTo(level.camera);
-        level.camera.update() ;
+        level.camera.update() ;*/
 
-        level.batch.setProjectionMatrix(level.camera.combined);
-        level.batch.begin();
+        //level.batch.setProjectionMatrix(level.camera.combined);
+       /* level.batch.begin();
 
         level.mapRenderer.setView(level.camera);
         level.mapRenderer.render();
 
-        level.azuna.draw(level.batch);
+        level.curPlayer.draw(level.batch);
         for(int i = 0;i < level.testMonsterCnt;i++)
             level.testMonster[i].draw(level.batch);
         //batch.draw(azuna.curFrame,azuna.getX(),azuna.getY());
-        level.batch.end();
+        level.batch.end();*/
         //stage.draw();
     }
 

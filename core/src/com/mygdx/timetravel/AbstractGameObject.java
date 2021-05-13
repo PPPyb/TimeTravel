@@ -85,7 +85,7 @@ public abstract class AbstractGameObject{
     }
     public boolean onCollisionWithMap(Level level, float xOffset, float yOffset)
     {
-        MapObjects objects =  level.map.getLayers().get(level.collisionLayer).getObjects();
+        MapObjects objects =  level.map.getLayers().get("CollisionLayer").getObjects();
         for(RectangleMapObject recObj: objects.getByType(RectangleMapObject.class))
         {
 

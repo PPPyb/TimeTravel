@@ -32,7 +32,7 @@ public class WorldRenderer implements Disposable {
     private void init()
     {
         cam = new OrthographicCamera();
-        cam.setToOrtho(false,720,720);
+        cam.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
         testMap = new TestMap();
     }
 
