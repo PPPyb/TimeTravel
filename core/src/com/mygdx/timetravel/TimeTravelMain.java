@@ -42,8 +42,6 @@ public class TimeTravelMain extends ApplicationAdapter {
 	@Override
 	public void render ()
 	{
-		worldController.update(Gdx.graphics.getDeltaTime());
-
 		Gdx.gl.glClearColor(1,1,1,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render();

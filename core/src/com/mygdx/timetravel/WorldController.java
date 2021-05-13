@@ -9,19 +9,52 @@ import com.mygdx.timetravel.Constants;
 */
 public class WorldController {
 
+    Level curLevel;
+    int curLevelNum = 1;
     Level testMap;
+    Level testWorld;
     public WorldController()
     {
+        curLevel = new Level("testMap/testWorld.tmx");
         testMap = new Level("testMap/testMap.tmx");
+        testWorld = new Level("testMap/testWorld.tmx");
     }
 
-    public void update(float deltaTime)
+    public void update()
     {
-
+        levelManager();
+        chooseLevel();
     }
 
     public void render()
     {
-        testMap.render();
+        update();
+        curLevel.render();
+    }
+    public void chooseLevel()
+    {
+        switch (curLevelNum)
+        {
+            case 1:
+                curLevel = testMap;
+                break;
+            case 2:
+                curLevel = testWorld;
+        }
+    }
+    public void levelManager()
+    {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1))
+        {
+            setCurLevelNum(1);
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2))
+        {
+            setCurLevelNum(2);
+        }
+    }
+
+    public void setCurLevelNum(int curLevelNum) {
+        this.curLevelNum = curLevelNum;
     }
 }

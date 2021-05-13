@@ -18,6 +18,7 @@ public class Level {
     OrthographicCamera camera;
     CameraHelper cameraHelper;
     SpriteBatch guiBatch;
+    OrthographicCamera guiCamera;
     GUIRenderer guiRenderer;
     //地图
     TiledMap map;
@@ -44,6 +45,8 @@ public class Level {
         camera.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
         cameraHelper = new CameraHelper();
         guiBatch = new SpriteBatch();
+        guiCamera = new OrthographicCamera();
+        guiCamera.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
         guiRenderer = new GUIRenderer(this);
         //地图
         map = new TmxMapLoader().load(mapRoute);
@@ -85,6 +88,7 @@ public class Level {
         cameraHelper.applyTo(camera);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+        guiBatch.setProjectionMatrix(guiCamera.combined);
         mapRenderer.setView(camera);
     }
     public void draw()

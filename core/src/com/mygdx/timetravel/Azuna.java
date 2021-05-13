@@ -95,6 +95,8 @@ public class Azuna extends Player{
             level.bulletTestCnt++;
             loseMP(BulletTest.MPConsume);
         }
+
     }
+
 
 }

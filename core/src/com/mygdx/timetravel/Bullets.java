@@ -30,6 +30,7 @@ public class Bullets extends AbstractGameObject{
     public Bullets(float x,float y,Level level)
     {
         super(x,y,level);
+        initAnime();
     }
     public void update(float deltaTime) {
         if (isDestructed)
@@ -51,7 +52,12 @@ public class Bullets extends AbstractGameObject{
             this.destructed();
         else
             position.y += yOffset;
+
+        updateAnime();
     }
+    public void initAnime(){}
+    public void updateAnime(){}
+
     public void draw(Batch batch)
     {
         batch.draw(curFrame,this.getX(),this.getY());
@@ -67,10 +73,11 @@ public class Bullets extends AbstractGameObject{
     {
         for(int i = 0;i < level.testMonsterCnt;i++)
         {
+            TestMonster monster = level.testMonster[i];
             Rectangle r1 = new Rectangle(getX(),getY(),width,height);
-            Rectangle r2 = new Rectangle(level.testMonster[i].getX(),level.testMonster[i].getY(),level.testMonster[i].width,level.testMonster[i].height);
+            Rectangle r2 = new Rectangle(monster.getX(),monster.getY(),monster.width,monster.height);
             if(Intersector.overlaps(r1,r2)) {
-                level.testMonster[i].loseHP(damage);
+                monster.loseHP(damage);
                 if(!penetrate)
                     this.destructed();
             }

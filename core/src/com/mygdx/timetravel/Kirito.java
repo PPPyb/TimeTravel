@@ -25,17 +25,17 @@ public class Kirito extends Player{
 
     @Override
     public void initState() {
-        name = "AZUNA";
+        name = "KIRITO";
         stateTime = 0;
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         //属性
-        curHP = maxHP = 200f;
-        walkSpeed = 200;
-        curMP = maxMP = 300f;
-        MPRestoreRate = MPRestoreRateOrigin = 30f;
+        curHP = maxHP = 350f;
+        walkSpeed = 400;
+        curMP = maxMP = 200f;
+        MPRestoreRate = MPRestoreRateOrigin = 20f;
         curJumpPoint = maxJumpPoint = 100f;
-        JPRestoreRate = JPRestoreRateOrigin = 20f;
+        JPRestoreRate = JPRestoreRateOrigin = 30f;
         DPRestoreRate = 20F;
     }
 
