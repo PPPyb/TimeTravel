@@ -3,6 +3,7 @@ package com.mygdx.timetravel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -36,6 +37,8 @@ public class Level {
     int bulletTestCnt;
     BulletTestPenetrate[] bulletTestPenetrate;
     int bulletTestPenetrateCnt;
+    BulletTestEnemy[] bulletTestEnemies;
+    int bulletTestEnemiesCnt;
 
     public Level(String mapRoute)
     {
@@ -63,6 +66,8 @@ public class Level {
         bulletTestCnt = 0;
         bulletTestPenetrate = new BulletTestPenetrate[1000];
         bulletTestPenetrateCnt = 0;
+        bulletTestEnemies = new BulletTestEnemy[10000];
+        bulletTestEnemiesCnt = 0;
 
         initPlayer();
         initEnemies();
@@ -76,13 +81,11 @@ public class Level {
         azuna.restore();
         kirito.restore();
         //update怪物
-        for(int i = 0;i < testMonsterCnt;i++)
-            testMonster[i].update(Gdx.graphics.getDeltaTime());
+        updateObjects(testMonster,testMonsterCnt,deltaTime);
         //update子弹
-        for(int i = 0;i < bulletTestCnt;i++)
-            bulletTest[i].update(deltaTime);
-        for(int i = 0;i < bulletTestPenetrateCnt;i++)
-            bulletTestPenetrate[i].update(deltaTime);
+        updateObjects(bulletTest,bulletTestCnt,deltaTime);
+        updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
+        updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
         //update相机
         cameraHelper.trackTarget(curPlayer);
         cameraHelper.applyTo(camera);
@@ -97,13 +100,11 @@ public class Level {
         //画地图
         mapRenderer.render();
         //画怪物
-        for(int i = 0;i < testMonsterCnt;i++)
-            testMonster[i].draw(batch);
+        drawObjects(testMonster,testMonsterCnt,batch);
         //画子弹
-        for(int i = 0;i < bulletTestCnt;i++)
-            bulletTest[i].draw(batch);
-        for(int i = 0;i < bulletTestPenetrateCnt;i++)
-            bulletTestPenetrate[i].draw(batch);
+        drawObjects(bulletTest,bulletTestCnt,batch);
+        drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
+        drawObjects(bulletTestEnemies,bulletTestEnemiesCnt,batch);
         //画角色
         curPlayer.draw(batch);
 
@@ -162,5 +163,15 @@ public class Level {
             default:
                 break;
         }
+    }
+    public void updateObjects(AbstractGameObject[] objects,int cnt,float deltaTime)
+    {
+        for(int i = 0;i < cnt;i++)
+            objects[i].update(deltaTime);
+    }
+    public void drawObjects(AbstractGameObject[] objects, int cnt, Batch batch)
+    {
+        for(int i = 0;i < cnt;i++)
+            objects[i].draw(batch);
     }
 }

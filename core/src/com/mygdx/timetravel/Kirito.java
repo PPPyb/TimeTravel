@@ -90,4 +90,8 @@ public class Kirito extends Player{
         }
     }
 
+    @Override
+    public void die() {
+        curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/die.png")));
+    }
 }

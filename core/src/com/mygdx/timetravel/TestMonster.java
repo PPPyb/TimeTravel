@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
 
 public class TestMonster extends Enemy{
 
@@ -38,9 +39,10 @@ public class TestMonster extends Enemy{
 
     @Override
     public void update(float deltaTime) {
+
+        super.update(deltaTime);
         if(!isAlive)
             return;
-        super.update(deltaTime);
         enemyAI.act();
     }
 
@@ -55,5 +57,25 @@ public class TestMonster extends Enemy{
     public void die() {
         super.die();
         curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/coin.png")));
+    }
+
+    @Override
+    public void attack() {
+        float relativeX = (float) (Math.random()*100-50);
+        float relativeY = (float) (Math.random()*100-50);
+        float relativeXY = (float) Math.sqrt(relativeX*relativeX+relativeY*relativeY);
+        float sin = relativeX/relativeXY;
+        float cos = relativeY/relativeXY;
+        float velX = BulletTestPenetrate.speed * sin;
+        float velY = BulletTestPenetrate.speed * cos;
+        shoot(velX,velY);
+    }
+
+    public void shoot(float x, float y)
+    {
+            level.bulletTestEnemies[level.bulletTestEnemiesCnt] = new BulletTestEnemy(getX()+width/2, getY()+height,level);
+            level.bulletTestEnemies[level.bulletTestEnemiesCnt].setVelocity(new Vector2(x, y));
+            level.bulletTestEnemiesCnt++;
+
     }
 }

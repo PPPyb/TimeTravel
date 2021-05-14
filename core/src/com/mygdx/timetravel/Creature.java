@@ -206,6 +206,7 @@ public class Creature extends AbstractGameObject{
             curDashPoint += DP;
     }
 
+    @Override
     public void draw(Batch batch)
     {
         batch.draw(curFrame,this.getX(),this.getY());

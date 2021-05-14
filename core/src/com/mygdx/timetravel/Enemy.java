@@ -15,14 +15,16 @@ public class Enemy extends Creature{
 
     @Override
     public void update(float deltaTime) {
+        super.update(deltaTime);
         if(!isAlive)
             return;
-        super.update(deltaTime);
         updateAnime();
     }
 
     public void init(){}
     public void initAnime(){}
     public void updateAnime(){}
+
+    public void attack(){}
 
 }

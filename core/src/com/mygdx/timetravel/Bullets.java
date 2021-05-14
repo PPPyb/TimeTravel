@@ -27,6 +27,12 @@ public class Bullets extends AbstractGameObject{
     //伤害
     int damage;
 
+    //可弹跳
+    Boolean bounceAble = false;
+    int bounceCnt = 0;
+    int bounceMax = 0;
+
+
     public Bullets(float x,float y,Level level)
     {
         super(x,y,level);
@@ -43,13 +49,29 @@ public class Bullets extends AbstractGameObject{
         float xOffset = velocity.x * deltaTime;
         float yOffset = velocity.y * deltaTime;
 
-        if(this.onCollisionWithMap(xOffset,0))
-            this.destructed();
+        if(this.onCollisionWithMap(xOffset,0)) {
+            if(bounceAble && bounceCnt < bounceMax)
+            {
+                velocity.x = -velocity.x;
+                position.x -= xOffset;
+                bounceCnt++;
+            }
+            else
+                this.destructed();
+        }
         else
             position.x += xOffset;
 
-        if(this.onCollisionWithMap(0,yOffset))
-            this.destructed();
+        if(this.onCollisionWithMap(0,yOffset)) {
+            if(bounceAble && bounceCnt < bounceMax)
+            {
+                velocity.y = -velocity.y;
+                position.y -= yOffset;
+                bounceCnt++;
+            }
+            else
+                this.destructed();
+        }
         else
             position.y += yOffset;
 
@@ -58,6 +80,7 @@ public class Bullets extends AbstractGameObject{
     public void initAnime(){}
     public void updateAnime(){}
 
+    @Override
     public void draw(Batch batch)
     {
         batch.draw(curFrame,this.getX(),this.getY());
@@ -81,6 +104,17 @@ public class Bullets extends AbstractGameObject{
                 if(!penetrate)
                     this.destructed();
             }
+        }
+    }
+    public void collidePlayer()
+    {
+        Player player = level.curPlayer;
+        Rectangle r1 = new Rectangle(getX(),getY(),width,height);
+        Rectangle r2 = new Rectangle(player.getX(),player.getY(),player.width,player.height);
+        if(Intersector.overlaps(r1,r2)) {
+            player.loseHP(damage);
+            if(!penetrate)
+                this.destructed();
         }
     }
 }

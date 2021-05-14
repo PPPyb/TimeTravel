@@ -4,7 +4,9 @@ public class EnemyAITest extends EnemyAI{
     public EnemyAITest(Enemy enemy)
     {
         super(enemy);
-        patternTime = 3;
+        patternInterval = 3;
+        attackInterval = 1;
+        jumpInterval = 2;
     }
 
     @Override
@@ -20,8 +22,11 @@ public class EnemyAITest extends EnemyAI{
             case 2:
                 enemy.walkState = "IDLE";
         }
+    }
+
+    @Override
+    public void jump() {
         int jumpDecision = (int)(Math.random()*5);
-        //System.out.println(jumpDecision);
         switch (jumpDecision)
         {
             case 0:
@@ -31,5 +36,11 @@ public class EnemyAITest extends EnemyAI{
                 enemy.jumpState = "IDLE";
                 break;
         }
+    }
+
+    @Override
+    public void attack() {
+        for(int i = 0;i < 6;i++)
+         enemy.attack();
     }
 }

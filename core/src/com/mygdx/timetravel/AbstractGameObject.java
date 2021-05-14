@@ -1,5 +1,6 @@
 package com.mygdx.timetravel;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -87,6 +88,7 @@ public abstract class AbstractGameObject{
         setBounds();
         stateTime += deltaTime;
     }
+    public void draw(Batch batch){}
     public boolean onCollisionWithMap(float xOffset, float yOffset)
     {
         MapObjects objects =  level.map.getLayers().get("CollisionLayer").getObjects();
@@ -101,4 +103,5 @@ public abstract class AbstractGameObject{
         }
         return false;
     }
+
 }

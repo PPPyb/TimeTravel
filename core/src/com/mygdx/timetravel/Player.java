@@ -20,6 +20,8 @@ public class Player extends Creature{
 
     public void update(float deltaTime) {
         super.update(deltaTime);
+        if(!isAlive)
+            return;
         updateAnime();
         //walk
         handleWalk();
