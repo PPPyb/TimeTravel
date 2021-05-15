@@ -15,9 +15,9 @@ public class WorldController {
     Level testWorld;
     public WorldController()
     {
-        curLevel = new Level("testMap/testWorld.tmx");
-        testMap = new Level("testMap/testMap.tmx");
-        testWorld = new Level("testMap/testWorld.tmx");
+        testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
+        testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
+        curLevel = testMap;
     }
 
     public void update()

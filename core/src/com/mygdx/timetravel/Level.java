@@ -18,12 +18,20 @@ public class Level {
     SpriteBatch batch;
     OrthographicCamera camera;
     CameraHelper cameraHelper;
+
+    SpriteBatch backGroundBatch;
+    OrthographicCamera backGroundCamera;
+    CameraHelper backGroundCameraHelper;
+
     SpriteBatch guiBatch;
     OrthographicCamera guiCamera;
     GUIRenderer guiRenderer;
     //地图
     TiledMap map;
     OrthogonalTiledMapRenderer mapRenderer;
+
+    TiledMap backGround;
+    OrthogonalTiledMapRenderer backGroundRender;
     //主角
     int playerNum = 0;
     Player curPlayer;
@@ -40,13 +48,19 @@ public class Level {
     BulletTestEnemy[] bulletTestEnemies;
     int bulletTestEnemiesCnt;
 
-    public Level(String mapRoute)
+    public Level(String mapRoute,String backGroundRoute)
     {
         //绘制
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
-        cameraHelper = new CameraHelper();
+        cameraHelper = new CameraHelper(false);
+
+        backGroundBatch = new SpriteBatch();
+        backGroundCamera = new OrthographicCamera();
+        backGroundCamera.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
+        backGroundCameraHelper = new CameraHelper(true);
+
         guiBatch = new SpriteBatch();
         guiCamera = new OrthographicCamera();
         guiCamera.setToOrtho(false,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
@@ -54,6 +68,9 @@ public class Level {
         //地图
         map = new TmxMapLoader().load(mapRoute);
         mapRenderer = new OrthogonalTiledMapRenderer(map);
+
+        backGround = new TmxMapLoader().load(backGroundRoute);
+        backGroundRender = new OrthogonalTiledMapRenderer(backGround);
         //主角
         curPlayer = new Player(0,0,this);
         azuna = new Azuna(0,0,this);
@@ -87,17 +104,27 @@ public class Level {
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
         updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
         //update相机
+        backGroundCameraHelper.update(deltaTime);
+        backGroundCameraHelper.trackTarget(curPlayer);
+        backGroundCameraHelper.applyTo(backGroundCamera);
+        backGroundCamera.update();
+
+        cameraHelper.update(deltaTime);
         cameraHelper.trackTarget(curPlayer);
         cameraHelper.applyTo(camera);
         camera.update();
+
+        backGroundBatch.setProjectionMatrix(backGroundCamera.combined);
         batch.setProjectionMatrix(camera.combined);
         guiBatch.setProjectionMatrix(guiCamera.combined);
+        backGroundRender.setView(backGroundCamera);
         mapRenderer.setView(camera);
     }
     public void draw()
     {
         batch.begin();
         //画地图
+        backGroundRender.render();
         mapRenderer.render();
         //画怪物
         drawObjects(testMonster,testMonsterCnt,batch);
