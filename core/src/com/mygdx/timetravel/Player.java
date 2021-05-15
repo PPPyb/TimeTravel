@@ -4,7 +4,6 @@ package com.mygdx.timetravel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 
 //玩家类
 public class Player extends Creature{
@@ -12,11 +11,15 @@ public class Player extends Creature{
     String name;
     TextureRegion imgHead;
 
+    int strength;
+    int intelligence;
+    int agility;
+
     public Player(float x,float y,Level level){
         super(x,y,level);
         initAnime();
         initState();
-
+        convertAttribute();
     }
 
     public void update(float deltaTime) {
@@ -112,4 +115,21 @@ public class Player extends Creature{
         }
     }
     public void eventQ(){}
+
+    public void convertAttribute()
+    {
+        //strength
+        curHP = maxHP = strength * 20;
+        DPRestoreRate = strength;
+
+        //agility
+        walkSpeed = agility * 30;
+        armor = 10 * (agility-10);
+        curJumpPoint = maxJumpPoint = agility * 10;
+        JPRestoreRate = JPRestoreRateOrigin = agility;
+
+        //intelligence
+        curMP = maxMP = intelligence * 30f;
+        MPRestoreRate = MPRestoreRateOrigin = intelligence * 3;
+    }
 }

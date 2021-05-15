@@ -30,13 +30,9 @@ public class Kirito extends Player{
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         //属性
-        curHP = maxHP = 350f;
-        walkSpeed = 400;
-        curMP = maxMP = 200f;
-        MPRestoreRate = MPRestoreRateOrigin = 20f;
-        curJumpPoint = maxJumpPoint = 100f;
-        JPRestoreRate = JPRestoreRateOrigin = 30f;
-        DPRestoreRate = 20F;
+        strength = 15;
+        agility = 15;
+        intelligence = 10;
     }
 
     @Override

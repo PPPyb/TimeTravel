@@ -26,6 +26,8 @@ public class Creature extends AbstractGameObject{
     //生物属性
     //步速
     int walkSpeed;
+    //护甲
+    float armor;
     //血量
     float maxHP;//最大血量
     float curHP;//当前血量
@@ -53,6 +55,7 @@ public class Creature extends AbstractGameObject{
         dashState = new String();
         isAlive = true;
         curDashPoint = maxDashPoint = 100f;
+        armor = 0;
         stateTime = 0;
     }
 
@@ -141,10 +144,11 @@ public class Creature extends AbstractGameObject{
         }
     }
 
-    public void loseHP(float HP)
+    public void loseHP(float damage)
     {
-        if(curHP - HP > 0)
-            curHP -= HP;
+        float realDamage = damage * (1-armor/(armor+100));
+        if(curHP - realDamage > 0)
+            curHP -= realDamage;
         else
         {
             curHP = 0;

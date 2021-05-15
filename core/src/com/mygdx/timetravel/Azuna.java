@@ -57,13 +57,9 @@ public class Azuna extends Player{
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         //属性
-        curHP = maxHP = 200f;
-        walkSpeed = 200;
-        curMP = maxMP = 300f;
-        MPRestoreRate = MPRestoreRateOrigin = 30f;
-        curJumpPoint = maxJumpPoint = 100f;
-        JPRestoreRate = JPRestoreRateOrigin = 20f;
-        DPRestoreRate = 20F;
+        strength = 10;
+        agility = 10;
+        intelligence = 15;
     }
 
 
