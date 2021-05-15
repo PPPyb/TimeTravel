@@ -56,6 +56,8 @@ public class Kirito extends Player{
         walkAni2= new Animation(0.2f,walkFrames2);
         walkAni2.setPlayMode(Animation.PlayMode.LOOP);
         this.setAcceleration(Constants.GRAVITY);
+
+        imgHead = new TextureRegion(new Texture(Gdx.files.internal("testMap/Khead.jpg")));
     }
 
     @Override

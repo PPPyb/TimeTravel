@@ -40,11 +40,14 @@ public class Azuna extends Player{
             walkFrames2[i] = frames[1][i];
         curFrame = new TextureRegion();
         curFrame = frames[0][0];
+
         walkAni = new Animation(0.2f,walkFrames);
         walkAni.setPlayMode(Animation.PlayMode.LOOP);
         walkAni2= new Animation(0.2f,walkFrames2);
         walkAni2.setPlayMode(Animation.PlayMode.LOOP);
         this.setAcceleration(Constants.GRAVITY);
+
+        imgHead = new TextureRegion(new Texture(Gdx.files.internal("testMap/Ahead.jpg")));
     }
 
     @Override

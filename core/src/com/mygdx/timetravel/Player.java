@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public class Player extends Creature{
 
     String name;
+    TextureRegion imgHead;
 
     public Player(float x,float y,Level level){
         super(x,y,level);

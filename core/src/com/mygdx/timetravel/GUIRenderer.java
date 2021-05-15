@@ -21,9 +21,21 @@ public class GUIRenderer {
         TextureRegion imgMP = new TextureRegion(new Texture(Gdx.files.internal("GUI/MP.png")));
         TextureRegion imgJP = new TextureRegion(new Texture(Gdx.files.internal("GUI/JP.png")));
         TextureRegion imgDP = new TextureRegion(new Texture(Gdx.files.internal("GUI/DP.png")));
-        batch.draw(imgHP,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT,Constants.HPRECWIDTHRATE*level.curPlayer.curHP,Constants.HPRECHEIGHT);
-        batch.draw(imgMP,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*2,Constants.HPRECWIDTHRATE*level.curPlayer.curMP,Constants.HPRECHEIGHT);
-        batch.draw(imgJP,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*3,Constants.HPRECWIDTHRATE*level.curPlayer.curJumpPoint,Constants.HPRECHEIGHT);
-        batch.draw(imgDP,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,Constants.HPRECWIDTHRATE*level.curPlayer.curDashPoint,Constants.HPRECHEIGHT);
+        //
+        if(!level.curPlayer.isAlive)
+            batch.setColor(1,0,0,1);
+        batch.draw(level.curPlayer.imgHead,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,4*Constants.HPRECHEIGHT,4*Constants.HPRECHEIGHT);
+        //
+        batch.setColor(0.5f,0.5f,0.5f,0.75f);
+        batch.draw(imgHP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT,Constants.HPRECWIDTHRATE*level.curPlayer.maxHP,Constants.HPRECHEIGHT);
+        batch.draw(imgMP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*2,Constants.HPRECWIDTHRATE*level.curPlayer.maxMP,Constants.HPRECHEIGHT);
+        batch.draw(imgJP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*3,Constants.HPRECWIDTHRATE*level.curPlayer.maxJumpPoint,Constants.HPRECHEIGHT);
+        batch.draw(imgDP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,Constants.HPRECWIDTHRATE*level.curPlayer.maxDashPoint,Constants.HPRECHEIGHT);
+        //
+        batch.setColor(1,1,1,1);
+        batch.draw(imgHP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT,Constants.HPRECWIDTHRATE*level.curPlayer.curHP,Constants.HPRECHEIGHT);
+        batch.draw(imgMP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*2,Constants.HPRECWIDTHRATE*level.curPlayer.curMP,Constants.HPRECHEIGHT);
+        batch.draw(imgJP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*3,Constants.HPRECWIDTHRATE*level.curPlayer.curJumpPoint,Constants.HPRECHEIGHT);
+        batch.draw(imgDP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,Constants.HPRECWIDTHRATE*level.curPlayer.curDashPoint,Constants.HPRECHEIGHT);
     }
 }
