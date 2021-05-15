@@ -1,7 +1,7 @@
 # TimeTravel
 
 #### Description
-我不知道你不知道我不知道你不知道。
+Don't la zha!
 
 #### Software Architecture
 Software architecture description
