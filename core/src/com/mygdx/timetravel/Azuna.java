@@ -73,7 +73,7 @@ public class Azuna extends Player{
             curFrame = (TextureRegion) walkAni2.getKeyFrame(stateTime,true);
         else
             curFrame = frames[0][0];
-        System.out.println(this.getX()+" "+this.getY());
+        //System.out.println(this.getX()+" "+this.getY());
     }
 
     @Override
