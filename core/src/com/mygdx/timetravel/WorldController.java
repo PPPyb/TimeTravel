@@ -1,5 +1,8 @@
 package com.mygdx.timetravel;
 
+
+import com.mygdx.game.*;
+
 import com.badlogic.gdx.*;
 import com.mygdx.timetravel.Constants;
 
@@ -10,14 +13,19 @@ import com.mygdx.timetravel.Constants;
 public class WorldController {
 
     Level curLevel;
-    int curLevelNum = 1;
+    Level snowLand;
     Level testMap;
     Level testWorld;
+    com.mygdx.game.MyGdxGame myGame;
+
     public WorldController()
     {
         testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
         testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
+        snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
         curLevel = testMap;
+        myGame = new com.mygdx.game.MyGdxGame();
+        myGame.create();
     }
 
     public void update()
@@ -29,17 +37,22 @@ public class WorldController {
     public void render()
     {
         update();
-        curLevel.render();
+        if(CurState.curLevelNum == 0)
+            myGame.render();
+        else
+            curLevel.render();
     }
     public void chooseLevel()
     {
-        switch (curLevelNum)
+        switch (CurState.curLevelNum)
         {
             case 1:
-                curLevel = testMap;
+                curLevel = snowLand;
                 break;
             case 2:
                 curLevel = testWorld;
+                break;
+            case 0:
                 break;
         }
     }
@@ -53,9 +66,13 @@ public class WorldController {
         {
             setCurLevelNum(2);
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0))
+        {
+            setCurLevelNum(0);
+        }
     }
 
     public void setCurLevelNum(int curLevelNum) {
-        this.curLevelNum = curLevelNum;
+        CurState.curLevelNum = curLevelNum;
     }
 }

@@ -1,0 +1,85 @@
+
+
+
+
+<!doctype html>
+<!-- Page Layout: Foundation -->
+
+
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:url" content="https://www.lancaster.ac.uk/"/>
+    <meta property="og:title" content="Home" />
+
+    
+    
+    
+    
+    <link rel="canonical" href="https://www.lancaster.ac.uk/"/>
+    <title>Home | Lancaster University</title>
+
+    <!-- Siteimprove hook -->
+    <meta name="PageID" content="272" />
+
+    
+    <!-- meta description -->
+    <meta name="description" content="Lancaster University is among the best in the UK. We're top 10 in the three major national league tables, and highly ranked in international tables." />
+
+    <!-- css : app.css -->
+    <link rel="stylesheet" type="text/css" media="screen, print" href="/media/wdp/style-assets/css/foundation/app.6.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/media/lancaster-university/style-assets/css/font-face.css" /> <!-- fonts : font-face.css  -->
+    <script type="text/javascript" src="/media/wdp/style-assets/javascript/foundation/loadScript.js"></script> <!-- loadscript -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- adobe mega menu plugin -->
+    <script type="text/javascript" src="/media/wdp/style-assets/javascript/foundation/accessibleMegaMenu.min.js"></script>
+  
+    <!-- navigation   -->
+    <script type="text/javascript" src="/media/wdp/style-assets/javascript/foundation/navigation.bundle.js"></script>
+
+    <!-- favicon -->
+    <link rel="shortcut icon"  href="/media/lancaster-university/style-assets/images/favicon.ico">
+<link rel="apple-touch-icon"  href="/media/lancaster-university/style-assets/images/apple-touch-icon.png">
+    <!-- included head code -->
+    <!-- Global Included Head Code --><script>window.jQuery || document.write('<script src="/media/wdp/style-assets/javascript/lib/thirdparty/jquery/jquery-1.12.4.min.js"><\/script>')</script><script src="//cdn.polyfill.io/v2/polyfill.min.js?features=Promise,fetch,Element.prototype.classlist&flags=gated"></script><script src='/media/wdp/style-assets/javascript/scriptHandler.min.js'></script>
+<script>
+  var scriptHandler = new ScriptHandler();
+</script><!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHTVZS');</script>
+<!-- End Google Tag Manager --><script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let links = document.getElementsByTagName('a');
+
+        for (let i = 0; i < links.length; i++) {
+            let link = links[i];
+
+            if (link.hostname === 'lancaster.box.com' || link.hostname === 'lancaster.app.box.com') {
+                link.href = '/errors/box/?path=' +
+                    encodeURIComponent(location.pathname) +
+                    '&href=' +
+                    encodeURIComponent(link.href) +
+                    '&linkText=' +
+                    encodeURIComponent(link.text.trim());
+            }
+        }
+    });
+</script>    <!-- Local Included Head Code -->
+    <!-- local highlight theme -->
+    
+
+    <!--[if lt IE 8]>
+    <script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+    <script src="//html5base.googlecode.com/svn-history/r38/trunk/js/selectivizr-1.0.3b.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"
