@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.MyGdxGame;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.timetravel.CurState;
+
 
 
 public class Brick extends InteractiveTileObject {
@@ -26,6 +26,5 @@ public class Brick extends InteractiveTileObject {
         Gdx.app.log("Brick","Collision");
         setCategoryFilter(MyGdxGame.DESTROYED_BIT);
         getCell().setTile(tileSet.getTile(BLANK_LAND));
-        CurState.curLevelNum = 1;
     }
 }

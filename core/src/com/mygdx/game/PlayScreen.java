@@ -26,6 +26,7 @@ public class PlayScreen implements Screen {
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Hud hud;
+    private static npcCommunication npcCommunication;
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -36,6 +37,7 @@ public class PlayScreen implements Screen {
     private TextureAtlas atlasRepairman;
     private Music music;
     private Repairman repairman;
+    public static int flag=0;
 
     public PlayScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
@@ -45,6 +47,7 @@ public class PlayScreen implements Screen {
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
         //texture=new Texture("5.png");
         hud=new Hud(game.batch);
+        npcCommunication=new npcCommunication(game.batch);
         mapLoader=new TmxMapLoader();
         map=mapLoader.load("maps/6.tmx");
         renderer=new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
@@ -53,14 +56,13 @@ public class PlayScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
-        if(mario.b2body.getPosition().x>171 && mario.b2body.getPosition().x<186 && mario.b2body.getPosition().y<6.70)
-            mario=new Mario(world,this);
         world.setContactListener(new WorldContactListener());
         music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         music.setLooping(true);
         music.play();
         repairman=new Repairman(this,32f,32f);
     }
+
     public TextureAtlas getAtlas(){
         return  atlas;
     }
@@ -72,14 +74,14 @@ public class PlayScreen implements Screen {
 
     }
     public void handleInput(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.W))
+        if(Gdx.input.isKeyPressed(Input.Keys.UP))
             mario.b2body.applyLinearImpulse(new Vector2(0,20f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.S))
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
             mario.b2body.applyLinearImpulse(new Vector2(0,-40f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.D) ) {
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
             mario.b2body.applyLinearImpulse(new Vector2(50f,0), mario.b2body.getWorldCenter(),true);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A) ) {
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
             mario.b2body.applyLinearImpulse(new Vector2(-100f,0), mario.b2body.getWorldCenter(),true);
         }
     }
@@ -89,6 +91,7 @@ public class PlayScreen implements Screen {
         mario.update(dt);
         repairman.update(dt);
         hud.update(dt);
+        npcCommunication.update();
         if(mario.b2body.getPosition().y>220 && mario.b2body.getPosition().y<427 && mario.b2body.getPosition().x>460 &&mario.b2body.getPosition().x<762)
             hud.updateToGarden();
         if(mario.b2body.getPosition().y>122 && mario.b2body.getPosition().y<452 && mario.b2body.getPosition().x>100 &&mario.b2body.getPosition().x<410)
@@ -123,7 +126,7 @@ public class PlayScreen implements Screen {
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        if(mario.b2body.getPosition().x<=235 && mario.b2body.getPosition().x>=220 && mario.b2body.getPosition().y>701 && mario.b2body.getPosition().y>711 ) {
+        if(mario.b2body.getPosition().x<=235 && mario.b2body.getPosition().x>=220 && mario.b2body.getPosition().y>708 && mario.b2body.getPosition().y<711 ) {
             changeToWeaponRoomScreen();
         }
         if(mario.b2body.getPosition().x<=1005 && mario.b2body.getPosition().x>=985 && mario.b2body.getPosition().y>713 && mario.b2body.getPosition().y<719) {
@@ -135,6 +138,9 @@ public class PlayScreen implements Screen {
         if(mario.b2body.getPosition().x<=281 && mario.b2body.getPosition().x>=267 && mario.b2body.getPosition().y>395 && mario.b2body.getPosition().y<402) {
             changeToGambleRoomScreen();
         }
+       if(flag==1) {
+           showNpcCommunication();
+       }
 
 
 
@@ -169,6 +175,9 @@ public class PlayScreen implements Screen {
         renderer.dispose();
         b2dr.dispose();
         hud.dispose();
+    }
+    public static void showNpcCommunication(){
+        npcCommunication.stage.draw();
     }
     public static void changeToWeaponRoomScreen(){
         game.setScreen(new weaponRoomScreen(game));

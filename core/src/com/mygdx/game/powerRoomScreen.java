@@ -63,14 +63,14 @@ public class powerRoomScreen implements Screen {
 
     }
     public void handleInput(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.W))
+        if(Gdx.input.isKeyPressed(Input.Keys.UP))
             mario.b2body.applyLinearImpulse(new Vector2(0,20f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.A))
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
             mario.b2body.applyLinearImpulse(new Vector2(0,-40f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.D) ) {
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
             mario.b2body.applyLinearImpulse(new Vector2(50f,0), mario.b2body.getWorldCenter(),true);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A) ) {
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
             mario.b2body.applyLinearImpulse(new Vector2(-100f,0), mario.b2body.getWorldCenter(),true);
         }
     }

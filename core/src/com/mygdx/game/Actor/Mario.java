@@ -105,7 +105,7 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(220,711);
+        defineMario(220,705);
         setBounds(600,100,16,16);
         setRegion(marioStand);
     }

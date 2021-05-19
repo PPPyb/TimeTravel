@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.MyGdxGame;
 import com.badlogic.gdx.math.Rectangle;
-
+import com.mygdx.game.PlayScreen;
 
 
 public class RepairmanObject extends InteractiveTileObject {
@@ -19,5 +19,6 @@ public class RepairmanObject extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         Gdx.app.log("Repairman","Collision");
+        PlayScreen.flag=1;
     }
 }
