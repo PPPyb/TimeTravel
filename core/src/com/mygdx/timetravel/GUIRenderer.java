@@ -3,17 +3,31 @@ package com.mygdx.timetravel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class GUIRenderer {
+
     Level level;
+
+    BitmapFont myfont;
     public GUIRenderer(Level level)
     {
         this.level = level;
+        myfont = new BitmapFont(Gdx.files.internal("myfont.fnt"),false);
     }
     public void render(Batch batch)
     {
         drawPlayerState(batch);
+        fpsRender(batch);
+    }
+    public void fpsRender(Batch batch)
+    {
+        int x = Constants.WINDOWS_WIDTH-200;
+        int y = Constants.WINDOWS_HEIGHT;
+        double fps = Gdx.graphics.getFramesPerSecond();
+        myfont.draw(batch,"FPS:"+fps,x,y);
+        myfont.setColor(0,1,0,1);
     }
     public void drawPlayerState(Batch batch)
     {
