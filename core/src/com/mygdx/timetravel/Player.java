@@ -125,7 +125,7 @@ public class Player extends Creature{
         //agility
         walkSpeed = agility * 30;
         armor = 10 * (agility-10);
-        curJumpPoint = maxJumpPoint = agility * 10;
+        curJumpPoint = maxJumpPoint = agility * 5;
         JPRestoreRate = JPRestoreRateOrigin = agility;
 
         //intelligence

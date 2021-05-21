@@ -17,6 +17,7 @@ public class WorldController {
     Level testMap;
     Level testWorld;
     com.mygdx.game.MyGdxGame myGame;
+    MainTitle mainTitle;
 
     public WorldController()
     {
@@ -26,6 +27,7 @@ public class WorldController {
         curLevel = testMap;
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();
+        mainTitle = new MainTitle();
     }
 
     public void update()
@@ -37,22 +39,29 @@ public class WorldController {
     public void render()
     {
         update();
-        if(CurState.curLevelNum == 0)
-            myGame.render();
-        else
-            curLevel.render();
+        switch (CurState.curLevelNum)
+        {
+            case 0:
+                mainTitle.render();
+                break;
+            case 1:
+                myGame.render();
+                break;
+            default:
+                curLevel.render();
+        }
     }
     public void chooseLevel()
     {
         switch (CurState.curLevelNum)
         {
-            case 1:
+            case 2:
                 curLevel = snowLand;
                 break;
-            case 2:
+            case 3:
                 curLevel = testWorld;
                 break;
-            case 0:
+            default:
                 break;
         }
     }
@@ -65,10 +74,6 @@ public class WorldController {
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2))
         {
             setCurLevelNum(2);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0))
-        {
-            setCurLevelNum(0);
         }
     }
 

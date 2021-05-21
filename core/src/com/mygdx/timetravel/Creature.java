@@ -149,8 +149,7 @@ public class Creature extends AbstractGameObject{
         float realDamage = damage * (1-armor/(armor+100));
         if(curHP - realDamage > 0)
             curHP -= realDamage;
-        else
-        {
+        else {
             curHP = 0;
             isAlive = false;//挂了
             die();

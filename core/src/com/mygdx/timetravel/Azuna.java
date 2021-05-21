@@ -41,7 +41,7 @@ public class Azuna extends Player{
         curFrame = new TextureRegion();
         curFrame = frames[0][0];
 
-        walkAni = new Animation(0.2f,walkFrames);
+        walkAni = new Animation(0.2f, walkFrames);
         walkAni.setPlayMode(Animation.PlayMode.LOOP);
         walkAni2= new Animation(0.2f,walkFrames2);
         walkAni2.setPlayMode(Animation.PlayMode.LOOP);

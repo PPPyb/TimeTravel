@@ -23,11 +23,10 @@ public class GUIRenderer {
     }
     public void fpsRender(Batch batch)
     {
-        int x = Constants.WINDOWS_WIDTH-200;
-        int y = Constants.WINDOWS_HEIGHT;
         double fps = Gdx.graphics.getFramesPerSecond();
-        myfont.draw(batch,"FPS:"+fps,x,y);
         myfont.setColor(0,1,0,1);
+        myfont.draw(batch,"FPS:"+fps,Constants.WINDOWS_WIDTH-200, Constants.WINDOWS_HEIGHT);
+        myfont.setColor(1,1,1,1);
     }
     public void drawPlayerState(Batch batch)
     {
@@ -51,5 +50,8 @@ public class GUIRenderer {
         batch.draw(imgMP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*2,Constants.HPRECWIDTHRATE*level.curPlayer.curMP,Constants.HPRECHEIGHT);
         batch.draw(imgJP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*3,Constants.HPRECWIDTHRATE*level.curPlayer.curJumpPoint,Constants.HPRECHEIGHT);
         batch.draw(imgDP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,Constants.HPRECWIDTHRATE*level.curPlayer.curDashPoint,Constants.HPRECHEIGHT);
+        //
+        myfont.draw(batch,"HP"+(int)level.curPlayer.curHP+"/"+level.curPlayer.maxHP,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4);
     }
+
 }
