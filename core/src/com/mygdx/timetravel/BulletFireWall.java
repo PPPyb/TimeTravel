@@ -13,7 +13,7 @@ public class BulletFireWall extends Bullets{
     public BulletFireWall(float x, float y,Level level)
     {
         super(x,y,level);
-
+        stateTime = 0;
         damage = 50;
         penetrate = true;
         MPConsume = 100;
@@ -24,12 +24,12 @@ public class BulletFireWall extends Bullets{
     @Override
     public void initAnime() {
         
-        boom = new TextureRegion[8];
+        boom = new TextureRegion[27];
 
-        for(int i = 0;i < 8;i++)
+        for(int i = 0;i < 27;i++)
         {
         	System.out.println("fireA/600-1.png");
-        	Texture temp = new Texture(Gdx.files.internal("fireA/600-1.png"));
+        	Texture temp = new Texture(Gdx.files.internal("fireA/600-"+(i+1)+".png"));
         	boom[i] = new TextureRegion(temp);
         }
 
@@ -43,6 +43,7 @@ public class BulletFireWall extends Bullets{
 
     @Override
     public void updateAnime() {
+        stateTime += Gdx.graphics.getDeltaTime();
         curFrame = (TextureRegion) boomAni.getKeyFrame(stateTime);
     }
 

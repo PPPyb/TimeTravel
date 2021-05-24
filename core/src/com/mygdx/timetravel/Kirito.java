@@ -46,14 +46,17 @@ public class Kirito extends Player{
     }
 
     @Override
-    public void eventE() {
+    public void eventQ() {
         armor += 10000;
     }
 
-    public void eventQ() {
+    public void eventE() {
         
         if(curMP- BulletTest.MPConsume>0) {
-        	level.bulletFireWall.setPosition(new Vector2(getX()+width,getY()));
+            if(walkState!="LEFT")
+        	    level.bulletFireWall.setPosition(new Vector2(getX()+width,getY()));
+            else
+                level.bulletFireWall.setPosition(new Vector2(getX()-width,getY()));
             loseMP(BulletTestPenetrate.MPConsume);
         }
     }
