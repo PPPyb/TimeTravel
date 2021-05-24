@@ -18,6 +18,6 @@ public class RepairmanObject extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         Gdx.app.log("Repairman","Collision");
-        PlayScreen.flag=1;
+        PlayScreen.collisionFlag=1;
     }
 }

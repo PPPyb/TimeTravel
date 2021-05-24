@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.Mario;
+import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
@@ -35,8 +36,12 @@ public class gambleRoomScreen implements Screen {
     private Mario mario;
     private TextureAtlas atlas;
     private Music music;
+    private Repairman repairman;
+    private TextureAtlas atlasRepairman;
+    public static int gambleRoomFlag=1;
     public gambleRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
+        atlasRepairman=new TextureAtlas("character/repairman.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -51,9 +56,13 @@ public class gambleRoomScreen implements Screen {
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
         world.setContactListener(new WorldContactListener());
+        repairman=new Repairman(this,32f,32f);
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
         // music.play();
+    }
+    public TextureAtlas getRepairmanAtlas(){
+        return  atlasRepairman;
     }
     public TextureAtlas getAtlas(){
         return  atlas;
@@ -78,8 +87,9 @@ public class gambleRoomScreen implements Screen {
         handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
-        System.out.println(mario.b2body.getPosition().x);
-        System.out.println(mario.b2body.getPosition().y);
+        repairman.update(dt);
+        //System.out.println(mario.b2body.getPosition().x);
+        //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -96,6 +106,7 @@ public class gambleRoomScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        repairman.draw(game.batch);
         game.batch.end();
     }
 
@@ -131,5 +142,8 @@ public class gambleRoomScreen implements Screen {
         game.setScreen(new OutsidegambleRoomScreen(game));
     }
 
+    public World getWorld() {
+        return this.world;
+    }
 }
 
