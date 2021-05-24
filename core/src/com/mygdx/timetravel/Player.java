@@ -3,13 +3,21 @@ package com.mygdx.timetravel;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 //玩家类
 public class Player extends Creature{
 
     String name;
-    TextureRegion imgHead;
+    TextureRegion imgFace;
+    TextureRegion imgDie;
+    TextureRegion standFrame;
+    TextureRegion walkLeftFrames[];
+    TextureRegion walkRightFrames[];
+    Animation walkLeftAni;
+    Animation walkRightAni;
 
     int strength;
     int intelligence;
@@ -17,8 +25,11 @@ public class Player extends Creature{
 
     public Player(float x,float y,Level level){
         super(x,y,level);
-        initAnime();
+    }
+    public void init()
+    {
         initState();
+        initAnime();
         convertAttribute();
     }
 
@@ -41,10 +52,57 @@ public class Player extends Creature{
         handlePushQ();
     }
 
-    public void initState(){}
+    public void initState(){
+        stateTime = 0;
+        this.setAcceleration(Constants.GRAVITY);
+    }
 
-    public void initAnime(){}
-    public void updateAnime(){}
+    public void initAnime(){
+        //walkFrame initial
+
+        String walkPath = "Players/"+name+"Walk.png";
+        System.out.println(walkPath);
+
+
+        img = new Texture(Gdx.files.internal("Players/"+name+"Walk.png"));
+        frames = TextureRegion.split(img,48,48);
+
+        walkLeftFrames = new TextureRegion[3];
+        for(int i = 0;i < 3;i++)
+            walkLeftFrames[i] = frames[1][i];
+
+        walkRightFrames = new TextureRegion[3];
+        for(int i = 0;i < 3;i++)
+            walkRightFrames[i] = frames[2][i];
+
+        standFrame = new TextureRegion();
+        standFrame = frames[0][0];
+
+        curFrame = new TextureRegion();
+        curFrame = standFrame;
+
+        walkLeftAni = new Animation(0.2f, walkLeftFrames);
+        walkLeftAni.setPlayMode(Animation.PlayMode.LOOP);
+
+        walkRightAni= new Animation(0.2f,walkRightFrames);
+        walkRightAni.setPlayMode(Animation.PlayMode.LOOP);
+
+        imgFace = new TextureRegion(new Texture(Gdx.files.internal("Players/"+name+"Face.jpg")));
+        imgDie = TextureRegion.split(new Texture(Gdx.files.internal("Players/"+name+"Die.png")),48,48)[0][0];
+
+        setWidth(curFrame.getRegionWidth());
+        setHeight(curFrame.getRegionHeight());
+    }
+    public void updateAnime(){
+        if(jumpState=="JUMPING")
+            curFrame = standFrame;
+        else if (walkState=="RIGHT")
+            curFrame = (TextureRegion) walkRightAni.getKeyFrame(stateTime,true);
+        else if(walkState=="LEFT")
+            curFrame = (TextureRegion) walkLeftAni.getKeyFrame(stateTime,true);
+        else
+            curFrame = standFrame;
+    }
 
     public void handleWalk()
     {
@@ -131,5 +189,10 @@ public class Player extends Creature{
         //intelligence
         curMP = maxMP = intelligence * 30f;
         MPRestoreRate = MPRestoreRateOrigin = intelligence * 3;
+    }
+
+    @Override
+    public void die() {
+        curFrame = imgDie;
     }
 }

@@ -14,6 +14,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Level {
+    float stateTime = 0;
+    Boolean failed = false;
+    Boolean victory = false;
+    float victoryTime = -1;
     //绘制
     SpriteBatch batch;
     OrthographicCamera camera;
@@ -91,6 +95,20 @@ public class Level {
     }
     public void update(float deltaTime)
     {
+        stateTime += deltaTime;
+        //Music
+        if(failed)
+            MusicManager.playMusic(91);
+        else
+            MusicManager.playMusic(90);
+        //判断胜负
+        victoryOrFailed();
+        if(victory||failed) {
+            if(victory&&stateTime>victoryTime+Constants.VICTORYSHOWTIME)
+                CurState.curLevelNum = 1;
+            return;
+        }
+
         //update主角
         choosePlayer();
         curPlayer.update(Gdx.graphics.getDeltaTime());
@@ -139,7 +157,13 @@ public class Level {
 
         //绘制GUI
         guiBatch.begin();
+        //
         guiRenderer.render(guiBatch);
+        //
+        if(failed)
+            guiRenderer.failedRender();
+        if(victory)
+            guiRenderer.victoryRender();
         guiBatch.end();
     }
     public void render()
@@ -200,5 +224,25 @@ public class Level {
     {
         for(int i = 0;i < cnt;i++)
             objects[i].draw(batch);
+    }
+    public void victoryOrFailed() {
+        //Cheating
+        if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)&&Gdx.input.isKeyPressed(Input.Keys.V)){
+            victory = true;
+            if(victoryTime < 0)
+                victoryTime = stateTime;
+            return;
+        }
+        //Failed
+        if(!azuna.isAlive&&!kirito.isAlive)
+            failed = true;
+        //Victory
+        for(int i = 0;i < testMonsterCnt;i++) {
+            if (testMonster[i].isAlive)
+                return;
+        }
+        victory = true;
+        if(victoryTime < 0)
+            victoryTime = stateTime;
     }
 }

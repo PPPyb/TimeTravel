@@ -37,7 +37,7 @@ public class GUIRenderer {
         //
         if(!level.curPlayer.isAlive)
             batch.setColor(1,0,0,1);
-        batch.draw(level.curPlayer.imgHead,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,4*Constants.HPRECHEIGHT,4*Constants.HPRECHEIGHT);
+        batch.draw(level.curPlayer.imgFace,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,4*Constants.HPRECHEIGHT,4*Constants.HPRECHEIGHT);
         //
         batch.setColor(0.5f,0.5f,0.5f,0.75f);
         batch.draw(imgHP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT,Constants.HPRECWIDTHRATE*level.curPlayer.maxHP,Constants.HPRECHEIGHT);
@@ -51,7 +51,18 @@ public class GUIRenderer {
         batch.draw(imgJP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*3,Constants.HPRECWIDTHRATE*level.curPlayer.curJumpPoint,Constants.HPRECHEIGHT);
         batch.draw(imgDP,4*Constants.HPRECHEIGHT,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4,Constants.HPRECWIDTHRATE*level.curPlayer.curDashPoint,Constants.HPRECHEIGHT);
         //
-        myfont.draw(batch,"HP"+(int)level.curPlayer.curHP+"/"+level.curPlayer.maxHP,0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4);
+        myfont.draw(batch,"HP"+(int)level.curPlayer.curHP+"/"+level.curPlayer.maxHP+ " Press T to check Tutorials",0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4);
     }
-
+    public void failedRender()
+    {
+        Texture failed = new Texture(Gdx.files.internal("GUI/failed.png"));
+        level.guiBatch.draw(failed,0,0);
+        Texture warmheart = new Texture(Gdx.files.internal("GUI/warmheart.png"));
+        level.guiBatch.draw(warmheart,0,0);
+    }
+    public void victoryRender()
+    {
+        Texture victory = new Texture(Gdx.files.internal("GUI/victory.png"));
+        level.guiBatch.draw(victory,0,0);
+    }
 }

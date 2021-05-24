@@ -456,7 +456,7 @@
 </data>
  </layer>
  <objectgroup id="20" name="PlayerLayer">
-  <object id="186" x="303.4" y="428.805"/>
+  <object id="186" x="276.4" y="427.805"/>
  </objectgroup>
  <objectgroup id="21" name="EnemyLayer">
   <object id="187" x="873.791" y="327.672"/>

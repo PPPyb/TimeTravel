@@ -19,6 +19,7 @@ import com.mygdx.game.Actor.Mario;
 import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
+import com.mygdx.timetravel.MusicManager;
 
 public class PlayScreen implements Screen {
     public static MyGdxGame game;
@@ -57,9 +58,9 @@ public class PlayScreen implements Screen {
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
         world.setContactListener(new WorldContactListener());
-        music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
-        music.setLooping(true);
-        music.play();
+        //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
+        //music.setLooping(true);
+        //music.play();
         repairman=new Repairman(this,32f,32f);
     }
 
@@ -114,6 +115,9 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
+        MusicManager.playMusic(80);
+
         update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

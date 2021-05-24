@@ -19,4 +19,5 @@ public class Constants {
     public static final Vector2 GRAVITY = new Vector2(0,-10);//重力
 
     public static final float ENEMYJUMPRATE = 10f;//敌人跳跃功率
+    public static final float VICTORYSHOWTIME = 3;
 }

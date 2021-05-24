@@ -18,6 +18,8 @@ public class WorldController {
     Level testWorld;
     com.mygdx.game.MyGdxGame myGame;
     MainTitle mainTitle;
+    Tutorials tutorials;
+    MusicManager musicManager;
 
     public WorldController()
     {
@@ -28,6 +30,8 @@ public class WorldController {
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();
         mainTitle = new MainTitle();
+        tutorials = new Tutorials();
+        musicManager = new MusicManager();
     }
 
     public void update()
@@ -46,6 +50,9 @@ public class WorldController {
                 break;
             case 1:
                 myGame.render();
+                break;
+            case 10:
+                tutorials.render();
                 break;
             default:
                 curLevel.render();
@@ -67,6 +74,12 @@ public class WorldController {
     }
     public void levelManager()
     {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+            if(CurState.curLevelNum!=10)
+                tutorials.setCurLevelNum(CurState.curLevelNum);
+            setCurLevelNum(10);
+        }
+        //
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1))
         {
             setCurLevelNum(1);

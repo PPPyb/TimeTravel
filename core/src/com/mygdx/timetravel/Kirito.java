@@ -17,56 +17,17 @@ public class Kirito extends Player{
     Animation walkAni;
     Animation walkAni2;
 
-
     public Kirito(float x, float y, Level level)
     {
         super(x,y,level);
-    }
-
-    @Override
-    public void initState() {
-        name = "KIRITO";
-        stateTime = 0;
-        setWidth(curFrame.getRegionWidth());
-        setHeight(curFrame.getRegionHeight());
+        name = "Kirito";
         //属性
-        strength = 8;
-        agility = 8;
-        intelligence = 4;
+        strength = 10;
+        agility = 20;
+        intelligence = 10;
+        init();
     }
 
-    @Override
-    public void initAnime() {
-        img = new Texture(Gdx.files.internal("testMap/Kirito.png"));
-        frames = TextureRegion.split(img,img.getWidth()/4,img.getHeight()/4);
-        walkFrames = new TextureRegion[4];
-        for(int i = 0;i < 4;i++)
-            walkFrames[i] = frames[2][i];
-        walkFrames2 = new TextureRegion[4];
-        for(int i = 0;i < 4;i++)
-            walkFrames2[i] = frames[1][i];
-        curFrame = new TextureRegion();
-        curFrame = frames[0][0];
-        walkAni = new Animation(0.2f,walkFrames);
-        walkAni.setPlayMode(Animation.PlayMode.LOOP);
-        walkAni2= new Animation(0.2f,walkFrames2);
-        walkAni2.setPlayMode(Animation.PlayMode.LOOP);
-        this.setAcceleration(Constants.GRAVITY);
-
-        imgHead = new TextureRegion(new Texture(Gdx.files.internal("testMap/Khead.jpg")));
-    }
-
-    @Override
-    public void updateAnime() {
-        if(jumpState=="JUMPING")
-            curFrame =frames[0][0];
-        else if (walkState=="RIGHT")
-            curFrame = (TextureRegion) walkAni.getKeyFrame(stateTime,true);
-        else if(walkState=="LEFT")
-            curFrame = (TextureRegion) walkAni2.getKeyFrame(stateTime,true);
-        else
-            curFrame = frames[0][0];
-    }
 
     @Override
     public void eventLEFT(int relativeX, int relativeY, int absoluteX, int absoluteY) {
@@ -81,15 +42,10 @@ public class Kirito extends Player{
     public void shoot(float x, float y)
     {
         if(curMP- BulletTest.MPConsume>0) {
-            level.bulletTestPenetrate[level.bulletTestPenetrateCnt] = new BulletTestPenetrate(getX()+width/2, getY()+height/2,level);
+            level.bulletTestPenetrate[level.bulletTestPenetrateCnt] = new BulletTestPenetrate(getX()+width/2, getY()+height,level);
             level.bulletTestPenetrate[level.bulletTestPenetrateCnt].setVelocity(new Vector2(x, y));
             level.bulletTestPenetrateCnt++;
             loseMP(BulletTestPenetrate.MPConsume);
         }
-    }
-
-    @Override
-    public void die() {
-        curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/die.png")));
     }
 }
