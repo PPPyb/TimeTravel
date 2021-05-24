@@ -52,6 +52,7 @@ public class Level {
     int bulletTestPenetrateCnt;
     BulletTestEnemy[] bulletTestEnemies;
     int bulletTestEnemiesCnt;
+    BulletFireWall bulletFireWall;
 
     public Level(String mapRoute,String backGroundRoute)
     {
@@ -90,6 +91,7 @@ public class Level {
         bulletTestPenetrateCnt = 0;
         bulletTestEnemies = new BulletTestEnemy[1000];
         bulletTestEnemiesCnt = 0;
+        bulletFireWall = new BulletFireWall(-10000,-10000,this);
 
         initPlayer();
         initEnemies();
@@ -125,6 +127,7 @@ public class Level {
         updateObjects(bulletTest,bulletTestCnt,deltaTime);
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
         updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
+        bulletFireWall.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -154,6 +157,7 @@ public class Level {
         drawObjects(bulletTest,bulletTestCnt,batch);
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
         drawObjects(bulletTestEnemies,bulletTestEnemiesCnt,batch);
+        bulletFireWall.draw(batch);
         //画角色
         curPlayer.draw(batch);
 

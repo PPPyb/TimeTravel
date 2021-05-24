@@ -51,6 +51,11 @@ public class Kirito extends Player{
     }
 
     public void eventQ() {
-        level.azuna.restoreHP(50);
+        
+        if(curMP- BulletTest.MPConsume>0) {
+        	level.bulletFireWall.setPosition(new Vector2(getX()+width,getY()));
+            loseMP(BulletTestPenetrate.MPConsume);
+        }
     }
+    
 }

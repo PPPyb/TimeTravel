@@ -20,6 +20,7 @@ public class Bullets extends AbstractGameObject{
     Boolean isDestructed = false;
     //子弹可穿透单位
     Boolean penetrate = false;
+    Boolean niubi = false;
     //MP消耗
     public static float MPConsume;
     //速度标量
@@ -59,7 +60,10 @@ public class Bullets extends AbstractGameObject{
                 bounceCnt++;
             }
             else
-                this.destructed();
+            {
+            	if(!niubi)
+            		this.destructed();
+            }
         }
         else
             position.x += xOffset;
