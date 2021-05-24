@@ -11,6 +11,7 @@ public class MusicManager {
         music = new Music[100];
         music[90] = Gdx.audio.newMusic(Gdx.files.internal("music/killbill.mp3"));
         music[91] = Gdx.audio.newMusic(Gdx.files.internal("music/failed.mp3"));
+        music[92] = Gdx.audio.newMusic(Gdx.files.internal("music/victory.mp3"));
         music[80] = Gdx.audio.newMusic(Gdx.files.internal("music/backgroundMusic.mp3"));
     }
     public static void playMusic(int num)
@@ -22,6 +23,7 @@ public class MusicManager {
                 music[i].stop();
             }
         }
-        music[num].play();
+        if(!music[num].isPlaying())
+            music[num].play();
     }
 }

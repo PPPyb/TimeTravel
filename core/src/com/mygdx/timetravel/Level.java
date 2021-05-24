@@ -97,17 +97,18 @@ public class Level {
     {
         stateTime += deltaTime;
         //Music
-        if(failed)
+        if(victory)
+            MusicManager.playMusic(92);
+        else if(failed)
             MusicManager.playMusic(91);
         else
             MusicManager.playMusic(90);
         //判断胜负
         victoryOrFailed();
-        if(victory||failed) {
-            if(victory&&stateTime>victoryTime+Constants.VICTORYSHOWTIME)
-                CurState.curLevelNum = 1;
+        if(victory&&stateTime>victoryTime+Constants.VICTORYSHOWTIME)
+            CurState.curLevelNum = 1;
+        if(victory||failed)
             return;
-        }
 
         //update主角
         choosePlayer();
@@ -234,8 +235,10 @@ public class Level {
             return;
         }
         //Failed
-        if(!azuna.isAlive&&!kirito.isAlive)
+        if(!azuna.isAlive&&!kirito.isAlive) {
             failed = true;
+            return;
+        }
         //Victory
         for(int i = 0;i < testMonsterCnt;i++) {
             if (testMonster[i].isAlive)

@@ -18,8 +18,8 @@ public class Azuna extends Player{
         super(x,y,level);
         name = "Asuna";
         //属性
-        strength = 10;
-        agility = 15;
+        strength = 5;
+        agility = 10;
         intelligence = 15;
         init();
     }

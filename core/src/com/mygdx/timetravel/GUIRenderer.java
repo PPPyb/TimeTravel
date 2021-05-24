@@ -9,12 +9,26 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class GUIRenderer {
 
     Level level;
+    TextureRegion imgHP;// = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+    TextureRegion imgMP;// = new TextureRegion(new Texture(Gdx.files.internal("GUI/MP.png")));
+    TextureRegion imgJP;// = new TextureRegion(new Texture(Gdx.files.internal("GUI/JP.png")));
+    TextureRegion imgDP;// = new TextureRegion(new Texture(Gdx.files.internal("GUI/DP.png")));
+    Texture victory;
+    Texture failed;
+    Texture warmheart;
 
     BitmapFont myfont;
     public GUIRenderer(Level level)
     {
         this.level = level;
         myfont = new BitmapFont(Gdx.files.internal("myfont.fnt"),false);
+        imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+        imgMP = new TextureRegion(new Texture(Gdx.files.internal("GUI/MP.png")));
+        imgJP = new TextureRegion(new Texture(Gdx.files.internal("GUI/JP.png")));
+        imgDP = new TextureRegion(new Texture(Gdx.files.internal("GUI/DP.png")));
+        failed = new Texture(Gdx.files.internal("GUI/failed.png"));
+        warmheart = new Texture(Gdx.files.internal("GUI/warmheart.png"));
+        victory = new Texture(Gdx.files.internal("GUI/victory.png"));
     }
     public void render(Batch batch)
     {
@@ -30,10 +44,6 @@ public class GUIRenderer {
     }
     public void drawPlayerState(Batch batch)
     {
-        TextureRegion imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
-        TextureRegion imgMP = new TextureRegion(new Texture(Gdx.files.internal("GUI/MP.png")));
-        TextureRegion imgJP = new TextureRegion(new Texture(Gdx.files.internal("GUI/JP.png")));
-        TextureRegion imgDP = new TextureRegion(new Texture(Gdx.files.internal("GUI/DP.png")));
         //
         if(!level.curPlayer.isAlive)
             batch.setColor(1,0,0,1);
@@ -55,14 +65,11 @@ public class GUIRenderer {
     }
     public void failedRender()
     {
-        Texture failed = new Texture(Gdx.files.internal("GUI/failed.png"));
         level.guiBatch.draw(failed,0,0);
-        Texture warmheart = new Texture(Gdx.files.internal("GUI/warmheart.png"));
         level.guiBatch.draw(warmheart,0,0);
     }
     public void victoryRender()
     {
-        Texture victory = new Texture(Gdx.files.internal("GUI/victory.png"));
         level.guiBatch.draw(victory,0,0);
     }
 }

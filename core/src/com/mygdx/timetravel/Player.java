@@ -58,11 +58,6 @@ public class Player extends Creature{
     }
 
     public void initAnime(){
-        //walkFrame initial
-
-        String walkPath = "Players/"+name+"Walk.png";
-        System.out.println(walkPath);
-
 
         img = new Texture(Gdx.files.internal("Players/"+name+"Walk.png"));
         frames = TextureRegion.split(img,48,48);
