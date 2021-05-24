@@ -32,6 +32,8 @@ public class Bullets extends AbstractGameObject{
     int bounceCnt = 0;
     int bounceMax = 0;
 
+    float stateTime = 0;
+
 
     public Bullets(float x,float y,Level level)
     {

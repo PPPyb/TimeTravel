@@ -1,9 +1,5 @@
 package com.mygdx.timetravel;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 /*
@@ -40,10 +36,25 @@ public class Azuna extends Player{
         if(curMP- BulletTest.MPConsume>0) {
             level.bulletTest[level.bulletTestCnt] = new BulletTest(getX()+width/2, getY()+height,level);
             level.bulletTest[level.bulletTestCnt].setVelocity(new Vector2(x, y));
-            level.bulletTest[level.bulletTestCnt].setAcceleration(Constants.GRAVITY);
+            level.bulletTest[level.bulletTestCnt].setAcceleration(Constants.myGravatiy);
             level.bulletTestCnt++;
             loseMP(BulletTest.MPConsume);
         }
 
+    }
+
+    @Override
+    public void eventQ() {
+        Constants.myGravatiy = new Vector2(0,10);
+    }
+
+    @Override
+    public void eventRight(int relativeX, int relativeY, int absoluteX, int absoluteY) {
+        if(curMP- BulletTest.MPConsume*5>0) {
+        level.bulletTest[level.bulletTestCnt] = new BulletTest((float)absoluteX, (float)absoluteY,this.level);
+        level.bulletTest[level.bulletTestCnt].setAcceleration(Constants.myGravatiy);
+        level.bulletTestCnt++;
+            loseMP(BulletTest.MPConsume*5);
+        }
     }
 }

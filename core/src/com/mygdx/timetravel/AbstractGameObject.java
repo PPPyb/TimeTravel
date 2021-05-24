@@ -94,7 +94,6 @@ public abstract class AbstractGameObject{
         MapObjects objects =  level.map.getLayers().get("CollisionLayer").getObjects();
         for(RectangleMapObject recObj: objects.getByType(RectangleMapObject.class))
         {
-
             Rectangle r1 = new Rectangle(this.getX()+xOffset,this.getY()+yOffset,this.width,this.height);
             Rectangle r2 = recObj.getRectangle();
             if(Intersector.overlaps(r1,r2)) {

@@ -13,5 +13,15 @@ public class CurState {
     5
 
     10Tutorials
+    10086 你被骗了
     */
+    public static void save()
+    {
+        //文件写入
+    }
+
+    public static void load()
+    {
+        //文件读取
+    }
 }

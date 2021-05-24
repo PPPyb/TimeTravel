@@ -16,7 +16,8 @@ public class Constants {
     public static final float DSJPRATE = 4f;//DASH-JUMP动能转换率
     public static final float JPCONSUMEDRATE = 50f;//JUMP消耗JP动能率
 
-    public static final Vector2 GRAVITY = new Vector2(0,-10);//重力
+    public static final Vector2 GRAVATIY = new Vector2(0,-10);
+    public static Vector2 myGravatiy = GRAVATIY;//重力
 
     public static final float ENEMYJUMPRATE = 10f;//敌人跳跃功率
     public static final float VICTORYSHOWTIME = 12;

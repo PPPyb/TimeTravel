@@ -1,12 +1,9 @@
 package com.mygdx.timetravel;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
 public class TestMonster extends Enemy{
@@ -20,7 +17,7 @@ public class TestMonster extends Enemy{
     @Override
     public void init() {
         initAnime();
-        this.setAcceleration(Constants.GRAVITY);
+        this.setAcceleration(Constants.myGravatiy);
         curHP = maxHP = 80f;
         walkSpeed = 50;
         enemyAI = new EnemyAITest(this);

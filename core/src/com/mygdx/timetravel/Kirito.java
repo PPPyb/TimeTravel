@@ -12,10 +12,6 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Kirito extends Player{
 
-    TextureRegion[] walkFrames;
-    TextureRegion[] walkFrames2;
-    Animation walkAni;
-    Animation walkAni2;
 
     public Kirito(float x, float y, Level level)
     {
@@ -47,5 +43,14 @@ public class Kirito extends Player{
             level.bulletTestPenetrateCnt++;
             loseMP(BulletTestPenetrate.MPConsume);
         }
+    }
+
+    @Override
+    public void eventE() {
+        armor += 10000;
+    }
+
+    public void eventQ() {
+        level.azuna.restoreHP(50);
     }
 }

@@ -3,14 +3,7 @@ package com.mygdx.timetravel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 
 //生物类，包括，主角，敌人，和人畜无害小动物。
 public class Creature extends AbstractGameObject{
@@ -133,12 +126,12 @@ public class Creature extends AbstractGameObject{
         switch(dashState)
         {
             case "DASHING":
-                this.acceleration.y = Constants.GRAVITY.y * Constants.DASHRATE;
+                this.acceleration.y = Constants.myGravatiy.y * Constants.DASHRATE;
                 JPRestoreRate = JPRestoreRateOrigin * Constants.DSJPRATE;
                 break;
             default:
             case "IDLE":
-                this.setAcceleration(Constants.GRAVITY);
+                this.setAcceleration(Constants.myGravatiy);
                 JPRestoreRate = JPRestoreRateOrigin;
                 break;
         }

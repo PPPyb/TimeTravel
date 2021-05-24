@@ -6,6 +6,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 
 //玩家类
 public class Player extends Creature{
@@ -50,11 +54,13 @@ public class Player extends Creature{
 
         handlePushE();
         handlePushQ();
+
+        collideHeart();
     }
 
     public void initState(){
         stateTime = 0;
-        this.setAcceleration(Constants.GRAVITY);
+        this.setAcceleration(Constants.myGravatiy);
     }
 
     public void initAnime(){
@@ -189,5 +195,18 @@ public class Player extends Creature{
     @Override
     public void die() {
         curFrame = imgDie;
+    }
+
+    public void collideHeart()
+    {
+        MapObjects objects =  level.map.getLayers().get("HP").getObjects();
+        for(RectangleMapObject recObj: objects.getByType(RectangleMapObject.class))
+        {
+            Rectangle r1 = new Rectangle(this.getX(),this.getY(),this.width,this.height);
+            Rectangle r2 = recObj.getRectangle();
+            if(Intersector.overlaps(r1,r2)) {
+                restoreHP(10*Gdx.graphics.getDeltaTime());
+            }
+        }
     }
 }
