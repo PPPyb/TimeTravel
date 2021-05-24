@@ -15,7 +15,6 @@ public class RepairmanObject extends InteractiveTileObject {
         fixture.setUserData(this);
         setCategoryFilter(MyGdxGame.NPC_BIT);
     }
-
     @Override
     public void onHeadHit() {
         Gdx.app.log("Repairman","Collision");

@@ -104,8 +104,8 @@ public class PlayScreen implements Screen {
             hud.updateToPowerSupplyArea();
         if(mario.b2body.getPosition().y>557 && mario.b2body.getPosition().y<812 && mario.b2body.getPosition().x>120 &&mario.b2body.getPosition().x<355)
             hud.updateToWeaponSupplyArea();
-        System.out.println(mario.b2body.getPosition().x);
-        System.out.println(mario.b2body.getPosition().y);
+        //System.out.println(mario.b2body.getPosition().x);
+        //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -139,7 +139,7 @@ public class PlayScreen implements Screen {
             changeToGambleRoomScreen();
         }
        if(flag==1) {
-           showNpcCommunication();
+           npcCommunication.stage.draw();
        }
 
 
@@ -175,9 +175,6 @@ public class PlayScreen implements Screen {
         renderer.dispose();
         b2dr.dispose();
         hud.dispose();
-    }
-    public static void showNpcCommunication(){
-        npcCommunication.stage.draw();
     }
     public static void changeToWeaponRoomScreen(){
         game.setScreen(new weaponRoomScreen(game));

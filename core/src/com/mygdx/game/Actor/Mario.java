@@ -48,7 +48,7 @@ public class Mario extends Sprite {
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         //defineMario(220,711);
         defineMario();
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, weaponRoomScreen screen){
@@ -77,7 +77,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(175,15);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, OutsideweaponRoomScreen screen){
@@ -106,7 +106,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(220,705);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, repairmanHomeScreen screen){
@@ -135,7 +135,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(226,25);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, OutsiderepairmanHomeScreen screen){
@@ -164,7 +164,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(1015,350);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, powerRoomScreen screen){
@@ -193,7 +193,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(217,10);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, OutsidepowerRoomScreen screen){
@@ -222,7 +222,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(985,710);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, gambleRoomScreen screen){
@@ -251,7 +251,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(460,20);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public Mario(World world, OutsidegambleRoomScreen screen){
@@ -280,7 +280,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(273,392);
-        setBounds(600,100,16,16);
+        setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public void update(float dt){
@@ -342,7 +342,7 @@ public class Mario extends Sprite {
         //主角分类
         fdef.filter.categoryBits=MyGdxGame.MARIO_BIT;
         //主角可以交互的对象
-        fdef.filter.maskBits=MyGdxGame.DOOR_BIT | MyGdxGame.DEFAULT_BIT | MyGdxGame.NPC_BIT | MyGdxGame.Brick_BIT;
+        fdef.filter.maskBits=MyGdxGame.DOOR_BIT | MyGdxGame.DEFAULT_BIT | MyGdxGame.NPC_BIT | MyGdxGame.Brick_BIT | MyGdxGame.NPC_OBJECT_BIT;
         fdef.shape=shape;
         b2body.createFixture(fdef);
         EdgeShape head=new EdgeShape();
@@ -363,7 +363,7 @@ public class Mario extends Sprite {
         //主角分类
         fdef.filter.categoryBits=MyGdxGame.MARIO_BIT;
         //主角可以交互的对象
-        fdef.filter.maskBits=MyGdxGame.DOOR_BIT | MyGdxGame.DEFAULT_BIT | MyGdxGame.NPC_BIT | MyGdxGame.Brick_BIT;
+        fdef.filter.maskBits=MyGdxGame.DOOR_BIT | MyGdxGame.DEFAULT_BIT | MyGdxGame.NPC_BIT | MyGdxGame.Brick_BIT | MyGdxGame.NPC_OBJECT_BIT;
         fdef.shape=shape;
         b2body.createFixture(fdef);
         EdgeShape head=new EdgeShape();

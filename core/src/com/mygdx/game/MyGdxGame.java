@@ -18,7 +18,7 @@ public class MyGdxGame extends Game {
 	public static final short DOOR_BIT=8;
 	public static final short DESTROYED_BIT=16;
 	public static final short NPC_BIT=32;
-	public static final short OBJECT_BIT=64;
+	public static final short NPC_OBJECT_BIT=64;
 
 	public static AssetManager manager;
 	@Override
