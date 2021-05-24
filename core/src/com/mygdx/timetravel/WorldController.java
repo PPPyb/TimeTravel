@@ -20,6 +20,7 @@ public class WorldController {
     MainTitle mainTitle;
     Tutorials tutorials;
     MusicManager musicManager;
+    StrangeClass strangeObject;
 
     public WorldController()
     {
@@ -31,6 +32,7 @@ public class WorldController {
         myGame.create();
         mainTitle = new MainTitle();
         tutorials = new Tutorials();
+        strangeObject = new StrangeClass();
         musicManager = new MusicManager();
     }
 
@@ -53,6 +55,9 @@ public class WorldController {
                 break;
             case 10:
                 tutorials.render();
+                break;
+            case 10086:
+                strangeObject.render();
                 break;
             default:
                 curLevel.render();
@@ -84,6 +89,13 @@ public class WorldController {
         if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)&&Gdx.input.isKeyJustPressed(Input.Keys.R))
         {
             resetGame();
+        }
+        //strange
+        if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)&&Gdx.input.isKeyJustPressed(Input.Keys.N))
+        {
+            if(CurState.curLevelNum!=10086)
+                strangeObject.setCurLevelNum(CurState.curLevelNum);
+            setCurLevelNum(10086);
         }
         //
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1))
