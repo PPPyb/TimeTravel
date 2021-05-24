@@ -22,9 +22,9 @@ public class Kirito extends Player{
         super(x,y,level);
         name = "Kirito";
         //属性
-        strength = 10;
-        agility = 15;
-        intelligence = 15;
+        strength = 5;
+        agility = 20;
+        intelligence = 20;
         init();
     }
 
