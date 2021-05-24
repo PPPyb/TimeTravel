@@ -63,8 +63,11 @@ public class GUIRenderer {
         //
         myfont.draw(batch,"HP"+(int)level.curPlayer.curHP+"/"+level.curPlayer.maxHP+ " Press T to check Tutorials",0,Constants.WINDOWS_HEIGHT-Constants.HPRECHEIGHT*4);
     }
-    public void failedRender()
+    public void failedRender(float failedEffect)
     {
+        level.guiBatch.setColor(0,0,0,1-failedEffect);
+        level.guiBatch.draw(imgHP,0,0,Constants.WINDOWS_WIDTH,Constants.WINDOWS_HEIGHT);
+        level.guiBatch.setColor(1,1,1,1);
         level.guiBatch.draw(failed,0,0);
         level.guiBatch.draw(warmheart,0,0);
     }

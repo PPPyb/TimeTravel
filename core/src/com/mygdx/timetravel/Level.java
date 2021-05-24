@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Level {
     float stateTime = 0;
     Boolean failed = false;
+    float failedEffect = 1;
     Boolean victory = false;
     float victoryTime = -1;
     //绘制
@@ -107,6 +108,8 @@ public class Level {
         victoryOrFailed();
         if(victory&&stateTime>victoryTime+Constants.VICTORYSHOWTIME)
             CurState.curLevelNum = 1;
+        if(failed&&failedEffect>0.2)
+            failedEffect -= deltaTime/10;
         if(victory||failed)
             return;
 
@@ -161,8 +164,9 @@ public class Level {
         //
         guiRenderer.render(guiBatch);
         //
-        if(failed)
-            guiRenderer.failedRender();
+        if(failed) {
+            guiRenderer.failedRender(failedEffect);
+        }
         if(victory)
             guiRenderer.victoryRender();
         guiBatch.end();
