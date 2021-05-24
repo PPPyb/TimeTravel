@@ -33,6 +33,7 @@ public class npcCommunication implements Disposable {
         CommunicationContents[1]="hello";
         CommunicationContents[2]="czp";
         CommunicationContents[3]="sb";
+        CommunicationContents[4]="";
         table.bottom();
         table.setFillParent(true);
         CommunicationLabel = new Label("", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -42,9 +43,9 @@ public class npcCommunication implements Disposable {
     public void update(){
            Gdx.input.setInputProcessor(inputProcessor);
            CommunicationLabel.setText(CommunicationContents[Count]);
-           if(Count>3){
+           if(Count>4){
                Count=0;
-               PlayScreen.flag=0;
+               PlayScreen.collisionFlag=0;
            }
     }
     @Override

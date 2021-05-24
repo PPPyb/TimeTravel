@@ -38,7 +38,8 @@ public class PlayScreen implements Screen {
     private TextureAtlas atlasRepairman;
     private Music music;
     private Repairman repairman;
-    public static int flag=0;
+    public static int collisionFlag=0;
+    public static int PlayScreenFlag=0;
 
     public PlayScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
@@ -142,7 +143,7 @@ public class PlayScreen implements Screen {
         if(mario.b2body.getPosition().x<=281 && mario.b2body.getPosition().x>=267 && mario.b2body.getPosition().y>395 && mario.b2body.getPosition().y<402) {
             changeToGambleRoomScreen();
         }
-       if(flag==1) {
+       if(collisionFlag==1) {
            npcCommunication.stage.draw();
        }
 

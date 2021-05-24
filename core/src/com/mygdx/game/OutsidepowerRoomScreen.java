@@ -141,7 +141,7 @@ public class OutsidepowerRoomScreen implements Screen {
         if(mario.b2body.getPosition().x<=281 && mario.b2body.getPosition().x>=267 && mario.b2body.getPosition().y>395 && mario.b2body.getPosition().y<402) {
             changeToGambleRoomScreen();
         }
-        if(PlayScreen.flag==1) {
+        if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
 
