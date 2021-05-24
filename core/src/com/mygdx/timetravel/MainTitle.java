@@ -11,6 +11,7 @@ public class MainTitle {
     Texture anykey;
     Texture timetravel;
     float bkgOffset = 0;
+    float stateTime = 0;
     public MainTitle()
     {
         batch = new SpriteBatch();
@@ -20,7 +21,10 @@ public class MainTitle {
     }
     public void render()
     {
-        bkgOffset += Gdx.graphics.getDeltaTime() * 100;
+        MusicManager.playMusic(10);
+        float deltaTime = Gdx.graphics.getDeltaTime();
+        stateTime += deltaTime;
+        bkgOffset += deltaTime * 100;
         if(bkgOffset > Constants.WINDOWS_WIDTH)
             bkgOffset = 0;
 
@@ -32,7 +36,7 @@ public class MainTitle {
             batch.draw(anykey,Constants.WINDOWS_WIDTH/2-anykey.getWidth()/2,100);
         batch.end();
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)||Gdx.input.isTouched())
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)||Gdx.input.isTouched())
             CurState.curLevelNum = 1;
     }
 }

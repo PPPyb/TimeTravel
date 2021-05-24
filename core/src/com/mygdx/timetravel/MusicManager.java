@@ -9,10 +9,11 @@ public class MusicManager {
     public MusicManager()
     {
         music = new Music[100];
-        music[90] = Gdx.audio.newMusic(Gdx.files.internal("music/killbill.mp3"));
-        music[91] = Gdx.audio.newMusic(Gdx.files.internal("music/failed.mp3"));
-        music[92] = Gdx.audio.newMusic(Gdx.files.internal("music/victory.mp3"));
-        music[80] = Gdx.audio.newMusic(Gdx.files.internal("music/backgroundMusic.mp3"));
+        music[10] = Gdx.audio.newMusic(Gdx.files.internal("Music/TitleMusic.mp3"));
+        music[90] = Gdx.audio.newMusic(Gdx.files.internal("Music/killbill.mp3"));
+        music[91] = Gdx.audio.newMusic(Gdx.files.internal("Music/failed.mp3"));
+        music[92] = Gdx.audio.newMusic(Gdx.files.internal("Music/victory.mp3"));
+        music[80] = Gdx.audio.newMusic(Gdx.files.internal("Music/backgroundMusic.mp3"));
     }
     public static void playMusic(int num)
     {

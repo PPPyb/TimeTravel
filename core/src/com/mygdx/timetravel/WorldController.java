@@ -74,10 +74,16 @@ public class WorldController {
     }
     public void levelManager()
     {
+        //tutorial
         if(Gdx.input.isKeyJustPressed(Input.Keys.T)) {
             if(CurState.curLevelNum!=10)
                 tutorials.setCurLevelNum(CurState.curLevelNum);
             setCurLevelNum(10);
+        }
+        //reset
+        if(Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)&&Gdx.input.isKeyJustPressed(Input.Keys.R))
+        {
+            resetGame();
         }
         //
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1))
@@ -88,9 +94,20 @@ public class WorldController {
         {
             setCurLevelNum(2);
         }
+
     }
 
     public void setCurLevelNum(int curLevelNum) {
         CurState.curLevelNum = curLevelNum;
+    }
+    public void resetGame()
+    {
+        setCurLevelNum(0);
+        testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
+        testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
+        snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
+        curLevel = testMap;
+        myGame = new com.mygdx.game.MyGdxGame();
+        myGame.create();
     }
 }
