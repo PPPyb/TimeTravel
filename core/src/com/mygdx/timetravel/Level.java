@@ -83,7 +83,7 @@ public class Level {
         bulletTestCnt = 0;
         bulletTestPenetrate = new BulletTestPenetrate[1000];
         bulletTestPenetrateCnt = 0;
-        bulletTestEnemies = new BulletTestEnemy[10000];
+        bulletTestEnemies = new BulletTestEnemy[1000];
         bulletTestEnemiesCnt = 0;
 
         initPlayer();

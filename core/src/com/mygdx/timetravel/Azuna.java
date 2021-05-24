@@ -57,9 +57,9 @@ public class Azuna extends Player{
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         //属性
-        strength = 10;
-        agility = 10;
-        intelligence = 15;
+        strength = 4;
+        agility = 4;
+        intelligence = 12;
     }
 
 

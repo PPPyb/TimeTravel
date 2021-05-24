@@ -30,9 +30,9 @@ public class Kirito extends Player{
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         //属性
-        strength = 15;
-        agility = 15;
-        intelligence = 10;
+        strength = 8;
+        agility = 8;
+        intelligence = 4;
     }
 
     @Override

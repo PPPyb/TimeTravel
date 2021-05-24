@@ -73,6 +73,8 @@ public class TestMonster extends Enemy{
 
     public void shoot(float x, float y)
     {
+        if(level.bulletTestEnemiesCnt>980)
+            level.bulletTestEnemiesCnt = 0;
             level.bulletTestEnemies[level.bulletTestEnemiesCnt] = new BulletTestEnemy(getX()+width/2, getY()+height,level);
             level.bulletTestEnemies[level.bulletTestEnemiesCnt].setVelocity(new Vector2(x, y));
             level.bulletTestEnemiesCnt++;
