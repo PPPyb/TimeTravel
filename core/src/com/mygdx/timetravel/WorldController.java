@@ -16,6 +16,7 @@ public class WorldController {
     Level snowLand;
     Level testMap;
     Level testWorld;
+    Level fireMap;
     com.mygdx.game.MyGdxGame myGame;
     MainTitle mainTitle;
     Tutorials tutorials;
@@ -27,6 +28,7 @@ public class WorldController {
         testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
         testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
         snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
+        fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
         curLevel = testMap;
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();
@@ -71,7 +73,7 @@ public class WorldController {
                 curLevel = snowLand;
                 break;
             case 3:
-                curLevel = testWorld;
+                curLevel = fireMap;
                 break;
             default:
                 break;
@@ -106,7 +108,10 @@ public class WorldController {
         {
             setCurLevelNum(2);
         }
-
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3))
+        {
+            setCurLevelNum(3);
+        }
     }
 
     public void setCurLevelNum(int curLevelNum) {
