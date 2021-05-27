@@ -4,6 +4,7 @@ package com.mygdx.timetravel;
 import com.mygdx.game.*;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.timetravel.Constants;
 
 /*
@@ -119,6 +120,7 @@ public class WorldController {
         testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
         snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
         curLevel = testMap;
+        Constants.myGravatiy = new Vector2(0,-10);
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();
     }

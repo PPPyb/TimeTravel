@@ -24,16 +24,16 @@ public class BulletFireWall extends Bullets{
     @Override
     public void initAnime() {
         
-        boom = new TextureRegion[27];
+        boom = new TextureRegion[7];
 
-        for(int i = 0;i < 27;i++)
+        for(int i = 0;i < 7;i++)
         {
         	System.out.println("fireA/600-1.png");
-        	Texture temp = new Texture(Gdx.files.internal("fireA/600-"+(i+1)+".png"));
+        	Texture temp = new Texture(Gdx.files.internal("fireA/"+(i+1)+".png"));
         	boom[i] = new TextureRegion(temp);
         }
 
-        boomAni = new Animation(0.1f, boom);
+        boomAni = new Animation(0.2f, boom);
         boomAni.setPlayMode(Animation.PlayMode.LOOP);
         curFrame = new TextureRegion();
         curFrame = boom[0];
