@@ -199,6 +199,8 @@ public class Player extends Creature{
 
     public void collideHeart()
     {
+        if(level.map.getLayers().get("HP")==null)
+            return;
         MapObjects objects =  level.map.getLayers().get("HP").getObjects();
         for(RectangleMapObject recObj: objects.getByType(RectangleMapObject.class))
         {
