@@ -8,7 +8,7 @@ public class CurState {
     1MainWorld
 
     2SnowLand
-    3
+    3FireMap
     4
     5
 
