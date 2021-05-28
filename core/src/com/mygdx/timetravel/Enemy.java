@@ -18,7 +18,8 @@ public class Enemy extends Creature{
     @Override
     public void loseHP(float damage) {
         super.loseHP(damage);
-        alerted();
+        if(!discovered)
+            alerted();
     }
 
     public void alerted()
