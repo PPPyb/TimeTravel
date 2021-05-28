@@ -15,9 +15,9 @@ public class EnemyAITest extends EnemyAI{
     @Override
     public void pattern() {
         if(enemy.discovered) {
-            if (enemy.getX() - enemy.level.curPlayer.getX() < enemy.width)
+            if (Math.abs(enemy.getX() - enemy.level.curPlayer.getX()) < enemy.width)
                 enemy.walkState = "IDLE";
-            if (enemy.getX() > enemy.level.curPlayer.getX())
+            else if (enemy.getX() > enemy.level.curPlayer.getX())
                 enemy.walkState = "LEFT";
             else if (enemy.getX() < enemy.level.curPlayer.getX())
                 enemy.walkState = "RIGHT";
@@ -64,6 +64,7 @@ public class EnemyAITest extends EnemyAI{
 
     @Override
     public void attack() {
+        if(enemy.discovered)
         for(int i = 0;i < 6;i++)
          enemy.attack();
     }

@@ -4,8 +4,8 @@ public class EnemyAIBeef extends EnemyAI{
     public EnemyAIBeef(Enemy enemy)
     {
         super(enemy);
-        patternInterval = 3;
-        attackInterval = 1;
+        patternInterval = 2;
+        attackInterval = 3;
         jumpInterval = 2;
         jumpRate = 10;
 
@@ -15,9 +15,9 @@ public class EnemyAIBeef extends EnemyAI{
     @Override
     public void pattern() {
         if(enemy.discovered) {
-            if (enemy.getX() - enemy.level.curPlayer.getX() < enemy.width)
+            if (Math.abs(enemy.getX() - enemy.level.curPlayer.getX()) < enemy.width)
                 enemy.walkState = "IDLE";
-            if (enemy.getX() > enemy.level.curPlayer.getX())
+            else if (enemy.getX() > enemy.level.curPlayer.getX())
                 enemy.walkState = "LEFT";
             else if (enemy.getX() < enemy.level.curPlayer.getX())
                 enemy.walkState = "RIGHT";
@@ -62,7 +62,7 @@ public class EnemyAIBeef extends EnemyAI{
 
     @Override
     public void attack() {
-        for(int i = 0;i < 6;i++)
+        if(enemy.discovered)
             enemy.attack();
     }
 }
