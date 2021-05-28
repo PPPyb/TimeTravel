@@ -1,5 +1,6 @@
 package com.mygdx.timetravel;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 /*
@@ -9,7 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 public class Azuna extends Player{
 
 
-    public Azuna(float x,float y,Level level)
+    private static int countQ = 0;
+    private boolean consumingQ;
+
+    public Azuna(float x, float y, Level level)
     {
         super(x,y,level);
         name = "Asuna";
@@ -45,7 +49,17 @@ public class Azuna extends Player{
 
     @Override
     public void eventQ() {
-        Constants.myGravatiy = new Vector2(0,10);
+        if((Azuna.countQ%2)==0) {
+            if(curMP- BulletTest.MPConsume*Gdx.graphics.getDeltaTime()>100) {
+                consumingQ = true;
+            }
+        }
+        else {
+                consumingQ = false;
+            }
+
+        Azuna.countQ ++;
+
     }
 
     @Override
@@ -57,4 +71,24 @@ public class Azuna extends Player{
             loseMP(BulletTest.MPConsume*5);
         }
     }
+
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        if(consumingQ) {
+            level.azunaQskillEffect.setPosition(new Vector2((float) (getX()-width*2.9), getY()-height));
+            loseMP(200 * Gdx.graphics.getDeltaTime());
+            Constants.myGravatiy = new Vector2(0,10);
+            if (curMP < 10)
+                consumingQ = false;
+        }
+        else
+        {
+            level.azunaQskillEffect.setPosition(new Vector2(-10000.0f,-10000.0f));
+            Constants.myGravatiy = new Vector2(0,-10);
+
+        }
+
+    }
+
 }

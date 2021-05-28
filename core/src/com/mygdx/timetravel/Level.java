@@ -53,6 +53,7 @@ public class Level {
     BulletTestEnemy[] bulletTestEnemies;
     int bulletTestEnemiesCnt;
     BulletFireWall bulletFireWall;
+    AzunaQskillEffect azunaQskillEffect;
 
     public Level(String mapRoute,String backGroundRoute)
     {
@@ -92,6 +93,7 @@ public class Level {
         bulletTestEnemies = new BulletTestEnemy[1000];
         bulletTestEnemiesCnt = 0;
         bulletFireWall = new BulletFireWall(-10000,-10000,this);
+        azunaQskillEffect = new AzunaQskillEffect(-10000,-10000,this);
 
         initPlayer();
         initEnemies();
@@ -128,6 +130,7 @@ public class Level {
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
         updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
         bulletFireWall.update(deltaTime);
+        azunaQskillEffect.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -158,6 +161,7 @@ public class Level {
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
         drawObjects(bulletTestEnemies,bulletTestEnemiesCnt,batch);
         bulletFireWall.draw(batch);
+        azunaQskillEffect.draw(batch);
         //画角色
         curPlayer.draw(batch);
 
