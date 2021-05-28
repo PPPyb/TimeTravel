@@ -45,6 +45,8 @@ public class Level {
     //敌人
     TestMonster[] testMonster;
     int testMonsterCnt;
+    Beef[] beefs;
+    int beefsCnt;
     //子弹
     BulletTest[] bulletTest;
     int bulletTestCnt;
@@ -54,6 +56,8 @@ public class Level {
     int bulletTestEnemiesCnt;
     BulletFireWall bulletFireWall;
     AzunaQskillEffect azunaQskillEffect;
+    BulletBeef[] bulletBeef;
+    int bulletBeefCnt;
 
     public Level(String mapRoute,String backGroundRoute)
     {
@@ -85,6 +89,8 @@ public class Level {
         //敌人
         testMonster = new TestMonster[100];
         testMonsterCnt = 0;
+        beefs = new Beef[100];
+        beefsCnt = 0;
         //子弹
         bulletTest = new BulletTest[1000];
         bulletTestCnt = 0;
@@ -92,6 +98,8 @@ public class Level {
         bulletTestPenetrateCnt = 0;
         bulletTestEnemies = new BulletTestEnemy[1000];
         bulletTestEnemiesCnt = 0;
+        bulletBeef = new BulletBeef[1000];
+        bulletBeefCnt = 0;
         bulletFireWall = new BulletFireWall(-10000,-10000,this);
         azunaQskillEffect = new AzunaQskillEffect(-10000,-10000,this);
 
@@ -125,10 +133,12 @@ public class Level {
         kirito.restore();
         //update怪物
         updateObjects(testMonster,testMonsterCnt,deltaTime);
+        updateObjects(beefs,beefsCnt,deltaTime);
         //update子弹
         updateObjects(bulletTest,bulletTestCnt,deltaTime);
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
         updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
+        updateObjects(bulletBeef,bulletBeefCnt,deltaTime);
         bulletFireWall.update(deltaTime);
         azunaQskillEffect.update(deltaTime);
         //update相机
@@ -156,10 +166,12 @@ public class Level {
         mapRenderer.render();
         //画怪物
         drawObjects(testMonster,testMonsterCnt,batch);
+        drawObjects(beefs,beefsCnt,batch);
         //画子弹
         drawObjects(bulletTest,bulletTestCnt,batch);
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
         drawObjects(bulletTestEnemies,bulletTestEnemiesCnt,batch);
+        drawObjects(bulletBeef,bulletBeefCnt,batch);
         bulletFireWall.draw(batch);
         azunaQskillEffect.draw(batch);
         //画角色
@@ -195,12 +207,24 @@ public class Level {
     }
     public void initEnemies()
     {
-        MapObjects objects = map.getLayers().get("EnemyLayer").getObjects();
-        for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+        if(map.getLayers().get("EnemyLayer")!=null) {
+            MapObjects objects = map.getLayers().get("EnemyLayer").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
-            Rectangle r = recObj.getRectangle();
-            System.out.println(r);
-            testMonster[testMonsterCnt++] = new TestMonster(r.x,r.y,this);
+                Rectangle r = recObj.getRectangle();
+                System.out.println(r);
+                testMonster[testMonsterCnt++] = new TestMonster(r.x, r.y, this);
+            }
+        }
+        if(map.getLayers().get("BeefLayer")!=null)
+        {
+            MapObjects objects = map.getLayers().get("BeefLayer").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                System.out.println(r);
+                beefs[beefsCnt++] = new Beef(r.x, r.y, this);
+            }
         }
     }
     public void choosePlayer()
@@ -256,6 +280,11 @@ public class Level {
             if (testMonster[i].isAlive)
                 return;
         }
+        for(int i = 0;i < beefsCnt;i++) {
+            if (beefs[i].isAlive)
+                return;
+        }
+        //victory achieved
         victory = true;
         if(victoryTime < 0)
             victoryTime = stateTime;

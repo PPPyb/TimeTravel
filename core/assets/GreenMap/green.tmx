@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="240" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="74">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="240" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="76">
  <tileset firstgid="1" name="trees" tilewidth="16" tileheight="16" tilecount="2160" columns="54">
   <image source="bg/trees.png" trans="ffffff" width="864" height="640"/>
  </tileset>
@@ -282,6 +282,10 @@
   <object id="62" x="3582" y="344"/>
   <object id="63" x="2437" y="234"/>
  </objectgroup>
+ <objectgroup id="15" name="BeefLayer">
+  <object id="74" x="3644" y="443"/>
+  <object id="75" x="696" y="418"/>
+ </objectgroup>
  <layer id="8" name="可互动" width="240" height="60">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -347,7 +351,7 @@
 </data>
  </layer>
  <objectgroup id="14" name="PlayerLayer">
-  <object id="73" x="163" y="602"/>
+  <object id="73" x="163" y="602" rotation="180"/>
  </objectgroup>
  <objectgroup id="13" name="CollisionLayer">
   <object id="65" x="-108" y="-98" width="4064" height="90"/>
@@ -362,7 +366,7 @@
   <object id="11" x="0" y="432" width="240" height="96"/>
   <object id="12" x="0" y="192" width="240" height="96"/>
   <object id="13" x="240" y="192" width="48" height="48"/>
-  <object id="14" x="528" y="480" width="288" height="48"/>
+  <object id="14" x="528" y="480" width="288" height="48" rotation="360"/>
   <object id="15" x="960" y="384" width="336" height="96"/>
   <object id="16" x="1488" y="384" width="288" height="96"/>
   <object id="17" x="1488" y="720" width="288" height="240"/>

@@ -1,12 +1,12 @@
 package com.mygdx.timetravel;
 
-public class EnemyAITest extends EnemyAI{
-    public EnemyAITest(Enemy enemy)
+public class EnemyAIBeef extends EnemyAI{
+    public EnemyAIBeef(Enemy enemy)
     {
         super(enemy);
         patternInterval = 1;
-        attackInterval = 1;
-        jumpInterval = 2;
+        attackInterval = 3;
+        jumpInterval = 1;
         jumpRate = 1;
     }
 
@@ -38,7 +38,6 @@ public class EnemyAITest extends EnemyAI{
 
     @Override
     public void attack() {
-        for(int i = 0;i < 6;i++)
          enemy.attack();
     }
 }

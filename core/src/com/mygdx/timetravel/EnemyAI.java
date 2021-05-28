@@ -17,6 +17,8 @@ public class EnemyAI {
     float jumpTime = 0;
     float jumpInterval = 3;
 
+    float jumpRate = 10;
+
     public EnemyAI(Enemy enemy)
     {
         this.enemy = enemy;
@@ -48,7 +50,7 @@ public class EnemyAI {
 
         enemy.move(enemy.walkSpeed);
 
-        enemy.jump(enemy.walkSpeed * 10);
+        enemy.jump((int)(enemy.walkSpeed * jumpRate));
         enemy.jumpState = "IDLE";
 
     }

@@ -205,7 +205,7 @@ public class Creature extends AbstractGameObject{
     @Override
     public void draw(Batch batch)
     {
-        batch.draw(curFrame,this.getX(),this.getY());
+        batch.draw(curFrame,getX(),getY());
     }
 
     public void die(){}

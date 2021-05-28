@@ -133,6 +133,9 @@ public class WorldController {
         testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
         testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
         snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
+        fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
+        greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
+
         curLevel = testMap;
         Constants.myGravatiy = new Vector2(0,-10);
         myGame = new com.mygdx.game.MyGdxGame();
