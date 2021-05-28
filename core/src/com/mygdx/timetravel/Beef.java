@@ -39,7 +39,7 @@ public class Beef extends Enemy{
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
         curHP = maxHP = 1000f;
-        walkSpeed = 1000;
+        walkSpeed = 80;
         enemyAI = new EnemyAIBeef(this);
     }
 

@@ -30,6 +30,8 @@ public class EnemyAI {
         attackTime += deltaTime;
         jumpTime += deltaTime;
 
+        discover();
+
         if(patternTime > patternInterval)
         {
             pattern();;
@@ -51,10 +53,18 @@ public class EnemyAI {
         enemy.move(enemy.walkSpeed);
 
         enemy.jump((int)(enemy.walkSpeed * jumpRate));
+        enemy.dash();
         enemy.jumpState = "IDLE";
 
     }
 
+    public void discover()
+    {
+        if(!enemy.discovered&&Math.sqrt((enemy.level.curPlayer.getX()-enemy.getX())*(enemy.level.curPlayer.getX()-enemy.getX())+(enemy.level.curPlayer.getY()-enemy.getY())*(enemy.level.curPlayer.getY()-enemy.getY()))<enemy.sight)
+        {
+            enemy.alerted();
+        }
+    }
     public void pattern() {} //move pattern
     public void jump() {}
     public void attack() {}

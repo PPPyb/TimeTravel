@@ -6,6 +6,8 @@ package com.mygdx.timetravel;
 public class Enemy extends Creature{
 
     EnemyAI enemyAI;
+    Boolean discovered = false;
+    float sight = 300;
 
     public Enemy(float x,float y,Level level)
     {
@@ -13,6 +15,20 @@ public class Enemy extends Creature{
         initAnime();
     }
 
+    @Override
+    public void loseHP(float damage) {
+        super.loseHP(damage);
+        alerted();
+    }
+
+    public void alerted()
+    {
+        discovered = true;
+        walkSpeed*=10;
+        enemyAI.jumpRate/=10;
+        enemyAI.patternInterval = 0;
+        enemyAI.jumpInterval = 1;
+    }
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);

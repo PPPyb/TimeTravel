@@ -4,20 +4,42 @@ public class EnemyAIBeef extends EnemyAI{
     public EnemyAIBeef(Enemy enemy)
     {
         super(enemy);
-        patternInterval = 1;
-        attackInterval = 3;
-        jumpInterval = 1;
-        jumpRate = 1;
+        patternInterval = 3;
+        attackInterval = 1;
+        jumpInterval = 2;
+        jumpRate = 10;
+
+
     }
 
     @Override
     public void pattern() {
-        if(enemy.getX()-enemy.level.curPlayer.getX()>800)
-            enemy.walkState="IDLE";
-        if(enemy.getX()>enemy.level.curPlayer.getX())
-            enemy.walkState="LEFT";
-        else if(enemy.getX()<enemy.level.curPlayer.getX())
-            enemy.walkState="RIGHT";
+        if(enemy.discovered) {
+            if (enemy.getX() - enemy.level.curPlayer.getX() < enemy.width)
+                enemy.walkState = "IDLE";
+            if (enemy.getX() > enemy.level.curPlayer.getX())
+                enemy.walkState = "LEFT";
+            else if (enemy.getX() < enemy.level.curPlayer.getX())
+                enemy.walkState = "RIGHT";
+        }
+        else
+        {
+            int walkDecision = (int)(Math.random()*3);
+            switch (walkDecision)
+            {
+                case 0:
+                    enemy.walkState = "LEFT";
+                    break;
+                case 1:
+                    enemy.walkState = "RIGHT";
+                    break;
+                case 2:
+                default:
+                    enemy.walkState = "IDLE";
+                    break;
+            }
+        }
+
     }
 
     @Override
@@ -32,12 +54,15 @@ public class EnemyAIBeef extends EnemyAI{
                 enemy.jumpState = "IDLE";
                 break;
         }
-        if(enemy.level.curPlayer.getY()>enemy.getY())
-            enemy.jumpState = "JUMPING";
+        if(enemy.discovered) {
+            if(enemy.level.curPlayer.getY()>enemy.getY())
+                enemy.jumpState = "JUMPING";
+        }
     }
 
     @Override
     public void attack() {
-         enemy.attack();
+        for(int i = 0;i < 6;i++)
+            enemy.attack();
     }
 }

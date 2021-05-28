@@ -19,7 +19,7 @@ public class TestMonster extends Enemy{
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
         curHP = maxHP = 80f;
-        walkSpeed = 500;
+        walkSpeed = 50;
         enemyAI = new EnemyAITest(this);
     }
 
