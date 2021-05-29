@@ -40,6 +40,7 @@ public class SnowMapScreen implements Screen {
     private Music music;
     private Repairman repairman;
     private GambleRoomOwner gambleRoomOwner;
+    private ChangeMapInterface changeMapInterface;
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasGambleRoomOwner;
     private shopInterface shopInterface;
@@ -54,6 +55,7 @@ public class SnowMapScreen implements Screen {
         //texture=new Texture("5.png");
         hud=new Hud(game.batch);
         npcCommunication=new NpcCommunication(game.batch);
+        changeMapInterface=new ChangeMapInterface(game.batch);
         mapLoader=new TmxMapLoader();
         map=mapLoader.load("maps/snowMap.tmx");
         renderer=new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
@@ -122,6 +124,14 @@ public class SnowMapScreen implements Screen {
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
+        if(PlayScreen.PortalCollisionFlag==1) {
+            Gdx.gl.glClearColor(0, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            hud.stage.dispose();
+            //PlayScreen.PlayScreenFlag=1;
+            Gdx.input.setInputProcessor(changeMapInterface.stage);
+            changeMapInterface.render();
+        }
     }
 
     @Override
@@ -151,6 +161,7 @@ public class SnowMapScreen implements Screen {
         renderer.dispose();
         b2dr.dispose();
         hud.dispose();
+        changeMapInterface.dispose();
     }
     public static void changeToMainScreen(){
         game.setScreen(new PlayScreen(game));

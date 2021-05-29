@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="12" nextobjectid="3">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="13" nextobjectid="4">
  <tileset firstgid="1" source="fireMap.tsx"/>
  <layer id="1" name="图块层 1" width="40" height="22">
   <data encoding="csv">
@@ -35,8 +35,11 @@
  <objectgroup id="7" name="对象层 6"/>
  <objectgroup id="8" name="对象层 7"/>
  <objectgroup id="9" name="对象层 8"/>
- <objectgroup id="10" name="对象层 9"/>
+ <objectgroup id="10" name="对象层 9">
+  <object id="3" x="194.214" y="148.337" width="32.1142" height="21.4095"/>
+ </objectgroup>
  <objectgroup id="11" name="smallMapdoor">
   <object id="2" x="867.083" y="140.691" width="33.6434" height="48.9359"/>
  </objectgroup>
+ <objectgroup id="12" name="对象层 11"/>
 </map>

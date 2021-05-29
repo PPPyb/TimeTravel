@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="12" nextobjectid="1">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="13" nextobjectid="3">
  <tileset firstgid="1" source="snowMap.tsx"/>
  <layer id="1" name="图块层 1" width="40" height="22">
   <data encoding="csv">
@@ -35,6 +35,11 @@
  <objectgroup id="7" name="对象层 6"/>
  <objectgroup id="8" name="对象层 7"/>
  <objectgroup id="9" name="对象层 8"/>
- <objectgroup id="10" name="对象层 9"/>
+ <objectgroup id="10" name="对象层 9">
+  <object id="2" x="159.246" y="148.86" width="20.7712" height="26.541"/>
+ </objectgroup>
  <objectgroup id="11" name="对象层 10"/>
+ <objectgroup id="12" name="bossdoor">
+  <object id="1" x="1067.41" y="125.781" width="27.6949" height="48.4661"/>
+ </objectgroup>
 </map>

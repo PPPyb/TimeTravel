@@ -139,21 +139,20 @@ public class PlayScreen implements Screen {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             hud.stage.dispose();
-            //openBagInterface.stage.dispose();
-            //bagInterface.stage.dispose();
+            PlayScreen.PlayScreenFlag=1;
             Gdx.input.setInputProcessor(changeMapInterface.stage);
             changeMapInterface.render();
         }
         //Gdx.input.setInputProcessor(bagInterface.stage);
-        bagInterface.render();
-//        if(bagInterface.bag_flag==0 && NpcCommunication.communicationCount==5) {
-//            Gdx.input.setInputProcessor(openBagInterface.stage);
-//            openBagInterface.render();
-//        }
-//        else if (bagInterface.bag_flag==1 &&  NpcCommunication.communicationCount==5){
-//            Gdx.input.setInputProcessor(bagInterface.stage);
-//            bagInterface.render();
-//        }
+        //bagInterface.render();
+        if(bagInterface.bag_flag==0 && NpcCommunication.communicationCount==5 && PlayScreen.PlayScreenFlag==0) {
+            Gdx.input.setInputProcessor(openBagInterface.stage);
+            openBagInterface.render();
+        }
+        else if (bagInterface.bag_flag==1 && NpcCommunication.communicationCount==5 && PlayScreen.PlayScreenFlag==0){
+            Gdx.input.setInputProcessor(bagInterface.stage);
+            bagInterface.render();
+        }
         hud.stage.draw();
         if (mario.b2body.getPosition().x <= 250 && mario.b2body.getPosition().x >= 239 && mario.b2body.getPosition().y > 704 && mario.b2body.getPosition().y < 711) {
             changeToWeaponRoomScreen();
@@ -212,6 +211,9 @@ public class PlayScreen implements Screen {
         renderer.dispose();
         b2dr.dispose();
         hud.dispose();
+        bagInterface.dispose();
+        openBagInterface.dispose();
+        changeMapInterface.dispose();
         //shopInterface.dispose();
     }
 

@@ -49,7 +49,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         //defineMario(220,711);
-        defineMario(77,53);
+        defineMario(77,53);//77,53
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -310,7 +310,7 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(217,510);
+        defineMario(250,510);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }

@@ -1,8 +1,10 @@
 package com.mygdx.game.Actor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.FireMapScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayScreen;
 import com.mygdx.game.gambleRoomScreen;
@@ -17,7 +19,7 @@ public class Portal extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
-        PlayScreen.PlayScreenFlag=0;
+        System.out.println(PlayScreen.PortalCollisionFlag);
         PlayScreen.PortalCollisionFlag=1;
     }
 }

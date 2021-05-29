@@ -53,12 +53,14 @@ public class ChangeMapInterface extends ApplicationAdapter {
         button[0].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                PlayScreen.PortalCollisionFlag=0;
                 PlayScreen.changeToFireMapScreen();
             }
         });
         button[1].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                PlayScreen.PortalCollisionFlag=0;
                 PlayScreen.changeToSnowMapScreen();
             }
         });

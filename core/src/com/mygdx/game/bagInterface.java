@@ -4,7 +4,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,17 +29,17 @@ public class bagInterface extends ApplicationAdapter {
     public static int bag_flag=1;
     openBagInterface shopInterface;
     public bagInterface(){
-        viewport = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
+        viewport = new FillViewport(1280, 720, new OrthographicCamera());
         stage=new Stage(viewport);
         shopInterface=new openBagInterface();
         Gdx.input.setInputProcessor(stage);
-        upTexture = new Texture(Gdx.files.internal("Button/interface1.png"));
-        downTexture = new Texture(Gdx.files.internal("Button/interface1.2.png"));
+        upTexture = new Texture(Gdx.files.internal("Button/interface.png"));
+        downTexture = new Texture(Gdx.files.internal("Button/interface.png"));
         Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = new TextureRegionDrawable(new TextureRegion(upTexture));
         style.down = new TextureRegionDrawable(new TextureRegion(downTexture));
         button = new Button(style);
-        button.setPosition(0,0);
+        button.setPosition(20,0);
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
