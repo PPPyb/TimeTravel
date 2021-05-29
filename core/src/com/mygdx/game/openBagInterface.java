@@ -43,18 +43,18 @@ public class openBagInterface extends ApplicationAdapter {
     private Viewport viewport;
     public Stage stage;
     public openBagInterface(){
-        viewport = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
+        viewport = new FillViewport(1280, 720, new OrthographicCamera());
         stage=new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
         batch=new SpriteBatch();
         monkeyFace=new Texture(Gdx.files.internal("Button/monkeyFace.png"));
 
-        upTexture = new Texture(Gdx.files.internal("Button/bag1.png"));
-        downTexture = new Texture(Gdx.files.internal("Button/bag1.2.png"));
+        upTexture = new Texture(Gdx.files.internal("Button/bag.png"));
+        downTexture = new Texture(Gdx.files.internal("Button/bag.png"));
         style.up = new TextureRegionDrawable(new TextureRegion(upTexture));
         style.down = new TextureRegionDrawable(new TextureRegion(downTexture));
         button = new Button(style);
-        button.setPosition(173,15);//173,270
+        button.setPosition(456,74);//173,270
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -69,7 +69,7 @@ public class openBagInterface extends ApplicationAdapter {
         style1.up = new TextureRegionDrawable(new TextureRegion(up1));
         style1.down = new TextureRegionDrawable(new TextureRegion(down1));
         bt1 = new Button(style1);
-        bt1.setPosition(188,210);
+        bt1.setPosition(505,531);
         bt1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -84,7 +84,7 @@ public class openBagInterface extends ApplicationAdapter {
         style2.up = new TextureRegionDrawable(new TextureRegion(up2));
         style2.down = new TextureRegionDrawable(new TextureRegion(down2));
         bt1 = new Button(style2);
-        bt1.setPosition(225,209);
+        bt1.setPosition(625,531);
         bt1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -99,7 +99,7 @@ public class openBagInterface extends ApplicationAdapter {
         style3.up = new TextureRegionDrawable(new TextureRegion(up3));
         style3.down = new TextureRegionDrawable(new TextureRegion(down3));
         bt1 = new Button(style3);
-        bt1.setPosition(263,210);
+        bt1.setPosition(743,531);
         bt1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -115,7 +115,7 @@ public class openBagInterface extends ApplicationAdapter {
         style4.up = new TextureRegionDrawable(new TextureRegion(up4));
         style4.down = new TextureRegionDrawable(new TextureRegion(down4));
         bt1 = new Button(style4);
-        bt1.setPosition(300,210);
+        bt1.setPosition(862,531);
         bt1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -140,7 +140,7 @@ public class openBagInterface extends ApplicationAdapter {
         //Gdx.gl.glClearColor(0, 0, 0, 1);
         //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.draw(monkeyFace,0,570,150,150);
+        batch.draw(monkeyFace,0,588,456,134);
         batch.end();
         stage.act();
         stage.draw();

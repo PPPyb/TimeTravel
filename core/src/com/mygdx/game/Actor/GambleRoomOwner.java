@@ -50,6 +50,6 @@ public class GambleRoomOwner extends NPC{
     }
     @Override
     public void hitOnNPC() {
-
+         gambleRoomScreen.gambleRoomCollisionFlag=1;
     }
 }

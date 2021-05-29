@@ -44,6 +44,9 @@ public class gambleRoomScreen implements Screen {
     private TextureAtlas atlasGambleRoomOwner;
     private shopInterface shopInterface;
     public static int gambleRoomFlag=1;
+    public static int gambleRoomCollisionFlag=0;
+    public gambleGameInterface gambleGameInterface;
+
     public gambleRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
@@ -65,6 +68,8 @@ public class gambleRoomScreen implements Screen {
         world.setContactListener(new WorldContactListener());
         repairman=new Repairman(this,32f,32f);
         gambleRoomOwner=new GambleRoomOwner(this,32f,32f);
+        gambleGameInterface=new gambleGameInterface();
+
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
         // music.play();
@@ -122,6 +127,10 @@ public class gambleRoomScreen implements Screen {
         repairman.draw(game.batch);
         gambleRoomOwner.draw(game.batch);
         game.batch.end();
+        if(gambleRoomCollisionFlag==1 && gambleGameInterface.gamble_flag==0) {
+            Gdx.input.setInputProcessor(gambleGameInterface.stage);
+            gambleGameInterface.render();
+        }
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
