@@ -46,6 +46,7 @@ public class Level {
     Azuna azuna;
     Kirito kirito;
     Indix indix;
+    Jack jack;
     //敌人
     TestMonster[] testMonster;
     int testMonsterCnt;
@@ -70,6 +71,7 @@ public class Level {
     BulletDangMa[] bulletDangMas;
     int bulletDangMasCnt=0;
     IndixQskillEffect indixQskillEffect;
+    BulletTitanic bulletTitanic;
 
 
     public Level(String mapRoute,String backGroundRoute)
@@ -100,6 +102,7 @@ public class Level {
         azuna = new Azuna(0,0,this);
         kirito = new Kirito(0,0,this);
         indix = new Indix(0,0,this);
+        jack = new Jack(0,0,this);
         //敌人
         testMonster = new TestMonster[100];
         testMonsterCnt = 0;
@@ -112,6 +115,7 @@ public class Level {
         bulletTestPenetrateCnt = 0;
         bulletTestEnemies = new BulletTestEnemy[1000];
         bulletTestEnemiesCnt = 0;
+        bulletTitanic  = new BulletTitanic(-10000,-10000,this);
         bulletBeef = new BulletBeef[1000];
         bulletBeefCnt = 0;
         bulletFireWall = new BulletFireWall(-10000,-10000,this);
@@ -170,6 +174,7 @@ public class Level {
         azunaEskillEffectRecover.update(deltaTime);
         kiritoQskillEffect.update(deltaTime);
         indixQskillEffect.update(deltaTime);
+        bulletTitanic.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -207,6 +212,7 @@ public class Level {
         azunaEskillEffectRecover.draw(batch);
         kiritoQskillEffect.draw(batch);
         indixQskillEffect.draw(batch);
+        bulletTitanic.draw(batch);
         //画角色
         curPlayer.draw(batch);
 
@@ -264,10 +270,14 @@ public class Level {
     {
         if(Gdx.input.isKeyJustPressed(Input.Keys.TAB))
         {
-            if(playerNum == Constants.PLAYERNUMBER - 1)
+            if(playerNum >= Constants.PLAYERNUMBER - 1)
                 playerNum = 0;
             else
                 playerNum++;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F1))
+        {
+            playerNum = 11;
         }
         switch(playerNum)
         {
@@ -285,6 +295,11 @@ public class Level {
                 indix.setPosition(curPlayer.position);
                 indix.setVelocity(curPlayer.velocity);
                 curPlayer = indix;
+                break;
+            case 11:
+                jack.setPosition(curPlayer.position);
+                jack.setVelocity(curPlayer.velocity);
+                curPlayer = jack;
             default:
                 break;
         }

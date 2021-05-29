@@ -27,6 +27,10 @@ public class MagicHelper {
         indixQ.setMusicEffect(96);
         indixE = new Magic(level);
         indixE.setMaxCD(5);
+        jack = new Magic(level);
+        jack.setMaxCD(120);
+        jack.setMusicEffect(99);
+
     }
 
     Magic azunaQ;
@@ -132,6 +136,19 @@ public class MagicHelper {
         }
 
     }
+    Magic jack;
+    public void jackMagic()
+    {
+        jack.CD-=deltaTime;
+        if (jack.casting) {
+
+            jack.castTime += deltaTime;
+            if(jack.castTime>36)
+                jack.stop();
+        }
+        else
+            level.bulletTitanic.setPosition(new Vector2(-10000.0f, -10000.0f));
+    }
     public void update(float deltaTime)
     {
         player = level.curPlayer;
@@ -139,5 +156,6 @@ public class MagicHelper {
         azunaMagic();
         kiritoMagic();
         indixMagic();
+        jackMagic();
     }
 }
