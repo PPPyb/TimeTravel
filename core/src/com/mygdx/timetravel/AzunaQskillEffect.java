@@ -28,8 +28,7 @@ public class AzunaQskillEffect extends Bullets{
 
         for(int i = 0;i < 14;i++)
         {
-        	System.out.println("effects/AzunaQ/1743-1.png");
-        	Texture temp = new Texture(Gdx.files.internal("effects/AzunaQ/7"+(i+1)+".png"));
+        	Texture temp = new Texture(Gdx.files.internal("effects/AzunaQReversegravity/7"+(i+1)+".png"));
         	effect[i] = new TextureRegion(temp);
         }
 

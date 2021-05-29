@@ -167,7 +167,9 @@ public class Player extends Creature{
             eventE();
         }
     }
-    public void eventE(){}
+    public void eventE(){
+
+    }
     public void handlePushQ(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
             eventQ();

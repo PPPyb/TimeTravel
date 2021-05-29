@@ -56,6 +56,7 @@ public class Level {
     int bulletTestEnemiesCnt;
     BulletFireWall bulletFireWall;
     AzunaQskillEffect azunaQskillEffect;
+    AzunaEskillEffectRecover azunaEskillEffectRecover;
     BulletBeef[] bulletBeef;
     int bulletBeefCnt;
 
@@ -102,6 +103,7 @@ public class Level {
         bulletBeefCnt = 0;
         bulletFireWall = new BulletFireWall(-10000,-10000,this);
         azunaQskillEffect = new AzunaQskillEffect(-10000,-10000,this);
+        azunaEskillEffectRecover = new AzunaEskillEffectRecover(-10000,-10000,this);
 
         initPlayer();
         initEnemies();
@@ -141,6 +143,7 @@ public class Level {
         updateObjects(bulletBeef,bulletBeefCnt,deltaTime);
         bulletFireWall.update(deltaTime);
         azunaQskillEffect.update(deltaTime);
+        azunaEskillEffectRecover.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -174,6 +177,7 @@ public class Level {
         drawObjects(bulletBeef,bulletBeefCnt,batch);
         bulletFireWall.draw(batch);
         azunaQskillEffect.draw(batch);
+        azunaEskillEffectRecover.draw(batch);
         //画角色
         curPlayer.draw(batch);
 

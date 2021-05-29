@@ -12,14 +12,17 @@ public class Azuna extends Player{
 
     private static int countQ = 0;
     private boolean consumingQ;
+    Boolean recoverCasted = false;
+    Boolean qing = false;//大清
+    float qingTime = 0;
 
     public Azuna(float x, float y, Level level)
     {
         super(x,y,level);
         name = "Asuna";
         //属性
-        strength = 5;
-        agility = 20;
+        strength = 10;
+        agility = 40;
         intelligence = 20;
         init();
     }
@@ -48,6 +51,7 @@ public class Azuna extends Player{
     }
 
     @Override
+    //反重力术
     public void eventQ() {
         if((Azuna.countQ%2)==0) {
             if(curMP- BulletTest.MPConsume*Gdx.graphics.getDeltaTime()>100) {
@@ -60,6 +64,27 @@ public class Azuna extends Player{
 
         Azuna.countQ ++;
 
+    }
+
+    //大清复活术
+    @Override
+    public void eventE() {
+
+        if(recoverCasted)
+            return;
+
+         //pigeon helicopter
+        //复活
+        //level.azuna.isAlive = true;
+        level.kirito.isAlive = true;
+        //回复所有角色状态
+        //if(level.azuna.curHP<0.3*level.azuna.maxHP)
+            //level.azuna.curHP = (float) (0.3*level.azuna.maxHP);
+        if(level.kirito.curHP<0.3*level.kirito.maxHP)
+            level.kirito.curHP = (float) (0.3*level.kirito.maxHP);
+        qing = true;
+
+        recoverCasted = true;
     }
 
     @Override
@@ -75,6 +100,7 @@ public class Azuna extends Player{
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+        //System.out.println(recoverCasted);
         if(consumingQ) {
             level.azunaQskillEffect.setPosition(new Vector2((float) (getX()-width*2.9), getY()-height));
             loseMP(200 * Gdx.graphics.getDeltaTime());
@@ -88,7 +114,28 @@ public class Azuna extends Player{
             Constants.myGravatiy = new Vector2(0,-10);
 
         }
+        if(qing)
+        {
+            Vector2 vec = new Vector2((float) (getX()-width*1.7), getY()-height);
+            this.level.azunaEskillEffectRecover.setPosition(vec);
+            qingTime += deltaTime;
+            if(qingTime > 3) {
+                qing = false;
+                level.azunaEskillEffectRecover.setPosition(new Vector2(-10000,-10000));
+            }
+        }
 
     }
 
+    @Override
+    public void move(int speed) {
+        if(!qing)
+            super.move(speed);
+    }
+
+    @Override
+    public void jump(int speed) {
+        if(!qing)
+            super.jump(speed);
+    }
 }

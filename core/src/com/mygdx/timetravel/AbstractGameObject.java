@@ -43,7 +43,8 @@ public abstract class AbstractGameObject{
     }
 
     public void setPosition(Vector2 position) {
-        this.position = position;
+        setX(position.x);
+        setY(position.y);
     }
 
     public float getX() {

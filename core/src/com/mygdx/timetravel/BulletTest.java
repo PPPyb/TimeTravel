@@ -13,7 +13,7 @@ public class BulletTest extends Bullets{
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         damage = 10;
-        MPConsume = 50f;
+        MPConsume = 5f;
         speed = 600;
         bounceAble = true;
         bounceMax = 3;
