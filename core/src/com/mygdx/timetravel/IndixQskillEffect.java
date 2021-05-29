@@ -18,9 +18,9 @@ public class IndixQskillEffect extends Bullets{
     {
         super(x,y,level);
         stateTime = 0;
-        damage = 1000;
+        damage = 500;
         penetrate = true;
-        MPConsume = 100;
+        MPConsume = 300;
         speed = 0;
         niubi = true;
     }
@@ -36,7 +36,7 @@ public class IndixQskillEffect extends Bullets{
         	effect[i] = new TextureRegion(temp);
         }
 
-        effectAni = new Animation(0.1f, effect);
+        effectAni = new Animation(0.2f, effect);
         effectAni.setPlayMode(Animation.PlayMode.LOOP);
         curFrame = new TextureRegion();
         curFrame = effect[0];
@@ -47,7 +47,7 @@ public class IndixQskillEffect extends Bullets{
     @Override
     public void updateAnime() {
         stateTime += Gdx.graphics.getDeltaTime();
-        curFrame = (TextureRegion) effectAni.getKeyFrame(level.indix.qingTime);
+        curFrame = (TextureRegion) effectAni.getKeyFrame(level.magicHelper.indixQ.castTime);
     }
 
     @Override

@@ -22,6 +22,8 @@ public class Player extends Creature{
     TextureRegion walkRightFrames[];
     Animation walkLeftAni;
     Animation walkRightAni;
+    float originArmor = 0;
+    int originWalkSpeed = 0;
 
     int strength;
     int intelligence;
@@ -184,8 +186,8 @@ public class Player extends Creature{
         DPRestoreRate = strength;
 
         //agility
-        walkSpeed = agility * 30;
-        armor = 10 * (agility-10);
+        originWalkSpeed = walkSpeed = agility * 30;
+        originArmor = armor = 10 * (agility-10);
         curJumpPoint = maxJumpPoint = agility * 5;
         JPRestoreRate = JPRestoreRateOrigin = agility;
 

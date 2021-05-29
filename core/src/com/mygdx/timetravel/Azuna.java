@@ -4,18 +4,11 @@ import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-/*
--------------------------------------------------------------------------------------------------
-测试用主角，工具人，用完就删。
- */
+
 public class Azuna extends Player{
 
 
     private static int countQ = 0;
-    private boolean consumingQ;
-    Boolean recoverCasted = false;
-    Boolean qing = false;//大清
-    float qingTime = 0;
 
 
     public Azuna(float x, float y, Level level)
@@ -59,13 +52,12 @@ public class Azuna extends Player{
     public void eventE() {
         if((Azuna.countQ%2)==0) {
             if(curMP- BulletTest.MPConsume*Gdx.graphics.getDeltaTime()>100) {
-                consumingQ = true;
+                level.magicHelper.azunaE.cast();
             }
         }
         else {
-                consumingQ = false;
+                level.magicHelper.azunaE.stop();
             }
-
         Azuna.countQ ++;
 
     }
@@ -73,22 +65,15 @@ public class Azuna extends Player{
     //大清复活术
     @Override
     public void eventQ() {
+        level.magicHelper.azunaQ.cast();
 
-        if(recoverCasted)
-            return;
-
-         //pigeon helicopter
-        //复活
-        //level.azuna.isAlive = true;
         level.kirito.isAlive = true;
         if(level.kirito.curHP<0.3*level.kirito.maxHP)
             level.kirito.curHP = (float) (0.3*level.kirito.maxHP);
         level.indix.isAlive = true;
         if(level.indix.curHP<0.3*level.indix.maxHP)
             level.indix.curHP = (float) (0.3*level.indix.maxHP);
-        qing = true;
 
-        recoverCasted = true;
     }
 
     @Override
@@ -104,47 +89,18 @@ public class Azuna extends Player{
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        //System.out.println(recoverCasted);
-        if(consumingQ) {
-            level.musicOccupied = true;
-            MusicManager.playMusic(93);
-            level.azunaQskillEffect.setPosition(new Vector2((float) (getX()-width*2.9), getY()-height));
-            loseMP(200 * Gdx.graphics.getDeltaTime());
-            Constants.myGravatiy = new Vector2(0,10);
-            if (curMP < 10)
-                consumingQ = false;
-        }
-        else
-        {
-            level.azunaQskillEffect.setPosition(new Vector2(-10000.0f,-10000.0f));
-            Constants.myGravatiy = new Vector2(0,-10);
-            level.musicOccupied = false;
-        }
-        if(qing)
-        {
-            level.musicOccupied = true;
-            MusicManager.playMusic(94);
-            Vector2 vec = new Vector2((float) (getX()-width*1.7), getY()-height);
-            this.level.azunaEskillEffectRecover.setPosition(vec);
-            qingTime += deltaTime;
-            if(qingTime > 7) {
-                level.musicOccupied = false;
-                qing = false;
-                level.azunaEskillEffectRecover.setPosition(new Vector2(-10000,-10000));
-            }
-        }
 
     }
 
     @Override
     public void move(int speed) {
-        if(!qing)
+        if(!level.magicHelper.azunaQ.casting)
             super.move(speed);
     }
 
     @Override
     public void jump(int speed) {
-        if(!qing)
+        if(!level.magicHelper.azunaQ.casting)
             super.jump(speed);
     }
 }

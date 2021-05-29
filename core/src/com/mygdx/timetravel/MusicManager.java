@@ -17,6 +17,8 @@ public class MusicManager {
         music[88] = Gdx.audio.newMusic(Gdx.files.internal("Music/strangemusic.mp3"));
         music[93] = Gdx.audio.newMusic(Gdx.files.internal("Music/tornado.mp3"));
         music[94] = Gdx.audio.newMusic(Gdx.files.internal("Music/extraLive.mp3"));
+        music[95] = Gdx.audio.newMusic(Gdx.files.internal("Music/kiritomain.mp3"));
+        music[96] = Gdx.audio.newMusic(Gdx.files.internal("Music/bubble.mp3"));
     }
     public static void playMusic(int num)
     {

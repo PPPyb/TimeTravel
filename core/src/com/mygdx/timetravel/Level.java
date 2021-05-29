@@ -34,6 +34,7 @@ public class Level {
     OrthographicCamera guiCamera;
     GUIRenderer guiRenderer;
     //地图
+    MagicHelper magicHelper;
     TiledMap map;
     OrthogonalTiledMapRenderer mapRenderer;
 
@@ -122,6 +123,8 @@ public class Level {
 
         initPlayer();
         initEnemies();
+
+        magicHelper = new MagicHelper(this);
     }
     public void update(float deltaTime)
     {
@@ -148,6 +151,7 @@ public class Level {
         //update主角
         choosePlayer();
         curPlayer.update(Gdx.graphics.getDeltaTime());
+        magicHelper.update(deltaTime);
         //回复所有角色状态
         azuna.restore();
         kirito.restore();
@@ -299,12 +303,14 @@ public class Level {
         //Cheating
         if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)&&Gdx.input.isKeyPressed(Input.Keys.V)){
             victory = true;
+            musicOccupied = false;
             if(victoryTime < 0)
                 victoryTime = stateTime;
             return;
         }
         //Failed
         if(!azuna.isAlive&&!kirito.isAlive) {
+            musicOccupied = false;
             failed = true;
             return;
         }
@@ -321,5 +327,6 @@ public class Level {
         victory = true;
         if(victoryTime < 0)
             victoryTime = stateTime;
+        musicOccupied = false;
     }
 }

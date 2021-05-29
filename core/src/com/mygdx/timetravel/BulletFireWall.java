@@ -14,7 +14,7 @@ public class BulletFireWall extends Bullets{
     {
         super(x,y,level);
         stateTime = 0;
-        damage = 10;
+        damage = 300;
         penetrate = true;
         MPConsume = 100;
         speed = 0;
@@ -44,13 +44,12 @@ public class BulletFireWall extends Bullets{
     @Override
     public void updateAnime() {
         stateTime += Gdx.graphics.getDeltaTime();
-        curFrame = (TextureRegion) boomAni.getKeyFrame(stateTime);
+        curFrame = (TextureRegion) boomAni.getKeyFrame(level.magicHelper.kiritoE.castTime);
     }
 
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
         updateAnime();
-        collideEnemy();
     }
 }
