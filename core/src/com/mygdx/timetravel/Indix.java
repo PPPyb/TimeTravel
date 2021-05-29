@@ -9,6 +9,7 @@ public class Indix extends Player{
     Boolean qing = false;
     float qingTime = 0;
     float qingCD = 0;
+    Boolean qBoomboom =false;
 
     public Indix(float x, float y, Level level)
     {
@@ -71,6 +72,7 @@ public class Indix extends Player{
             return;
         qing = true;
         qingTime = 0;
+        qBoomboom =false;
     }
 
     @Override
@@ -85,11 +87,17 @@ public class Indix extends Player{
         if (qing) {
             qingTime+=deltaTime;
             level.indixQskillEffect.setPosition(new Vector2(getX()-80,getY()-50));
+            if(qingTime>1.2&&!qBoomboom)
+            {
+                qBoomboom =true;
+                level.indixQskillEffect.quandoushipaomo();
+            }
             if(qingTime>2.1)
             {
                 qing = false;
                 qingTime = 0;
-                qingCD = 15;
+                qingCD = 5;
+
             }
         }
         else
