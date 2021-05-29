@@ -8,8 +8,6 @@ public class EnemyAITest extends EnemyAI{
         attackInterval = 1;
         jumpInterval = 2;
         jumpRate = 10;
-
-
     }
 
     @Override
