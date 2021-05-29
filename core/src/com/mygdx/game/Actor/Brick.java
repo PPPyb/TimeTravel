@@ -26,6 +26,6 @@ public class Brick extends InteractiveTileObject {
         Gdx.app.log("Brick","Collision");
         setCategoryFilter(MyGdxGame.DESTROYED_BIT);
         getCell().setTile(tileSet.getTile(BLANK_LAND));
-        CurState.curLevelNum = 2;
+        //CurState.curLevelNum = 2;
     }
 }

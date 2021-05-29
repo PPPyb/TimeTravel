@@ -1,7 +1,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -17,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.Mario;
+import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
@@ -30,18 +30,24 @@ public class repairmanHomeScreen implements Screen {
     private TiledMap map;
     private TiledMap map1;
     private OrthogonalTiledMapRenderer renderer;
+    private static NpcCommunication npcCommunication;
     private World world;
     private Box2DDebugRenderer b2dr;
     private Mario mario;
     private TextureAtlas atlas;
+    private TextureAtlas atlasRepairman;
     private Music music;
+    public static int repairmanHomeFlag=1;
+    private Repairman repairman;
     public repairmanHomeScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         this.game=game;
+        atlasRepairman=new TextureAtlas("character/repairman.pack");
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
         //texture=new Texture("5.png");
         hud=new Hud(game.batch);
+        npcCommunication=new NpcCommunication(game.batch);
         mapLoader=new TmxMapLoader();
         map=mapLoader.load("maps/repairmanHome.tmx");
         renderer=new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
@@ -50,6 +56,7 @@ public class repairmanHomeScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
+        repairman=new Repairman(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
@@ -62,22 +69,11 @@ public class repairmanHomeScreen implements Screen {
     public void show() {
 
     }
-    public void handleInput(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.UP))
-            mario.b2body.applyLinearImpulse(new Vector2(0,20f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            mario.b2body.applyLinearImpulse(new Vector2(0,-40f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
-            mario.b2body.applyLinearImpulse(new Vector2(50f,0), mario.b2body.getWorldCenter(),true);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
-            mario.b2body.applyLinearImpulse(new Vector2(-100f,0), mario.b2body.getWorldCenter(),true);
-        }
-    }
     public void update(float dt){
-        handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
+        repairman.update(dt);
+        npcCommunication.update();
         //System.out.println(mario.b2body.getPosition().x);
         //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
@@ -96,7 +92,11 @@ public class repairmanHomeScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        repairman.draw(game.batch);
         game.batch.end();
+        if(PlayScreen.collisionFlag==1) {
+            npcCommunication.stage.draw();
+        }
     }
 
     @Override
@@ -131,4 +131,11 @@ public class repairmanHomeScreen implements Screen {
         game.setScreen(new OutsiderepairmanHomeScreen(game));
     }
 
+    public World getWorld() {
+        return this.world;
+    }
+
+    public TextureAtlas getRepairmanAtlas() {
+        return atlasRepairman;
+    }
 }

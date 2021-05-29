@@ -1,15 +1,9 @@
 package com.mygdx.game.Actor;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.*;
 
@@ -25,7 +19,7 @@ public class Repairman extends NPC {
     private boolean Stop=true;
     public BodyDef bdef;
     public Repairman(PlayScreen screen, float x, float y) {
-        super(screen, x, y);
+        super(screen,480,200);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
             frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
@@ -155,11 +149,23 @@ public class Repairman extends NPC {
         setBounds(getX(),getY(),24,24);
     }
     public Repairman(gambleRoomScreen screen, float x, float y) {
-        super(screen, x, y);
+        super(screen, 460, 100);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
             frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
         repairmanRightRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,49,48,49));
+        repairmanLeftRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,147,48,49));
+        repairmanUpRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        repairmanDownRun=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
             frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
@@ -168,6 +174,34 @@ public class Repairman extends NPC {
         stateTime=0;
         setBounds(getX(),getY(),24,24);
     }
+    public Repairman(repairmanHomeScreen screen, float x, float y) {
+        super(screen, x, y);
+        frames=new Array<TextureRegion>();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
+        repairmanRightRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,49,48,49));
+        repairmanLeftRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,147,48,49));
+        repairmanUpRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        repairmanDownRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        turnAround=new Animation(0.1f,frames);
+        frames.clear();
+        stateTime=0;
+        setBounds(getX(),getY(),24,24);
+    }
+
+
     public void update(float dt){
         stateTime+=dt;
         if(b2body.getPosition().x<730&&b2body.getPosition().y<=200&&Stop&&PlayScreen.PlayScreenFlag==0){
@@ -190,21 +224,43 @@ public class Repairman extends NPC {
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanDownRun.getKeyFrame(stateTime, true));
         }
-
-        if(PlayScreen.collisionFlag==1) {
+        //在赌场里的修理工动画
+        if(PlayScreen.PlayScreenFlag==1 && gambleRoomScreen.gambleRoomFlag==0){
             b2body.setLinearVelocity(0,0);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) turnAround.getKeyFrame(stateTime, true));
-            if(npcCommunication.Count==4)
-            b2body.setLinearVelocity(0,100);
+        }
+        //在家里的修理工动画
+        if(PlayScreen.PlayScreenFlag==1 && gambleRoomScreen.gambleRoomFlag==1 && repairmanHomeScreen.repairmanHomeFlag==0){
+            b2body.setLinearVelocity(0,0);
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion((TextureRegion) turnAround.getKeyFrame(stateTime, true));
+        }
+        //主屏第一次碰撞判定
+        if(PlayScreen.collisionFlag==1 && PlayScreen.PlayScreenFlag==0) {
+            b2body.setLinearVelocity(0,0);
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion((TextureRegion) turnAround.getKeyFrame(stateTime, true));
+            if(NpcCommunication.communicationCount==5) {
+                b2body.setLinearVelocity(0, 100);
+                setRegion((TextureRegion) repairmanUpRun.getKeyFrame(stateTime, true));
+            }
             //setBounds(0,0,0,0);
             //b2body.setLinearVelocity(0,10000);
             Stop=false;
         }
-
+        //赌博室第一次碰撞判定
+        if(PlayScreen.PlayScreenFlag==1 && PlayScreen.collisionFlag==1 && gambleRoomScreen.gambleRoomFlag==0) {
+            b2body.setLinearVelocity(0,0);
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion((TextureRegion) turnAround.getKeyFrame(stateTime, true));
+            //setBounds(0,0,0,0);
+            //b2body.setLinearVelocity(0,10000);
+            Stop=false;
+        }
     }
     @Override
-    protected void defineNPC(int x, int y) {
+    protected void defineNPC(float x, float y) {
         bdef=new BodyDef();
         //NPC初始位置
         bdef.position.set(x,y);
@@ -228,6 +284,5 @@ public class Repairman extends NPC {
     public void hitOnNPC() {
         Gdx.app.log("Repairman","Collision");
         PlayScreen.collisionFlag=1;
-
     }
 }

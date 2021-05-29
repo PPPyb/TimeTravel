@@ -64,7 +64,20 @@ public class B2WorldCreator {
             Rectangle rect=((RectangleMapObject) object ).getRectangle();
             new Brick(world,map,rect);
         }
-
+        //火焰地图门
+        if(map.getLayers()!=null) {
+            for (MapObject object : map.getLayers().get(9).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                new Portal(world, map, rect);
+            }
+        }
+        //火焰小地图门
+        if(map.getLayers()!=null) {
+            for (MapObject object : map.getLayers().get(10).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                new FireBossDoor(world, map, rect);
+            }
+        }
     }
 
 }

@@ -2,7 +2,8 @@ package com.mygdx.game.tools;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.mygdx.game.npcCommunication;
+import com.mygdx.game.NpcCommunication;
+import com.mygdx.timetravel.CurState;
 
 public class MyInputProcessor implements InputProcessor {
     @Override
@@ -22,7 +23,7 @@ public class MyInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDown (int x, int y, int pointer, int button) {
-        if (button == Input.Buttons.LEFT) {
+        if (button == Input.Buttons.LEFT && CurState.curLevelNum==1) {
             onMouseDown();
             return true;
         }
@@ -30,7 +31,7 @@ public class MyInputProcessor implements InputProcessor {
     }
 
     private void onMouseDown() {
-        npcCommunication.Count++;
+        NpcCommunication.communicationCount++;
     }
 
     @Override

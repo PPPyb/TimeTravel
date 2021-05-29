@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.Mario;
+import com.mygdx.game.Actor.WeaponRoomOwner;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
@@ -34,9 +35,12 @@ public class weaponRoomScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private Mario mario;
     private TextureAtlas atlas;
+    private WeaponRoomOwner weaponRoomOwner;
+    private TextureAtlas atlasWeaponRoomOwner;
     private Music music;
     public weaponRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
+        atlasWeaponRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -50,6 +54,7 @@ public class weaponRoomScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
+        weaponRoomOwner=new WeaponRoomOwner(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
@@ -62,22 +67,10 @@ public class weaponRoomScreen implements Screen {
     public void show() {
 
     }
-    public void handleInput(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.UP))
-            mario.b2body.applyLinearImpulse(new Vector2(0,20f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            mario.b2body.applyLinearImpulse(new Vector2(0,-40f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
-            mario.b2body.applyLinearImpulse(new Vector2(50f,0), mario.b2body.getWorldCenter(),true);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
-            mario.b2body.applyLinearImpulse(new Vector2(-100f,0), mario.b2body.getWorldCenter(),true);
-        }
-    }
     public void update(float dt){
-        handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
+        weaponRoomOwner.update(dt);
         //System.out.println(mario.b2body.getPosition().x);
         //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
@@ -96,6 +89,7 @@ public class weaponRoomScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        weaponRoomOwner.draw(game.batch);
         game.batch.end();
     }
 
@@ -131,4 +125,11 @@ public class weaponRoomScreen implements Screen {
         game.setScreen(new OutsideweaponRoomScreen(game));
     }
 
+    public World getWorld() {
+        return this.world;
+    }
+
+    public TextureAtlas getWeaponRoomOwnerAtlas() {
+        return this.atlasWeaponRoomOwner;
+    }
 }

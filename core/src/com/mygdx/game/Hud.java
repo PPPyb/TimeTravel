@@ -1,14 +1,23 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -19,7 +28,7 @@ import com.mygdx.game.MyGdxGame;
 
 
 public class Hud implements Disposable {
-    public Stage stage;
+    public static Stage stage;
     private Viewport viewport;
     private Integer worldTimer;
     private Integer worldTimerMinute;
@@ -31,7 +40,6 @@ public class Hud implements Disposable {
     Label timeLabel;
     Label levelLabel;
     Label worldLabel;
-    Label marioLabel;
 
     public Hud(SpriteBatch sb) {
         worldTimer =0;
@@ -44,11 +52,13 @@ public class Hud implements Disposable {
         Table table = new Table();
         table.top();
         table.setFillParent(true);
-        countdownLabel = new Label(String.format("%02d", worldTimer)+":"+String.format("%02d", worldTimerMinute),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        currentLocationLabel = new Label(currentLocation,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label("Time", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        levelLabel = new Label("1-1",new Label.LabelStyle(new BitmapFont(), Color.WHITE) );
-        worldLabel = new Label("Space Station",new Label.LabelStyle(new BitmapFont(), Color.WHITE) );
+        BitmapFont font=new BitmapFont();
+        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        countdownLabel = new Label(String.format("%02d", worldTimer)+":"+String.format("%02d", worldTimerMinute),new Label.LabelStyle(font, Color.WHITE));
+        currentLocationLabel = new Label(currentLocation,new Label.LabelStyle(font, Color.WHITE));
+        timeLabel = new Label("Time", new Label.LabelStyle(font, Color.WHITE));
+        levelLabel = new Label("1-1",new Label.LabelStyle(font, Color.WHITE) );
+        worldLabel = new Label("Space Station",new Label.LabelStyle(font, Color.WHITE) );
         //marioLabel = new Label("Mario", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         //table.add(marioLabel).expandX().pad(10);
         table.add(worldLabel).expandX().pad(10);
@@ -57,7 +67,13 @@ public class Hud implements Disposable {
         table.add(currentLocationLabel).expandX();
         //table.add(levelLabel).expandX();
         table.add(countdownLabel).expandX();
-        stage.addActor(table);
+//        Gdx.input.setInputProcessor(stage);
+//        upTexture = new Texture(Gdx.files.internal("Button/button1.png"));
+//        SpriteDrawable upDraw = new SpriteDrawable(new Sprite(upTexture));
+//        button = new ImageButton(upDraw);
+//        button.setPosition(0,0);
+         stage.addActor(table);
+//        stage.addActor(button);
     }
     public void update(float dt){
         timeCount+=dt;
@@ -72,6 +88,7 @@ public class Hud implements Disposable {
                 worldTimer=0;
             timeCount=0;
         }
+
     }
     public void updateToGarden(){
         setCurrentLocation("Garden");

@@ -20,6 +20,7 @@ public class MyGdxGame extends Game {
 	public static final short NPC_BIT=32;
 	public static final short NPC_OBJECT_BIT=64;
 
+
 	public static AssetManager manager;
 	@Override
 	public void create () {

@@ -1,5 +1,7 @@
 package com.mygdx.game.Actor;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -47,7 +49,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         //defineMario(220,711);
-        defineMario();
+        defineMario(77,53);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -105,7 +107,7 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(220,705);
+        defineMario(246,700);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -163,7 +165,7 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(1015,350);
+        defineMario(993,340);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -221,7 +223,7 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(985,710);
+        defineMario(971,698);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -279,16 +281,83 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(273,392);
+        defineMario(253,368);
+        setBounds(600,100,24,24);
+        setRegion(marioStand);
+    }
+    public Mario(World world, FireMapScreen screen){
+        super(screen.getAtlas().findRegion("monkey"));
+        this.world=world;
+        currentState=State.STANDING;
+        previousState=State.STANDING;
+        stateTimer=0;
+        runningRight=true;
+        Array<TextureRegion> frame=new Array<TextureRegion>();
+        //右跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,98,48,49));
+        marioParallelRun=new Animation(0.1f,frame);
+        frame.clear();
+        //左跑
+        //上跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,147,48,49));
+        marioUpRun=new Animation(0.1f,frame);
+        frame.clear();
+        //下跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,0,48,49));
+        marioDownRun=new Animation(0.1f,frame);
+        frame.clear();
+        marioStand=new TextureRegion(getTexture(),0,0,48,49);
+        defineMario(217,510);
+        setBounds(600,100,24,24);
+        setRegion(marioStand);
+    }
+    public Mario(World world, SnowMapScreen screen){
+        super(screen.getAtlas().findRegion("monkey"));
+        this.world=world;
+        currentState=State.STANDING;
+        previousState=State.STANDING;
+        stateTimer=0;
+        runningRight=true;
+        Array<TextureRegion> frame=new Array<TextureRegion>();
+        //右跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,98,48,49));
+        marioParallelRun=new Animation(0.1f,frame);
+        frame.clear();
+        //左跑
+        //上跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,147,48,49));
+        marioUpRun=new Animation(0.1f,frame);
+        frame.clear();
+        //下跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,0,48,49));
+        marioDownRun=new Animation(0.1f,frame);
+        frame.clear();
+        marioStand=new TextureRegion(getTexture(),0,0,48,49);
+        defineMario(217,510);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
     public void update(float dt){
-//        if(b2body.getPosition().x>171 && b2body.getPosition().x<186 && b2body.getPosition().y<6.70)
-//            defineMario(210,711);
-//        else
         setPosition(b2body.getPosition().x-getWidth()/2,b2body.getPosition().y-getHeight()/2);
         setRegion(getFrame(dt));
+        if(Gdx.input.isKeyPressed(Input.Keys.UP))
+            b2body.applyLinearImpulse(new Vector2(0,20),b2body.getWorldCenter(),true);
+        else if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            b2body.applyLinearImpulse(new Vector2(0,-40),b2body.getWorldCenter(),true);
+        else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
+            b2body.applyLinearImpulse(new Vector2(50,0), b2body.getWorldCenter(),true);
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
+            b2body.applyLinearImpulse(new Vector2(-100,0), b2body.getWorldCenter(),true);
+        }
+        else
+            b2body.setLinearVelocity(0,0);
     }
     public TextureRegion getFrame(float dt){
         currentState=getState();

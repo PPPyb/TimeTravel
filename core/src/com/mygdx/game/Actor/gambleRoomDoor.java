@@ -18,6 +18,8 @@ public class gambleRoomDoor extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         gambleRoomScreen.changeToMainScreen();
+        gambleRoomScreen.gambleRoomFlag=1;
+        PlayScreen.PlayScreenFlag=0;
     }
 
 }

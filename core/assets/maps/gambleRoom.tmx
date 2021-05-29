@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="39" height="20" tilewidth="24" tileheight="24" infinite="0" nextlayerid="10" nextobjectid="65">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="39" height="20" tilewidth="24" tileheight="24" infinite="0" nextlayerid="14" nextobjectid="66">
  <tileset firstgid="1" source="gambleRoom.tsx"/>
  <layer id="1" name="background" width="39" height="20">
   <data encoding="csv">
@@ -72,7 +72,6 @@
   <object id="44" x="383.084" y="117.725" width="22.2723" height="23.545"/>
   <object id="45" x="95.4527" y="164.815" width="46.4537" height="50.9081"/>
   <object id="46" x="143.179" y="118.361" width="23.545" height="24.8177"/>
-  <object id="47" x="46.4537" y="21.636" width="48.3627" height="96.0891"/>
   <object id="48" x="93.5437" y="21.636" width="27.9995" height="77.6349"/>
   <object id="49" x="309.903" y="385.629" width="71.9077" height="45.181"/>
   <object id="50" x="334.721" y="428.265" width="22.2723" height="26.0904"/>
@@ -87,6 +86,7 @@
   <object id="59" x="528.172" y="75.7258" width="26.7268" height="68.726"/>
   <object id="60" x="552.353" y="70.635" width="24.1814" height="47.7264"/>
   <object id="61" x="575.898" y="45.8173" width="25.4541" height="26.7268"/>
+  <object id="65" x="48.2972" y="96.5944" width="46.541" height="23.7095"/>
  </objectgroup>
  <objectgroup id="4" name="对象层 3"/>
  <objectgroup id="5" name="对象层 4"/>
@@ -97,4 +97,8 @@
   <object id="63" x="407.085" y="466.083" width="125.862" height="14.7494"/>
   <object id="64" x="532.947" y="479.849" height="0.983297"/>
  </objectgroup>
+ <objectgroup id="10" name="对象层 9"/>
+ <objectgroup id="11" name="对象层 10"/>
+ <objectgroup id="12" name="对象层 11"/>
+ <objectgroup id="13" name="对象层 12"/>
 </map>

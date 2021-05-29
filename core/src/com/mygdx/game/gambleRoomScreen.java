@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Actor.GambleRoomOwner;
 import com.mygdx.game.Actor.Mario;
 import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.tools.B2WorldCreator;
@@ -27,6 +28,7 @@ public class gambleRoomScreen implements Screen {
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Hud hud;
+    private static NpcCommunication npcCommunication;
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private TiledMap map1;
@@ -37,16 +39,21 @@ public class gambleRoomScreen implements Screen {
     private TextureAtlas atlas;
     private Music music;
     private Repairman repairman;
+    private GambleRoomOwner gambleRoomOwner;
     private TextureAtlas atlasRepairman;
+    private TextureAtlas atlasGambleRoomOwner;
+    private shopInterface shopInterface;
     public static int gambleRoomFlag=1;
     public gambleRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
+        atlasGambleRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
         //texture=new Texture("5.png");
         hud=new Hud(game.batch);
+        npcCommunication=new NpcCommunication(game.batch);
         mapLoader=new TmxMapLoader();
         map=mapLoader.load("maps/gambleRoom.tmx");
         renderer=new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
@@ -57,12 +64,16 @@ public class gambleRoomScreen implements Screen {
         mario=new Mario(world,this);
         world.setContactListener(new WorldContactListener());
         repairman=new Repairman(this,32f,32f);
+        gambleRoomOwner=new GambleRoomOwner(this,32f,32f);
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
         // music.play();
     }
     public TextureAtlas getRepairmanAtlas(){
         return  atlasRepairman;
+    }
+    public TextureAtlas getGambleRoomOwnerAtlas(){
+        return atlasGambleRoomOwner;
     }
     public TextureAtlas getAtlas(){
         return  atlas;
@@ -88,6 +99,8 @@ public class gambleRoomScreen implements Screen {
         world.step(1/60f,6,2);
         mario.update(dt);
         repairman.update(dt);
+        gambleRoomOwner.update(dt);
+        npcCommunication.update();
         //System.out.println(mario.b2body.getPosition().x);
         //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
@@ -107,7 +120,11 @@ public class gambleRoomScreen implements Screen {
         game.batch.begin();
         mario.draw(game.batch);
         repairman.draw(game.batch);
+        gambleRoomOwner.draw(game.batch);
         game.batch.end();
+        if(PlayScreen.collisionFlag==1) {
+            npcCommunication.stage.draw();
+        }
     }
 
     @Override

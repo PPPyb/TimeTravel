@@ -14,12 +14,14 @@ public abstract class NPC extends Sprite {
     protected OutsidepowerRoomScreen  screen3;
     protected OutsiderepairmanHomeScreen screen4;
     protected gambleRoomScreen screen5;
+    protected repairmanHomeScreen screen6;
+    protected weaponRoomScreen screen7;
     public Body b2body;
     public NPC(PlayScreen screen, float x, float y){
         this.world=screen.getWorld();
         this.screen=screen;
         setPosition(x,y);
-        defineNPC(480,200);
+        defineNPC(x,y);
     }
     public NPC(OutsidegambleRoomScreen screen1, float x, float y){
         this.world=screen1.getWorld();
@@ -49,8 +51,21 @@ public abstract class NPC extends Sprite {
         this.world=screen5.getWorld();
         this.screen5=screen5;
         setPosition(x,y);
-        defineNPC(460,100);
+        defineNPC(x,y);
     }
-    protected abstract void defineNPC(int x,int y);
+    public NPC(repairmanHomeScreen screen6, float x, float y){
+        this.world=screen6.getWorld();
+        this.screen6=screen6;
+        setPosition(x,y);
+        defineNPC(226,100);
+    }
+    public NPC(weaponRoomScreen screen7, float x, float y){
+        this.world=screen7.getWorld();
+        this.screen7=screen7;
+        setPosition(x,y);
+        defineNPC(226,100);
+    }
+
+    protected abstract void defineNPC(float x,float y);
     public abstract void hitOnNPC();
 }
