@@ -23,8 +23,8 @@ public class Azuna extends Player{
         super(x,y,level);
         name = "Asuna";
         //属性
-        strength = 10;
-        agility = 40;
+        strength = 15;
+        agility = 15;
         intelligence = 20;
         init();
     }
@@ -43,6 +43,8 @@ public class Azuna extends Player{
     public void shoot(float x, float y)
     {
         if(curMP- BulletTest.MPConsume>0) {
+            if(level.bulletTestCnt>900)
+                level.bulletTestCnt = 0;
             level.bulletTest[level.bulletTestCnt] = new BulletTest(getX()+width/2, getY()+height,level);
             level.bulletTest[level.bulletTestCnt].setVelocity(new Vector2(x, y));
             level.bulletTest[level.bulletTestCnt].setAcceleration(Constants.myGravatiy);
@@ -79,11 +81,11 @@ public class Azuna extends Player{
         //复活
         //level.azuna.isAlive = true;
         level.kirito.isAlive = true;
-        //回复所有角色状态
-        //if(level.azuna.curHP<0.3*level.azuna.maxHP)
-            //level.azuna.curHP = (float) (0.3*level.azuna.maxHP);
         if(level.kirito.curHP<0.3*level.kirito.maxHP)
             level.kirito.curHP = (float) (0.3*level.kirito.maxHP);
+        level.indix.isAlive = true;
+        if(level.indix.curHP<0.3*level.indix.maxHP)
+            level.indix.curHP = (float) (0.3*level.indix.maxHP);
         qing = true;
 
         recoverCasted = true;

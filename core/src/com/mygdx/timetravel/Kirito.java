@@ -26,9 +26,9 @@ public class Kirito extends Player{
         super(x,y,level);
         name = "Kirito";
         //属性
-        strength = 15;
-        agility = 20;
-        intelligence = 20;
+        strength = 20;
+        agility = 18;
+        intelligence = 12;
 
         init();
         originArmor = armor;
@@ -51,6 +51,8 @@ public class Kirito extends Player{
         if(curMP- BulletTest.MPConsume*2>0) {
             for(int i = 0;i < 12;i++)
              {
+                 if(level.bulletTestPenetrateCnt>900)
+                     level.bulletTestPenetrateCnt = 0;
                  int angle = 30*i;
                  double sin = Math.sin(angle);
                  double cos = Math.cos(angle);
@@ -66,6 +68,8 @@ public class Kirito extends Player{
     public void shoot(float x, float y)
     {
         if(curMP- BulletTest.MPConsume>0) {
+            if(level.bulletTestPenetrateCnt>900)
+                level.bulletTestPenetrateCnt = 0;
             level.bulletTestPenetrate[level.bulletTestPenetrateCnt] = new BulletTestPenetrate(getX()+width/2, getY()+height,level);
             level.bulletTestPenetrate[level.bulletTestPenetrateCnt].setVelocity(new Vector2(x, y));
             level.bulletTestPenetrateCnt++;

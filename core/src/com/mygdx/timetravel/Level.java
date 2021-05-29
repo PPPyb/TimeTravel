@@ -44,12 +44,13 @@ public class Level {
     Player curPlayer;
     Azuna azuna;
     Kirito kirito;
+    Indix indix;
     //敌人
     TestMonster[] testMonster;
     int testMonsterCnt;
     Beef[] beefs;
     int beefsCnt;
-    //子弹
+    //子弹和技能特效
     BulletTest[] bulletTest;
     int bulletTestCnt;
     BulletTestPenetrate[] bulletTestPenetrate;
@@ -57,11 +58,17 @@ public class Level {
     BulletTestEnemy[] bulletTestEnemies;
     int bulletTestEnemiesCnt;
     BulletFireWall bulletFireWall;
+
     AzunaQskillEffect azunaQskillEffect;
     AzunaEskillEffectRecover azunaEskillEffectRecover;
+
     BulletBeef[] bulletBeef;
     int bulletBeefCnt;
     KiritoQskillEffect kiritoQskillEffect;
+
+    BulletDangMa[] bulletDangMas;
+    int bulletDangMasCnt=0;
+
 
     public Level(String mapRoute,String backGroundRoute)
     {
@@ -90,6 +97,7 @@ public class Level {
         curPlayer = new Player(0,0,this);
         azuna = new Azuna(0,0,this);
         kirito = new Kirito(0,0,this);
+        indix = new Indix(0,0,this);
         //敌人
         testMonster = new TestMonster[100];
         testMonsterCnt = 0;
@@ -108,6 +116,7 @@ public class Level {
         azunaQskillEffect = new AzunaQskillEffect(-10000,-10000,this);
         azunaEskillEffectRecover = new AzunaEskillEffectRecover(-10000,-10000,this);
         kiritoQskillEffect = new KiritoQskillEffect(-10000,-10000,this);
+        bulletDangMas = new BulletDangMa[1000];
 
         initPlayer();
         initEnemies();
@@ -140,6 +149,7 @@ public class Level {
         //回复所有角色状态
         azuna.restore();
         kirito.restore();
+        indix.restore();
         //update怪物
         updateObjects(testMonster,testMonsterCnt,deltaTime);
         updateObjects(beefs,beefsCnt,deltaTime);
@@ -148,6 +158,7 @@ public class Level {
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
         updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
         updateObjects(bulletBeef,bulletBeefCnt,deltaTime);
+        updateObjects(bulletDangMas,bulletDangMasCnt,deltaTime);
         bulletFireWall.update(deltaTime);
         azunaQskillEffect.update(deltaTime);
         azunaEskillEffectRecover.update(deltaTime);
@@ -183,6 +194,7 @@ public class Level {
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
         drawObjects(bulletTestEnemies,bulletTestEnemiesCnt,batch);
         drawObjects(bulletBeef,bulletBeefCnt,batch);
+        drawObjects(bulletDangMas,bulletDangMasCnt,batch);
         bulletFireWall.draw(batch);
         azunaQskillEffect.draw(batch);
         azunaEskillEffectRecover.draw(batch);
@@ -261,6 +273,10 @@ public class Level {
                 kirito.setVelocity(curPlayer.velocity);
                 curPlayer = kirito;
                 break;
+            case 2:
+                indix.setPosition(curPlayer.position);
+                indix.setVelocity(curPlayer.velocity);
+                curPlayer = indix;
             default:
                 break;
         }
