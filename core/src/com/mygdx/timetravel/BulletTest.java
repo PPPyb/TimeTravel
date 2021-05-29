@@ -12,7 +12,7 @@ public class BulletTest extends Bullets{
         curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/ballBullet.png")));
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
-        damage = 10;
+        damage = 100;
         MPConsume = 5f;
         speed = 600;
         bounceAble = true;

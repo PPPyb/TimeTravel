@@ -19,6 +19,8 @@ public class Level {
     float failedEffect = 1;
     Boolean victory = false;
     float victoryTime = -1;
+
+    Boolean musicOccupied = false;
     //绘制
     SpriteBatch batch;
     OrthographicCamera camera;
@@ -59,6 +61,7 @@ public class Level {
     AzunaEskillEffectRecover azunaEskillEffectRecover;
     BulletBeef[] bulletBeef;
     int bulletBeefCnt;
+    KiritoQskillEffect kiritoQskillEffect;
 
     public Level(String mapRoute,String backGroundRoute)
     {
@@ -104,6 +107,7 @@ public class Level {
         bulletFireWall = new BulletFireWall(-10000,-10000,this);
         azunaQskillEffect = new AzunaQskillEffect(-10000,-10000,this);
         azunaEskillEffectRecover = new AzunaEskillEffectRecover(-10000,-10000,this);
+        kiritoQskillEffect = new KiritoQskillEffect(-10000,-10000,this);
 
         initPlayer();
         initEnemies();
@@ -112,12 +116,15 @@ public class Level {
     {
         stateTime += deltaTime;
         //Music
-        if(victory)
-            MusicManager.playMusic(92);
-        else if(failed)
-            MusicManager.playMusic(91);
-        else
-            MusicManager.playMusic(90);
+        System.out.println(musicOccupied);
+        if(!musicOccupied) {
+            if (victory)
+                MusicManager.playMusic(92);
+            else if (failed)
+                MusicManager.playMusic(91);
+            else
+                MusicManager.playMusic(90);
+        }
         //判断胜负
         victoryOrFailed();
         if(victory&&stateTime>victoryTime+Constants.VICTORYSHOWTIME)
@@ -144,6 +151,7 @@ public class Level {
         bulletFireWall.update(deltaTime);
         azunaQskillEffect.update(deltaTime);
         azunaEskillEffectRecover.update(deltaTime);
+        kiritoQskillEffect.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -178,6 +186,7 @@ public class Level {
         bulletFireWall.draw(batch);
         azunaQskillEffect.draw(batch);
         azunaEskillEffectRecover.draw(batch);
+        kiritoQskillEffect.draw(batch);
         //画角色
         curPlayer.draw(batch);
 

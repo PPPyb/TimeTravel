@@ -1,5 +1,6 @@
 package com.mygdx.timetravel;
 
+import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
@@ -15,6 +16,7 @@ public class Azuna extends Player{
     Boolean recoverCasted = false;
     Boolean qing = false;//大清
     float qingTime = 0;
+
 
     public Azuna(float x, float y, Level level)
     {
@@ -52,7 +54,7 @@ public class Azuna extends Player{
 
     @Override
     //反重力术
-    public void eventQ() {
+    public void eventE() {
         if((Azuna.countQ%2)==0) {
             if(curMP- BulletTest.MPConsume*Gdx.graphics.getDeltaTime()>100) {
                 consumingQ = true;
@@ -68,7 +70,7 @@ public class Azuna extends Player{
 
     //大清复活术
     @Override
-    public void eventE() {
+    public void eventQ() {
 
         if(recoverCasted)
             return;
@@ -102,6 +104,8 @@ public class Azuna extends Player{
         super.update(deltaTime);
         //System.out.println(recoverCasted);
         if(consumingQ) {
+            level.musicOccupied = true;
+            MusicManager.playMusic(93);
             level.azunaQskillEffect.setPosition(new Vector2((float) (getX()-width*2.9), getY()-height));
             loseMP(200 * Gdx.graphics.getDeltaTime());
             Constants.myGravatiy = new Vector2(0,10);
@@ -112,14 +116,17 @@ public class Azuna extends Player{
         {
             level.azunaQskillEffect.setPosition(new Vector2(-10000.0f,-10000.0f));
             Constants.myGravatiy = new Vector2(0,-10);
-
+            level.musicOccupied = false;
         }
         if(qing)
         {
+            level.musicOccupied = true;
+            MusicManager.playMusic(94);
             Vector2 vec = new Vector2((float) (getX()-width*1.7), getY()-height);
             this.level.azunaEskillEffectRecover.setPosition(vec);
             qingTime += deltaTime;
-            if(qingTime > 3) {
+            if(qingTime > 7) {
+                level.musicOccupied = false;
                 qing = false;
                 level.azunaEskillEffectRecover.setPosition(new Vector2(-10000,-10000));
             }

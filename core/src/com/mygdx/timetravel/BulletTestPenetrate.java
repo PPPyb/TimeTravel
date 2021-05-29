@@ -15,7 +15,7 @@ public class BulletTestPenetrate extends Bullets{
 
         damage = 10;
         penetrate = true;
-        MPConsume = 100;
+        MPConsume = 70;
         speed = 400;
     }
 
