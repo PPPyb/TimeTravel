@@ -135,6 +135,6 @@ public class Kirito extends Player{
             level.kiritoQskillEffect.setPosition(new Vector2(-20000,-3000));
             armor = originArmor;
             walkSpeed = originWalkSpeed;
-         }
+        }
     }
 }

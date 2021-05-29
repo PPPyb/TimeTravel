@@ -5,6 +5,11 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Indix extends Player{
 
+
+    Boolean qing = false;
+    float qingTime = 0;
+    float qingCD = 0;
+
     public Indix(float x, float y, Level level)
     {
         super(x,y,level);
@@ -62,7 +67,10 @@ public class Indix extends Player{
 
     @Override
     public void eventQ() {
-
+        if(qingCD>0)
+            return;
+        qing = true;
+        qingTime = 0;
     }
 
     @Override
@@ -73,6 +81,21 @@ public class Indix extends Player{
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+        qingCD-=deltaTime;
+        if (qing) {
+            qingTime+=deltaTime;
+            level.indixQskillEffect.setPosition(new Vector2(getX()-80,getY()-50));
+            if(qingTime>2.1)
+            {
+                qing = false;
+                qingTime = 0;
+                qingCD = 15;
+            }
+        }
+        else
+        {
+            level.indixQskillEffect.setPosition(new Vector2(-20000,-3000));
+        }
 
     }
 }

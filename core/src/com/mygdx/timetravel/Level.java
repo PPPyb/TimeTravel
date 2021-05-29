@@ -68,6 +68,7 @@ public class Level {
 
     BulletDangMa[] bulletDangMas;
     int bulletDangMasCnt=0;
+    IndixQskillEffect indixQskillEffect;
 
 
     public Level(String mapRoute,String backGroundRoute)
@@ -117,6 +118,7 @@ public class Level {
         azunaEskillEffectRecover = new AzunaEskillEffectRecover(-10000,-10000,this);
         kiritoQskillEffect = new KiritoQskillEffect(-10000,-10000,this);
         bulletDangMas = new BulletDangMa[1000];
+        indixQskillEffect = new IndixQskillEffect(-10000,-10000,this);
 
         initPlayer();
         initEnemies();
@@ -163,6 +165,7 @@ public class Level {
         azunaQskillEffect.update(deltaTime);
         azunaEskillEffectRecover.update(deltaTime);
         kiritoQskillEffect.update(deltaTime);
+        indixQskillEffect.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -199,6 +202,7 @@ public class Level {
         azunaQskillEffect.draw(batch);
         azunaEskillEffectRecover.draw(batch);
         kiritoQskillEffect.draw(batch);
+        indixQskillEffect.draw(batch);
         //画角色
         curPlayer.draw(batch);
 
