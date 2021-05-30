@@ -36,6 +36,8 @@ public class Miku extends Player{
             level.kirito.curHP = (level.kirito.maxHP);
             level.indix.isAlive = true;
             level.indix.curHP = (level.indix.maxHP);
+            level.misaka.isAlive = true;
+            level.misaka.curHP = (level.indix.maxHP);
         }
         level.magicHelper.miku.cast();
     }

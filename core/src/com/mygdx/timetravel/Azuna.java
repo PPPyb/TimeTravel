@@ -73,6 +73,9 @@ public class Azuna extends Player{
         level.indix.isAlive = true;
         if(level.indix.curHP<0.3*level.indix.maxHP)
             level.indix.curHP = (float) (0.3*level.indix.maxHP);
+        level.misaka.isAlive = true;
+        if(level.misaka.curHP<0.3*level.indix.maxHP)
+            level.misaka.curHP = (float) (0.3*level.indix.maxHP);
 
     }
 

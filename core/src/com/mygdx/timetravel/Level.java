@@ -75,7 +75,9 @@ public class Level {
     IndixQskillEffect indixQskillEffect;
     BulletTitanic bulletTitanic;
 
+    Railgun railgun[];
     MisakaEskillEffect misakaEskillEffect;
+    int railgunCut;
 
 
     public Level(String mapRoute,String backGroundRoute)
@@ -131,6 +133,7 @@ public class Level {
         bulletDangMas = new BulletDangMa[1000];
         indixQskillEffect = new IndixQskillEffect(-10000,-10000,this);
         misakaEskillEffect = new MisakaEskillEffect(-10000,-10000,this);
+        railgun = new Railgun[1000];
 
         initPlayer();
         initEnemies();
@@ -178,6 +181,7 @@ public class Level {
         updateObjects(bulletTestEnemies,bulletTestEnemiesCnt,deltaTime);
         updateObjects(bulletBeef,bulletBeefCnt,deltaTime);
         updateObjects(bulletDangMas,bulletDangMasCnt,deltaTime);
+        updateObjects(railgun,railgunCut,deltaTime);
         bulletFireWall.update(deltaTime);
         azunaQskillEffect.update(deltaTime);
         azunaEskillEffectRecover.update(deltaTime);
@@ -185,6 +189,7 @@ public class Level {
         indixQskillEffect.update(deltaTime);
         bulletTitanic.update(deltaTime);
         misakaEskillEffect.update(deltaTime);
+
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -217,6 +222,7 @@ public class Level {
         drawObjects(bulletTestEnemies,bulletTestEnemiesCnt,batch);
         drawObjects(bulletBeef,bulletBeefCnt,batch);
         drawObjects(bulletDangMas,bulletDangMasCnt,batch);
+        drawObjects(railgun,railgunCut,batch);
         bulletFireWall.draw(batch);
         azunaQskillEffect.draw(batch);
         azunaEskillEffectRecover.draw(batch);
@@ -224,6 +230,7 @@ public class Level {
         indixQskillEffect.draw(batch);
         bulletTitanic.draw(batch);
         misakaEskillEffect.draw(batch);
+
         //画角色
         curPlayer.draw(batch);
 

@@ -18,7 +18,7 @@ public class MisakaEskillEffect extends Bullets{
         stateTime = 0;
         damage = 0;
         penetrate = true;
-        MPConsume = 100;
+        MPConsume = 200;
         speed = 0;
         niubi = true;
     }

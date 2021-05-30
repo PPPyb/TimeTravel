@@ -1,6 +1,9 @@
 package com.mygdx.timetravel;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -37,7 +40,8 @@ public class MagicHelper {
         miku.setMaxCD(10);
         miku.setMusicEffect(39);
         misakaQ = new Magic(level);
-        misakaQ.setMaxCD(20);
+        misakaQ.setMaxCD(30);
+        misakaQ.setMusicEffect(97);
         misakaE = new Magic(level);
         misakaE.setMaxCD(10);
     }
@@ -61,9 +65,16 @@ public class MagicHelper {
         azunaE.CD-=deltaTime;
 
         if(azunaE.casting) {
+            int hprestore = 10;
             level.azunaQskillEffect.setPosition(new Vector2((float) (player.getX()-player.width*2.9), player.getY()-player.height));
             azuna.loseMP(200 * Gdx.graphics.getDeltaTime());
             Constants.myGravatiy = new Vector2(0,10);
+
+            level.azuna.restoreHP(hprestore*deltaTime);
+            level.kirito.restoreHP(hprestore*deltaTime);
+            level.misaka.restoreHP(hprestore*deltaTime);
+            level.indix.restoreHP(hprestore*deltaTime);
+
             if (azuna.curMP < 10)
                 azunaE.stop();
         }
@@ -187,7 +198,7 @@ public class MagicHelper {
     {
         misakaE.CD-=deltaTime;
         misakaQ.CD-=deltaTime;
-        if (misakaE.casting) {
+        if(misakaE.casting) {
             //effect
             level.misakaEskillEffect.setPosition(new Vector2(misakaE.castX,misakaE.castY));
             misakaE.castTime += deltaTime;
@@ -202,21 +213,46 @@ public class MagicHelper {
             for(int i = 0;i < level.testMonsterCnt;i++)
             {
                 TestMonster monster = level.testMonster[i];
-                    monster.walkSpeed = monster.originWalkSpeed;
-
-
+                monster.walkSpeed = monster.originWalkSpeed;
             }
             for(int i = 0;i < level.beefsCnt;i++)
             {
                 Beef monster = level.beefs[i];
-
-                    monster.walkSpeed = monster.originWalkSpeed;
-
-
+                monster.walkSpeed = monster.originWalkSpeed;
             }
         }
+        if(misakaQ.casting) {
+            //effect
+            misakaQ.castTime += deltaTime;
 
+            if(misakaQ.castTime>25)
+            {
+                level.misaka.imgFace = new TextureRegion(new Texture(Gdx.files.internal("Players/"+"Misaka"+"Face.jpg")));
+                level.misaka.img = new Texture(Gdx.files.internal("Players/"+"Misaka"+"Walk.png"));
+                level.misaka.frames = TextureRegion.split(level.misaka.img,48,48);
 
+                level.misaka.walkLeftFrames = new TextureRegion[3];
+                for(int i = 0;i < 3;i++)
+                    level.misaka.walkLeftFrames[i] = level.misaka.frames[1][i];
+
+                level.misaka.walkRightFrames = new TextureRegion[3];
+                for(int i = 0;i < 3;i++)
+                    level.misaka.walkRightFrames[i] = level.misaka.frames[2][i];
+
+                level.misaka.standFrame = new TextureRegion();
+                level.misaka.standFrame = level.misaka.frames[0][0];
+
+                level.misaka.curFrame = new TextureRegion();
+                level.misaka.curFrame = level.misaka.standFrame;
+
+                level.misaka.walkLeftAni = new Animation(0.2f, level.misaka.walkLeftFrames);
+                level.misaka.walkLeftAni.setPlayMode(Animation.PlayMode.LOOP);
+
+                level.misaka.walkRightAni= new Animation(0.2f,level.misaka.walkRightFrames);
+                level.misaka.walkRightAni.setPlayMode(Animation.PlayMode.LOOP);
+                misakaQ.stop();
+            }
+        }
     }
 
     public void update(float deltaTime)
