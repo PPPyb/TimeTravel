@@ -294,6 +294,22 @@ public class Level {
         {
             playerNum = 12;
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1))
+        {
+            playerNum = 0;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2))
+        {
+            playerNum = 1;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3))
+        {
+            playerNum = 2;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4))
+        {
+            playerNum = 3;
+        }
         switch(playerNum)
         {
             case 0:

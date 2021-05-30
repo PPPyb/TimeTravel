@@ -106,19 +106,19 @@ public class WorldController {
             setCurLevelNum(10086);
         }
         //
-        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0))
         {
             setCurLevelNum(1);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_9))
         {
             setCurLevelNum(2);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_8))
         {
             setCurLevelNum(3);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
         {
             setCurLevelNum(4);
         }
