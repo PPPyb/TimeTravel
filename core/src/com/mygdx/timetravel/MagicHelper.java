@@ -151,7 +151,7 @@ public class MagicHelper {
         if (jack.casting) {
 
             jack.castTime += deltaTime;
-            if(jack.castTime>18.5)
+            if(jack.castTime>36)
                 jack.stop();
         }
         else
