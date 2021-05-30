@@ -103,7 +103,7 @@ public class MagicHelper {
             //effect
             level.kiritoQskillEffect.setPosition(new Vector2(player.getX()-80,player.getY()-50));
             player.walkSpeed = 2 * player.originWalkSpeed;
-            player.armor = 2 * player.originArmor;
+            player.armor = player.originArmor + 100;
             kiritoQ.castTime += deltaTime;
             player.restoreMP(10000);
             if(kiritoQ.castTime>10)
