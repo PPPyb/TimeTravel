@@ -42,17 +42,18 @@ public class Zeus extends Enemy{
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
         curHP = maxHP = 4000f;
-        walkSpeed = 80;
+        walkSpeed = 40;
         enemyAI = new EnemyAIBeef(this);
     }
 
     @Override
     public void initAnime() {
         idleFrames = new TextureRegion[20];
-        walkLeftFrames = new TextureRegion[40];
-        walkRightFrames = new TextureRegion[40];
-        attackFrames = new TextureRegion[25];
-        dieFrames = new TextureRegion[35];
+        walkLeftFrames = new TextureRegion[20];
+        walkRightFrames = new TextureRegion[20];
+        attackFrames = new TextureRegion[40];
+        dieFrames = new TextureRegion[50];
+        super.init();
         String str = "";
         for(int i = 0;i < 20;i++)
         {
@@ -63,7 +64,7 @@ public class Zeus extends Enemy{
             Texture temp = new Texture(Gdx.files.internal("Zeus/Idle/Idle_"+str+i+".png"));
             idleFrames[i] = new TextureRegion(temp);
         }
-        for(int i = 0;i < 40;i++) {
+        for(int i = 0;i < 20;i++) {
             if (i < 10)
                 str = "0";
             else
@@ -73,7 +74,7 @@ public class Zeus extends Enemy{
             walkRightFrames[i] = new TextureRegion(temp);
             walkRightFrames[i].flip(true, false);
         }
-        for(int i = 0;i < 25;i++)
+        for(int i = 0;i < 40;i++)
         {
             if(i < 10)
                 str = "0";
@@ -82,7 +83,7 @@ public class Zeus extends Enemy{
             Texture temp = new Texture(Gdx.files.internal("Zeus/Attack/Attack_"+str+i+".png"));
             attackFrames[i] = new TextureRegion(temp);
         }
-        for(int i = 0;i < 35;i++)
+        for(int i = 0;i < 50;i++)
         {
             if(i < 10)
                 str = "0";
@@ -120,8 +121,8 @@ public class Zeus extends Enemy{
         if(!isAlive){
             dieTime += Gdx.graphics.getDeltaTime();
             curFrame = (TextureRegion) dieAni.getKeyFrame(dieTime);
-            if(dieTime>1.75)
-                curFrame = dieFrames[34];
+            if(dieTime>2.5)
+                curFrame = dieFrames[49];
             return;
         }
         switch (walkState)
@@ -137,7 +138,7 @@ public class Zeus extends Enemy{
                 curFrame = (TextureRegion) walkRAni.getKeyFrame(stateTime);
                 break;
         }
-        if(attackTime<1.25)
+        if(attackTime<2)
             curFrame = (TextureRegion) attackAni.getKeyFrame(attackTime);
         super.updateAnime();
     }
@@ -150,7 +151,7 @@ public class Zeus extends Enemy{
         if(!isAlive)
             return;
         enemyAI.act();
-        if(attackTime>0.75&&!attacked[0]) {
+        if(attackTime>1.25&&!attacked[0]) {
             attacked[0] = true;
             Player player = level.curPlayer;
             Rectangle r1 = new Rectangle(getX(),getY(),width,height);

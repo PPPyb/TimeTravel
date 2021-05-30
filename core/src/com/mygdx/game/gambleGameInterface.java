@@ -66,6 +66,7 @@ public class gambleGameInterface extends ApplicationAdapter {
     private Viewport viewport;
     public Stage stage;
     public int gamble_flag=0;
+    public int count =0;
     public gambleGameInterface(){
         viewport = new FillViewport(1280, 720, new OrthographicCamera());
         stage=new Stage(viewport);
@@ -86,7 +87,7 @@ public class gambleGameInterface extends ApplicationAdapter {
         style1.up = new TextureRegionDrawable(new TextureRegion(up1));
         style1.down = new TextureRegionDrawable(new TextureRegion(down1));
         bt1 = new Button(style1);
-        bt1.setPosition(300,400);
+        bt1.setPosition(266,396);
         bt1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -94,14 +95,14 @@ public class gambleGameInterface extends ApplicationAdapter {
                 //gambleGameInterface.gamble_flag=1;
             }
         });
-        stage.addActor(bt1);
+
 
         up2= new Texture(Gdx.files.internal("Button/blackpokerJ.png"));
         down2 = new Texture(Gdx.files.internal("Button/blackpokerJ.png"));
         style2.up = new TextureRegionDrawable(new TextureRegion(up2));
         style2.down = new TextureRegionDrawable(new TextureRegion(down2));
         bt2 = new Button(style2);
-        bt2.setPosition(300,300);
+        bt2.setPosition(266,273);
         bt2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -109,14 +110,14 @@ public class gambleGameInterface extends ApplicationAdapter {
                 //gambleGameInterface.gamble_flag=1;
             }
         });
-        stage.addActor(bt2);
+
 
         up3= new Texture(Gdx.files.internal("Button/blackpoker10.png"));
         down3 = new Texture(Gdx.files.internal("Button/blackpoker10.png"));
         style3.up = new TextureRegionDrawable(new TextureRegion(up3));
         style3.down = new TextureRegionDrawable(new TextureRegion(down3));
         bt3 = new Button(style3);
-        bt3.setPosition(800,400);
+        bt3.setPosition(862,396);
         bt3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -124,7 +125,7 @@ public class gambleGameInterface extends ApplicationAdapter {
                 //gambleGameInterface.gamble_flag=1;
             }
         });
-        stage.addActor(bt3);
+
 
 
         up4= new Texture(Gdx.files.internal("Button/poker10.png"));
@@ -132,7 +133,7 @@ public class gambleGameInterface extends ApplicationAdapter {
         style4.up = new TextureRegionDrawable(new TextureRegion(up4));
         style4.down = new TextureRegionDrawable(new TextureRegion(down4));
         bt4 = new Button(style4);
-        bt4.setPosition(800,300);
+        bt4.setPosition(862,273);
         bt4.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -140,14 +141,13 @@ public class gambleGameInterface extends ApplicationAdapter {
                 //gambleGameInterface.gamble_flag=1;
             }
         });
-        stage.addActor(bt4);
 
         up5= new Texture(Gdx.files.internal("Button/blackpokerA.png"));
         down5 = new Texture(Gdx.files.internal("Button/blackpokerA.png"));
         style5.up = new TextureRegionDrawable(new TextureRegion(up5));
         style5.down = new TextureRegionDrawable(new TextureRegion(down5));
         bt5 = new Button(style5);
-        bt5.setPosition(800,200);
+        bt5.setPosition(862,143);
         bt5.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -169,7 +169,21 @@ public class gambleGameInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("2","");
                 //gambleGameInterface.gamble_flag=1;
+                count++;
+                System.out.println(count);
+                if(count>=1){
+                    stage.addActor(bt3);
+                }
+                if(count>=2){
+                    stage.addActor(bt4);
+                }
+                if(count>=3){
+                    stage.addActor(bt1);
+                    stage.addActor(bt2);
+                }
+                if(count>=4)
                 stage.addActor(bt5);
+
 
             }
         });
@@ -206,6 +220,7 @@ public class gambleGameInterface extends ApplicationAdapter {
 
             }
         });
+
 
     }
 
