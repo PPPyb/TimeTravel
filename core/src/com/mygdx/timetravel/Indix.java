@@ -44,7 +44,7 @@ public class Indix extends Player{
                 toRight = true;
             else
                 toRight = false;
-            for(int i = 0;i < 3;i++)
+            for(int i = 0;i < 5;i++)
             {
                 if(level.bulletDangMasCnt>900)
                     level.bulletDangMasCnt = 0;
@@ -73,7 +73,15 @@ public class Indix extends Player{
 
     @Override
     public void eventE() {
-
+        if(level.magicHelper.indixQ.casting)
+        {
+            if (curMP - level.indixQskillEffect.MPConsume > 0)
+            {
+                level.magicHelper.indixE.cast();
+                level.indixQskillEffect.shoujidangma();
+                loseMP(level.indixQskillEffect.MPConsume);
+            }
+        }
     }
 
     @Override

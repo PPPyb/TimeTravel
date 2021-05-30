@@ -97,4 +97,45 @@ public class IndixQskillEffect extends Bullets{
                 level.beefs[i].loseHP(damage);
         }
     }
+
+    public void shoujidangma()
+    {
+        float centerX = getX()+width/2;
+        float centerY = getY()+height/2;
+        for(int i = 0;i < level.bulletDangMasCnt;i++)
+        {
+            float monsterX = level.bulletDangMas[i].getX();
+            float monsterY = level.bulletDangMas[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei)
+                level.bulletDangMas[i].setVelocity(new Vector2(4*(centerX-monsterX),4*(centerY-monsterY)));
+        }
+        for(int i = 0;i < level.bulletTestPenetrateCnt;i++)
+        {
+            float monsterX = level.bulletTestPenetrate[i].getX();
+            float monsterY = level.bulletTestPenetrate[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei)
+                level.bulletTestPenetrate[i].setVelocity(new Vector2(4*(centerX-monsterX),4*(centerY-monsterY)));
+        }
+        for(int i = 0;i < level.bulletTestCnt;i++)
+        {
+            float monsterX = level.bulletTest[i].getX();
+            float monsterY = level.bulletTest[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei)
+                level.bulletTest[i].setVelocity(new Vector2(4*(centerX-monsterX),4*(centerY-monsterY)));
+        }
+        for(int i = 0;i < level.bulletTestEnemiesCnt;i++)
+        {
+            float monsterX = level.bulletTestEnemies[i].getX();
+            float monsterY = level.bulletTestEnemies[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei)
+                level.bulletTestEnemies[i].setVelocity(new Vector2(4*(centerX-monsterX),4*(centerY-monsterY)));
+        }
+        for(int i = 0;i < level.bulletTestEnemiesCnt;i++)
+        {
+            float monsterX = level.bulletTestEnemies[i].getX();
+            float monsterY = level.bulletTestEnemies[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< 300)
+                level.bulletTestEnemies[i].destructed();
+        }
+    }
 }

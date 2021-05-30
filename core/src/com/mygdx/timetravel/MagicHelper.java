@@ -27,12 +27,12 @@ public class MagicHelper {
         indixQ.setMaxCD(10);
         indixQ.setMusicEffect(96);
         indixE = new Magic(level);
-        indixE.setMaxCD(5);
+        indixE.setMaxCD(0);
         jack = new Magic(level);
         jack.setMaxCD(120);
         jack.setMusicEffect(99);
         miku = new Magic(level);
-        miku.setMaxCD(30);
+        miku.setMaxCD(10);
         miku.setMusicEffect(39);
     }
 
