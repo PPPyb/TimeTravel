@@ -20,7 +20,6 @@ public class Level {
     Boolean victory = false;
     float victoryTime = -1;
 
-    Boolean musicOccupied = false;
     //绘制
     SpriteBatch batch;
     OrthographicCamera camera;
@@ -47,6 +46,7 @@ public class Level {
     Kirito kirito;
     Indix indix;
     Jack jack;
+    Miku miku;
     //敌人
     TestMonster[] testMonster;
     int testMonsterCnt;
@@ -103,6 +103,7 @@ public class Level {
         kirito = new Kirito(0,0,this);
         indix = new Indix(0,0,this);
         jack = new Jack(0,0,this);
+        miku = new Miku(0,0,this);
         //敌人
         testMonster = new TestMonster[100];
         testMonsterCnt = 0;
@@ -133,16 +134,15 @@ public class Level {
     public void update(float deltaTime)
     {
         stateTime += deltaTime;
-        //Music
-        System.out.println(musicOccupied);
-        if(!musicOccupied) {
+        //Music(!magicHelper.magicIsCasting()) {
+
             if (victory)
                 MusicManager.playMusic(92);
             else if (failed)
                 MusicManager.playMusic(91);
-            else
+            else if(!magicHelper.magicIsCasting())
                 MusicManager.playMusic(90);
-        }
+
         //判断胜负
         victoryOrFailed();
         if(victory&&stateTime>victoryTime+Constants.VICTORYSHOWTIME)
@@ -160,6 +160,8 @@ public class Level {
         azuna.restore();
         kirito.restore();
         indix.restore();
+        jack.restore();
+        miku.restore();
         //update怪物
         updateObjects(testMonster,testMonsterCnt,deltaTime);
         updateObjects(beefs,beefsCnt,deltaTime);
@@ -279,6 +281,10 @@ public class Level {
         {
             playerNum = 11;
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F2))
+        {
+            playerNum = 12;
+        }
         switch(playerNum)
         {
             case 0:
@@ -300,6 +306,12 @@ public class Level {
                 jack.setPosition(curPlayer.position);
                 jack.setVelocity(curPlayer.velocity);
                 curPlayer = jack;
+                break;
+            case 12:
+                miku.setPosition(curPlayer.position);
+                miku.setVelocity(curPlayer.velocity);
+                curPlayer = miku;
+                break;
             default:
                 break;
         }
@@ -318,14 +330,14 @@ public class Level {
         //Cheating
         if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)&&Gdx.input.isKeyPressed(Input.Keys.V)){
             victory = true;
-            musicOccupied = false;
+
             if(victoryTime < 0)
                 victoryTime = stateTime;
             return;
         }
         //Failed
         if(!azuna.isAlive&&!kirito.isAlive) {
-            musicOccupied = false;
+            ;
             failed = true;
             return;
         }
@@ -342,6 +354,6 @@ public class Level {
         victory = true;
         if(victoryTime < 0)
             victoryTime = stateTime;
-        musicOccupied = false;
+
     }
 }

@@ -43,7 +43,6 @@ public class Magic {
             castTime = 0;
             damageCaused = false;
             if(musicEffect) {
-                level.musicOccupied = true;
                 MusicManager.playMusic(musicNum);
             }
         }
@@ -52,7 +51,5 @@ public class Magic {
     {
         damageCaused = false;
         casting = false;
-        if(musicEffect)
-            level.musicOccupied = false;
     }
 }

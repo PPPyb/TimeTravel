@@ -9,6 +9,7 @@ public class MusicManager {
     public MusicManager()
     {
         music = new Music[100];
+        music[39] = Gdx.audio.newMusic(Gdx.files.internal("Music/miku.mp3"));
         music[10] = Gdx.audio.newMusic(Gdx.files.internal("Music/TitleMusic.mp3"));
         music[90] = Gdx.audio.newMusic(Gdx.files.internal("Music/killbill.mp3"));
         music[91] = Gdx.audio.newMusic(Gdx.files.internal("Music/failed.mp3"));

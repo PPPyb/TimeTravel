@@ -7,13 +7,14 @@ public class MagicHelper {
     Level level;
     Player player;
     float deltaTime;
+
     public MagicHelper(Level level)
     {
         this.level = level;
         player = level.curPlayer;
         azunaQ = new Magic(level);
         azunaQ.setMaxCD(30);
-        azunaQ.setMusicEffect(94);
+        //azunaQ.setMusicEffect(94);
         azunaE = new Magic(level);
         azunaE.setMaxCD(5);
         azunaE.setMusicEffect(93);
@@ -30,9 +31,17 @@ public class MagicHelper {
         jack = new Magic(level);
         jack.setMaxCD(120);
         jack.setMusicEffect(99);
-
+        miku = new Magic(level);
+        miku.setMaxCD(30);
+        miku.setMusicEffect(39);
     }
 
+    public boolean magicIsCasting()
+    {
+        if(azunaQ.casting||azunaE.casting|| kiritoQ.casting|| kiritoE.casting||indixQ.casting||indixE.casting|| jack.casting|| miku.casting)
+            return true;
+        return false;
+    }
     Magic azunaQ;
     Magic azunaE;
     public void azunaMagic()
@@ -62,7 +71,6 @@ public class MagicHelper {
             this.level.azunaEskillEffectRecover.setPosition(vec);
             azunaQ.castTime += deltaTime;
             if(azunaQ.castTime > 7) {
-                level.musicOccupied = false;
                 azunaQ.stop();
                 level.azunaEskillEffectRecover.setPosition(new Vector2(-10000,-10000));
             }
@@ -149,6 +157,21 @@ public class MagicHelper {
         else
             level.bulletTitanic.setPosition(new Vector2(-10000.0f, -10000.0f));
     }
+    Magic miku;
+    public void mikuMagic()
+    {
+        miku.CD -= deltaTime;
+        if (miku.casting) {
+            Vector2 vec = new Vector2((float) (player.getX()-player.width*1.7), player.getY()-player.height);
+            this.level.azunaEskillEffectRecover.setPosition(vec);
+            miku.castTime += deltaTime;
+            if(miku.castTime>6) {
+                miku.stop();
+                level.azunaEskillEffectRecover.setPosition(new Vector2(-10000,-10000));
+            }
+        }
+
+    }
     public void update(float deltaTime)
     {
         player = level.curPlayer;
@@ -157,5 +180,6 @@ public class MagicHelper {
         kiritoMagic();
         indixMagic();
         jackMagic();
+        mikuMagic();
     }
 }
