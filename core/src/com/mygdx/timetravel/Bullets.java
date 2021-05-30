@@ -41,6 +41,7 @@ public class Bullets extends AbstractGameObject{
         super(x,y,level);
         initAnime();
     }
+
     public void update(float deltaTime) {
         if (isDestructed)
             return;

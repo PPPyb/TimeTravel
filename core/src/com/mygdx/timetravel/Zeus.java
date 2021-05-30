@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Beef extends Enemy{
+public class Zeus extends Enemy{
 
     //frames of animation
     TextureRegion[] idleFrames;
@@ -29,7 +29,7 @@ public class Beef extends Enemy{
     Boolean[] attacked = {false,false,false};
 
 
-    public Beef(float x, float y, Level level)
+    public Zeus(float x, float y, Level level)
     {
         super(x, y,level);
 
@@ -41,10 +41,9 @@ public class Beef extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 6500f;
-        walkSpeed = 50;
+        curHP = maxHP = 4000f;
+        walkSpeed = 80;
         enemyAI = new EnemyAIBeef(this);
-        super.init();
     }
 
     @Override
@@ -61,7 +60,7 @@ public class Beef extends Enemy{
                 str = "0";
             else
                 str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Idle/Idle_"+str+i+".png"));
+            Texture temp = new Texture(Gdx.files.internal("Zeus/Idle/Idle_"+str+i+".png"));
             idleFrames[i] = new TextureRegion(temp);
         }
         for(int i = 0;i < 40;i++) {
@@ -69,7 +68,7 @@ public class Beef extends Enemy{
                 str = "0";
             else
                 str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Walk/Walk_" + str + i + ".png"));
+            Texture temp = new Texture(Gdx.files.internal("Zeus/Walk/Walk_" + str + i + ".png"));
             walkLeftFrames[i] = new TextureRegion(temp);
             walkRightFrames[i] = new TextureRegion(temp);
             walkRightFrames[i].flip(true, false);
@@ -80,7 +79,7 @@ public class Beef extends Enemy{
                 str = "0";
             else
                 str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Attack/Attack_"+str+i+".png"));
+            Texture temp = new Texture(Gdx.files.internal("Zeus/Attack/Attack_"+str+i+".png"));
             attackFrames[i] = new TextureRegion(temp);
         }
         for(int i = 0;i < 35;i++)
@@ -89,7 +88,7 @@ public class Beef extends Enemy{
                 str = "0";
             else
                 str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Death/Death_"+str+i+".png"));
+            Texture temp = new Texture(Gdx.files.internal("Zeus/Death/Death_"+str+i+".png"));
             dieFrames[i] = new TextureRegion(temp);
         }
 
@@ -145,7 +144,6 @@ public class Beef extends Enemy{
 
     @Override
     public void update(float deltaTime) {
-        System.out.println(walkSpeed);
         attackTime += deltaTime;
         updateAnime();
         super.update(deltaTime);
@@ -153,13 +151,13 @@ public class Beef extends Enemy{
             return;
         enemyAI.act();
         if(attackTime>0.75&&!attacked[0]) {
-                attacked[0] = true;
-                Player player = level.curPlayer;
-                Rectangle r1 = new Rectangle(getX(),getY(),width,height);
-                Rectangle r2 = new Rectangle(player.getX(),player.getY(),player.width,player.height);
-                if(Intersector.overlaps(r1,r2)) {
-                    player.loseHP(300);
-                }
+            attacked[0] = true;
+            Player player = level.curPlayer;
+            Rectangle r1 = new Rectangle(getX(),getY(),width,height);
+            Rectangle r2 = new Rectangle(player.getX(),player.getY(),player.width,player.height);
+            if(Intersector.overlaps(r1,r2)) {
+                player.loseHP(300);
+            }
 
         }
     }
