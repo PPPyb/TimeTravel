@@ -16,12 +16,15 @@ public class Beef extends Enemy{
     TextureRegion[] walkLeftFrames;
     TextureRegion[] walkRightFrames;
     TextureRegion[] attackFrames;
+    TextureRegion[] dieFrames;
     //animation
     Animation idleAni;
     Animation walkLAni;
     Animation walkRAni;
     Animation attackAni;
+    Animation dieAni;
 
+    float dieTime = 0;
     float attackTime = 0;
     Boolean[] attacked = {false,false,false};
 
@@ -38,7 +41,7 @@ public class Beef extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 1000f;
+        curHP = maxHP = 500f;
         walkSpeed = 80;
         enemyAI = new EnemyAIBeef(this);
     }
@@ -49,6 +52,7 @@ public class Beef extends Enemy{
         walkLeftFrames = new TextureRegion[40];
         walkRightFrames = new TextureRegion[40];
         attackFrames = new TextureRegion[25];
+        dieFrames = new TextureRegion[35];
         String str = "";
         for(int i = 0;i < 20;i++)
         {
@@ -78,6 +82,15 @@ public class Beef extends Enemy{
             Texture temp = new Texture(Gdx.files.internal("Beef/Attack/Attack_"+str+i+".png"));
             attackFrames[i] = new TextureRegion(temp);
         }
+        for(int i = 0;i < 35;i++)
+        {
+            if(i < 10)
+                str = "0";
+            else
+                str = "";
+            Texture temp = new Texture(Gdx.files.internal("Beef/Death/Death_"+str+i+".png"));
+            dieFrames[i] = new TextureRegion(temp);
+        }
 
         idleAni = new Animation(0.05f, idleFrames);
         idleAni.setPlayMode(Animation.PlayMode.LOOP);
@@ -92,6 +105,9 @@ public class Beef extends Enemy{
         attackAni = new Animation(0.05f, attackFrames);
         attackAni.setPlayMode(Animation.PlayMode.LOOP);
 
+        dieAni = new Animation(0.05f, dieFrames);
+        dieAni.setPlayMode(Animation.PlayMode.LOOP);
+
         curFrame = new TextureRegion();
         curFrame = idleFrames[0];
         setWidth(180);
@@ -101,7 +117,13 @@ public class Beef extends Enemy{
 
     @Override
     public void updateAnime() {
-
+        if(!isAlive){
+            dieTime += Gdx.graphics.getDeltaTime();
+            curFrame = (TextureRegion) dieAni.getKeyFrame(dieTime);
+            if(dieTime>1.75)
+                curFrame = dieFrames[34];
+            return;
+        }
         switch (walkState)
         {
             default:
@@ -123,6 +145,7 @@ public class Beef extends Enemy{
     @Override
     public void update(float deltaTime) {
         attackTime += deltaTime;
+        updateAnime();
         super.update(deltaTime);
         if(!isAlive)
             return;
@@ -149,7 +172,10 @@ public class Beef extends Enemy{
     @Override
     public void die() {
         super.die();
-        curFrame = new TextureRegion(new Texture(Gdx.files.internal("Beef/Death/Death_34.png")));
+//        for(dieTime = 0; dieTime < 35; dieTime++){
+//            curFrame = (TextureRegion) dieAni.getKeyFrame(34);
+//        }
+//        curFrame = (TextureRegion) dieAni.getKeyFrame(stateTime);
     }
 
     @Override
