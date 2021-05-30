@@ -128,7 +128,7 @@ public class repairmanHomeScreen implements Screen {
         hud.dispose();
     }
     public static void changeToMainScreen(){
-        game.setScreen(new OutsiderepairmanHomeScreen(game));
+        game.setScreen(new PlayScreen(game,993,340));
     }
 
     public World getWorld() {

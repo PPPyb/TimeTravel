@@ -16,14 +16,13 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Actor.FireMapNPC;
 import com.mygdx.game.Actor.GambleRoomOwner;
 import com.mygdx.game.Actor.Mario;
 import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
-public class FireMapScreen implements Screen {
+public class GrassMapScreen implements Screen {
     public static MyGdxGame game;
     private Texture texture;
     private OrthographicCamera gamecam;
@@ -40,14 +39,13 @@ public class FireMapScreen implements Screen {
     private TextureAtlas atlas;
     private Music music;
     private Repairman repairman;
-    private FireMapNPC fireMapNPC;
+    private GambleRoomOwner gambleRoomOwner;
+    private ChangeMapInterface changeMapInterface;
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasGambleRoomOwner;
     private shopInterface shopInterface;
-    private ChangeMapInterface changeMapInterface;
     public static int smallFireMapCollisionFlag=0;
-    public static int FireScreenFlag=1;
-    public FireMapScreen(MyGdxGame game){
+    public GrassMapScreen(MyGdxGame game,int x,int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
         atlasGambleRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
@@ -59,14 +57,13 @@ public class FireMapScreen implements Screen {
         npcCommunication=new NpcCommunication(game.batch);
         changeMapInterface=new ChangeMapInterface(game.batch);
         mapLoader=new TmxMapLoader();
-        map=mapLoader.load("maps/fireMap.tmx");
+        map=mapLoader.load("maps/GrassMap.tmx");
         renderer=new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
         world=new World(new Vector2(0,0),true);
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
-        mario=new Mario(world,this);
-        fireMapNPC=new FireMapNPC(this,32f,32f);
+        mario=new Mario(world,this,x,y);
         world.setContactListener(new WorldContactListener());
         //gambleRoomOwner=new GambleRoomOwner(this,32f,32f);
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
@@ -86,13 +83,25 @@ public class FireMapScreen implements Screen {
     public void show() {
 
     }
+    public void handleInput(float dt){
+        if(Gdx.input.isKeyPressed(Input.Keys.UP))
+            mario.b2body.applyLinearImpulse(new Vector2(0,20f),mario.b2body.getWorldCenter(),true);
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
+            mario.b2body.applyLinearImpulse(new Vector2(0,-40f),mario.b2body.getWorldCenter(),true);
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
+            mario.b2body.applyLinearImpulse(new Vector2(50f,0), mario.b2body.getWorldCenter(),true);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
+            mario.b2body.applyLinearImpulse(new Vector2(-100f,0), mario.b2body.getWorldCenter(),true);
+        }
+    }
     public void update(float dt){
+        handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
         npcCommunication.update();
-        fireMapNPC.update(dt);
-        //System.out.println(mario.b2body.getPosition().x);
-        //System.out.println(mario.b2body.getPosition().y);
+        System.out.println(mario.b2body.getPosition().x);
+        System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -109,13 +118,14 @@ public class FireMapScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
-        fireMapNPC.draw(game.batch);
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
+        if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515)
+            game.setScreen(new SnowMapRoomScreen(game));
         if(PlayScreen.PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -155,9 +165,11 @@ public class FireMapScreen implements Screen {
         hud.dispose();
         changeMapInterface.dispose();
     }
+//    public static void changeToMainScreen(){
+//        game.setScreen(new SnowMapScreen(game,217,600));
+//    }
 
     public World getWorld() {
         return this.world;
     }
 }
-

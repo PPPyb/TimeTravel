@@ -6,10 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.PlayScreen;
-import com.mygdx.game.gambleRoomScreen;
-import com.mygdx.game.repairmanHomeScreen;
+import com.mygdx.game.*;
 
 public class NormalPeople extends NPC {
     private float stateTime;
@@ -23,6 +20,32 @@ public class NormalPeople extends NPC {
     private boolean back=true;
     public BodyDef bdef;
     public NormalPeople(PlayScreen screen, float x, float y) {
+        super(screen, x, y);
+        frames=new Array<TextureRegion>();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
+        NormalPeopleRightRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,49,48,49));
+        NormalPeopleLeftRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,147,48,49));
+        NormalPeopleUpRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        NormalPeopleDownRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        turnAround=new Animation(0.1f,frames);
+        frames.clear();
+        stateTime=0;
+        setBounds(getX(),getY(),24,24);
+    }
+    public NormalPeople(PortalScreen screen, float x, float y) {
         super(screen, x, y);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)

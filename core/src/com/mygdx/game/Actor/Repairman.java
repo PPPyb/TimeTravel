@@ -19,7 +19,7 @@ public class Repairman extends NPC {
     private boolean Stop=true;
     public BodyDef bdef;
     public Repairman(PlayScreen screen, float x, float y) {
-        super(screen,480,200);
+        super(screen,480,300);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
             frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
@@ -200,26 +200,52 @@ public class Repairman extends NPC {
         stateTime=0;
         setBounds(getX(),getY(),24,24);
     }
+    public Repairman(PortalScreen screen, float x, float y) {
+        super(screen, x, y);
+        frames=new Array<TextureRegion>();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
+        repairmanRightRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,49,48,49));
+        repairmanLeftRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,147,48,49));
+        repairmanUpRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        repairmanDownRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+        turnAround=new Animation(0.1f,frames);
+        frames.clear();
+        stateTime=0;
+        setBounds(getX(),getY(),24,24);
+    }
 
 
     public void update(float dt){
         stateTime+=dt;
-        if(b2body.getPosition().x<730&&b2body.getPosition().y<=200&&Stop&&PlayScreen.PlayScreenFlag==0){
+        if(b2body.getPosition().x<730&&b2body.getPosition().y<=300&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
             b2body.setLinearVelocity(20,0);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanRightRun.getKeyFrame(stateTime, true));
         }
-        else if(b2body.getPosition().x>730&&b2body.getPosition().y<446&&Stop&&PlayScreen.PlayScreenFlag==0){
+        else if(b2body.getPosition().x>730&&b2body.getPosition().y<446&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
             b2body.setLinearVelocity(0,20);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanUpRun.getKeyFrame(stateTime, true));
         }
-        else if(b2body.getPosition().x>470&&b2body.getPosition().y>446&&Stop&&PlayScreen.PlayScreenFlag==0){
+        else if(b2body.getPosition().x>470&&b2body.getPosition().y>446&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
             b2body.setLinearVelocity(-20,0);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanLeftRun.getKeyFrame(stateTime, true));
         }
-        else if(b2body.getPosition().x<470&&b2body.getPosition().y>200&&Stop&&PlayScreen.PlayScreenFlag==0){
+        else if(b2body.getPosition().x<470&&b2body.getPosition().y>300&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
             b2body.setLinearVelocity(0,-20);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanDownRun.getKeyFrame(stateTime, true));

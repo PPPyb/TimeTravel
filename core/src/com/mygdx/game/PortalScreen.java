@@ -21,13 +21,16 @@ import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 import com.mygdx.timetravel.MusicManager;
 
-public class PlayScreen implements Screen {
+import static com.mygdx.game.PlayScreen.*;
+import static com.mygdx.game.PlayScreen.changeToGambleRoomScreen;
+
+public class PortalScreen implements Screen {
     public static MyGdxGame game;
     private Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Hud hud;
-    private NpcCommunication npcCommunication;
+    private static NpcCommunication npcCommunication;
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
@@ -36,18 +39,10 @@ public class PlayScreen implements Screen {
     private Mario mario;
     private TextureAtlas atlas;
     private TextureAtlas atlasRepairman;
-    private Music music;
     private Repairman repairman;
-    private NormalPeople normalPeople1;
-    private NormalPeople normalPeople2;
-    private shopInterface shopInterface;
     private ChangeMapInterface changeMapInterface;
-    private bagInterface bagInterface;
-    private openBagInterface openBagInterface;
-    public static int collisionFlag = 0;
-    public static int PlayScreenFlag = 0;
-    public static int PortalCollisionFlag = 0;
-    public PlayScreen(MyGdxGame game,int x,int y) {
+    public static int PortalScreenFlag=0;
+    public PortalScreen(MyGdxGame game) {
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman = new TextureAtlas("character/repairman.pack");
         this.game = game;
@@ -56,7 +51,6 @@ public class PlayScreen implements Screen {
         //texture=new Texture("5.png");
         hud = new Hud(game.batch);
         npcCommunication = new NpcCommunication(game.batch);
-        //shopInterface = new shopInterface(game.batch);
         changeMapInterface=new ChangeMapInterface(game.batch);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("maps/7.tmx");
@@ -65,13 +59,9 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, 0), true);
         b2dr = new Box2DDebugRenderer();
         new B2WorldCreator(world, map);
-        mario = new Mario(world, this,x,y);
+        mario = new Mario(world, this);
         world.setContactListener(new WorldContactListener());
         repairman = new Repairman(this, 32f, 32f);
-        normalPeople1 = new NormalPeople(this, 600, 500);
-        normalPeople2 = new NormalPeople(this, 600, 600);
-        bagInterface=new bagInterface();
-        openBagInterface=new openBagInterface();
     }
 
     public TextureAtlas getAtlas() {
@@ -93,8 +83,6 @@ public class PlayScreen implements Screen {
         repairman.update(dt);
         hud.update(dt);
         npcCommunication.update();
-        normalPeople1.update(dt);
-        normalPeople2.update(dt);
         if (mario.b2body.getPosition().y > 220 && mario.b2body.getPosition().y < 427 && mario.b2body.getPosition().x > 460 && mario.b2body.getPosition().x < 762)
             hud.updateToGarden();
         if (mario.b2body.getPosition().y > 122 && mario.b2body.getPosition().y < 452 && mario.b2body.getPosition().x > 100 && mario.b2body.getPosition().x < 410)
@@ -107,8 +95,8 @@ public class PlayScreen implements Screen {
             hud.updateToPowerSupplyArea();
         if (mario.b2body.getPosition().y > 557 && mario.b2body.getPosition().y < 812 && mario.b2body.getPosition().x > 120 && mario.b2body.getPosition().x < 355)
             hud.updateToWeaponSupplyArea();
-        //System.out.println(mario.b2body.getPosition().x);
-        //System.out.println(mario.b2body.getPosition().y);
+        System.out.println(mario.b2body.getPosition().x);
+        System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x = mario.b2body.getPosition().x;
         gamecam.position.y = mario.b2body.getPosition().y;
         gamecam.update();
@@ -127,36 +115,12 @@ public class PlayScreen implements Screen {
         game.batch.begin();
         mario.draw(game.batch);
         repairman.draw(game.batch);
-        normalPeople1.draw(game.batch);
-        normalPeople2.draw(game.batch);
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-//        if(NpcCommunication.communicationCount==5) {
-//            Gdx.input.setInputProcessor(shopInterface.stage);
-//            shopInterface.render();
-//        }
-        if(PortalCollisionFlag==1) {
-            Gdx.gl.glClearColor(0, 0, 0, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-            hud.stage.dispose();
-            PlayScreen.PlayScreenFlag=1;
-            Gdx.input.setInputProcessor(changeMapInterface.stage);
-            changeMapInterface.render();
-        }
-        //Gdx.input.setInputProcessor(bagInterface.stage);
-        //bagInterface.render();
-        if(bagInterface.bag_flag==0 && NpcCommunication.communicationCount==5 && PlayScreen.PlayScreenFlag==0) {
-            Gdx.input.setInputProcessor(openBagInterface.stage);
-            openBagInterface.render();
-        }
-        else if (bagInterface.bag_flag==1 && NpcCommunication.communicationCount==5 && PlayScreen.PlayScreenFlag==0){
-            Gdx.input.setInputProcessor(bagInterface.stage);
-            bagInterface.render();
-        }
+        //Gdx.input.setInputProcessor(hud.stage);
         hud.stage.draw();
         if (mario.b2body.getPosition().x <= 250 && mario.b2body.getPosition().x >= 239 && mario.b2body.getPosition().y > 704 && mario.b2body.getPosition().y < 711) {
             changeToWeaponRoomScreen();
-            //weaponRoomScreen.weaponRoomCollisionFlag=1;
         }
         if (mario.b2body.getPosition().x <= 1005 && mario.b2body.getPosition().x >= 970 && mario.b2body.getPosition().y > 700 && mario.b2body.getPosition().y < 719) {
             changeToPowerRoomScreen();
@@ -172,15 +136,17 @@ public class PlayScreen implements Screen {
             PlayScreen.PlayScreenFlag = 1;
             gambleRoomScreen.gambleRoomFlag = 0;
         }
-        if (collisionFlag == 1 && NpcCommunication.communicationCount<5) {
-            npcCommunication.render();
+        if (PlayScreen.collisionFlag == 1) {
             npcCommunication.stage.draw();
         }
-//        if(PortalCollisionFlag==1){
-//            changeToFireMapScreen();
-//        }
-
-
+        if(PlayScreen.PortalCollisionFlag==1) {
+            Gdx.gl.glClearColor(0, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            hud.stage.dispose();
+            PlayScreen.PlayScreenFlag=1;
+            Gdx.input.setInputProcessor(changeMapInterface.stage);
+            changeMapInterface.render();
+        }
 
         //if(Gdx.input.isKeyPressed(Input.Keys.U))
         //changeScreen();
@@ -213,42 +179,10 @@ public class PlayScreen implements Screen {
         renderer.dispose();
         b2dr.dispose();
         hud.dispose();
-        bagInterface.dispose();
-        openBagInterface.dispose();
-        changeMapInterface.dispose();
         //shopInterface.dispose();
     }
 
     public World getWorld() {
         return this.world;
     }
-
-    public static void changeToWeaponRoomScreen() {
-        game.setScreen(new weaponRoomScreen(game));
-    }
-
-    public static void changeToPowerRoomScreen() {
-        game.setScreen(new powerRoomScreen(game));
-    }
-
-    public static void changeToRepairmanHomeScreen() {
-        game.setScreen(new repairmanHomeScreen(game));
-    }
-
-    public static void changeToGambleRoomScreen() {
-        game.setScreen(new gambleRoomScreen(game));
-    }
-    public static void changeToFireMapScreen(){
-        game.setScreen(new FireMapScreen(game));
-    }
-    public static void changeToSnowMapScreen(){
-        game.setScreen(new SnowMapScreen(game,217,510));
-    }
-    public static void changeToGrassMapScreen(){
-        game.setScreen(new GrassMapScreen(game,630,542));
-    }
-    public static void changeToPortalScreen() {
-        game.setScreen(new PortalScreen(game));
-    }
 }
-

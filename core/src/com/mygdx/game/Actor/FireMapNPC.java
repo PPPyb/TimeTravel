@@ -1,25 +1,33 @@
 package com.mygdx.game.Actor;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.FireMapScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.gambleRoomScreen;
 
-public class GambleRoomOwner extends NPC{
+public class FireMapNPC extends NPC{
+    private Animation FireMapNPCLeftRun;
     private float stateTime;
     private Animation GambleRoomOwnerStand;
     private Array<TextureRegion> frames;
     public BodyDef bdef;
-    public GambleRoomOwner(gambleRoomScreen screen, float x, float y) {
-        super(screen, 58, 400);//58,400
+    public FireMapNPC(FireMapScreen screen, float x, float y) {
+        super(screen, 800, 100);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
             frames.add(new TextureRegion(screen.getGambleRoomOwnerAtlas().findRegion("GambleRoomOwner"),48*i,0,48,49));
         GambleRoomOwnerStand=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getGambleRoomOwnerAtlas().findRegion("GambleRoomOwner"),48*i,49,48,49));
+        FireMapNPCLeftRun=new Animation(0.1f,frames);
         frames.clear();
         stateTime=0;
         setBounds(getX(),getY(),24,24);
@@ -29,7 +37,7 @@ public class GambleRoomOwner extends NPC{
         bdef=new BodyDef();
         //NPC初始位置
         bdef.position.set(x,y);
-        bdef.type=BodyDef.BodyType.StaticBody;
+        bdef.type=BodyDef.BodyType.KinematicBody;
         b2body=world.createBody(bdef);
 
         FixtureDef fdef=new FixtureDef();
@@ -45,11 +53,18 @@ public class GambleRoomOwner extends NPC{
     }
     public void update(float dt) {
         stateTime += dt;
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
-        setRegion((TextureRegion) GambleRoomOwnerStand.getKeyFrame(stateTime, true));
+        if(b2body.getPosition().x>400){
+            b2body.setLinearVelocity(-20,0);
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion((TextureRegion) FireMapNPCLeftRun.getKeyFrame(stateTime, true));
+        }
+        else {
+            b2body.setLinearVelocity(0,0);
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion((TextureRegion) GambleRoomOwnerStand.getKeyFrame(stateTime, true));
+        }
     }
     @Override
     public void hitOnNPC() {
-         gambleRoomScreen.gambleRoomCollisionFlag=1;
     }
 }

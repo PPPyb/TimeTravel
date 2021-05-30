@@ -115,7 +115,7 @@ public class powerRoomScreen implements Screen {
         hud.dispose();
     }
     public static void changeToMainScreen(){
-        game.setScreen(new OutsidepowerRoomScreen(game));
+        game.setScreen(new PlayScreen(game,971,698));
     }
 
 }

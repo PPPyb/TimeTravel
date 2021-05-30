@@ -38,6 +38,9 @@ public class weaponRoomScreen implements Screen {
     private WeaponRoomOwner weaponRoomOwner;
     private TextureAtlas atlasWeaponRoomOwner;
     private Music music;
+    public shopInterface shopInterface;
+    public static int weaponRoomCollisionFlag=0;
+
     public weaponRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasWeaponRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
@@ -56,6 +59,7 @@ public class weaponRoomScreen implements Screen {
         mario=new Mario(world,this);
         weaponRoomOwner=new WeaponRoomOwner(this,32f,32f);
         world.setContactListener(new WorldContactListener());
+        shopInterface=new shopInterface();
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
        // music.play();
@@ -91,6 +95,11 @@ public class weaponRoomScreen implements Screen {
         mario.draw(game.batch);
         weaponRoomOwner.draw(game.batch);
         game.batch.end();
+        if( weaponRoomCollisionFlag==1 &&  shopInterface.shop_flag==0) {
+            Gdx.input.setInputProcessor( shopInterface.stage);
+            shopInterface.render();
+        }
+
     }
 
     @Override
@@ -122,7 +131,7 @@ public class weaponRoomScreen implements Screen {
         hud.dispose();
     }
     public static void changeToMainScreen(){
-        game.setScreen(new OutsideweaponRoomScreen(game));
+        game.setScreen(new PlayScreen(game,246,700));
     }
 
     public World getWorld() {

@@ -165,7 +165,7 @@ public class gambleRoomScreen implements Screen {
         hud.dispose();
     }
     public static void changeToMainScreen(){
-        game.setScreen(new OutsidegambleRoomScreen(game));
+        game.setScreen(new PlayScreen(game,253,368));
     }
 
     public World getWorld() {

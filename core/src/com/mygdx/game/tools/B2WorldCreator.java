@@ -79,6 +79,16 @@ public class B2WorldCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             new SnowBossDoor(world, map, rect);
         }
+        //雪房间门
+        for (MapObject object : map.getLayers().get(12).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            new SnowRoomDoor(world, map, rect);
+        }
+        //草地小地图门
+        for (MapObject object : map.getLayers().get(13).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            new GrassMapDoor(world, map, rect);
+        }
     }
 
 }

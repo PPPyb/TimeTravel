@@ -28,7 +28,7 @@ public class MyGdxGame extends Game {
 		manager=new AssetManager();
 		//manager.load("music/backgroundMusic.mp3", Music.class);
 		//manager.finishLoading();
-		setScreen(new PlayScreen(this));
+		setScreen(new PlayScreen(this,500,500));
 	}
 
 	@Override

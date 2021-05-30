@@ -31,7 +31,7 @@ public class openBagInterface extends ApplicationAdapter {
     private Texture up4;
     private Texture down4;
     private Button button;
-    private Button bt1;
+    public Button bt1,bt2,bt3,bt4;
     private Texture monkeyFace;
     private Button.ButtonStyle style = new Button.ButtonStyle();
     private Button.ButtonStyle style1 = new Button.ButtonStyle();
@@ -42,11 +42,13 @@ public class openBagInterface extends ApplicationAdapter {
     public  SpriteBatch batch;
     private Viewport viewport;
     public Stage stage;
+    public shopInterface shopInterface;
     public openBagInterface(){
         viewport = new FillViewport(1280, 720, new OrthographicCamera());
         stage=new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
         batch=new SpriteBatch();
+        shopInterface=new shopInterface();
         monkeyFace=new Texture(Gdx.files.internal("Button/monkeyFace.png"));
 
         upTexture = new Texture(Gdx.files.internal("Button/bag.png"));
@@ -60,6 +62,7 @@ public class openBagInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("main","");
                 bagInterface.bag_flag=1;
+
             }
         });
         stage.addActor(button);
@@ -75,55 +78,74 @@ public class openBagInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("1","");
                 //bagInterface.bag_flag=1;
+
+
             }
         });
-        stage.addActor(bt1);
+
 
         up2= new Texture(Gdx.files.internal("Button/spell2.png"));
         down2 = new Texture(Gdx.files.internal("Button/spell2.2.png"));
         style2.up = new TextureRegionDrawable(new TextureRegion(up2));
         style2.down = new TextureRegionDrawable(new TextureRegion(down2));
-        bt1 = new Button(style2);
-        bt1.setPosition(625,531);
-        bt1.addListener(new ClickListener() {
+        bt2 = new Button(style2);
+        bt2.setPosition(625,531);
+        bt2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("2","");
                 //bagInterface.bag_flag=1;
+                System.out.println(shopInterface.bt2_flag);
+
             }
         });
-        stage.addActor(bt1);
 
         up3= new Texture(Gdx.files.internal("Button/spell3.png"));
         down3 = new Texture(Gdx.files.internal("Button/spell3.2.png"));
         style3.up = new TextureRegionDrawable(new TextureRegion(up3));
         style3.down = new TextureRegionDrawable(new TextureRegion(down3));
-        bt1 = new Button(style3);
-        bt1.setPosition(743,531);
-        bt1.addListener(new ClickListener() {
+        bt3 = new Button(style3);
+        bt3.setPosition(743,531);
+        bt3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("3","");
                 //bagInterface.bag_flag=1;
+
             }
         });
-        stage.addActor(bt1);
 
 
         up4= new Texture(Gdx.files.internal("Button/spell4.png"));
         down4 = new Texture(Gdx.files.internal("Button/spell4.2.png"));
         style4.up = new TextureRegionDrawable(new TextureRegion(up4));
         style4.down = new TextureRegionDrawable(new TextureRegion(down4));
-        bt1 = new Button(style4);
-        bt1.setPosition(862,531);
-        bt1.addListener(new ClickListener() {
+        bt4 = new Button(style4);
+        bt4.setPosition(862,531);
+        bt4.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.log("2","");
                 //bagInterface.bag_flag=1;
+
             }
         });
-        stage.addActor(bt1);
+        if(shopInterface.bt1_flag==1)
+        {
+            stage.addActor(bt1);
+        }
+        if(shopInterface.bt2_flag==1)
+        {
+            stage.addActor(bt2);
+        }
+        if(shopInterface.bt3_flag==1)
+        {
+            stage.addActor(bt3);
+        }
+        if(shopInterface.bt4_flag==1)
+        {
+            stage.addActor(bt4);
+        }
     }
     @Override
     public void create() {

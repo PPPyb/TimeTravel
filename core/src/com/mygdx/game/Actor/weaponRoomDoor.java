@@ -17,6 +17,7 @@ public class weaponRoomDoor extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
+        weaponRoomScreen.weaponRoomCollisionFlag=0;
         weaponRoomScreen.changeToMainScreen();
     }
 

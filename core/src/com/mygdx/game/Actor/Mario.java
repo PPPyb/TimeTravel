@@ -23,7 +23,7 @@ public class Mario extends Sprite {
     private float stateTimer;
     private boolean runningRight;
     public boolean flag=true;
-    public Mario(World world, PlayScreen screen){
+    public Mario(World world, PlayScreen screen,int x,int y){
         super(screen.getAtlas().findRegion("monkey"));
         this.world=world;
         currentState=State.STANDING;
@@ -49,7 +49,7 @@ public class Mario extends Sprite {
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         //defineMario(220,711);
-        defineMario(77,53);//77,53
+        defineMario(x,y);//77,53
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -314,7 +314,7 @@ public class Mario extends Sprite {
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
-    public Mario(World world, SnowMapScreen screen){
+    public Mario(World world, SnowMapScreen screen,int x,int y){
         super(screen.getAtlas().findRegion("monkey"));
         this.world=world;
         currentState=State.STANDING;
@@ -339,7 +339,94 @@ public class Mario extends Sprite {
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
-        defineMario(217,510);
+        defineMario(x,y);//217,510
+        setBounds(600,100,24,24);
+        setRegion(marioStand);
+    }
+    public Mario(World world, PortalScreen screen){
+        super(screen.getAtlas().findRegion("monkey"));
+        this.world=world;
+        currentState=State.STANDING;
+        previousState=State.STANDING;
+        stateTimer=0;
+        runningRight=true;
+        Array<TextureRegion> frame=new Array<TextureRegion>();
+        //右跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,98,48,49));
+        marioParallelRun=new Animation(0.1f,frame);
+        frame.clear();
+        //左跑
+        //上跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,147,48,49));
+        marioUpRun=new Animation(0.1f,frame);
+        frame.clear();
+        //下跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,0,48,49));
+        marioDownRun=new Animation(0.1f,frame);
+        frame.clear();
+        marioStand=new TextureRegion(getTexture(),0,0,48,49);
+        defineMario(1049,1042);
+        setBounds(600,100,24,24);
+        setRegion(marioStand);
+    }
+    public Mario(World world, SnowMapRoomScreen screen){
+        super(screen.getAtlas().findRegion("monkey"));
+        this.world=world;
+        currentState=State.STANDING;
+        previousState=State.STANDING;
+        stateTimer=0;
+        runningRight=true;
+        Array<TextureRegion> frame=new Array<TextureRegion>();
+        //右跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,98,48,49));
+        marioParallelRun=new Animation(0.1f,frame);
+        frame.clear();
+        //左跑
+        //上跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,147,48,49));
+        marioUpRun=new Animation(0.1f,frame);
+        frame.clear();
+        //下跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,0,48,49));
+        marioDownRun=new Animation(0.1f,frame);
+        frame.clear();
+        marioStand=new TextureRegion(getTexture(),0,0,48,49);
+        defineMario(374,13);
+        setBounds(600,100,24,24);
+        setRegion(marioStand);
+    }
+    public Mario(World world, GrassMapScreen screen,int x, int y){
+        super(screen.getAtlas().findRegion("monkey"));
+        this.world=world;
+        currentState=State.STANDING;
+        previousState=State.STANDING;
+        stateTimer=0;
+        runningRight=true;
+        Array<TextureRegion> frame=new Array<TextureRegion>();
+        //右跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,98,48,49));
+        marioParallelRun=new Animation(0.1f,frame);
+        frame.clear();
+        //左跑
+        //上跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,147,48,49));
+        marioUpRun=new Animation(0.1f,frame);
+        frame.clear();
+        //下跑
+        for(int i=0;i<3;i++)
+            frame.add(new TextureRegion(getTexture(),48*i,0,48,49));
+        marioDownRun=new Animation(0.1f,frame);
+        frame.clear();
+        marioStand=new TextureRegion(getTexture(),0,0,48,49);
+        defineMario(x,y);
         setBounds(600,100,24,24);
         setRegion(marioStand);
     }
@@ -441,8 +528,6 @@ public class Mario extends Sprite {
         fdef.isSensor=true;
         b2body.createFixture(fdef).setUserData("head");
     }
-    public void setXPosition(int xPosition){
-        this.b2body.getPosition().x=xPosition;
-    }
+
 
 }

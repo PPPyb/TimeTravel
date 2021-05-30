@@ -52,6 +52,6 @@ public class WeaponRoomOwner extends NPC{
 
     @Override
     public void hitOnNPC() {
-
+        weaponRoomScreen.weaponRoomCollisionFlag=1;
     }
 }

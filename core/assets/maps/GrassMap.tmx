@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="20" nextobjectid="35">
- <tileset firstgid="1" source="fireMap.tsx"/>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="21" nextobjectid="53">
+ <tileset firstgid="1" source="GrassMap.tsx"/>
  <layer id="1" name="图块层 1" width="40" height="22">
   <data encoding="csv">
 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
@@ -27,56 +27,63 @@
 841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880
 </data>
  </layer>
- <objectgroup id="2" name="对象层 1">
-  <object id="4" x="3.05849" y="-3.05849" width="139.161" height="186.568"/>
-  <object id="5" x="3.05849" y="183.51" width="77.9916" height="475.596"/>
-  <object id="6" x="81.0501" y="605.582" width="319.613" height="51.9944"/>
-  <object id="7" x="142.22" y="-6.11699" width="218.682" height="47.4067"/>
-  <object id="8" x="197.273" y="51.9944" width="163.629" height="68.8161"/>
-  <object id="9" x="321.142" y="298.203" width="110.106" height="108.577"/>
-  <object id="10" x="333.376" y="107.047" width="84.1086" height="68.8161"/>
-  <object id="12" x="337.964" y="172.805" width="77.9916" height="125.398"/>
-  <object id="13" x="437.365" y="373.136" width="159.042" height="29.0557"/>
-  <object id="14" x="516.885" y="336.434" width="82.5793" height="33.6434"/>
-  <object id="15" x="527.59" y="301.262" width="181.98" height="24.4679"/>
-  <object id="16" x="600.994" y="333.376" width="55.0529" height="19.8802"/>
-  <object id="17" x="503.122" y="96.3426" width="114.694" height="201.861"/>
-  <object id="18" x="498.534" y="3.05849" width="122.34" height="91.7548"/>
-  <object id="19" x="620.874" y="-6.11699" width="582.643" height="18.351"/>
-  <object id="20" x="1188.22" y="15.2925" width="12.234" height="645.342"/>
-  <object id="21" x="400.663" y="648.401" width="792.15" height="13.7632"/>
-  <object id="22" x="637.696" y="38.2312" width="84.1086" height="122.34"/>
-  <object id="23" x="787.562" y="19.8802" width="70.3454" height="157.512"/>
-  <object id="24" x="865.554" y="19.8802" width="93.2841" height="122.34"/>
-  <object id="25" x="911.431" y="91.7548" width="84.1086" height="149.866"/>
-  <object id="26" x="954.25" y="67.2869" width="21.4095" height="38.2312"/>
-  <object id="27" x="1000.13" y="19.8802" width="139.161" height="230.916"/>
-  <object id="28" x="1140.82" y="18.351" width="44.3482" height="136.103"/>
-  <object id="30" x="819.676" y="377.724" width="152.925" height="74.9331"/>
-  <object id="31" x="857.907" y="301.262" width="90.2256" height="74.9331"/>
-  <object id="32" x="838.027" y="333.376" width="51.9944" height="45.8774"/>
-  <object id="33" x="975.659" y="412.897" width="97.8718" height="111.635"/>
-  <object id="34" x="1081.18" y="461.833" width="107.047" height="183.51"/>
+ <objectgroup id="3" name="对象层 1">
+  <object id="5" x="533" y="291.333" width="37.3333" height="45.3333"/>
+  <object id="6" x="551.667" y="337.667" width="229.667" height="21.3333"/>
+  <object id="12" x="574" y="299.333" width="78.6667" height="42.6667"/>
+  <object id="13" x="753.333" y="235.333" width="63.3333" height="139.333"/>
+  <object id="14" x="724.667" y="294.667" width="53.3333" height="37.3333"/>
+  <object id="15" x="625.333" y="361.333" width="100.667" height="25.3333"/>
+  <object id="16" x="658.667" y="385.333" width="60.6667" height="45.3333"/>
+  <object id="17" x="704.667" y="432.667" width="44.6667" height="20"/>
+  <object id="18" x="599.333" y="472" width="34.6667" height="45.3333"/>
+  <object id="20" x="638.667" y="495.333" width="44.6667" height="52"/>
+  <object id="21" x="654" y="551.333" width="74.6667" height="67.3333"/>
+  <object id="22" x="730" y="558" width="26.6667" height="60.6667"/>
+  <object id="23" x="765.333" y="575.333" width="20.6667" height="45.3333"/>
+  <object id="24" x="758" y="575.333" width="44.6667" height="45.3333"/>
+  <object id="25" x="804" y="592.667" width="46" height="26.6667"/>
+  <object id="27" x="12" y="556" width="48" height="98"/>
+  <object id="28" x="57" y="568" width="56" height="85"/>
+  <object id="29" x="115" y="577" width="38" height="84"/>
+  <object id="30" x="154" y="590" width="25" height="73"/>
+  <object id="31" x="184" y="602" width="20" height="55"/>
+  <object id="32" x="205" y="614" width="30" height="43"/>
+  <object id="33" x="238" y="614" width="34" height="43"/>
+  <object id="35" x="636" y="617" width="344" height="44"/>
+  <object id="36" x="491" y="633" width="59" height="25"/>
+  <object id="37" x="599" y="631" width="37" height="31"/>
+  <object id="38" x="437" y="173" width="36" height="75"/>
+  <object id="39" x="827" y="30" width="107" height="150"/>
+  <object id="40" x="1063" y="329" width="46" height="230"/>
+  <object id="41" x="1010" y="400" width="103" height="169"/>
+  <object id="42" x="14" y="4" width="510" height="128"/>
+  <object id="44" x="522" y="-1" width="41" height="130"/>
+  <object id="45" x="765" y="0" width="58" height="228"/>
+  <object id="46" x="9" y="128" width="161" height="67"/>
+  <object id="48" x="14" y="196" width="65" height="104"/>
+  <object id="49" x="391" y="396" width="89" height="146"/>
+  <object id="50" x="335" y="542" width="41" height="77"/>
  </objectgroup>
- <objectgroup id="3" name="对象层 2"/>
- <objectgroup id="4" name="对象层 3"/>
- <objectgroup id="5" name="对象层 4"/>
- <objectgroup id="6" name="对象层 5"/>
- <objectgroup id="7" name="对象层 6"/>
- <objectgroup id="8" name="对象层 7"/>
- <objectgroup id="9" name="对象层 8"/>
- <objectgroup id="10" name="对象层 9">
-  <object id="3" x="194.214" y="148.337" width="32.1142" height="21.4095"/>
+ <objectgroup id="4" name="对象层 2"/>
+ <objectgroup id="5" name="对象层 3"/>
+ <objectgroup id="6" name="对象层 4"/>
+ <objectgroup id="7" name="对象层 5"/>
+ <objectgroup id="8" name="对象层 6"/>
+ <objectgroup id="9" name="对象层 7"/>
+ <objectgroup id="10" name="对象层 8"/>
+ <objectgroup id="11" name="对象层 9">
+  <object id="1" x="616.212" y="66.9294" width="41.5424" height="33.4647"/>
  </objectgroup>
- <objectgroup id="11" name="smallMapdoor">
-  <object id="2" x="867.083" y="140.691" width="33.6434" height="48.9359"/>
+ <objectgroup id="12" name="对象层 10"/>
+ <objectgroup id="13" name="对象层 11"/>
+ <objectgroup id="14" name="对象层 12"/>
+ <objectgroup id="15" name="对象层 13">
+  <object id="52" x="1028" y="154.667" width="28" height="56"/>
  </objectgroup>
- <objectgroup id="12" name="对象层 11"/>
- <objectgroup id="13" name="对象层 12"/>
- <objectgroup id="14" name="对象层 13"/>
- <objectgroup id="15" name="对象层 14"/>
- <objectgroup id="16" name="对象层 15"/>
- <objectgroup id="17" name="对象层 16"/>
- <objectgroup id="18" name="对象层 17"/>
- <objectgroup id="19" name="对象层 18"/>
+ <objectgroup id="16" name="对象层 14"/>
+ <objectgroup id="17" name="对象层 15"/>
+ <objectgroup id="18" name="对象层 16"/>
+ <objectgroup id="19" name="对象层 17"/>
+ <objectgroup id="20" name="对象层 18"/>
 </map>

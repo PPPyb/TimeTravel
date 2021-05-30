@@ -45,7 +45,7 @@ public class SnowMapScreen implements Screen {
     private TextureAtlas atlasGambleRoomOwner;
     private shopInterface shopInterface;
     public static int smallFireMapCollisionFlag=0;
-    public SnowMapScreen(MyGdxGame game){
+    public SnowMapScreen(MyGdxGame game,int x,int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
         atlasGambleRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
@@ -63,7 +63,7 @@ public class SnowMapScreen implements Screen {
         world=new World(new Vector2(0,0),true);
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
-        mario=new Mario(world,this);
+        mario=new Mario(world,this,x,y);
         world.setContactListener(new WorldContactListener());
         //gambleRoomOwner=new GambleRoomOwner(this,32f,32f);
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
@@ -100,8 +100,8 @@ public class SnowMapScreen implements Screen {
         world.step(1/60f,6,2);
         mario.update(dt);
         npcCommunication.update();
-        //System.out.println(mario.b2body.getPosition().x);
-        //System.out.println(mario.b2body.getPosition().y);
+        System.out.println(mario.b2body.getPosition().x);
+        System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -124,6 +124,8 @@ public class SnowMapScreen implements Screen {
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
+        if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515)
+            game.setScreen(new SnowMapRoomScreen(game));
         if(PlayScreen.PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -163,9 +165,9 @@ public class SnowMapScreen implements Screen {
         hud.dispose();
         changeMapInterface.dispose();
     }
-    public static void changeToMainScreen(){
-        game.setScreen(new PlayScreen(game));
-    }
+//    public static void changeToMainScreen(){
+//        game.setScreen(new SnowMapScreen(game,217,600));
+//    }
 
     public World getWorld() {
         return this.world;

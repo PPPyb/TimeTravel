@@ -42,7 +42,7 @@ public class OutsidegambleRoomScreen implements Screen {
     private TextureAtlas atlas;
     private TextureAtlas atlasRepairman;
     private Repairman repairman;
-
+    private ChangeMapInterface changeMapInterface;
 
     public OutsidegambleRoomScreen(MyGdxGame game) {
         atlas = new TextureAtlas("character/zhy.pack");
@@ -53,6 +53,7 @@ public class OutsidegambleRoomScreen implements Screen {
         //texture=new Texture("5.png");
         hud = new Hud(game.batch);
         npcCommunication = new NpcCommunication(game.batch);
+        changeMapInterface=new ChangeMapInterface(game.batch);
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("maps/7.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / MyGdxGame.PPM);
@@ -140,7 +141,14 @@ public class OutsidegambleRoomScreen implements Screen {
         if (PlayScreen.collisionFlag == 1) {
             npcCommunication.stage.draw();
         }
-
+        if(PlayScreen.PortalCollisionFlag==1) {
+            Gdx.gl.glClearColor(0, 0, 0, 1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            hud.stage.dispose();
+            PlayScreen.PlayScreenFlag=1;
+            Gdx.input.setInputProcessor(changeMapInterface.stage);
+            changeMapInterface.render();
+        }
 
         //if(Gdx.input.isKeyPressed(Input.Keys.U))
         //changeScreen();
