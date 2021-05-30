@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+//import com.sun.org.apache.xml.internal.serializer.utils.MsgKey;
 
 public class Level {
     float stateTime = 0;
@@ -47,6 +48,7 @@ public class Level {
     Indix indix;
     Jack jack;
     Miku miku;
+    Misaka misaka;
     //敌人
     TestMonster[] testMonster;
     int testMonsterCnt;
@@ -72,6 +74,8 @@ public class Level {
     int bulletDangMasCnt=0;
     IndixQskillEffect indixQskillEffect;
     BulletTitanic bulletTitanic;
+
+    MisakaEskillEffect misakaEskillEffect;
 
 
     public Level(String mapRoute,String backGroundRoute)
@@ -104,6 +108,7 @@ public class Level {
         indix = new Indix(0,0,this);
         jack = new Jack(0,0,this);
         miku = new Miku(0,0,this);
+        misaka = new Misaka(0,0,this);
         //敌人
         testMonster = new TestMonster[100];
         testMonsterCnt = 0;
@@ -125,6 +130,7 @@ public class Level {
         kiritoQskillEffect = new KiritoQskillEffect(-10000,-10000,this);
         bulletDangMas = new BulletDangMa[1000];
         indixQskillEffect = new IndixQskillEffect(-10000,-10000,this);
+        misakaEskillEffect = new MisakaEskillEffect(-10000,-10000,this);
 
         initPlayer();
         initEnemies();
@@ -162,6 +168,7 @@ public class Level {
         indix.restore();
         jack.restore();
         miku.restore();
+        misaka.restore();
         //update怪物
         updateObjects(testMonster,testMonsterCnt,deltaTime);
         updateObjects(beefs,beefsCnt,deltaTime);
@@ -177,6 +184,7 @@ public class Level {
         kiritoQskillEffect.update(deltaTime);
         indixQskillEffect.update(deltaTime);
         bulletTitanic.update(deltaTime);
+        misakaEskillEffect.update(deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -215,6 +223,7 @@ public class Level {
         kiritoQskillEffect.draw(batch);
         indixQskillEffect.draw(batch);
         bulletTitanic.draw(batch);
+        misakaEskillEffect.draw(batch);
         //画角色
         curPlayer.draw(batch);
 
@@ -301,6 +310,11 @@ public class Level {
                 indix.setPosition(curPlayer.position);
                 indix.setVelocity(curPlayer.velocity);
                 curPlayer = indix;
+                break;
+            case 3:
+                misaka.setPosition(curPlayer.position);
+                misaka.setVelocity(curPlayer.velocity);
+                curPlayer = misaka;
                 break;
             case 11:
                 jack.setPosition(curPlayer.position);

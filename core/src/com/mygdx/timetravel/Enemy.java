@@ -8,6 +8,7 @@ public class Enemy extends Creature{
     EnemyAI enemyAI;
     Boolean discovered = false;
     float sight = 300;
+    int originWalkSpeed;
 
     public Enemy(float x,float y,Level level)
     {
@@ -25,7 +26,7 @@ public class Enemy extends Creature{
     public void alerted()
     {
         discovered = true;
-        walkSpeed*=10;
+        originWalkSpeed = walkSpeed*=10;
         enemyAI.jumpRate/=10;
         enemyAI.patternInterval = 0;
         enemyAI.jumpInterval = 1;
@@ -38,7 +39,9 @@ public class Enemy extends Creature{
         updateAnime();
     }
 
-    public void init(){}
+    public void init(){
+        originWalkSpeed = walkSpeed;
+    }
     public void initAnime(){}
     public void updateAnime(){}
 

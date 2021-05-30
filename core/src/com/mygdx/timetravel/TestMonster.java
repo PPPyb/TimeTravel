@@ -21,6 +21,7 @@ public class TestMonster extends Enemy{
         curHP = maxHP = 2000f;
         walkSpeed = 50;
         enemyAI = new EnemyAITest(this);
+        super.init();
     }
 
     @Override

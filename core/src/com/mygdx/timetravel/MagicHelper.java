@@ -1,6 +1,8 @@
 package com.mygdx.timetravel;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class MagicHelper {
@@ -34,11 +36,17 @@ public class MagicHelper {
         miku = new Magic(level);
         miku.setMaxCD(10);
         miku.setMusicEffect(39);
+        misakaQ = new Magic(level);
+        misakaQ.setMaxCD(20);
+        misakaE = new Magic(level);
+        misakaE.setMaxCD(10);
     }
 
     public boolean magicIsCasting()
     {
         if(azunaQ.casting||azunaE.casting|| kiritoQ.casting|| kiritoE.casting||indixQ.casting||indixE.casting|| jack.casting|| miku.casting)
+            return true;
+        else if(misakaE.casting||misakaQ.casting)
             return true;
         return false;
     }
@@ -172,6 +180,45 @@ public class MagicHelper {
         }
 
     }
+
+    Magic misakaQ;
+    Magic misakaE;
+    public void misakaMagic()
+    {
+        misakaE.CD-=deltaTime;
+        misakaQ.CD-=deltaTime;
+        if (misakaE.casting) {
+            //effect
+            level.misakaEskillEffect.setPosition(new Vector2(misakaE.castX,misakaE.castY));
+            misakaE.castTime += deltaTime;
+            if(misakaE.castTime>5)
+            {
+                misakaE.stop();
+            }
+        }
+        else
+        {
+            level.misakaEskillEffect.setPosition(new Vector2(-20000,-3000));
+            for(int i = 0;i < level.testMonsterCnt;i++)
+            {
+                TestMonster monster = level.testMonster[i];
+                    monster.walkSpeed = monster.originWalkSpeed;
+
+
+            }
+            for(int i = 0;i < level.beefsCnt;i++)
+            {
+                Beef monster = level.beefs[i];
+
+                    monster.walkSpeed = monster.originWalkSpeed;
+
+
+            }
+        }
+
+
+    }
+
     public void update(float deltaTime)
     {
         player = level.curPlayer;
@@ -179,6 +226,7 @@ public class MagicHelper {
         azunaMagic();
         kiritoMagic();
         indixMagic();
+        misakaMagic();
         jackMagic();
         mikuMagic();
     }
