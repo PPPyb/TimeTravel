@@ -15,8 +15,8 @@ public class MainTitle {
     public MainTitle()
     {
         batch = new SpriteBatch();
-        bkg = new Texture(Gdx.files.internal("MainTitle/background.png"));
-        anykey = new Texture(Gdx.files.internal("MainTitle/anykey.png"));
+        bkg = new Texture(Gdx.files.internal("MainTitle/background.jpg"));
+        //anykey = new Texture(Gdx.files.internal("MainTitle/anykey.png"));
         timetravel = new Texture(Gdx.files.internal("MainTitle/timetravel.png"));
     }
     public void render()
@@ -30,8 +30,8 @@ public class MainTitle {
 
         batch.begin();
         batch.draw(bkg,-bkgOffset,0);
-        batch.draw(bkg,Constants.WINDOWS_WIDTH-bkgOffset,0);
-        batch.draw(timetravel,Constants.WINDOWS_WIDTH/2-timetravel.getWidth()/2,400);
+        batch.draw(bkg,0,0);
+        //batch.draw(timetravel,Constants.WINDOWS_WIDTH/2-timetravel.getWidth()/2,400);
         if(((int)bkgOffset)%100<50)
             batch.draw(anykey,Constants.WINDOWS_WIDTH/2-anykey.getWidth()/2,100);
         batch.end();
