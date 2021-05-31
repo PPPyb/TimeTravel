@@ -56,6 +56,8 @@ public class Level {
     int beefsCnt;
     Zeus[] zeus;
     int zeusCnt;
+    Alien[] alien;
+    int alienCnt;
     //子弹和技能特效
     BulletTest[] bulletTest;
     int bulletTestCnt;
@@ -120,6 +122,8 @@ public class Level {
         beefsCnt = 0;
         zeus = new Zeus[100];
         zeusCnt = 0;
+        alien = new Alien[100];
+        alienCnt = 0;
         //子弹
         bulletTest = new BulletTest[1000];
         bulletTestCnt = 0;
@@ -180,6 +184,7 @@ public class Level {
         updateObjects(testMonster,testMonsterCnt,deltaTime);
         updateObjects(beefs,beefsCnt,deltaTime);
         updateObjects(zeus,zeusCnt,deltaTime);
+        updateObjects(alien, alienCnt, deltaTime);
         //update子弹
         updateObjects(bulletTest,bulletTestCnt,deltaTime);
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
@@ -222,6 +227,7 @@ public class Level {
         drawObjects(testMonster,testMonsterCnt,batch);
         drawObjects(beefs,beefsCnt,batch);
         drawObjects(zeus, zeusCnt, batch);
+        drawObjects(alien, alienCnt, batch);
         //画子弹
         drawObjects(bulletTest,bulletTestCnt,batch);
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
@@ -297,6 +303,16 @@ public class Level {
                 Rectangle r = recObj.getRectangle();
                 System.out.println(r);
                 zeus[zeusCnt++] = new Zeus(r.x, r.y, this);
+            }
+        }
+        if(map.getLayers().get("AlienLayer")!=null)
+        {
+            MapObjects objects = map.getLayers().get("AlienLayer").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                System.out.println(r);
+                alien[alienCnt++] = new Alien(r.x, r.y, this);
             }
         }
     }
@@ -401,6 +417,14 @@ public class Level {
         }
         for(int i = 0;i < beefsCnt;i++) {
             if (beefs[i].isAlive)
+                return;
+        }
+        for(int i = 0;i < zeusCnt;i++) {
+            if (zeus[i].isAlive)
+                return;
+        }
+        for(int i = 0;i < alienCnt;i++) {
+            if (alien[i].isAlive)
                 return;
         }
         //victory achieved
