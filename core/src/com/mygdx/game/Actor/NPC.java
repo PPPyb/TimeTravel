@@ -18,6 +18,8 @@ public abstract class NPC extends Sprite {
     protected weaponRoomScreen screen7;
     protected FireMapScreen screen8;
     protected PortalScreen screen9;
+    protected SnowMapScreen screen10;
+    protected SnowMapRoomScreen screen11;
     public Body b2body;
     public NPC(PlayScreen screen, float x, float y){
         this.world=screen.getWorld();
@@ -78,6 +80,18 @@ public abstract class NPC extends Sprite {
         this.screen9=screen9;
         setPosition(x,y);
         defineNPC(226,100);
+    }
+    public NPC(SnowMapScreen screen10, float x, float y){
+        this.world=screen10.getWorld();
+        this.screen10=screen10;
+        setPosition(x,y);
+        defineNPC(x,y);
+    }
+    public NPC(SnowMapRoomScreen screen11, float x, float y){
+        this.world=screen11.getWorld();
+        this.screen11=screen11;
+        setPosition(x,y);
+        defineNPC(x,y);
     }
 
     protected abstract void defineNPC(float x,float y);

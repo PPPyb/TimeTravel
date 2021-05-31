@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.GambleRoomOwner;
 import com.mygdx.game.Actor.Mario;
 import com.mygdx.game.Actor.Repairman;
+import com.mygdx.game.Actor.SnowMapNPC;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
@@ -39,16 +40,16 @@ public class SnowMapScreen implements Screen {
     private TextureAtlas atlas;
     private Music music;
     private Repairman repairman;
-    private GambleRoomOwner gambleRoomOwner;
+    private SnowMapNPC snowMapNPC;
     private ChangeMapInterface changeMapInterface;
     private TextureAtlas atlasRepairman;
-    private TextureAtlas atlasGambleRoomOwner;
+    private TextureAtlas atlasSnowMapNPC;
     private shopInterface shopInterface;
     public static int smallFireMapCollisionFlag=0;
     public SnowMapScreen(MyGdxGame game,int x,int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
-        atlasGambleRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
+        atlasSnowMapNPC=new TextureAtlas("character/SnowMapNPC.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -65,7 +66,7 @@ public class SnowMapScreen implements Screen {
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
         world.setContactListener(new WorldContactListener());
-        //gambleRoomOwner=new GambleRoomOwner(this,32f,32f);
+        snowMapNPC=new SnowMapNPC(this,32f,32f);
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
         // music.play();
@@ -73,8 +74,8 @@ public class SnowMapScreen implements Screen {
     public TextureAtlas getRepairmanAtlas(){
         return  atlasRepairman;
     }
-    public TextureAtlas getGambleRoomOwnerAtlas(){
-        return atlasGambleRoomOwner;
+    public TextureAtlas getSnowMapAtlas(){
+        return atlasSnowMapNPC;
     }
     public TextureAtlas getAtlas(){
         return  atlas;
@@ -100,8 +101,9 @@ public class SnowMapScreen implements Screen {
         world.step(1/60f,6,2);
         mario.update(dt);
         npcCommunication.update();
-        System.out.println(mario.b2body.getPosition().x);
-        System.out.println(mario.b2body.getPosition().y);
+        snowMapNPC.update(dt);
+        //System.out.println(mario.b2body.getPosition().x);
+        //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -118,14 +120,17 @@ public class SnowMapScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        snowMapNPC.draw(game.batch);
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
-        if(PlayScreen.collisionFlag==1) {
-            npcCommunication.stage.draw();
-        }
-        if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515)
+//        if(SnowMapRoomScreen.SnowMapRoomCollisionFlag==1) {
+//            npcCommunication.stage.draw();
+//        }
+        if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515) {
+            SnowMapRoomScreen.SnowMapRoomFlag=0;
             game.setScreen(new SnowMapRoomScreen(game));
+        }
         if(PlayScreen.PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

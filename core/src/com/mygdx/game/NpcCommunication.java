@@ -78,6 +78,8 @@ public class NpcCommunication implements Disposable {
         }
         if(PlayScreen.PlayScreenFlag==1 && repairmanHomeScreen.repairmanHomeFlag==0)
             CommunicationLabel.setText(CommunicationRepairmanHomeScreenContents[communicationCount]);
+        if(PlayScreen.PlayScreenFlag==1 && SnowMapRoomScreen.SnowMapRoomFlag==0)
+            CommunicationLabel.setText(CommunicationRepairmanHomeScreenContents[communicationCount]);
         if(communicationCount>5){
             communicationCount=0;
             PlayScreen.collisionFlag=0;

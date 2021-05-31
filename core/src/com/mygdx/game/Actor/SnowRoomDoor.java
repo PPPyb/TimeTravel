@@ -16,6 +16,7 @@ public class SnowRoomDoor extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         SnowMapRoomScreen.changeToMainScreen();
+        SnowMapRoomScreen.SnowMapRoomFlag=1;
         //FireMapScreen.smallFireMapCollisionFlag=1;
     }
 }

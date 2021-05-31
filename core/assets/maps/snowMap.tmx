@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="20" nextobjectid="53">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="30" tileheight="30" infinite="0" nextlayerid="21" nextobjectid="56">
  <tileset firstgid="1" source="snowMap.tsx"/>
  <layer id="1" name="图块层 1" width="40" height="22">
   <data encoding="csv">
@@ -43,7 +43,7 @@
   <object id="17" x="-6.92373" y="252.716" width="126.935" height="72.6991"/>
   <object id="18" x="124.627" y="258.486" width="99.2401" height="84.2387"/>
   <object id="19" x="229.637" y="245.792" width="50.774" height="69.2373"/>
-  <object id="20" x="512.356" y="13.8475" width="167.323" height="131.551"/>
+  <object id="20" x="508.894" y="13.8475" width="170.785" height="81.931"/>
   <object id="21" x="952.012" y="62.3135" width="107.318" height="93.4703"/>
   <object id="22" x="1104.33" y="79.6229" width="87.7005" height="107.318"/>
   <object id="23" x="1043.17" y="35.7726" width="105.01" height="83.0847"/>
@@ -75,6 +75,7 @@
   <object id="49" x="1072.02" y="296.566" width="53.0819" height="116.549"/>
   <object id="50" x="1125.11" y="413.116"/>
   <object id="52" x="1048.94" y="444.272" width="94.6243" height="39.2344"/>
+  <object id="53" x="561.976" y="98.0861" width="111.934" height="34.6186"/>
  </objectgroup>
  <objectgroup id="3" name="对象层 2"/>
  <objectgroup id="4" name="对象层 3"/>
