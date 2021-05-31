@@ -253,7 +253,7 @@ public class MagicHelper {
                 misakaQ.stop();
             }
         }
-    }
+}
 
     public void update(float deltaTime)
     {

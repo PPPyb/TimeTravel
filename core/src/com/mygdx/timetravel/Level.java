@@ -403,6 +403,10 @@ public class Level {
             if (beefs[i].isAlive)
                 return;
         }
+        for(int i = 0;i < zeusCnt;i++) {
+            if (zeus[i].isAlive)
+                return;
+        }
         //victory achieved
         victory = true;
         if(victoryTime < 0)
