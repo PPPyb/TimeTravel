@@ -1,5 +1,4 @@
 package com.mygdx.timetravel;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -9,7 +8,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Beef extends Enemy{
+public class Alien extends Enemy{
 
     //frames of animation
     TextureRegion[] idleFrames;
@@ -29,7 +28,7 @@ public class Beef extends Enemy{
     Boolean[] attacked = {false,false,false};
 
 
-    public Beef(float x, float y, Level level)
+    public Alien(float x, float y, Level level)
     {
         super(x, y,level);
 
@@ -41,55 +40,38 @@ public class Beef extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 6500f;
-        walkSpeed = 40;
+        curHP = maxHP = 2500f;
+        walkSpeed = 50;
         enemyAI = new EnemyAIBeef(this);
-        super.init();
     }
 
     @Override
     public void initAnime() {
-        idleFrames = new TextureRegion[20];
-        walkLeftFrames = new TextureRegion[40];
-        walkRightFrames = new TextureRegion[40];
-        attackFrames = new TextureRegion[25];
-        dieFrames = new TextureRegion[35];
-        String str = "";
-        for(int i = 0;i < 20;i++)
+        idleFrames = new TextureRegion[15];
+        walkLeftFrames = new TextureRegion[15];
+        walkRightFrames = new TextureRegion[15];
+        attackFrames = new TextureRegion[21];
+        dieFrames = new TextureRegion[21];
+        super.init();
+        for(int i = 0;i < 15;i++)
         {
-            if(i < 10)
-                str = "0";
-            else
-                str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Idle/Idle_"+str+i+".png"));
+            Texture temp = new Texture(Gdx.files.internal("Alien/fly/alien_10-fly" + i + ".png"));
             idleFrames[i] = new TextureRegion(temp);
         }
-        for(int i = 0;i < 40;i++) {
-            if (i < 10)
-                str = "0";
-            else
-                str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Walk/Walk_" + str + i + ".png"));
+        for(int i = 0;i < 15;i++) {
+            Texture temp = new Texture(Gdx.files.internal("Alien/fly/alien_10-fly" + i + ".png"));
             walkLeftFrames[i] = new TextureRegion(temp);
             walkRightFrames[i] = new TextureRegion(temp);
             walkRightFrames[i].flip(true, false);
         }
-        for(int i = 0;i < 25;i++)
+        for(int i = 0;i < 21;i++)
         {
-            if(i < 10)
-                str = "0";
-            else
-                str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Attack/Attack_"+str+i+".png"));
+            Texture temp = new Texture(Gdx.files.internal("Alien/attack/alien_10-attack" + i + ".png"));
             attackFrames[i] = new TextureRegion(temp);
         }
-        for(int i = 0;i < 35;i++)
+        for(int i = 0;i < 21;i++)
         {
-            if(i < 10)
-                str = "0";
-            else
-                str = "";
-            Texture temp = new Texture(Gdx.files.internal("Beef/Death/Death_"+str+i+".png"));
+            Texture temp = new Texture(Gdx.files.internal("Alien/die/alien_10-die"+ i + ".png"));
             dieFrames[i] = new TextureRegion(temp);
         }
 
@@ -121,8 +103,8 @@ public class Beef extends Enemy{
         if(!isAlive){
             dieTime += Gdx.graphics.getDeltaTime();
             curFrame = (TextureRegion) dieAni.getKeyFrame(dieTime);
-            if(dieTime>1.75)
-                curFrame = dieFrames[34];
+            if(dieTime>1.05)
+                curFrame = dieFrames[20];
             return;
         }
         switch (walkState)
@@ -152,13 +134,13 @@ public class Beef extends Enemy{
             return;
         enemyAI.act();
         if(attackTime>0.75&&!attacked[0]) {
-                attacked[0] = true;
-                Player player = level.curPlayer;
-                Rectangle r1 = new Rectangle(getX(),getY(),width,height);
-                Rectangle r2 = new Rectangle(player.getX(),player.getY(),player.width,player.height);
-                if(Intersector.overlaps(r1,r2)) {
-                    player.loseHP(300);
-                }
+            attacked[0] = true;
+            Player player = level.curPlayer;
+            Rectangle r1 = new Rectangle(getX(),getY(),width,height);
+            Rectangle r2 = new Rectangle(player.getX(),player.getY(),player.width,player.height);
+            if(Intersector.overlaps(r1,r2)) {
+                player.loseHP(300);
+            }
 
         }
     }

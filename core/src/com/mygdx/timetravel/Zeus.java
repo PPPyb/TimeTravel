@@ -41,8 +41,8 @@ public class Zeus extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 500f;
-        walkSpeed = 40;
+        curHP = maxHP = 1500f;
+        walkSpeed = 50;
         enemyAI = new EnemyAIBeef(this);
     }
 
@@ -97,10 +97,10 @@ public class Zeus extends Enemy{
         idleAni.setPlayMode(Animation.PlayMode.LOOP);
 
 
-        walkLAni = new Animation(0.01f, walkLeftFrames);
+        walkLAni = new Animation(0.08f, walkLeftFrames);
         walkLAni.setPlayMode(Animation.PlayMode.LOOP);
 
-        walkRAni = new Animation(0.01F, walkRightFrames);
+        walkRAni = new Animation(0.08f, walkRightFrames);
         walkRAni.setPlayMode(Animation.PlayMode.LOOP);
 
         attackAni = new Animation(0.05f, attackFrames);
