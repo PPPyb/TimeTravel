@@ -54,6 +54,8 @@ public class Level {
     int testMonsterCnt;
     Beef[] beefs;
     int beefsCnt;
+    Zeus[] zeus;
+    int zeusCnt;
     //子弹和技能特效
     BulletTest[] bulletTest;
     int bulletTestCnt;
@@ -116,6 +118,8 @@ public class Level {
         testMonsterCnt = 0;
         beefs = new Beef[100];
         beefsCnt = 0;
+        zeus = new Zeus[100];
+        zeusCnt = 0;
         //子弹
         bulletTest = new BulletTest[1000];
         bulletTestCnt = 0;
@@ -175,6 +179,7 @@ public class Level {
         //update怪物
         updateObjects(testMonster,testMonsterCnt,deltaTime);
         updateObjects(beefs,beefsCnt,deltaTime);
+        updateObjects(zeus,zeusCnt,deltaTime);
         //update子弹
         updateObjects(bulletTest,bulletTestCnt,deltaTime);
         updateObjects(bulletTestPenetrate,bulletTestPenetrateCnt,deltaTime);
@@ -216,6 +221,7 @@ public class Level {
         //画怪物
         drawObjects(testMonster,testMonsterCnt,batch);
         drawObjects(beefs,beefsCnt,batch);
+        drawObjects(zeus, zeusCnt, batch);
         //画子弹
         drawObjects(bulletTest,bulletTestCnt,batch);
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
@@ -281,6 +287,16 @@ public class Level {
                 Rectangle r = recObj.getRectangle();
                 System.out.println(r);
                 beefs[beefsCnt++] = new Beef(r.x, r.y, this);
+            }
+        }
+        if(map.getLayers().get("ZeusLayer")!=null)
+        {
+            MapObjects objects = map.getLayers().get("ZeusLayer").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                System.out.println(r);
+                zeus[zeusCnt++] = new Zeus(r.x, r.y, this);
             }
         }
     }

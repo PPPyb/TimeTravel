@@ -27,7 +27,7 @@ public class IndixQskillEffect extends Bullets{
 
     @Override
     public void initAnime() {
-        
+
         effect = new TextureRegion[21];
 
         for(int i = 0;i < 21;i++)
@@ -76,6 +76,13 @@ public class IndixQskillEffect extends Bullets{
             if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei)
                 level.beefs[i].setVelocity(new Vector2(10*(centerX-monsterX),10*(centerY-monsterY)));
         }
+        for(int i = 0;i < level.zeusCnt;i++)
+        {
+            float monsterX = level.zeus[i].getX();
+            float monsterY = level.zeus[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei)
+                level.zeus[i].setVelocity(new Vector2(10*(centerX-monsterX),10*(centerY-monsterY)));
+        }
     }
 
     public void quandoushipaomo()
@@ -95,6 +102,13 @@ public class IndixQskillEffect extends Bullets{
             float monsterY = level.beefs[i].getY();
             if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei/4)
                 level.beefs[i].loseHP(damage);
+        }
+        for(int i = 0;i < level.zeusCnt;i++)
+        {
+            float monsterX = level.zeus[i].getX();
+            float monsterY = level.zeus[i].getY();
+            if(Math.sqrt((centerX-monsterX)*(centerX-monsterX)+(centerY-monsterY)*(centerY-monsterY) )< heidongfanwei/4)
+                level.zeus[i].loseHP(damage);
         }
     }
 
