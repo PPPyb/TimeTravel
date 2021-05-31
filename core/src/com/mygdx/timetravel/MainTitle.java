@@ -16,7 +16,7 @@ public class MainTitle {
     {
         batch = new SpriteBatch();
         bkg = new Texture(Gdx.files.internal("MainTitle/background.jpg"));
-        //anykey = new Texture(Gdx.files.internal("MainTitle/anykey.png"));
+        anykey = new Texture(Gdx.files.internal("MainTitle/anykey.png"));
         timetravel = new Texture(Gdx.files.internal("MainTitle/timetravel.png"));
     }
     public void render()
