@@ -46,19 +46,19 @@ public class NpcCommunication implements Disposable {
         CommunicationPlayScreenContents[5]="";
         CommunicationGambleScreenContents=new String[100];
         //赌博室第一次对话内容
-        CommunicationGambleScreenContents[0]="hi";
-        CommunicationGambleScreenContents[1]="zhy";
-        CommunicationGambleScreenContents[2]="sb";
-        CommunicationGambleScreenContents[3]="o";
-        CommunicationGambleScreenContents[4]="hh";
+        CommunicationGambleScreenContents[0]="Actually, I was held hostage by the owner of the casino room .";
+        CommunicationGambleScreenContents[1]="because I owed money";
+        CommunicationGambleScreenContents[2]="Can you help me? ";
+        CommunicationGambleScreenContents[3]="I can tell you some tips and tricks";
+        CommunicationGambleScreenContents[4]="for venturing to other planets.";
         CommunicationGambleScreenContents[5]="";
         CommunicationRepairmanHomeScreenContents=new String[100];
         //家里对话
-        CommunicationRepairmanHomeScreenContents[0]="hi";
-        CommunicationRepairmanHomeScreenContents[1]="zhy";
-        CommunicationRepairmanHomeScreenContents[2]="sb";
-        CommunicationRepairmanHomeScreenContents[3]="oooo";
-        CommunicationRepairmanHomeScreenContents[4]="hh";
+        CommunicationRepairmanHomeScreenContents[0]="First of all, thank you for your help.";
+        CommunicationRepairmanHomeScreenContents[1]="You need to go to the store now to buy some skills.";
+        CommunicationRepairmanHomeScreenContents[2]="We're going to other planets later.";
+        CommunicationRepairmanHomeScreenContents[3]="Time travel,";
+        CommunicationRepairmanHomeScreenContents[4]="here we come.";
         CommunicationRepairmanHomeScreenContents[5]="hh";
         table.bottom();
         table.setFillParent(true);
