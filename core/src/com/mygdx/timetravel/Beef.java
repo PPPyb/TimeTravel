@@ -145,7 +145,6 @@ public class Beef extends Enemy{
 
     @Override
     public void update(float deltaTime) {
-        System.out.println(walkSpeed);
         attackTime += deltaTime;
         updateAnime();
         super.update(deltaTime);

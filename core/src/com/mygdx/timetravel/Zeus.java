@@ -41,7 +41,7 @@ public class Zeus extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 4000f;
+        curHP = maxHP = 500f;
         walkSpeed = 40;
         enemyAI = new EnemyAIBeef(this);
     }
@@ -111,8 +111,8 @@ public class Zeus extends Enemy{
 
         curFrame = new TextureRegion();
         curFrame = idleFrames[0];
-        setWidth(180);
-        setHeight(250);
+        setWidth(210);
+        setHeight(300);
         setBounds();
     }
 
@@ -165,7 +165,7 @@ public class Zeus extends Enemy{
 
     @Override
     public void draw(Batch batch) {
-        batch.draw(curFrame,getX()-150,getY()-25);
+        batch.draw(curFrame,getX()-190,getY()-100);
         TextureRegion imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
         batch.draw(imgHP,getX(),getY()+height+5,curHP*width/maxHP,5);
     }

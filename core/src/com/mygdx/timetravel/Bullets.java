@@ -123,6 +123,17 @@ public class Bullets extends AbstractGameObject{
                     this.destructed();
             }
         }
+        for(int i = 0;i < level.zeusCnt;i++)
+        {
+            Zeus monster = level.zeus[i];
+            Rectangle r1 = new Rectangle(getX(),getY(),width,height);
+            Rectangle r2 = new Rectangle(monster.getX(),monster.getY(),monster.width,monster.height);
+            if(Intersector.overlaps(r1,r2)) {
+                monster.loseHP(damage);
+                if(!penetrate)
+                    this.destructed();
+            }
+        }
     }
     public void collidePlayer()
     {
