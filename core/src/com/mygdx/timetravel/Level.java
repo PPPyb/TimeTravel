@@ -79,6 +79,10 @@ public class Level {
     IndixQskillEffect indixQskillEffect;
     BulletTitanic bulletTitanic;
 
+    //coin
+    PropsCoinTest[] propsCoinTest;
+    int propsCoinTestCnt = 0;
+
     Railgun railgun[];
     MisakaEskillEffect misakaEskillEffect;
     int railgunCut;
@@ -143,8 +147,13 @@ public class Level {
         misakaEskillEffect = new MisakaEskillEffect(-10000,-10000,this);
         railgun = new Railgun[1000];
 
+        propsCoinTest = new PropsCoinTest[1000];
+        propsCoinTestCnt = 0;
+
         initPlayer();
         initEnemies();
+        initCoins();
+
 
         magicHelper = new MagicHelper(this);
     }
@@ -200,6 +209,8 @@ public class Level {
         bulletTitanic.update(deltaTime);
         misakaEskillEffect.update(deltaTime);
 
+        //coin
+        updateObjects(propsCoinTest,propsCoinTestCnt,deltaTime);
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -245,7 +256,8 @@ public class Level {
 
         //画角色
         curPlayer.draw(batch);
-
+        //coin
+        drawObjects(propsCoinTest,propsCoinTestCnt,batch);
         batch.end();
 
         //绘制GUI
@@ -313,6 +325,18 @@ public class Level {
                 Rectangle r = recObj.getRectangle();
                 System.out.println(r);
                 alien[alienCnt++] = new Alien(r.x, r.y, this);
+            }
+        }
+    }
+
+    public void initCoins(){
+        if(map.getLayers().get("Coins")!=null)
+        {
+            MapObjects objects = map.getLayers().get("Coins").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                propsCoinTest[propsCoinTestCnt++] = new PropsCoinTest(r.x,r.y,this);
             }
         }
     }
@@ -417,10 +441,6 @@ public class Level {
         }
         for(int i = 0;i < beefsCnt;i++) {
             if (beefs[i].isAlive)
-                return;
-        }
-        for(int i = 0;i < zeusCnt;i++) {
-            if (zeus[i].isAlive)
                 return;
         }
         for(int i = 0;i < alienCnt;i++) {
