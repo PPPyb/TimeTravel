@@ -72,6 +72,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
         button[0].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
                 PlayScreen.changeToFireMapScreen();
             }
@@ -79,6 +80,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
         button[1].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
                 PlayScreen.changeToGrassMapScreen();
             }
@@ -86,6 +88,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
         button[2].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
                 PlayScreen.changeToSnowMapScreen();
             }

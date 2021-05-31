@@ -42,7 +42,7 @@ public class FireMapScreen implements Screen {
     private Repairman repairman;
     private FireMapNPC fireMapNPC;
     private TextureAtlas atlasRepairman;
-    private TextureAtlas atlasGambleRoomOwner;
+    private TextureAtlas atlasFireMapNPC;
     private shopInterface shopInterface;
     private ChangeMapInterface changeMapInterface;
     public static int smallFireMapCollisionFlag=0;
@@ -50,7 +50,7 @@ public class FireMapScreen implements Screen {
     public FireMapScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
-        atlasGambleRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
+        atlasFireMapNPC=new TextureAtlas("character/FireMapNPC.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -76,8 +76,8 @@ public class FireMapScreen implements Screen {
     public TextureAtlas getRepairmanAtlas(){
         return  atlasRepairman;
     }
-    public TextureAtlas getGambleRoomOwnerAtlas(){
-        return atlasGambleRoomOwner;
+    public TextureAtlas getFireMapAtlas(){
+        return atlasFireMapNPC;
     }
     public TextureAtlas getAtlas(){
         return  atlas;

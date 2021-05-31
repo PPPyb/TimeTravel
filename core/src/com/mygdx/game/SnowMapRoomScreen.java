@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.Mario;
+import com.mygdx.game.Actor.SnowMapNPC;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
@@ -34,14 +35,20 @@ public class SnowMapRoomScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private Mario mario;
     private TextureAtlas atlas;
+    private TextureAtlas atlasSnowMapNPC;
     private Music music;
+    private SnowMapNPC snowMapNPC;
+    public NpcCommunication npcCommunication;
+    public static int SnowMapRoomFlag=1;
     public SnowMapRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
+        atlasSnowMapNPC=new TextureAtlas("character/SnowMapNPC.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
         //texture=new Texture("5.png");
         hud=new Hud(game.batch);
+        npcCommunication=new NpcCommunication(game.batch);
         mapLoader=new TmxMapLoader();
         map=mapLoader.load("maps/snowRoom.tmx");
         renderer=new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
@@ -50,6 +57,7 @@ public class SnowMapRoomScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
+        snowMapNPC=new SnowMapNPC(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
@@ -58,6 +66,9 @@ public class SnowMapRoomScreen implements Screen {
     public TextureAtlas getAtlas(){
         return  atlas;
     }
+    public TextureAtlas getSnowMapAtlas(){
+        return atlasSnowMapNPC;
+    }
     @Override
     public void show() {
 
@@ -65,8 +76,10 @@ public class SnowMapRoomScreen implements Screen {
     public void update(float dt){
         world.step(1/60f,6,2);
         mario.update(dt);
-        System.out.println(mario.b2body.getPosition().x);
-        System.out.println(mario.b2body.getPosition().y);
+        snowMapNPC.update(dt);
+        npcCommunication.update();
+        //System.out.println(mario.b2body.getPosition().x);
+        //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -83,7 +96,11 @@ public class SnowMapRoomScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        snowMapNPC.draw(game.batch);
         game.batch.end();
+        if(PlayScreen.collisionFlag==1) {
+            npcCommunication.stage.draw();
+        }
     }
 
     @Override
@@ -117,5 +134,7 @@ public class SnowMapRoomScreen implements Screen {
     public static void changeToMainScreen(){
         game.setScreen(new SnowMapScreen(game,520,500));
     }
-
+    public World getWorld() {
+        return this.world;
+    }
 }

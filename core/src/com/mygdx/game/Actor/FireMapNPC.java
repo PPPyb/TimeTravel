@@ -22,11 +22,11 @@ public class FireMapNPC extends NPC{
         super(screen, 800, 100);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getGambleRoomOwnerAtlas().findRegion("GambleRoomOwner"),48*i,0,48,49));
+            frames.add(new TextureRegion(screen.getFireMapAtlas().findRegion("FireMapNPC"),48*i,0,48,49));
         GambleRoomOwnerStand=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getGambleRoomOwnerAtlas().findRegion("GambleRoomOwner"),48*i,49,48,49));
+            frames.add(new TextureRegion(screen.getFireMapAtlas().findRegion("FireMapNPC"),48*i,49,48,49));
         FireMapNPCLeftRun=new Animation(0.1f,frames);
         frames.clear();
         stateTime=0;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="30" tileheight="30" infinite="0" nextlayerid="20" nextobjectid="396">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="30" tileheight="30" infinite="0" nextlayerid="22" nextobjectid="396">
  <tileset firstgid="1" source="7.tsx"/>
  <layer id="1" name="图块层 1" width="40" height="40">
   <data encoding="csv">
@@ -411,5 +411,5 @@
  <objectgroup id="16" name="对象层 15"/>
  <objectgroup id="17" name="对象层 16"/>
  <objectgroup id="18" name="对象层 17"/>
- <objectgroup id="19" name="对象层 18"/>
+ <objectgroup id="21" name="对象层 18"/>
 </map>
