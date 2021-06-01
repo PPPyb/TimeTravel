@@ -10,14 +10,18 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.FireMapScreen;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayScreen;
 import com.mygdx.game.gambleRoomScreen;
 
 public class FireMapNPC extends NPC{
     private Animation FireMapNPCLeftRun;
+    private Animation FireMapNPCRightRun;
     private float stateTime;
     private Animation GambleRoomOwnerStand;
     private Array<TextureRegion> frames;
+    private Animation turnAround;
     public BodyDef bdef;
+    private boolean back=true;
     public FireMapNPC(FireMapScreen screen, float x, float y) {
         super(screen, 800, 100);
         frames=new Array<TextureRegion>();
@@ -28,6 +32,14 @@ public class FireMapNPC extends NPC{
         for(int i=0;i<3;i++)
             frames.add(new TextureRegion(screen.getFireMapAtlas().findRegion("FireMapNPC"),48*i,49,48,49));
         FireMapNPCLeftRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getFireMapAtlas().findRegion("FireMapNPC"),48*i,98,48,49));
+        FireMapNPCRightRun=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getFireMapAtlas().findRegion("FireMapNPC"),48*i,0,48,49));
+        turnAround=new Animation(0.1f,frames);
         frames.clear();
         stateTime=0;
         setBounds(getX(),getY(),24,24);
@@ -63,8 +75,19 @@ public class FireMapNPC extends NPC{
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) GambleRoomOwnerStand.getKeyFrame(stateTime, true));
         }
+        if(PlayScreen.collisionFlag==1){
+            b2body.setLinearVelocity(0,0);
+            setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+            setRegion((TextureRegion) turnAround.getKeyFrame(stateTime, true));
+        }
+        if(b2body.getPosition().x>430) {
+            back = false;
+        }
+        else if(b2body.getPosition().x<300)
+            back=true;
     }
     @Override
     public void hitOnNPC() {
+        PlayScreen.collisionFlag=1;
     }
 }

@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Actor.NormalPeople;
 import com.mygdx.game.tools.MyInputProcessor;
 
 public class NpcCommunication implements Disposable {
@@ -25,6 +26,10 @@ public class NpcCommunication implements Disposable {
     private String[] CommunicationPlayScreenContents;
     private String[] CommunicationGambleScreenContents;
     private String[] CommunicationRepairmanHomeScreenContents;
+    private String[] CommunicationPlayScreenNormalman1Contents;
+    private String[] CommunicationPlayScreenNormalman2Contents;
+    private String[] CommunicationFireMapScreenContents;
+    private String[] CommunicationSnowMapScreenContents;
     private MyInputProcessor inputProcessor;
     public  Texture repairmanFace;
     private Batch batch;
@@ -52,6 +57,22 @@ public class NpcCommunication implements Disposable {
         CommunicationGambleScreenContents[3]="I can tell you some tips and tricks";
         CommunicationGambleScreenContents[4]="for venturing to other planets.";
         CommunicationGambleScreenContents[5]="";
+        CommunicationFireMapScreenContents=new String[100];
+        //火焰地图对话
+        CommunicationFireMapScreenContents[0]="First of all, thank you for your help.";
+        CommunicationFireMapScreenContents[1]="You need to go to the store now to buy some skills.";
+        CommunicationFireMapScreenContents[2]="We're going to other planets later.";
+        CommunicationFireMapScreenContents[3]="Time travel,";
+        CommunicationFireMapScreenContents[4]="here we come.";
+        CommunicationFireMapScreenContents[5]="hh";
+        CommunicationSnowMapScreenContents=new String[100];
+        //冰雪地图对话
+        CommunicationSnowMapScreenContents[0]="First of all, thank you for your help.";
+        CommunicationSnowMapScreenContents[1]="You need to go to the store now to buy some skills.";
+        CommunicationSnowMapScreenContents[2]="We're going to other planets later.";
+        CommunicationSnowMapScreenContents[3]="Time travel,";
+        CommunicationSnowMapScreenContents[4]="here we come.";
+        CommunicationSnowMapScreenContents[5]="hh";
         CommunicationRepairmanHomeScreenContents=new String[100];
         //家里对话
         CommunicationRepairmanHomeScreenContents[0]="First of all, thank you for your help.";
@@ -80,6 +101,10 @@ public class NpcCommunication implements Disposable {
             CommunicationLabel.setText(CommunicationRepairmanHomeScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && SnowMapRoomScreen.SnowMapRoomFlag==0)
             CommunicationLabel.setText(CommunicationRepairmanHomeScreenContents[communicationCount]);
+        if(PlayScreen.PlayScreenFlag==1 && SnowMapScreen.SnowMapFlag==0)
+            CommunicationLabel.setText(CommunicationSnowMapScreenContents[communicationCount]);
+        if(PlayScreen.PlayScreenFlag==1 && FireMapScreen.FireMapFlag==0)
+            CommunicationLabel.setText( CommunicationFireMapScreenContents[communicationCount]);
         if(communicationCount>5){
             communicationCount=0;
             PlayScreen.collisionFlag=0;

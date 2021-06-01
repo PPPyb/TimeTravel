@@ -1,5 +1,6 @@
 package com.mygdx.game.Actor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -9,6 +10,8 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.*;
 
 public class NormalPeople extends NPC {
+    public static int Normalman1Flag=1;
+    public static int Normalman2Flag=1;
     private float stateTime;
     private Animation NormalPeopleRightRun;
     private Animation turnAround;
@@ -121,6 +124,7 @@ public class NormalPeople extends NPC {
 
     @Override
     public void hitOnNPC() {
+        Gdx.app.log("Normalman","Collision");
 
     }
 }

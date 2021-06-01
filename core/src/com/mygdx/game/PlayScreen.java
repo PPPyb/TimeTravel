@@ -182,10 +182,24 @@ public class PlayScreen implements Screen {
             PlayScreen.PlayScreenFlag = 1;
             gambleRoomScreen.gambleRoomFlag = 0;
         }
-        if (collisionFlag == 1 && NpcCommunication.communicationCount<5) {
+        if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman1Flag==1&&NormalPeople.Normalman2Flag==1) {
             npcCommunication.render();
             npcCommunication.stage.draw();
+//            NormalPeople.Normalman1Flag=1;
+//            NormalPeople.Normalman2Flag=1;
         }
+//        if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman1Flag==0) {
+//            npcCommunication.render();
+//            npcCommunication.stage.draw();
+//            NormalPeople.Normalman1Flag=1;
+////            NormalPeople.Normalman2Flag=1;
+//        }
+//        if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman2Flag==0) {
+//            npcCommunication.render();
+//            npcCommunication.stage.draw();
+////            NormalPeople.Normalman1Flag=1;
+//            NormalPeople.Normalman2Flag=1;
+//        }
 //        if(PortalCollisionFlag==1){
 //            changeToFireMapScreen();
 //        }

@@ -74,6 +74,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
+                FireMapScreen.FireMapFlag=0;
                 PlayScreen.changeToFireMapScreen();
             }
         });
@@ -90,6 +91,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
+                SnowMapScreen.SnowMapFlag=0;
                 PlayScreen.changeToSnowMapScreen();
             }
         });

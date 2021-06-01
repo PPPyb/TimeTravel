@@ -22,6 +22,7 @@ import com.mygdx.game.tools.WorldContactListener;
 
 public class FireMapScreen implements Screen {
     public static MyGdxGame game;
+    public static int FireMapFlag=1;
     private Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gamePort;

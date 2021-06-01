@@ -22,6 +22,7 @@ import com.mygdx.game.tools.WorldContactListener;
 
 public class SnowMapScreen implements Screen {
     public static MyGdxGame game;
+    public static int SnowMapFlag=1;
     private Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
@@ -132,9 +133,9 @@ public class SnowMapScreen implements Screen {
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
-//        if(SnowMapRoomScreen.SnowMapRoomCollisionFlag==1) {
-//            npcCommunication.stage.draw();
-//        }
+        if(PlayScreen.collisionFlag==1) {
+            npcCommunication.stage.draw();
+        }
         if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515) {
             SnowMapRoomScreen.SnowMapRoomFlag=0;
             game.setScreen(new SnowMapRoomScreen(game));
