@@ -16,10 +16,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Actor.GambleRoomOwner;
-import com.mygdx.game.Actor.Mario;
-import com.mygdx.game.Actor.Repairman;
-import com.mygdx.game.Actor.SnowMapNPC;
+import com.mygdx.game.Actor.*;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 
@@ -44,12 +41,15 @@ public class SnowMapScreen implements Screen {
     private ChangeMapInterface changeMapInterface;
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasSnowMapNPC;
+    private TextureAtlas atlasSnowBall;
+    private SnowBall[] snowBall;
     private shopInterface shopInterface;
     public static int smallFireMapCollisionFlag=0;
     public SnowMapScreen(MyGdxGame game,int x,int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
         atlasSnowMapNPC=new TextureAtlas("character/SnowMapNPC.pack");
+        atlasSnowBall= new TextureAtlas("character/Ball.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -65,6 +65,10 @@ public class SnowMapScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
+        snowBall=new SnowBall[5];
+        for(int i=0;i<5;i++) {
+            snowBall[i] = new SnowBall(this, 500, 20+30*i);
+        }
         world.setContactListener(new WorldContactListener());
         snowMapNPC=new SnowMapNPC(this,32f,32f);
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
@@ -100,6 +104,8 @@ public class SnowMapScreen implements Screen {
         handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
+        for(int i=0;i<5;i++)
+        snowBall[i].update(dt);
         npcCommunication.update();
         snowMapNPC.update(dt);
         //System.out.println(mario.b2body.getPosition().x);
@@ -121,6 +127,8 @@ public class SnowMapScreen implements Screen {
         game.batch.begin();
         mario.draw(game.batch);
         snowMapNPC.draw(game.batch);
+        for(int i=0;i<5;i++)
+        snowBall[i].draw(game.batch);
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
@@ -144,6 +152,9 @@ public class SnowMapScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
+    }
+    public TextureAtlas getSnowBallAtlas() {
+        return atlasSnowBall;
     }
 
     @Override
