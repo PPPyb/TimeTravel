@@ -20,6 +20,7 @@ public abstract class NPC extends Sprite {
     protected PortalScreen screen9;
     protected SnowMapScreen screen10;
     protected SnowMapRoomScreen screen11;
+    protected GrassMapScreen screen12;
     public Body b2body;
     public NPC(PlayScreen screen, float x, float y){
         this.world=screen.getWorld();
@@ -90,6 +91,12 @@ public abstract class NPC extends Sprite {
     public NPC(SnowMapRoomScreen screen11, float x, float y){
         this.world=screen11.getWorld();
         this.screen11=screen11;
+        setPosition(x,y);
+        defineNPC(x,y);
+    }
+    public NPC(GrassMapScreen screen12, float x, float y){
+        this.world=screen12.getWorld();
+        this.screen12=screen12;
         setPosition(x,y);
         defineNPC(x,y);
     }

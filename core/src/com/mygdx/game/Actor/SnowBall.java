@@ -6,10 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.FireMapScreen;
-import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.PlayScreen;
-import com.mygdx.game.SnowMapScreen;
+import com.mygdx.game.*;
 
 public class SnowBall extends NPC{
     private float stateTime;
@@ -42,6 +39,16 @@ public class SnowBall extends NPC{
         super(screen, x,y);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
+            frames.add(new TextureRegion(screen.getSnowBallAtlas().findRegion("ball"),48*i,96,48,48));
+        SnowBallRun=new Animation(0.1f,frames);
+        frames.clear();
+        stateTime=0;
+        setBounds(getX(),getY(),24,24);
+    }
+    public SnowBall(GrassMapScreen screen, float x, float y) {
+        super(screen, x,y);
+        frames=new Array<TextureRegion>();
+        for(int i=3;i<6;i++)
             frames.add(new TextureRegion(screen.getSnowBallAtlas().findRegion("ball"),48*i,96,48,48));
         SnowBallRun=new Animation(0.1f,frames);
         frames.clear();
