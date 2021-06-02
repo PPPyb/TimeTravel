@@ -32,10 +32,10 @@ public class Misaka extends Player{
                     level.railgunCut = 0;
 
             if (relativeX > 0) {
-                level.railgun[level.railgunCut] = new Railgun(getX() - 50, getY() - 50, level, true);
+                level.railgun[level.railgunCut] = new Railgun(getX() - 300, getY() - 50, level, true);
                 level.railgun[level.railgunCut].setVelocity(new Vector2(1000, 0));
             } else {
-                level.railgun[level.railgunCut] = new Railgun(getX() - 50, getY() - 50, level, false);
+                level.railgun[level.railgunCut] = new Railgun(getX() - 300, getY() - 50, level, false);
                 level.railgun[level.railgunCut].setVelocity(new Vector2(-1000, 0));
             }
             level.railgunCut++;

@@ -12,7 +12,7 @@ public class CameraHelper {
     private final float MAX_ZOOM_OUT = 2f;
 
     private Vector2 position;
-    private float zoom;
+    public float zoom;
 
     Boolean isBackGround;
 
@@ -25,6 +25,10 @@ public class CameraHelper {
     public void update(float deltaTime)
     {
 
+    }
+    public void zoom(float a)
+    {
+            zoom = a;
     }
     public void trackTarget(AbstractGameObject target)
     {
