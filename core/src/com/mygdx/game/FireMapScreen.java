@@ -128,7 +128,7 @@ public class FireMapScreen implements Screen {
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
-        if(mario.b2body.getPosition().x>=821 && mario.b2body.getPosition().x<=841 && mario.b2body.getPosition().y>220) {
+        if(mario.b2body.getPosition().x>=825 && mario.b2body.getPosition().x<=835 && mario.b2body.getPosition().y>220 && mario.b2body.getPosition().y<240) {
             //SnowMapRoomScreen.SnowMapRoomFlag=0;
             game.setScreen(new FireMapRoomScreen(game));
         }
