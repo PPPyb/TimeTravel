@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="30" tileheight="30" infinite="0" nextlayerid="22" nextobjectid="23">
+ <tileset firstgid="1" source="FireMapRoom.tsx"/>
+ <layer id="1" name="图块层 1" width="15" height="12">
+  <data encoding="csv">
+1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,
+31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,
+46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,
+61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,
+76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,
+91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,
+106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,
+121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,
+136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,
+151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,
+166,167,168,169,170,171,172,173,174,175,176,177,178,179,180
+</data>
+ </layer>
+ <objectgroup id="2" name="对象层 1"/>
+ <objectgroup id="3" name="对象层 2">
+  <object id="1" x="18.351" y="20.1861" width="30.2791" height="316.095"/>
+  <object id="2" x="41.7484" y="18.351" width="394.087" height="28.9028"/>
+  <object id="3" x="144.514" y="45.8774" width="24.7738" height="121.116"/>
+  <object id="4" x="216.083" y="190.85" width="47.2537" height="49.5476"/>
+  <object id="5" x="47.2537" y="311.049" width="167.911" height="24.7738"/>
+  <object id="6" x="240.856" y="313.343" width="191.309" height="23.8563"/>
+  <object id="7" x="405.097" y="47.2537" width="27.9852" height="262.419"/>
+  <object id="9" x="189.474" y="336.281" width="25.2326" height="23.3975"/>
+  <object id="11" x="239.939" y="336.281" width="25.6913" height="26.1501"/>
+  <object id="12" x="334.905" y="45.8774" width="68.3573" height="97.2601"/>
+  <object id="13" x="340.41" y="145.89" width="64.6871" height="11.0106"/>
+  <object id="14" x="52.3002" y="52.3002" width="91.296" height="44.0423"/>
+  <object id="15" x="74.3214" y="94.9662" width="45.4186" height="24.7738"/>
+  <object id="16" x="172.958" y="50.4651" width="64.6871" height="67.8986"/>
+  <object id="17" x="239.48" y="50.4651" width="95.8838" height="61.0169"/>
+  <object id="18" x="308.296" y="144.055" width="29.3615" height="25.2326"/>
+  <object id="19" x="50.4651" y="268.383" width="18.8097" height="41.7484"/>
+  <object id="20" x="381.7" y="217.918" width="26.1501" height="23.8563"/>
+ </objectgroup>
+ <objectgroup id="4" name="对象层 3"/>
+ <objectgroup id="5" name="对象层 4"/>
+ <objectgroup id="6" name="对象层 5"/>
+ <objectgroup id="7" name="对象层 6"/>
+ <objectgroup id="8" name="对象层 7"/>
+ <objectgroup id="9" name="对象层 8"/>
+ <objectgroup id="11" name="对象层 9"/>
+ <objectgroup id="12" name="对象层 10"/>
+ <objectgroup id="13" name="对象层 11"/>
+ <objectgroup id="15" name="对象层 12"/>
+ <objectgroup id="16" name="对象层 13"/>
+ <objectgroup id="17" name="对象层 14">
+  <object id="22" x="215.624" y="358.303" width="24.7738"/>
+ </objectgroup>
+ <objectgroup id="18" name="对象层 15"/>
+ <objectgroup id="19" name="对象层 16"/>
+ <objectgroup id="20" name="对象层 17"/>
+ <objectgroup id="21" name="对象层 18"/>
+</map>

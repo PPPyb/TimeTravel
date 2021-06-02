@@ -89,6 +89,11 @@ public class B2WorldCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             new GrassMapDoor(world, map, rect);
         }
+        //火房间门
+        for (MapObject object : map.getLayers().get(14).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            new FireMapRoomDoor(world, map, rect);
+        }
     }
 
 }

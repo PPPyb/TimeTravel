@@ -263,7 +263,7 @@ public class PlayScreen implements Screen {
         game.setScreen(new gambleRoomScreen(game));
     }
     public static void changeToFireMapScreen(){
-        game.setScreen(new FireMapScreen(game));
+        game.setScreen(new FireMapScreen(game,250,510));
     }
     public static void changeToSnowMapScreen(){
         game.setScreen(new SnowMapScreen(game,217,510));
