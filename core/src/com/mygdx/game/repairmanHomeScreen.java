@@ -95,6 +95,7 @@ public class repairmanHomeScreen implements Screen {
         repairman.draw(game.batch);
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
         }
     }

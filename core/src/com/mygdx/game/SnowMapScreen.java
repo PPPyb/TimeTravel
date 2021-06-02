@@ -142,6 +142,7 @@ public class SnowMapScreen implements Screen {
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
         }
         if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515) {

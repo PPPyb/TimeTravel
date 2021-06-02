@@ -126,6 +126,7 @@ public class FireMapScreen implements Screen {
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
         }
         if(mario.b2body.getPosition().x>=825 && mario.b2body.getPosition().x<=835 && mario.b2body.getPosition().y>220 && mario.b2body.getPosition().y<240) {

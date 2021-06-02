@@ -100,6 +100,7 @@ public class FireMapRoomScreen implements Screen {
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
+            npcCommunication.render();
         }
     }
 

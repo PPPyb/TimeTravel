@@ -99,6 +99,7 @@ public class SnowMapRoomScreen implements Screen {
         snowMapNPC.draw(game.batch);
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
         }
     }

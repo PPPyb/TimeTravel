@@ -132,6 +132,7 @@ public class gambleRoomScreen implements Screen {
             gambleGameInterface.render();
         }
         if(PlayScreen.collisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
         }
     }

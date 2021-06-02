@@ -40,7 +40,7 @@ public class NpcCommunication implements Disposable {
         table = new Table();
         inputProcessor = new MyInputProcessor();
         batch=new SpriteBatch();
-        repairmanFace=new Texture("character/repairmanFace.png");
+        repairmanFace=new Texture("Button/dialogue.png");
         CommunicationPlayScreenContents=new String[100];
         //主屏第一次对话内容
         CommunicationPlayScreenContents[0]="Hello, my name is Bob.";
@@ -81,11 +81,11 @@ public class NpcCommunication implements Disposable {
         CommunicationRepairmanHomeScreenContents[3]="Time travel,";
         CommunicationRepairmanHomeScreenContents[4]="here we come.";
         CommunicationRepairmanHomeScreenContents[5]="hh";
-        table.bottom();
+        table.setPosition(0,-130);
         table.setFillParent(true);
         BitmapFont font=new BitmapFont();
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        CommunicationLabel = new Label("", new Label.LabelStyle(font,Color.WHITE));
+        CommunicationLabel = new Label("", new Label.LabelStyle(font,Color.BLACK));
         table.add(CommunicationLabel).expandX();
         stage.addActor(table);
     }
@@ -112,7 +112,7 @@ public class NpcCommunication implements Disposable {
     }
     public void render() {
         batch.begin();
-        batch.draw(repairmanFace,100,-20,456,134);
+        batch.draw(repairmanFace,0,0,1280,100);
         batch.end();
     }
     @Override
