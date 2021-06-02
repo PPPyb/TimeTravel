@@ -63,7 +63,7 @@ public class EnemyAITest extends EnemyAI{
     @Override
     public void attack() {
         if(enemy.discovered)
-        for(int i = 0;i < 6;i++)
+        for(int i = 0;i < 3;i++)
          enemy.attack();
     }
 }

@@ -2,6 +2,8 @@ package com.mygdx.timetravel;
 
 import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Vector2;
 
 
@@ -20,6 +22,7 @@ public class Azuna extends Player{
         agility = 15;
         intelligence = 20;
         init();
+
     }
 
 
@@ -105,5 +108,11 @@ public class Azuna extends Player{
     public void jump(int speed) {
         if(!level.magicHelper.azunaQ.casting)
             super.jump(speed);
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        super.draw(batch);
+
     }
 }
