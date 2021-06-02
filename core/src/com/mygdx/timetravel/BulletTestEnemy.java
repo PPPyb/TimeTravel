@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class BulletTestEnemy extends Bullets{
 
 
-    ParticleEffect rainbowEffect;
+
     public BulletTestEnemy(float x, float y, Level level)
     {
         super(x,y,level);
@@ -21,23 +21,20 @@ public class BulletTestEnemy extends Bullets{
         speed = 300;
         bounceAble = true;
         bounceMax = 1;
-        rainbowEffect = new ParticleEffect();
-        rainbowEffect.load(Gdx.files.internal("particle/rainbow.particle"),Gdx.files.internal("particle"));
-        rainbowEffect.start();
+
 
     }
 
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        rainbowEffect.setPosition(getX(),getY());
-        rainbowEffect.update(deltaTime);
+
         collidePlayer();
     }
 
     @Override
     public void draw(Batch batch) {
         super.draw(batch);
-        rainbowEffect.draw(batch);
+
     }
 }
