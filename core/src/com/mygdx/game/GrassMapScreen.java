@@ -68,7 +68,7 @@ public class GrassMapScreen implements Screen {
         mario=new Mario(world,this,x,y);
         snowBall=new SnowBall[5];
         for(int i=0;i<5;i++) {
-            snowBall[i] = new SnowBall(this, 500, 20+30*i);
+            snowBall[i] = new SnowBall(this, 495, 20+30*i);
         }
         //fireMapNPC=new FireMapNPC(this,32f,32f);
         world.setContactListener(new WorldContactListener());

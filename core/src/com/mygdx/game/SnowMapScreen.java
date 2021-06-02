@@ -46,6 +46,7 @@ public class SnowMapScreen implements Screen {
     private SnowBall[] snowBall;
     private shopInterface shopInterface;
     public static int smallFireMapCollisionFlag=0;
+    public static int StaticBallFlag=0;
     public SnowMapScreen(MyGdxGame game,int x,int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
@@ -66,9 +67,16 @@ public class SnowMapScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
-        snowBall=new SnowBall[5];
-        for(int i=0;i<5;i++) {
-            snowBall[i] = new SnowBall(this, 500, 20+30*i);
+        snowBall=new SnowBall[10];
+        if(StaticBallFlag==0) {
+            for (int i = 0; i < 8; i++) {
+                snowBall[i] = new SnowBall(this, 500, 20 + 20 * i);
+            }
+        }
+        if(StaticBallFlag==1) {
+            for (int i = 0; i < 8; i++) {
+                snowBall[i] = new SnowBall(this, 495, 20 + 20 * i);
+            }
         }
         world.setContactListener(new WorldContactListener());
         snowMapNPC=new SnowMapNPC(this,32f,32f);
@@ -105,7 +113,7 @@ public class SnowMapScreen implements Screen {
         handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
-        for(int i=0;i<5;i++)
+        for(int i=0;i<8;i++)
         snowBall[i].update(dt);
         npcCommunication.update();
         snowMapNPC.update(dt);
@@ -128,7 +136,7 @@ public class SnowMapScreen implements Screen {
         game.batch.begin();
         mario.draw(game.batch);
         snowMapNPC.draw(game.batch);
-        for(int i=0;i<5;i++)
+        for(int i=0;i<8;i++)
         snowBall[i].draw(game.batch);
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
@@ -138,6 +146,7 @@ public class SnowMapScreen implements Screen {
         }
         if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515) {
             SnowMapRoomScreen.SnowMapRoomFlag=0;
+            StaticBallFlag=1;
             game.setScreen(new SnowMapRoomScreen(game));
         }
         if(PlayScreen.PortalCollisionFlag==1) {

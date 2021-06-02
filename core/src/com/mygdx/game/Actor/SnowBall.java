@@ -65,8 +65,30 @@ public class SnowBall extends NPC{
         bdef=new BodyDef();
         //NPC初始位置
         bdef.position.set(x,y);
-        bdef.type=BodyDef.BodyType.DynamicBody;
-        bdef.linearVelocity.set(10,0);//731,199,731,446
+        if(x<500) {
+            bdef.type = BodyDef.BodyType.DynamicBody;
+            bdef.linearVelocity.set(10, 0);
+        }
+        else
+            bdef.type=BodyDef.BodyType.StaticBody;//731,199,731,446
+        b2body=world.createBody(bdef);
+        FixtureDef fdef=new FixtureDef();
+        CircleShape shape=new CircleShape();
+        shape.setRadius(8/ MyGdxGame.PPM);
+        //NPC分类
+        fdef.filter.categoryBits=MyGdxGame.NPC_BIT;
+        //NPC可以交互的对象
+        fdef.filter.maskBits=MyGdxGame.DOOR_BIT | MyGdxGame.DEFAULT_BIT | MyGdxGame.NPC_BIT | MyGdxGame.Brick_BIT | MyGdxGame.MARIO_BIT;
+        fdef.shape=shape;
+        fdef.filter.categoryBits=MyGdxGame.NPC_OBJECT_BIT;
+        b2body.createFixture(fdef).setUserData(this);
+    }
+    protected void defineStaticNPC(float x, float y) {
+        bdef=new BodyDef();
+        //NPC初始位置
+        bdef.position.set(x,y);
+        bdef.type=BodyDef.BodyType.StaticBody;
+        //bdef.linearVelocity.set(10,0);//731,199,731,446
         b2body=world.createBody(bdef);
 
         FixtureDef fdef=new FixtureDef();
