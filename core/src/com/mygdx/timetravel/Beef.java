@@ -16,12 +16,14 @@ public class Beef extends Enemy{
     TextureRegion[] walkLeftFrames;
     TextureRegion[] walkRightFrames;
     TextureRegion[] attackFrames;
+    TextureRegion[] attackRFrames;
     TextureRegion[] dieFrames;
     //animation
     Animation idleAni;
     Animation walkLAni;
     Animation walkRAni;
     Animation attackAni;
+    Animation attackRAni;
     Animation dieAni;
 
     float dieTime = 0;
@@ -53,6 +55,7 @@ public class Beef extends Enemy{
         walkLeftFrames = new TextureRegion[40];
         walkRightFrames = new TextureRegion[40];
         attackFrames = new TextureRegion[25];
+        attackRFrames = new TextureRegion[25];
         dieFrames = new TextureRegion[35];
         String str = "";
         for(int i = 0;i < 20;i++)
@@ -82,6 +85,8 @@ public class Beef extends Enemy{
                 str = "";
             Texture temp = new Texture(Gdx.files.internal("Beef/Attack/Attack_"+str+i+".png"));
             attackFrames[i] = new TextureRegion(temp);
+            attackRFrames[i] = new TextureRegion((temp));
+            attackRFrames[i].flip(true, false);
         }
         for(int i = 0;i < 35;i++)
         {
@@ -105,6 +110,9 @@ public class Beef extends Enemy{
 
         attackAni = new Animation(0.05f, attackFrames);
         attackAni.setPlayMode(Animation.PlayMode.LOOP);
+
+        attackRAni = new Animation(0.05f, attackRFrames);
+        attackRAni.setPlayMode(Animation.PlayMode.LOOP);
 
         dieAni = new Animation(0.05f, dieFrames);
         dieAni.setPlayMode(Animation.PlayMode.LOOP);
@@ -139,7 +147,18 @@ public class Beef extends Enemy{
                 break;
         }
         if(attackTime<1.25)
-            curFrame = (TextureRegion) attackAni.getKeyFrame(attackTime);
+        {
+            switch(walkState)
+            {
+                default:
+                case "LEFT":
+                    curFrame = (TextureRegion) attackAni.getKeyFrame(attackTime);
+                    break;
+                case "RIGHT":
+                    curFrame = (TextureRegion) attackRAni.getKeyFrame(attackTime);
+            }
+        }
+
         super.updateAnime();
     }
 
