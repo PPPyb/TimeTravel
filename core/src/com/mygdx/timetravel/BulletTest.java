@@ -15,7 +15,7 @@ public class BulletTest extends Bullets{
         curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/ballBullet.png")));
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
-        damage = 100;
+        damage = 200;
         MPConsume = 5f;
         speed = 600;
         bounceAble = true;
@@ -28,7 +28,7 @@ public class BulletTest extends Bullets{
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        rainbowEffect.setPosition(getX(),getY());
+        rainbowEffect.setPosition(getX()+width/2,getY()+height/2);
         rainbowEffect.update(deltaTime);
         collideEnemy();
     }

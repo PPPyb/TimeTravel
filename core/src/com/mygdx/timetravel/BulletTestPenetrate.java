@@ -3,12 +3,16 @@ package com.mygdx.timetravel;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class BulletTestPenetrate extends Bullets{
 
     TextureRegion[] boom;
     Animation boomAni;
+
+    ParticleEffect fire;
     public BulletTestPenetrate(float x, float y,Level level)
     {
         super(x,y,level);
@@ -16,7 +20,12 @@ public class BulletTestPenetrate extends Bullets{
         damage = 10;
         penetrate = true;
         MPConsume = 40;
-        speed = 400;
+        speed = 1000;
+        bounceAble = true;
+        bounceMax = 1;
+        fire = new ParticleEffect();
+        fire.load(Gdx.files.internal("particle/fire.particle"),Gdx.files.internal("particle"));
+        fire.start();
     }
 
     @Override
@@ -47,6 +56,14 @@ public class BulletTestPenetrate extends Bullets{
     public void update(float deltaTime) {
         super.update(deltaTime);
         updateAnime();
+        fire.setPosition(getX()+width/2,getY()+height/2);
+        fire.update(deltaTime);
+        damage = (int)(200 * deltaTime);
         collideEnemy();
+    }
+
+    @Override
+    public void draw(Batch batch) {
+        fire.draw(batch);
     }
 }

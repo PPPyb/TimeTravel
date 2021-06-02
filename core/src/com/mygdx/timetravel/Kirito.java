@@ -79,8 +79,21 @@ public class Kirito extends Player{
 
     public void eventE() {
         if(curMP-level.bulletFireWall.MPConsume>0) {
+            if(!level.magicHelper.kiritoE.casting)
+            {
+                for(int i = 0;i < 6;i++)
+                {
+                    if(level.bulletTestPenetrateCnt>900)
+                        level.bulletTestPenetrateCnt = 0;
+                    level.bulletTestPenetrate[level.bulletTestPenetrateCnt] = new BulletTestPenetrate(getX()+level.bulletFireWall.width/2, getY(),level);
+                    level.bulletTestPenetrate[level.bulletTestPenetrateCnt].setVelocity(new Vector2((float)( -200+Math.random()*400), (float) (300+Math.random()*100)));
+                    level.bulletTestPenetrate[level.bulletTestPenetrateCnt].setAcceleration(Constants.myGravatiy);
+                    level.bulletTestPenetrateCnt++;
+                }
+                level.magicHelper.kiritoE.setCastPositon(getX(),getY());
+            }
             level.magicHelper.kiritoE.cast();
-            level.magicHelper.kiritoE.setCastPositon(getX(),getY());
+
             loseMP(level.bulletFireWall.MPConsume);
         }
     }

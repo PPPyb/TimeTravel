@@ -10,15 +10,13 @@ max: 200
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 265.0
-highMax: 265.0
+highMin: 250.0
+highMax: 250.0
 relative: false
-scalingCount: 2
+scalingCount: 1
 scaling0: 1.0
-scaling1: 1.0
-timelineCount: 2
+timelineCount: 1
 timeline0: 0.0
-timeline1: 0.13013698
 - Life - 
 lowMin: 0.0
 lowMax: 0.0
@@ -67,26 +65,32 @@ lowMax: 0.0
 highMin: 32.0
 highMax: 32.0
 relative: false
-scalingCount: 6
+scalingCount: 9
 scaling0: 1.0
-scaling1: 1.0
-scaling2: 0.81142855
-scaling3: 0.9085714
-scaling4: 0.8457143
-scaling5: 0.86285716
-timelineCount: 6
+scaling1: 0.95428574
+scaling2: 0.9257143
+scaling3: 0.83428574
+scaling4: 0.69142854
+scaling5: 0.82857144
+scaling6: 0.6514286
+scaling7: 0.81714284
+scaling8: 0.73142856
+timelineCount: 9
 timeline0: 0.0
-timeline1: 0.25095057
-timeline2: 0.47908744
-timeline3: 0.634981
-timeline4: 0.7946768
-timeline5: 0.904943
+timeline1: 0.50760454
+timeline2: 0.5684411
+timeline3: 0.65209126
+timeline4: 0.70912546
+timeline5: 0.7718631
+timeline6: 0.8593156
+timeline7: 0.9144487
+timeline8: 0.973384
 - Velocity - 
 active: true
 lowMin: 0.0
 lowMax: 0.0
 highMin: 30.0
-highMax: 250.0
+highMax: 300.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -114,36 +118,28 @@ active: false
 - Gravity - 
 active: false
 - Tint - 
-colorsCount: 21
+colorsCount: 15
 colors0: 0.047058824
-colors1: 1.0
-colors2: 0.93333334
-colors3: 0.047058824
-colors4: 0.9098039
-colors5: 1.0
-colors6: 0.047058824
-colors7: 0.9411765
-colors8: 1.0
-colors9: 0.61960787
-colors10: 0.047058824
-colors11: 1.0
-colors12: 0.047058824
-colors13: 0.6666667
-colors14: 1.0
-colors15: 0.047058824
-colors16: 0.6666667
-colors17: 1.0
-colors18: 0.047058824
-colors19: 0.3019608
-colors20: 1.0
-timelineCount: 7
+colors1: 0.7019608
+colors2: 1.0
+colors3: 0.96862745
+colors4: 1.0
+colors5: 0.047058824
+colors6: 1.0
+colors7: 0.05882353
+colors8: 0.047058824
+colors9: 0.827451
+colors10: 0.043137256
+colors11: 0.039215688
+colors12: 1.0
+colors13: 0.12156863
+colors14: 0.047058824
+timelineCount: 5
 timeline0: 0.0
-timeline1: 0.18696398
-timeline2: 0.38765007
-timeline3: 0.5265866
-timeline4: 0.6397942
-timeline5: 0.8096055
-timeline6: 1.0
+timeline1: 0.08919383
+timeline2: 0.2264151
+timeline3: 0.86620927
+timeline4: 1.0
 - Transparency - 
 lowMin: 0.0
 lowMax: 0.0
@@ -167,4 +163,4 @@ aligned: false
 additive: true
 behind: false
 - Image Path -
-stars.png
+fire.png

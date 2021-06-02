@@ -117,6 +117,7 @@ public class Misaka extends Player{
 
             walkRightAni= new Animation(0.2f,walkRightFrames);
             walkRightAni.setPlayMode(Animation.PlayMode.LOOP);
+
             loseMP(level.misakaEskillEffect.MPConsume);
         }
     }

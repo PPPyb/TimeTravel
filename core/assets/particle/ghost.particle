@@ -10,15 +10,13 @@ max: 200
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 265.0
-highMax: 265.0
+highMin: 250.0
+highMax: 250.0
 relative: false
-scalingCount: 2
+scalingCount: 1
 scaling0: 1.0
-scaling1: 1.0
-timelineCount: 2
+timelineCount: 1
 timeline0: 0.0
-timeline1: 0.13013698
 - Life - 
 lowMin: 0.0
 lowMax: 0.0
@@ -67,26 +65,16 @@ lowMax: 0.0
 highMin: 32.0
 highMax: 32.0
 relative: false
-scalingCount: 6
+scalingCount: 1
 scaling0: 1.0
-scaling1: 1.0
-scaling2: 0.81142855
-scaling3: 0.9085714
-scaling4: 0.8457143
-scaling5: 0.86285716
-timelineCount: 6
+timelineCount: 1
 timeline0: 0.0
-timeline1: 0.25095057
-timeline2: 0.47908744
-timeline3: 0.634981
-timeline4: 0.7946768
-timeline5: 0.904943
 - Velocity - 
 active: true
 lowMin: 0.0
 lowMax: 0.0
 highMin: 30.0
-highMax: 250.0
+highMax: 300.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -114,36 +102,12 @@ active: false
 - Gravity - 
 active: false
 - Tint - 
-colorsCount: 21
-colors0: 0.047058824
-colors1: 1.0
-colors2: 0.93333334
-colors3: 0.047058824
-colors4: 0.9098039
-colors5: 1.0
-colors6: 0.047058824
-colors7: 0.9411765
-colors8: 1.0
-colors9: 0.61960787
-colors10: 0.047058824
-colors11: 1.0
-colors12: 0.047058824
-colors13: 0.6666667
-colors14: 1.0
-colors15: 0.047058824
-colors16: 0.6666667
-colors17: 1.0
-colors18: 0.047058824
-colors19: 0.3019608
-colors20: 1.0
-timelineCount: 7
+colorsCount: 3
+colors0: 1.0
+colors1: 0.8627451
+colors2: 0.9843137
+timelineCount: 1
 timeline0: 0.0
-timeline1: 0.18696398
-timeline2: 0.38765007
-timeline3: 0.5265866
-timeline4: 0.6397942
-timeline5: 0.8096055
-timeline6: 1.0
 - Transparency - 
 lowMin: 0.0
 lowMax: 0.0
@@ -152,13 +116,13 @@ highMax: 1.0
 relative: false
 scalingCount: 4
 scaling0: 0.0
-scaling1: 1.0
-scaling2: 0.75
+scaling1: 0.06285714
+scaling2: 0.08
 scaling3: 0.0
 timelineCount: 4
 timeline0: 0.0
-timeline1: 0.2
-timeline2: 0.8
+timeline1: 0.21863118
+timeline2: 0.78707224
 timeline3: 1.0
 - Options - 
 attached: false
@@ -167,4 +131,4 @@ aligned: false
 additive: true
 behind: false
 - Image Path -
-stars.png
+Comet.png

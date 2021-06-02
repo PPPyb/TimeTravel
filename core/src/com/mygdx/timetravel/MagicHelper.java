@@ -66,6 +66,7 @@ public class MagicHelper {
 
         if(azunaE.casting) {
             int hprestore = 10;
+            azunaE.castTime++;
             level.azunaQskillEffect.setPosition(new Vector2((float) (player.getX()-player.width*2.9), player.getY()-player.height));
             azuna.loseMP(200 * Gdx.graphics.getDeltaTime());
             Constants.myGravatiy = new Vector2(0,10);
@@ -74,7 +75,15 @@ public class MagicHelper {
             level.kirito.restoreHP(hprestore*deltaTime);
             level.misaka.restoreHP(hprestore*deltaTime);
             level.indix.restoreHP(hprestore*deltaTime);
-
+            if(((int)azunaE.castTime)%10==0)
+            {
+                if(level.bulletTestCnt>900)
+                    level.bulletTestCnt = 0;
+                level.bulletTest[level.bulletTestCnt] = new BulletTest(player.getX()+player.width/2, player.getY()+player.height,level);
+                level.bulletTest[level.bulletTestCnt].setVelocity(new Vector2((float )(Math.random()*600-300), (float )(Math.random()*600-300)));
+                //level.bulletTest[level.bulletTestCnt].setAcceleration(Constants.myGravatiy);
+                level.bulletTestCnt++;
+            }
             if (azuna.curMP < 10)
                 azunaE.stop();
         }
@@ -223,7 +232,8 @@ public class MagicHelper {
         if(misakaQ.casting) {
             //effect
             misakaQ.castTime += deltaTime;
-
+            if(level.cameraHelper.zoom<1.5f)
+                level.cameraHelper.zoom *= 1.01;
             if(misakaQ.castTime>25)
             {
                 level.misaka.imgFace = new TextureRegion(new Texture(Gdx.files.internal("Players/"+"Misaka"+"Face.jpg")));
@@ -249,8 +259,14 @@ public class MagicHelper {
 
                 level.misaka.walkRightAni= new Animation(0.2f,level.misaka.walkRightFrames);
                 level.misaka.walkRightAni.setPlayMode(Animation.PlayMode.LOOP);
+
                 misakaQ.stop();
             }
+
+        }
+        else {
+            if (level.cameraHelper.zoom > 1f)
+                level.cameraHelper.zoom *= 0.99;
         }
 }
 
