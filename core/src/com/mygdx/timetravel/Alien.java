@@ -15,12 +15,14 @@ public class Alien extends Enemy{
     TextureRegion[] walkLeftFrames;
     TextureRegion[] walkRightFrames;
     TextureRegion[] attackFrames;
+    TextureRegion[] attackRFrames;
     TextureRegion[] dieFrames;
     //animation
     Animation idleAni;
     Animation walkLAni;
     Animation walkRAni;
     Animation attackAni;
+    Animation attackRAni;
     Animation dieAni;
 
     float dieTime = 0;
@@ -51,6 +53,7 @@ public class Alien extends Enemy{
         walkLeftFrames = new TextureRegion[15];
         walkRightFrames = new TextureRegion[15];
         attackFrames = new TextureRegion[21];
+        attackRFrames = new TextureRegion[21];
         dieFrames = new TextureRegion[21];
         super.init();
         for(int i = 0;i < 15;i++)
@@ -68,6 +71,8 @@ public class Alien extends Enemy{
         {
             Texture temp = new Texture(Gdx.files.internal("Alien/attack/alien_10-attack" + i + ".png"));
             attackFrames[i] = new TextureRegion(temp);
+            attackRFrames[i] = new TextureRegion(temp);
+            attackRFrames[i].flip(true, false);
         }
         for(int i = 0;i < 21;i++)
         {
@@ -87,6 +92,9 @@ public class Alien extends Enemy{
 
         attackAni = new Animation(0.05f, attackFrames);
         attackAni.setPlayMode(Animation.PlayMode.LOOP);
+
+        attackRAni = new Animation(0.05f, attackRFrames);
+        attackRAni.setPlayMode(Animation.PlayMode.LOOP);
 
         dieAni = new Animation(0.05f, dieFrames);
         dieAni.setPlayMode(Animation.PlayMode.LOOP);
@@ -121,7 +129,16 @@ public class Alien extends Enemy{
                 break;
         }
         if(attackTime<1.25)
-            curFrame = (TextureRegion) attackAni.getKeyFrame(attackTime);
+            switch (walkState)
+            {
+                default:
+                case "LEFT":
+                    curFrame = (TextureRegion) attackAni.getKeyFrame(attackTime);
+                    break;
+                case "RIGHT":
+                    curFrame = (TextureRegion) attackRAni.getKeyFrame(attackTime);
+                    break;
+            }
         super.updateAnime();
     }
 
