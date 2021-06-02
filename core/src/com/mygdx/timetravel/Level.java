@@ -342,6 +342,21 @@ public class Level {
     }
     public void choosePlayer()
     {
+        if(Gdx.input.isKeyPressed(Input.Keys.Z))
+        {
+            cameraHelper.zoom(cameraHelper.zoom * 1.01f);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.X))
+        {
+            cameraHelper.zoom(1);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.C))
+        {
+            cameraHelper.zoom(cameraHelper.zoom * 0.99f);
+        }
+        /**
+         *
+         */
         if(Gdx.input.isKeyJustPressed(Input.Keys.TAB))
         {
             if(playerNum >= Constants.PLAYERNUMBER - 1)

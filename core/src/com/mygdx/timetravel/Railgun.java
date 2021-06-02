@@ -12,7 +12,7 @@ public class Railgun extends Bullets{
     {
         super(x,y,level);
         curFrame = new TextureRegion(new Texture(Gdx.files.internal("effects/railgun/0.png")));
-        setWidth(curFrame.getRegionWidth()*2);
+        setWidth(curFrame.getRegionWidth()*3);
         setHeight(curFrame.getRegionHeight());
         damage = 0;
         MPConsume = 40f;
