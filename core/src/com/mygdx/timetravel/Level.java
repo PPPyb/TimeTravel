@@ -82,6 +82,8 @@ public class Level {
     //coin
     PropsCoinTest[] propsCoinTest;
     int propsCoinTestCnt = 0;
+    CoinGreen[] coinGreen;
+    int coinGreenCnt = 0;
 
     Railgun railgun[];
     MisakaEskillEffect misakaEskillEffect;
@@ -149,11 +151,12 @@ public class Level {
 
         propsCoinTest = new PropsCoinTest[1000];
         propsCoinTestCnt = 0;
+        coinGreen = new CoinGreen[1000];
+        coinGreenCnt = 0;
 
         initPlayer();
         initEnemies();
         initCoins();
-
 
         magicHelper = new MagicHelper(this);
     }
@@ -210,7 +213,9 @@ public class Level {
         misakaEskillEffect.update(deltaTime);
 
         //coin
+        updateObjects(coinGreen,coinGreenCnt,deltaTime);
         updateObjects(propsCoinTest,propsCoinTestCnt,deltaTime);
+
         //update相机
         backGroundCameraHelper.update(deltaTime);
         backGroundCameraHelper.trackTarget(curPlayer);
@@ -253,11 +258,11 @@ public class Level {
         indixQskillEffect.draw(batch);
         bulletTitanic.draw(batch);
         misakaEskillEffect.draw(batch);
-
-        //画角色
-        curPlayer.draw(batch);
         //coin
         drawObjects(propsCoinTest,propsCoinTestCnt,batch);
+        drawObjects(coinGreen,coinGreenCnt,batch);
+        //画角色
+        curPlayer.draw(batch);
         batch.end();
 
         //绘制GUI
@@ -330,6 +335,16 @@ public class Level {
     }
 
     public void initCoins(){
+        if(map.getLayers().get("GreenCoins")!=null)
+        {
+            MapObjects objects = map.getLayers().get("GreenCoins").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+
+                Rectangle r = recObj.getRectangle();
+                coinGreen[coinGreenCnt++] = new CoinGreen(r.x,r.y,this);
+            }
+        }
+
         if(map.getLayers().get("Coins")!=null)
         {
             MapObjects objects = map.getLayers().get("Coins").getObjects();
@@ -340,6 +355,7 @@ public class Level {
             }
         }
     }
+
     public void choosePlayer()
     {
         if(Gdx.input.isKeyPressed(Input.Keys.Z))

@@ -189,7 +189,6 @@ public class MagicHelper {
                 level.azunaEskillEffectRecover.setPosition(new Vector2(-10000,-10000));
             }
         }
-
     }
 
     Magic misakaQ;

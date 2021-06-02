@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class PropsCoin extends AbstractGameObject{
-    Texture img;
     TextureRegion curFrame;
     //道具被销毁
     Boolean isDestructed = false;
@@ -28,13 +27,6 @@ public class PropsCoin extends AbstractGameObject{
 
     public void initAnime(){};
     public void updateAnime(){}
-
-    public void initCoin(){
-        img = new Texture(Gdx.files.internal("SnowLand//slice136.png"));
-        curFrame = new TextureRegion(img);
-        setWidth(curFrame.getRegionWidth());
-        setHeight(curFrame.getRegionHeight());
-    }
 
     public void draw(Batch batch){
         batch.draw(curFrame,this.getX(),this.getY());
