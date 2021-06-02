@@ -59,20 +59,20 @@ public class NpcCommunication implements Disposable {
         CommunicationGambleScreenContents[5]="";
         CommunicationFireMapScreenContents=new String[100];
         //火焰地图对话
-        CommunicationFireMapScreenContents[0]="First of all, thank you for your help.";
-        CommunicationFireMapScreenContents[1]="You need to go to the store now to buy some skills.";
-        CommunicationFireMapScreenContents[2]="We're going to other planets later.";
-        CommunicationFireMapScreenContents[3]="Time travel,";
-        CommunicationFireMapScreenContents[4]="here we come.";
-        CommunicationFireMapScreenContents[5]="hh";
+        CommunicationFireMapScreenContents[0]="Are you an adventurer from another planet?";
+        CommunicationFireMapScreenContents[1]="There are a lot of monsters in the flame hole";
+        CommunicationFireMapScreenContents[2]="What?You want to go to the cave of fire.";
+        CommunicationFireMapScreenContents[3]="The monsters in it are very scary.";
+        CommunicationFireMapScreenContents[4]="You have to be careful.";
+        CommunicationFireMapScreenContents[5]="Good luck to you.";
         CommunicationSnowMapScreenContents=new String[100];
         //冰雪地图对话
-        CommunicationSnowMapScreenContents[0]="First of all, thank you for your help.";
-        CommunicationSnowMapScreenContents[1]="You need to go to the store now to buy some skills.";
-        CommunicationSnowMapScreenContents[2]="We're going to other planets later.";
-        CommunicationSnowMapScreenContents[3]="Time travel,";
-        CommunicationSnowMapScreenContents[4]="here we come.";
-        CommunicationSnowMapScreenContents[5]="hh";
+        CommunicationSnowMapScreenContents[0]="The monster on the ice field suddenly became much stronger.";
+        CommunicationSnowMapScreenContents[1]="Many their people have been hurt.";
+        CommunicationSnowMapScreenContents[2]="We're trying to get out of here.";
+        CommunicationSnowMapScreenContents[3]="What?You want to go to the cave of ice field.";
+        CommunicationSnowMapScreenContents[4]="You have to be careful.";
+        CommunicationSnowMapScreenContents[5]="Good luck to you.";
         CommunicationRepairmanHomeScreenContents=new String[100];
         //家里对话
         CommunicationRepairmanHomeScreenContents[0]="First of all, thank you for your help.";
