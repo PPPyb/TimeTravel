@@ -134,7 +134,7 @@ public class GrassMapRoomScreen implements Screen {
         hud.dispose();
     }
     public static void changeToMainScreen(){
-        game.setScreen(new FireMapScreen(game,831,210));
+        game.setScreen(new GrassMapScreen(game,150,385));
     }
     public World getWorld() {
         return this.world;

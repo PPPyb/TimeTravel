@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="30" tileheight="30" infinite="0" nextlayerid="20" nextobjectid="47">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="30" tileheight="30" infinite="0" nextlayerid="21" nextobjectid="39">
  <tileset firstgid="1" source="GrassMapRoom.tsx"/>
  <layer id="1" name="图块层 1" width="16" height="16">
   <data encoding="csv">
@@ -22,42 +22,40 @@
 </data>
  </layer>
  <objectgroup id="2" name="对象层 1">
-  <object id="1" x="23.2446" y="25.6913" width="25.0796" height="429.413"/>
-  <object id="2" x="48.3242" y="361.514" width="45.8774" height="92.9782"/>
-  <object id="3" x="96.0367" y="405.556" width="118.67" height="48.9359"/>
-  <object id="4" x="214.095" y="432.471" width="26.303" height="50.1593"/>
-  <object id="6" x="265.477" y="431.248" width="21.4095" height="50.771"/>
-  <object id="7" x="288.11" y="409.838" width="189.627" height="45.8774"/>
-  <object id="9" x="454.492" y="23.8563" width="27.5264" height="385.982"/>
-  <object id="14" x="436.141" y="24.4679" width="18.351" height="164.547"/>
-  <object id="16" x="408.615" y="22.6329" width="24.4679" height="70.3454"/>
-  <object id="17" x="50.1593" y="26.9147" width="359.067" height="18.351"/>
-  <object id="18" x="47.1008" y="42.8189" width="44.0423" height="70.9571"/>
-  <object id="19" x="93.5899" y="47.7125" width="102.154" height="47.1008"/>
-  <object id="20" x="166.382" y="92.9782" width="28.7498" height="26.303"/>
-  <object id="21" x="50.1593" y="214.706" width="70.3454" height="22.0212"/>
-  <object id="22" x="146.196" y="215.318" width="49.5476" height="21.4095"/>
-  <object id="24" x="196.967" y="47.1008" width="16.5159" height="212.259"/>
-  <object id="25" x="213.483" y="170.052" width="168.829" height="18.351"/>
-  <object id="26" x="214.706" y="41.5955" width="17.7393" height="48.3242"/>
-  <object id="28" x="233.057" y="44.0423" width="174.946" height="43.4306"/>
-  <object id="29" x="360.902" y="93.5899" width="72.7921" height="21.4095"/>
-  <object id="30" x="382.923" y="264.866" width="50.1593" height="75.8506"/>
-  <object id="31" x="239.174" y="115.611" width="97.2601" height="28.7498"/>
-  <object id="32" x="94.2016" y="94.2016" width="26.303" height="47.1008"/>
-  <object id="33" x="144.361" y="94.2016" width="25.0796" height="47.7125"/>
-  <object id="35" x="213.483" y="187.792" width="97.2601" height="50.771"/>
-  <object id="36" x="311.966" y="189.627" width="72.7921" height="50.1593"/>
-  <object id="37" x="430.636" y="190.85" width="25.0796" height="47.7125"/>
-  <object id="38" x="333.376" y="241.009" width="1.8351" height="0.611699"/>
-  <object id="39" x="332.152" y="237.951" width="28.1381" height="28.1381"/>
-  <object id="40" x="217.153" y="264.866" width="120.505" height="45.2657"/>
-  <object id="41" x="315.637" y="237.339" width="15.2925" height="28.7498"/>
-  <object id="42" x="48.9359" y="237.339" width="47.1008" height="74.6272"/>
-  <object id="43" x="96.0367" y="237.339" width="23.8563" height="48.9359"/>
-  <object id="44" x="145.584" y="237.339" width="45.8774" height="50.1593"/>
-  <object id="45" x="170.664" y="286.275" width="18.9627" height="23.8563"/>
-  <object id="46" x="192.073" y="258.749" width="23.2446" height="53.8295"/>
+  <object id="2" x="22.0212" y="23.8563" width="23.8563" height="431.248"/>
+  <object id="3" x="45.2657" y="24.4679" width="50.771" height="140.691"/>
+  <object id="5" x="94.8133" y="21.4095" width="384.147" height="31.8083"/>
+  <object id="6" x="89.9197" y="39.7604" width="31.8083" height="55.6646"/>
+  <object id="7" x="125.398" y="43.4306" width="67.2869" height="45.8774"/>
+  <object id="8" x="169.441" y="89.9197" width="22.6329" height="30.5849"/>
+  <object id="9" x="124.787" y="85.6378" width="44.0423" height="10.3989"/>
+  <object id="10" x="43.4306" y="220.212" width="75.8506" height="18.351"/>
+  <object id="11" x="147.419" y="218.988" width="49.5476" height="15.2925"/>
+  <object id="12" x="196.355" y="52.6061" width="16.5159" height="209.813"/>
+  <object id="13" x="210.424" y="48.9359" width="268.536" height="42.2072"/>
+  <object id="14" x="359.067" y="91.1431" width="75.2389" height="22.6329"/>
+  <object id="15" x="238.563" y="118.058" width="98.4835" height="25.6913"/>
+  <object id="16" x="433.694" y="91.1431" width="44.654" height="96.6484"/>
+  <object id="17" x="214.095" y="173.111" width="169.441" height="66.6752"/>
+  <object id="18" x="436.141" y="190.238" width="42.2072" height="47.1008"/>
+  <object id="19" x="457.551" y="236.727" width="21.4095" height="181.675"/>
+  <object id="20" x="288.11" y="406.78" width="193.297" height="47.1008"/>
+  <object id="21" x="263.642" y="432.471" width="23.8563" height="36.7019"/>
+  <object id="22" x="44.654" y="360.291" width="47.7125" height="94.2016"/>
+  <object id="23" x="90.5314" y="409.838" width="124.787" height="45.2657"/>
+  <object id="24" x="213.483" y="436.141" width="25.6913" height="33.0317"/>
+  <object id="25" x="215.318" y="432.471" width="23.8563" height="12.8457"/>
+  <object id="26" x="43.4306" y="239.786" width="74.6272" height="46.4891"/>
+  <object id="28" x="143.749" y="233.057" width="50.1593" height="52.6061"/>
+  <object id="29" x="192.073" y="260.584" width="22.0212" height="51.9944"/>
+  <object id="30" x="315.025" y="241.009" width="20.1861" height="68.5103"/>
+  <object id="31" x="215.93" y="263.642" width="97.2601" height="45.8774"/>
+  <object id="32" x="338.269" y="241.621" width="21.4095" height="20.7978"/>
+  <object id="33" x="385.37" y="261.807" width="47.1008" height="119.893"/>
+  <object id="34" x="47.1008" y="285.663" width="47.1008" height="27.5264"/>
+  <object id="35" x="166.382" y="289.945" width="26.9147" height="22.0212"/>
+  <object id="36" x="212.871" y="468.561" width="25.0796" height="15.2925"/>
+  <object id="38" x="266.089" y="467.95" width="20.7978" height="15.9042"/>
  </objectgroup>
  <objectgroup id="3" name="对象层 2"/>
  <objectgroup id="4" name="对象层 3"/>
@@ -67,13 +65,15 @@
  <objectgroup id="8" name="对象层 7"/>
  <objectgroup id="9" name="对象层 8"/>
  <objectgroup id="10" name="对象层 9"/>
- <objectgroup id="11" name="对象层 10"/>
- <objectgroup id="12" name="对象层 11"/>
- <objectgroup id="13" name="对象层 12"/>
- <objectgroup id="14" name="对象层 13"/>
- <objectgroup id="15" name="对象层 14"/>
- <objectgroup id="16" name="对象层 15"/>
- <objectgroup id="17" name="对象层 16"/>
- <objectgroup id="18" name="对象层 17"/>
- <objectgroup id="19" name="对象层 18"/>
+ <objectgroup id="12" name="对象层 10"/>
+ <objectgroup id="13" name="对象层 11"/>
+ <objectgroup id="14" name="对象层 12"/>
+ <objectgroup id="15" name="对象层 13"/>
+ <objectgroup id="16" name="对象层 14"/>
+ <objectgroup id="17" name="对象层 15">
+  <object id="1" x="234.281" y="477.737" width="36.0902" height="1.8351"/>
+ </objectgroup>
+ <objectgroup id="18" name="对象层 16"/>
+ <objectgroup id="19" name="对象层 17"/>
+ <objectgroup id="20" name="对象层 18"/>
 </map>
