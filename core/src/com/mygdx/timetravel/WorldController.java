@@ -27,21 +27,32 @@ public class WorldController {
 
     public WorldController()
     {
-        testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
-        testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
-        snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
-        snowLand.setWeather("SNOW");
-        fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
-        fireMap.setWeather("STONE");
-        greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
-        greenMap.setWeather("RAIN");
-        curLevel = testMap;
-        myGame = new com.mygdx.game.MyGdxGame();
-        myGame.create();
-        mainTitle = new MainTitle();
+        MyTextrue.ini();
+        mainTitle = new MainTitle(this);
         tutorials = new Tutorials();
         strangeObject = new StrangeClass();
         musicManager = new MusicManager();
+    }
+
+    public void iniWorld()
+    {
+        myGame = new com.mygdx.game.MyGdxGame();
+        myGame.create();
+    }
+    public void iniSnow()
+    {
+        snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
+        snowLand.setWeather("SNOW");
+    }
+    public void iniFire()
+    {
+        fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
+        fireMap.setWeather("STONE");
+    }
+    public void iniGreen()
+    {
+        greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
+        greenMap.setWeather("RAIN");
     }
 
     public void update()

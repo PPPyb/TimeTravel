@@ -12,7 +12,7 @@ public class BulletTest extends Bullets{
     public BulletTest(float x,float y,Level level)
     {
         super(x,y,level);
-        curFrame = new TextureRegion(new Texture(Gdx.files.internal("testMap/ballBullet.png")));
+        curFrame = MyTextrue.ball;
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         damage = 200;

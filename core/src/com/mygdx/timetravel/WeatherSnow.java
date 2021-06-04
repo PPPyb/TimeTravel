@@ -16,7 +16,7 @@ public class WeatherSnow extends WeatherBullets{
 
     @Override
     public void initAnime() {
-        curFrame = new TextureRegion(new Texture(Gdx.files.internal("Weather/snow.png")));
+        curFrame = MyTextrue.snow;
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
     }

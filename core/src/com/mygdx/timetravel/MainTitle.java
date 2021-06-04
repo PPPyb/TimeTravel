@@ -12,8 +12,10 @@ public class MainTitle {
     Texture timetravel;
     float bkgOffset = 0;
     float stateTime = 0;
-    public MainTitle()
+    WorldController worldController;
+    public MainTitle(WorldController worldController)
     {
+        this.worldController = worldController;
         batch = new SpriteBatch();
         bkg = new Texture(Gdx.files.internal("MainTitle/background.jpg"));
         //anykey = new Texture(Gdx.files.internal("MainTitle/anykey.png"));
@@ -36,7 +38,9 @@ public class MainTitle {
             //batch.draw(anykey,Constants.WINDOWS_WIDTH/2-anykey.getWidth()/2,100);
         batch.end();
 
-        if(Gdx.input.isTouched())
+        if(Gdx.input.isTouched()) {
+            worldController.iniWorld();
             CurState.curLevelNum = 1;
+        }
     }
 }
