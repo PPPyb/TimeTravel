@@ -63,5 +63,16 @@ public class WeatherStone extends WeatherBullets{
         super.draw(batch);
     }
 
-
+    @Override
+    public void playerEffect(Player player) {
+        for(int i = 0;i < 6;i++)
+        {
+            if(level.bulletDangMasCnt>900)
+                level.bulletDangMasCnt = 0;
+            level.bulletDangMas[level.bulletDangMasCnt] = new BulletDangMa(getX(), getY(),level);
+            level.bulletDangMas[level.bulletDangMasCnt].setVelocity(new Vector2((float)( -200+Math.random()*400), (float) (300+Math.random()*100)));
+            level.bulletDangMas[level.bulletDangMasCnt].setAcceleration(Constants.myGravatiy);
+            level.bulletDangMasCnt++;
+        }
+    }
 }
