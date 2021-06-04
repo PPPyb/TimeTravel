@@ -33,6 +33,7 @@ public class WorldController {
         snowLand.setWeather("SNOW");
         fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
         greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
+        greenMap.setWeather("RAIN");
         curLevel = testMap;
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();

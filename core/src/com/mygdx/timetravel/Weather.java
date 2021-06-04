@@ -18,6 +18,7 @@ public class Weather {
     float windChangeChange;
     float windChange;
     ParticleEffect snowEffect;
+    ParticleEffect rainEffect;
     Level level;
     public Weather(Level level)
     {
@@ -26,6 +27,9 @@ public class Weather {
         snowEffect = new ParticleEffect();
         snowEffect.load(Gdx.files.internal("particle/snow.particle"),Gdx.files.internal("particle"));
         snowEffect.start();
+        rainEffect= new ParticleEffect();
+        rainEffect.load(Gdx.files.internal("particle/rain.particle"),Gdx.files.internal("particle"));
+        rainEffect.start();
         weatherState = "DEFAULT";
     }
 
@@ -42,6 +46,8 @@ public class Weather {
         }
         snowEffect.setPosition(level.curPlayer.getX(),level.curPlayer.getY());
         snowEffect.update(deltaTime);
+        rainEffect.setPosition(level.curPlayer.getX(),level.curPlayer.getY());
+        rainEffect.update(deltaTime);
         updateObjects(weatherSnow,snowCnt,deltaTime);
     }
 
@@ -52,6 +58,9 @@ public class Weather {
         {
             case "SNOW":
                 snowEffect.draw(batch);
+                break;
+            case "RAIN":
+                rainEffect.draw(batch);
                 break;
             default:
                 break;
