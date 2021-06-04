@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -46,6 +47,7 @@ public class GrassMapScreen implements Screen {
     private ChangeMapInterface changeMapInterface;
     public static int smallFireMapCollisionFlag=0;
     public static int FireScreenFlag=1;
+    ParticleEffect rainEffect;
     public GrassMapScreen(MyGdxGame game,int x, int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
@@ -76,6 +78,9 @@ public class GrassMapScreen implements Screen {
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
         // music.play();
+        rainEffect= new ParticleEffect();
+        rainEffect.load(Gdx.files.internal("particle/rain.particle"),Gdx.files.internal("particle"));
+        rainEffect.start();
     }
     public TextureAtlas getRepairmanAtlas(){
         return  atlasRepairman;
@@ -97,11 +102,12 @@ public class GrassMapScreen implements Screen {
         world.step(1/60f,6,2);
         mario.update(dt);
         npcCommunication.update();
+        rainEffect.update(dt);
         //fireMapNPC.update(dt);
         for(int i=0;i<5;i++)
             snowBall[i].update(dt);
-        System.out.println(mario.b2body.getPosition().x);
-        System.out.println(mario.b2body.getPosition().y);
+        //System.out.println(mario.b2body.getPosition().x);
+        //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -118,6 +124,8 @@ public class GrassMapScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        rainEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
+        rainEffect.draw(game.batch);
         //fireMapNPC.draw(game.batch);
         for(int i=0;i<5;i++)
             snowBall[i].draw(game.batch);

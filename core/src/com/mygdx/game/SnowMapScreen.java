@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -47,6 +48,7 @@ public class SnowMapScreen implements Screen {
     private shopInterface shopInterface;
     public static int smallFireMapCollisionFlag=0;
     public static int StaticBallFlag=0;
+    ParticleEffect snowEffect;
     public SnowMapScreen(MyGdxGame game,int x,int y){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
@@ -83,6 +85,9 @@ public class SnowMapScreen implements Screen {
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
         //music.setLooping(true);
         // music.play();
+        snowEffect = new ParticleEffect();
+        snowEffect.load(Gdx.files.internal("particle/snowBigMap.particle"),Gdx.files.internal("particle"));
+        snowEffect.start();
     }
     public TextureAtlas getRepairmanAtlas(){
         return  atlasRepairman;
@@ -117,6 +122,7 @@ public class SnowMapScreen implements Screen {
         snowBall[i].update(dt);
         npcCommunication.update();
         snowMapNPC.update(dt);
+        snowEffect.update(dt);
         //System.out.println(mario.b2body.getPosition().x);
         //System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
@@ -136,6 +142,9 @@ public class SnowMapScreen implements Screen {
         game.batch.begin();
         mario.draw(game.batch);
         snowMapNPC.draw(game.batch);
+        snowEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
+        //snowEffect.setPosition(0,0);
+        snowEffect.draw(game.batch);
         for(int i=0;i<8;i++)
         snowBall[i].draw(game.batch);
         //repairman.draw(game.batch);

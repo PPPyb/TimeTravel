@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -20,7 +21,9 @@ import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.Actor.SnowBall;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
+import com.mygdx.timetravel.Level;
 import com.mygdx.timetravel.MusicManager;
+import com.mygdx.timetravel.Weather;
 
 public class PlayScreen implements Screen {
     public static MyGdxGame game;
@@ -50,6 +53,8 @@ public class PlayScreen implements Screen {
     public static int collisionFlag = 0;
     public static int PlayScreenFlag = 0;
     public static int PortalCollisionFlag = 0;
+    //ParticleEffect snowEffect;
+    ParticleEffect starEffect;
     public PlayScreen(MyGdxGame game,int x,int y) {
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman = new TextureAtlas("character/repairman.pack");
@@ -77,6 +82,12 @@ public class PlayScreen implements Screen {
         normalPeople2 = new NormalPeople(this, 600, 600);
         bagInterface=new bagInterface();
         openBagInterface=new openBagInterface();
+        starEffect = new ParticleEffect();
+        starEffect.load(Gdx.files.internal("particle/starBigMap.particle"),Gdx.files.internal("particle"));
+        starEffect.start();
+//        snowEffect = new ParticleEffect();
+//        snowEffect.load(Gdx.files.internal("particle/snow.particle"),Gdx.files.internal("particle"));
+//        snowEffect.start();
     }
 
     public TextureAtlas getAtlas() {
@@ -122,6 +133,10 @@ public class PlayScreen implements Screen {
         gamecam.position.y = mario.b2body.getPosition().y;
         gamecam.update();
         renderer.setView(gamecam);
+        starEffect.setPosition(0,0);
+        starEffect.update(dt);
+        //snowEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
+       //snowEffect.update(dt);
     }
 
     @Override
@@ -135,6 +150,9 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        //if(PortalCollisionFlag==1)
+        starEffect.draw(game.batch);
+        //snowEffect.draw(game.batch);
         repairman.draw(game.batch);
         normalPeople1.draw(game.batch);
         normalPeople2.draw(game.batch);

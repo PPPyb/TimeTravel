@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -30,6 +31,8 @@ public class ChangeMapInterface extends ApplicationAdapter {
     public Stage stage;
     private Batch batch;
     private SpriteBatch spriteBatch;
+    private static float stateTime;
+    ParticleEffect starEffect;
     public ChangeMapInterface(SpriteBatch sb){
         viewport = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage=new Stage(viewport,sb);
@@ -102,6 +105,9 @@ public class ChangeMapInterface extends ApplicationAdapter {
                 PlayScreen.changeToPortalScreen();
             }
         });
+        starEffect = new ParticleEffect();
+        starEffect.load(Gdx.files.internal("particle/starBigMap.particle"),Gdx.files.internal("particle"));
+        starEffect.start();
     }
     @Override
     public void create() {
@@ -111,8 +117,10 @@ public class ChangeMapInterface extends ApplicationAdapter {
     public void resize(int width, int height) {
 
     }
-    public void update(){
-
+    public void update(float dt){
+        //stateTime+=dt;
+        starEffect.setPosition(0,0);
+        starEffect.update(dt);
     }
     @Override
     public void render() {
@@ -120,6 +128,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
         //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(interfaceBackground,0,0);
+        starEffect.draw(batch);
         batch.end();
         stage.act();
         stage.draw();
