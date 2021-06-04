@@ -32,6 +32,7 @@ public class WorldController {
         snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
         snowLand.setWeather("SNOW");
         fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
+        fireMap.setWeather("STONE");
         greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
         greenMap.setWeather("RAIN");
         curLevel = testMap;

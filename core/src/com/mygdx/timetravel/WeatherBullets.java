@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class WeatherBullets extends Bullets{
 
-    //ParticleEffect effect;
     public WeatherBullets(float x,float y,Level level)
     {
         super(x,y,level);
@@ -31,7 +30,6 @@ public class WeatherBullets extends Bullets{
 
     @Override
     public void draw(Batch batch) {
-        //effect.draw(batch);
         super.draw(batch);
     }
 

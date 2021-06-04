@@ -9,6 +9,8 @@ import com.sun.org.apache.bcel.internal.util.BCELifier;
 public class Weather {
     WeatherSnow[] weatherSnow;
     int snowCnt = 0;
+    WeatherStone[] weatherStone;
+    int stoneCnt = 0;
     String weatherState;
     float weatherInterval = 10;
     float particleInterval = 0.05f;
@@ -19,17 +21,22 @@ public class Weather {
     float windChange;
     ParticleEffect snowEffect;
     ParticleEffect rainEffect;
+    ParticleEffect stoneEffect;
     Level level;
     public Weather(Level level)
     {
         this.level = level;
         weatherSnow = new WeatherSnow[1000];
+        weatherStone = new WeatherStone[1000];
         snowEffect = new ParticleEffect();
         snowEffect.load(Gdx.files.internal("particle/snow.particle"),Gdx.files.internal("particle"));
         snowEffect.start();
         rainEffect= new ParticleEffect();
         rainEffect.load(Gdx.files.internal("particle/rain.particle"),Gdx.files.internal("particle"));
         rainEffect.start();
+        stoneEffect= new ParticleEffect();
+        stoneEffect.load(Gdx.files.internal("particle/stone.particle"),Gdx.files.internal("particle"));
+        stoneEffect.start();
         weatherState = "DEFAULT";
     }
 
@@ -48,12 +55,15 @@ public class Weather {
         snowEffect.update(deltaTime);
         rainEffect.setPosition(level.curPlayer.getX(),level.curPlayer.getY());
         rainEffect.update(deltaTime);
+        stoneEffect.setPosition(level.curPlayer.getX(),level.curPlayer.getY());
+        stoneEffect.update(deltaTime);
         updateObjects(weatherSnow,snowCnt,deltaTime);
+        updateObjects(weatherStone,stoneCnt,deltaTime);
     }
 
     public void draw(Batch batch)
     {
-        drawObjects(weatherSnow,snowCnt,batch);
+
         switch (weatherState)
         {
             case "SNOW":
@@ -62,9 +72,14 @@ public class Weather {
             case "RAIN":
                 rainEffect.draw(batch);
                 break;
+            case "STONE":
+                stoneEffect.draw(batch);
+                break;
             default:
                 break;
         }
+        drawObjects(weatherSnow,snowCnt,batch);
+        drawObjects(weatherStone,stoneCnt,batch);
     }
 
     public void makeWeather()
@@ -81,6 +96,13 @@ public class Weather {
                 weatherSnow[snowCnt] = new WeatherSnow(x,y,level);
                 weatherSnow[snowCnt].setVelocity(new Vector2(windPower,-200));
                 snowCnt++;
+                break;
+            case "STONE":
+                if(stoneCnt>900)
+                    stoneCnt = 0;
+                weatherStone[stoneCnt] = new WeatherStone(x,y,level);
+                weatherStone[stoneCnt].setVelocity(new Vector2(windPower,-800));
+                stoneCnt++;
                 break;
             default:
                 break;
