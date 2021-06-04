@@ -14,11 +14,11 @@ import com.mygdx.timetravel.Constants;
 public class WorldController {
 
     Level curLevel;
-    Level snowLand;
+    static Level snowLand;
     Level testMap;
     Level testWorld;
-    Level fireMap;
-    Level greenMap;
+    static Level fireMap;
+    static Level greenMap;
     com.mygdx.game.MyGdxGame myGame;
     MainTitle mainTitle;
     Tutorials tutorials;
@@ -39,17 +39,17 @@ public class WorldController {
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();
     }
-    public void iniSnow()
+    public static void iniSnow()
     {
         snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
         snowLand.setWeather("SNOW");
     }
-    public void iniFire()
+    public static void iniFire()
     {
         fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
         fireMap.setWeather("STONE");
     }
-    public void iniGreen()
+    public static void iniGreen()
     {
         greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
         greenMap.setWeather("RAIN");
@@ -126,14 +126,17 @@ public class WorldController {
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_9))
         {
+            iniSnow();
             setCurLevelNum(2);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_8))
         {
+            iniFire();
             setCurLevelNum(3);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
         {
+            iniGreen();
             setCurLevelNum(4);
         }
     }
