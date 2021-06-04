@@ -84,6 +84,9 @@ public class Level {
     int propsCoinTestCnt = 0;
     CoinGreen[] coinGreen;
     int coinGreenCnt = 0;
+    //heart
+    Heart[] heart;
+    int heartCnt = 0;
 
     Railgun railgun[];
     MisakaEskillEffect misakaEskillEffect;
@@ -156,9 +159,14 @@ public class Level {
         coinGreen = new CoinGreen[1000];
         coinGreenCnt = 0;
 
+        heart = new Heart[1000];
+        heartCnt = 0;
+
         initPlayer();
         initEnemies();
         initCoins();
+        initHearts();
+
 
         magicHelper = new MagicHelper(this);
 
@@ -222,6 +230,7 @@ public class Level {
         //coin
         updateObjects(coinGreen,coinGreenCnt,deltaTime);
         updateObjects(propsCoinTest,propsCoinTestCnt,deltaTime);
+        updateObjects(heart,heartCnt,deltaTime);
 
         //update相机
         backGroundCameraHelper.update(deltaTime);
@@ -275,6 +284,8 @@ public class Level {
         //coin
         drawObjects(propsCoinTest,propsCoinTestCnt,batch);
         drawObjects(coinGreen,coinGreenCnt,batch);
+        //heart
+        drawObjects(heart,heartCnt,batch);
         //画角色
         curPlayer.draw(batch);
         batch.end();
@@ -369,6 +380,19 @@ public class Level {
             }
         }
     }
+
+    public void initHearts(){
+
+        if(map.getLayers().get("HP")!=null)
+        {
+            MapObjects objects = map.getLayers().get("HP").getObjects();
+            for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
+                Rectangle r = recObj.getRectangle();
+                heart[heartCnt++] = new Heart(r.x,r.y,this);
+            }
+        }
+    }
+
 
     public void choosePlayer()
     {
