@@ -39,7 +39,7 @@ public class bagInterface extends ApplicationAdapter {
         style.up = new TextureRegionDrawable(new TextureRegion(upTexture));
         style.down = new TextureRegionDrawable(new TextureRegion(downTexture));
         button = new Button(style);
-        button.setPosition(20,0);
+        button.setPosition(0,0);
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

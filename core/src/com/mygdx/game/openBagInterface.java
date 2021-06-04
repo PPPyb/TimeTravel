@@ -56,7 +56,7 @@ public class openBagInterface extends ApplicationAdapter {
         style.up = new TextureRegionDrawable(new TextureRegion(upTexture));
         style.down = new TextureRegionDrawable(new TextureRegion(downTexture));
         button = new Button(style);
-        button.setPosition(456,74);//173,270
+        button.setPosition(555,54);//173,270
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -68,11 +68,11 @@ public class openBagInterface extends ApplicationAdapter {
         stage.addActor(button);
 
         up1= new Texture(Gdx.files.internal("Button/spell1.png"));
-        down1 = new Texture(Gdx.files.internal("Button/spell1.2.png"));
+        down1 = new Texture(Gdx.files.internal("Button/spell12.png"));
         style1.up = new TextureRegionDrawable(new TextureRegion(up1));
         style1.down = new TextureRegionDrawable(new TextureRegion(down1));
         bt1 = new Button(style1);
-        bt1.setPosition(505,531);
+        bt1.setPosition(624,382);
         bt1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -85,11 +85,11 @@ public class openBagInterface extends ApplicationAdapter {
 
 
         up2= new Texture(Gdx.files.internal("Button/spell2.png"));
-        down2 = new Texture(Gdx.files.internal("Button/spell2.2.png"));
+        down2 = new Texture(Gdx.files.internal("Button/spell22.png"));
         style2.up = new TextureRegionDrawable(new TextureRegion(up2));
         style2.down = new TextureRegionDrawable(new TextureRegion(down2));
         bt2 = new Button(style2);
-        bt2.setPosition(625,531);
+        bt2.setPosition(698,382);
         bt2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -101,11 +101,11 @@ public class openBagInterface extends ApplicationAdapter {
         });
 
         up3= new Texture(Gdx.files.internal("Button/spell3.png"));
-        down3 = new Texture(Gdx.files.internal("Button/spell3.2.png"));
+        down3 = new Texture(Gdx.files.internal("Button/spell32.png"));
         style3.up = new TextureRegionDrawable(new TextureRegion(up3));
         style3.down = new TextureRegionDrawable(new TextureRegion(down3));
         bt3 = new Button(style3);
-        bt3.setPosition(743,531);
+        bt3.setPosition(776,382);
         bt3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -117,11 +117,11 @@ public class openBagInterface extends ApplicationAdapter {
 
 
         up4= new Texture(Gdx.files.internal("Button/spell4.png"));
-        down4 = new Texture(Gdx.files.internal("Button/spell4.2.png"));
+        down4 = new Texture(Gdx.files.internal("Button/spell42.png"));
         style4.up = new TextureRegionDrawable(new TextureRegion(up4));
         style4.down = new TextureRegionDrawable(new TextureRegion(down4));
         bt4 = new Button(style4);
-        bt4.setPosition(862,531);
+        bt4.setPosition(855,382);
         bt4.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
