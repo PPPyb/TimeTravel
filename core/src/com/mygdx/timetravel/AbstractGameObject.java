@@ -21,6 +21,8 @@ public abstract class AbstractGameObject{
     float stateTime;
     Level level;
 
+    float myDeltaTime = 0;
+
     public AbstractGameObject(float x,float y,Level level)
     {
         position = new Vector2();
@@ -88,6 +90,7 @@ public abstract class AbstractGameObject{
         position.y += velocity.y * deltaTime;
         setBounds();
         stateTime += deltaTime;
+        myDeltaTime = deltaTime;
     }
     public void draw(Batch batch){}
     public boolean onCollisionWithMap(float xOffset, float yOffset)

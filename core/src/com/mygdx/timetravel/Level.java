@@ -89,6 +89,8 @@ public class Level {
     MisakaEskillEffect misakaEskillEffect;
     int railgunCut;
 
+    Weather weather;
+
 
     public Level(String mapRoute,String backGroundRoute)
     {
@@ -159,6 +161,8 @@ public class Level {
         initCoins();
 
         magicHelper = new MagicHelper(this);
+
+        weather = new Weather(this);
     }
     public void update(float deltaTime)
     {
@@ -212,6 +216,9 @@ public class Level {
         bulletTitanic.update(deltaTime);
         misakaEskillEffect.update(deltaTime);
 
+        //weather
+        weather.update(deltaTime);
+
         //coin
         updateObjects(coinGreen,coinGreenCnt,deltaTime);
         updateObjects(propsCoinTest,propsCoinTestCnt,deltaTime);
@@ -244,6 +251,10 @@ public class Level {
         drawObjects(beefs,beefsCnt,batch);
         drawObjects(zeus, zeusCnt, batch);
         drawObjects(alien, alienCnt, batch);
+
+        //weather
+        weather.draw(batch);
+
         //画子弹
         drawObjects(bulletTest,bulletTestCnt,batch);
         drawObjects(bulletTestPenetrate,bulletTestPenetrateCnt,batch);
@@ -258,6 +269,9 @@ public class Level {
         indixQskillEffect.draw(batch);
         bulletTitanic.draw(batch);
         misakaEskillEffect.draw(batch);
+
+
+
         //coin
         drawObjects(propsCoinTest,propsCoinTestCnt,batch);
         drawObjects(coinGreen,coinGreenCnt,batch);
@@ -460,8 +474,7 @@ public class Level {
             return;
         }
         //Failed
-        if(!azuna.isAlive&&!kirito.isAlive) {
-            ;
+        if(!azuna.isAlive&&!kirito.isAlive&&!misaka.isAlive&&!indix.isAlive) {
             failed = true;
             return;
         }
@@ -483,5 +496,9 @@ public class Level {
         if(victoryTime < 0)
             victoryTime = stateTime;
 
+    }
+    public void setWeather(String str)
+    {
+        weather.weatherState = str;
     }
 }
