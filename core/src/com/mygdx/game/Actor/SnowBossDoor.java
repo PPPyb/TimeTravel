@@ -6,6 +6,7 @@ import com.mygdx.game.FireMapScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayScreen;
 import com.mygdx.timetravel.CurState;
+import com.mygdx.timetravel.LoadingPage;
 import com.mygdx.timetravel.WorldController;
 
 public class SnowBossDoor extends InteractiveTileObject {
@@ -17,8 +18,10 @@ public class SnowBossDoor extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
-        WorldController.iniSnow();
-        CurState.curLevelNum = 2;
+        if(!LoadingPage.isSnowLoaded())
+            LoadingPage.loadSnow();
+        else
+            CurState.curLevelNum = 2;
         //FireMapScreen.smallFireMapCollisionFlag=1;
     }
 }

@@ -323,7 +323,7 @@ public class Level {
             for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
                 Rectangle r = recObj.getRectangle();
-                System.out.println(r);
+
                 testMonster[testMonsterCnt++] = new TestMonster(r.x, r.y, this);
             }
         }
@@ -333,7 +333,7 @@ public class Level {
             for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
                 Rectangle r = recObj.getRectangle();
-                System.out.println(r);
+
                 beefs[beefsCnt++] = new Beef(r.x, r.y, this);
             }
         }
@@ -343,7 +343,7 @@ public class Level {
             for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
                 Rectangle r = recObj.getRectangle();
-                System.out.println(r);
+
                 zeus[zeusCnt++] = new Zeus(r.x, r.y, this);
             }
         }
@@ -353,7 +353,6 @@ public class Level {
             for (RectangleMapObject recObj : objects.getByType(RectangleMapObject.class)) {
 
                 Rectangle r = recObj.getRectangle();
-                System.out.println(r);
                 alien[alienCnt++] = new Alien(r.x, r.y, this);
             }
         }

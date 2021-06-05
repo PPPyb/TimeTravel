@@ -116,7 +116,6 @@ public class MagicHelper {
         if (kiritoE.casting) {
                 level.bulletFireWall.setPosition(new Vector2(kiritoE.castX,kiritoE.castY));
                 kiritoE.castTime += deltaTime;
-                System.out.println();
                 if(!kiritoE.damageCaused) {
                     level.bulletFireWall.collideEnemy();
                     kiritoE.damageCaused = true;

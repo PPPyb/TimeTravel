@@ -58,7 +58,6 @@ public class AzunaEskillEffectRecover extends Bullets{
     @Override
     public void setPosition(Vector2 position) {
         super.setPosition(position);
-        System.out.println(position);
     }
 
 }

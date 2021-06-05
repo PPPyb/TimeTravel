@@ -28,7 +28,6 @@ public class BulletFireWall extends Bullets{
 
         for(int i = 0;i < 7;i++)
         {
-        	System.out.println("fireA/600-1.png");
         	Texture temp = new Texture(Gdx.files.internal("fireA/"+(i+1)+".png"));
         	boom[i] = new TextureRegion(temp);
         }

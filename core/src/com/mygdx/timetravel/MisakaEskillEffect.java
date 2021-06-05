@@ -54,7 +54,6 @@ public class MisakaEskillEffect extends Bullets{
         damage = (int)(200 * deltaTime);
         collideEnemy();
         updateAnime();
-        System.out.println(getX()+" "+getY());
     }
 
     @Override

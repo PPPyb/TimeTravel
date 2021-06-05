@@ -39,8 +39,7 @@ public class MainTitle {
         batch.end();
 
         if(Gdx.input.isTouched()) {
-            worldController.iniWorld();
-            CurState.curLevelNum = 1;
+            LoadingPage.loadWorld();
         }
     }
 }

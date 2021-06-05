@@ -7,6 +7,7 @@ import com.mygdx.game.FireMapScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayScreen;
 import com.mygdx.timetravel.CurState;
+import com.mygdx.timetravel.LoadingPage;
 import com.mygdx.timetravel.WorldController;
 
 public class FireBossDoor extends InteractiveTileObject {
@@ -18,8 +19,10 @@ public class FireBossDoor extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
-        WorldController.iniFire();
-        CurState.curLevelNum = 3;
+        if(!LoadingPage.isFireLoaded())
+            LoadingPage.loadFire();
+        else
+            CurState.curLevelNum = 3;
         //FireMapScreen.smallFireMapCollisionFlag=1;
     }
 }

@@ -20,5 +20,5 @@ public class Constants {
     public static Vector2 myGravatiy = GRAVATIY;//重力
 
     public static final float ENEMYJUMPRATE = 10f;//敌人跳跃功率
-    public static final float VICTORYSHOWTIME = 12;
+    public static final float VICTORYSHOWTIME = 5;
 }

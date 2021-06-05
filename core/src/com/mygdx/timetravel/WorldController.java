@@ -19,7 +19,8 @@ public class WorldController {
     Level testWorld;
     static Level fireMap;
     static Level greenMap;
-    com.mygdx.game.MyGdxGame myGame;
+    static com.mygdx.game.MyGdxGame myGame;
+    LoadingPage loadingPage;
     MainTitle mainTitle;
     Tutorials tutorials;
     MusicManager musicManager;
@@ -28,31 +29,11 @@ public class WorldController {
     public WorldController()
     {
         MyTextrue.ini();
+        loadingPage = new LoadingPage(this);
         mainTitle = new MainTitle(this);
         tutorials = new Tutorials();
         strangeObject = new StrangeClass();
         musicManager = new MusicManager();
-    }
-
-    public void iniWorld()
-    {
-        myGame = new com.mygdx.game.MyGdxGame();
-        myGame.create();
-    }
-    public static void iniSnow()
-    {
-        snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
-        snowLand.setWeather("SNOW");
-    }
-    public static void iniFire()
-    {
-        fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
-        fireMap.setWeather("STONE");
-    }
-    public static void iniGreen()
-    {
-        greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
-        greenMap.setWeather("RAIN");
     }
 
     public void update()
@@ -77,6 +58,9 @@ public class WorldController {
                 break;
             case 10086:
                 strangeObject.render();
+                break;
+            case -1:
+                loadingPage.render();
                 break;
             default:
                 curLevel.render();
@@ -122,22 +106,31 @@ public class WorldController {
         //
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0))
         {
-            setCurLevelNum(1);
+            if(!LoadingPage.isBigLoaded())
+                LoadingPage.loadWorld();
+            else
+                setCurLevelNum(1);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_9))
         {
-            iniSnow();
-            setCurLevelNum(2);
+            if(!LoadingPage.isSnowLoaded())
+                LoadingPage.loadSnow();
+            else
+                setCurLevelNum(2);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_8))
         {
-            iniFire();
-            setCurLevelNum(3);
+            if(!LoadingPage.isFireLoaded())
+                LoadingPage.loadFire();
+            else
+                setCurLevelNum(3);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
         {
-            iniGreen();
-            setCurLevelNum(4);
+            if(!LoadingPage.isGreenLoaded())
+                LoadingPage.loadGreen();
+            else
+                setCurLevelNum(4);
         }
     }
 

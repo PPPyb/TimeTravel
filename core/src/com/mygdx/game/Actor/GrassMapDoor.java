@@ -7,6 +7,7 @@ import com.mygdx.game.FireMapScreen;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.PlayScreen;
 import com.mygdx.timetravel.CurState;
+import com.mygdx.timetravel.LoadingPage;
 import com.mygdx.timetravel.WorldController;
 
 public class GrassMapDoor extends InteractiveTileObject {
@@ -17,8 +18,10 @@ public class GrassMapDoor extends InteractiveTileObject {
     }
     @Override
     public void onHeadHit() {
-        WorldController.iniGreen();
-        CurState.curLevelNum = 4;
+        if(!LoadingPage.isGreenLoaded())
+            LoadingPage.loadGreen();
+        else
+            CurState.curLevelNum = 4;
         //FireMapScreen.smallFireMapCollisionFlag=1;
     }
 }

@@ -16,12 +16,12 @@ public class WeatherStone extends WeatherBullets{
         super(x,y,level);
     }
 
-    ParticleEffect effect;
+    //ParticleEffect effect;
     @Override
     public void initAnime() {
-        effect = new ParticleEffect();
+        /*effect = new ParticleEffect();
         effect.load(Gdx.files.internal("particle/stonefire.particle"),Gdx.files.internal("particle"));
-        effect.start();
+        effect.start();*/
         curFrame = new TextureRegion();
         curFrame = MyTextrue.doreamon;
         setWidth(curFrame.getRegionWidth());
@@ -36,14 +36,14 @@ public class WeatherStone extends WeatherBullets{
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        effect.setPosition(getX()+width/2,getY()+height/2);
-        effect.update(deltaTime);
+        /*effect.setPosition(getX()+width/2,getY()+height/2);
+        effect.update(deltaTime);*/
 
     }
 
     @Override
     public void draw(Batch batch) {
-        effect.draw(batch);
+        //effect.draw(batch);
         super.draw(batch);
     }
 
