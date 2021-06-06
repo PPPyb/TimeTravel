@@ -2,6 +2,7 @@ package com.mygdx.game.tools;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.mygdx.game.Actor.BigMan;
 import com.mygdx.game.NpcCommunication;
 import com.mygdx.timetravel.CurState;
 
@@ -27,9 +28,15 @@ public class MyInputProcessor implements InputProcessor {
             onMouseDown();
             return true;
         }
+        if (button == Input.Buttons.RIGHT && CurState.curLevelNum==1) {
+            onMouseDown1();
+            return true;
+        }
         return false;
     }
-
+    private void onMouseDown1(){
+        NpcCommunication.BigManCount++;
+    }
     private void onMouseDown() {
         NpcCommunication.communicationCount++;
     }
