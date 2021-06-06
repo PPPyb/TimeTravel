@@ -35,7 +35,7 @@ public class LoadingPage {
         batch = new SpriteBatch();
         bkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
           snowbkg = new Texture(Gdx.files.internal("MainTitle/snowbkg.jpg"));
-//        firebkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
+          firebkg = new Texture(Gdx.files.internal("MainTitle/firebkg.jpg"));
 //        greenbkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
     }
     public void render()
@@ -59,13 +59,13 @@ public class LoadingPage {
                 batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
                 batch.end();
                 break;
-//            case "FIRE":
-//                batch.begin();
-//                batch.draw(firebkg,0,0);
-//                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
-//                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
-//                batch.end();
-//                break;
+            case "FIRE":
+                batch.begin();
+                batch.draw(firebkg,0,0);
+                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+                batch.end();
+                break;
 //            case "GREEN":
 //                batch.begin();
 //                batch.draw(greenbkg,0,0);
