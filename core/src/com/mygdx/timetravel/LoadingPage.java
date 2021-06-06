@@ -28,7 +28,7 @@ public class LoadingPage {
         tiao = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
         this.worldController = worldController;
         batch = new SpriteBatch();
-        bkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
+        bkg = new Texture(Gdx.files.internal("MainTitle/loading.jpg"));
     }
     public void render()
     {
