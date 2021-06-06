@@ -34,7 +34,7 @@ public class LoadingPage {
         this.worldController = worldController;
         batch = new SpriteBatch();
         bkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
-//        snowbkg = new Texture(Gdx.files.internal("testMap/titanic.jpg"));
+          snowbkg = new Texture(Gdx.files.internal("MainTitle/snowbkg.jpg"));
 //        firebkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
 //        greenbkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
     }
@@ -52,13 +52,13 @@ public class LoadingPage {
                 batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
                 batch.end();
                 break;
-//            case "SNOW":
-//                batch.begin();
-//                batch.draw(snowbkg,0,0);
-//                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
-//                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
-//                batch.end();
-//                break;
+            case "SNOW":
+                batch.begin();
+                batch.draw(snowbkg,0,0);
+                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+                batch.end();
+                break;
 //            case "FIRE":
 //                batch.begin();
 //                batch.draw(firebkg,0,0);
