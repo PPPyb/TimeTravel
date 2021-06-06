@@ -32,7 +32,7 @@ public class LoadingPage {
     }
     public void render()
     {
-        delay += Math.random()/10;
+        delay += Math.random()/20;
         batch.begin();
         batch.draw(bkg,0,0);
 

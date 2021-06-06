@@ -114,7 +114,7 @@ public class PlayScreen implements Screen {
         npcCommunication.update();
         normalPeople1.update(dt);
         normalPeople2.update(dt);
-        snowBall.update(dt);
+        //snowBall.update(dt);
         if (mario.b2body.getPosition().y > 220 && mario.b2body.getPosition().y < 427 && mario.b2body.getPosition().x > 460 && mario.b2body.getPosition().x < 762)
             hud.updateToGarden();
         if (mario.b2body.getPosition().y > 122 && mario.b2body.getPosition().y < 452 && mario.b2body.getPosition().x > 100 && mario.b2body.getPosition().x < 410)
@@ -156,7 +156,7 @@ public class PlayScreen implements Screen {
         repairman.draw(game.batch);
         normalPeople1.draw(game.batch);
         normalPeople2.draw(game.batch);
-        snowBall.draw(game.batch);
+        //snowBall.draw(game.batch);
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 //        if(NpcCommunication.communicationCount==5) {
