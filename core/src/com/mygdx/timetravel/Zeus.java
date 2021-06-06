@@ -43,7 +43,7 @@ public class Zeus extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 2500f;
+        curHP = maxHP = 3000f;
         walkSpeed = 50;
         enemyAI = new EnemyAIBeef(this);
     }
