@@ -201,6 +201,8 @@ public class Zeus extends Enemy{
 
     @Override
     public void attack() {
+        level.bulletLight.setPosition(new Vector2(getX(), getY()));
+        level.bulletLight.setVelocity(new Vector2(100, 0));
         attackTime = 0;
         for(int i = 0;i < 3;i++)
             attacked[i] = false;
