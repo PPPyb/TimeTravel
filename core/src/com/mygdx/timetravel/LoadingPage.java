@@ -66,13 +66,13 @@ public class LoadingPage {
                 batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
                 batch.end();
                 break;
-//            case "GREEN":
-//                batch.begin();
-//                batch.draw(greenbkg,0,0);
-//                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
-//                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
-//                batch.end();
-//                break;
+            case "GREEN":
+                batch.begin();
+                batch.draw(greenbkg,0,0);
+                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+                batch.end();
+                break;
         }
 
         if(delay > 1) {
