@@ -79,6 +79,8 @@ public class Level {
     IndixQskillEffect indixQskillEffect;
     BulletTitanic bulletTitanic;
 
+    BulletLight bulletLight;
+
     //coin
     PropsCoinTest[] propsCoinTest;
     int propsCoinTestCnt = 0;
@@ -143,6 +145,7 @@ public class Level {
         bulletTestEnemies = new BulletTestEnemy[1000];
         bulletTestEnemiesCnt = 0;
         bulletTitanic  = new BulletTitanic(-10000,-10000,this);
+        bulletLight = new BulletLight(-10000, -10000, this);
         bulletBeef = new BulletBeef[1000];
         bulletBeefCnt = 0;
         bulletFireWall = new BulletFireWall(-10000,-10000,this);
@@ -222,6 +225,7 @@ public class Level {
         kiritoQskillEffect.update(deltaTime);
         indixQskillEffect.update(deltaTime);
         bulletTitanic.update(deltaTime);
+        bulletLight.update(deltaTime);
         misakaEskillEffect.update(deltaTime);
 
         //weather
@@ -277,6 +281,7 @@ public class Level {
         kiritoQskillEffect.draw(batch);
         indixQskillEffect.draw(batch);
         bulletTitanic.draw(batch);
+        bulletLight.draw(batch);
         misakaEskillEffect.draw(batch);
 
 

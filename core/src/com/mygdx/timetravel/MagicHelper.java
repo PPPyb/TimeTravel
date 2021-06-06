@@ -252,7 +252,7 @@ public class MagicHelper {
                 level.misaka.curFrame = new TextureRegion();
                 level.misaka.curFrame = level.misaka.standFrame;
 
-            level.misaka.walkLeftAni = new Animation(0.2f, level.misaka.walkLeftFrames);
+                level.misaka.walkLeftAni = new Animation(0.2f, level.misaka.walkLeftFrames);
                 level.misaka.walkLeftAni.setPlayMode(Animation.PlayMode.LOOP);
 
                 level.misaka.walkRightAni= new Animation(0.2f,level.misaka.walkRightFrames);
