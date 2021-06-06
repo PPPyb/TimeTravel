@@ -19,6 +19,7 @@ public class MagicHelper {
         player = level.curPlayer;
         azunaQ = new Magic(level);
         azunaQ.setMaxCD(30);
+        azunaQ.setMusicEffect(94);
         azunaE = new Magic(level);
         azunaE.setMaxCD(5);
         azunaE.setMusicEffect(93);

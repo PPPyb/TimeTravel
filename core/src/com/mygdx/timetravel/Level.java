@@ -184,8 +184,21 @@ public class Level {
                 MusicManager.playMusic(92);
             else if (failed)
                 MusicManager.playMusic(91);
-            else if(!magicHelper.magicIsCasting())
-                MusicManager.playMusic(90);
+            else if(!magicHelper.magicIsCasting()) {
+                switch (weather.weatherState)
+                {
+                    default:
+                    case "RAIN":
+                        MusicManager.playMusic(71);
+                        break;
+                    case "SNOW":
+                        MusicManager.playMusic(70);
+                        break;
+                    case "STONE":
+                        MusicManager.playMusic(72);
+                        break;
+                }
+            }
 
         //判断胜负
         victoryOrFailed();
