@@ -36,7 +36,7 @@ public class LoadingPage {
         bkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
           snowbkg = new Texture(Gdx.files.internal("MainTitle/snowbkg.jpg"));
           firebkg = new Texture(Gdx.files.internal("MainTitle/firebkg.jpg"));
-//        greenbkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
+          greenbkg = new Texture(Gdx.files.internal("MainTitle/greenbkg.jpg"));
     }
     public void render()
     {
