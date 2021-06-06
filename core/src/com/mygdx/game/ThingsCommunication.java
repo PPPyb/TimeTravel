@@ -15,30 +15,24 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Actor.BigMan;
 import com.mygdx.game.Actor.NormalPeople;
 import com.mygdx.game.tools.MyInputProcessor;
 
-public class NpcCommunication implements Disposable {
+public class ThingsCommunication implements Disposable {
     public Stage stage;
     private Viewport viewport;
     public static int communicationCount=0;
-    public static int BigManCount=0;
     private Table table;
     private String[] CommunicationPlayScreenContents;
     private String[] CommunicationGambleScreenContents;
     private String[] CommunicationRepairmanHomeScreenContents;
-    private String[] CommunicationPlayScreenNormalman1Contents;
-    private String[] CommunicationPlayScreenNormalman2Contents;
     private String[] CommunicationFireMapScreenContents;
     private String[] CommunicationSnowMapScreenContents;
-    private String[] CommunicationBigManContents;
-    private String[] CommunicationBigManContents1;
     private MyInputProcessor inputProcessor;
     public  Texture repairmanFace;
     private Batch batch;
     Label CommunicationLabel;
-    public NpcCommunication(SpriteBatch sb) {
+    public ThingsCommunication(SpriteBatch sb) {
         viewport = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport,sb);
         table = new Table();
@@ -85,22 +79,6 @@ public class NpcCommunication implements Disposable {
         CommunicationRepairmanHomeScreenContents[3]="Time travel,";
         CommunicationRepairmanHomeScreenContents[4]="here we come.";
         CommunicationRepairmanHomeScreenContents[5]="hh";
-        //守门人对话1
-        CommunicationBigManContents=new String[100];
-        CommunicationBigManContents[0]="This is the portal to the world of adventure.";
-        CommunicationBigManContents[1]="I'm a doorman in the station.";
-        CommunicationBigManContents[2]="Let me see if you have enough energy.";
-        CommunicationBigManContents[3]="Your plane don't have enough energy access.";
-        CommunicationBigManContents[4]="You need to go to the power room in the middle of the station.";
-        CommunicationBigManContents[5]="Good luck.";
-        //守门人对话2
-        CommunicationBigManContents1=new String[100];
-        CommunicationBigManContents1[0]="This is the portal to the world of adventure.";
-        CommunicationBigManContents1[1]="I'm a doorman in the station.";
-        CommunicationBigManContents1[2]="Let me see if you have enough energy.";
-        CommunicationBigManContents1[3]="Your plane have enough energy access already";
-        CommunicationBigManContents1[4]="Start your adventure!";
-        CommunicationBigManContents1[5]="Good luck.";
         table.setPosition(0,-130);
         table.setFillParent(true);
         BitmapFont font=new BitmapFont();
@@ -111,7 +89,7 @@ public class NpcCommunication implements Disposable {
     }
     public void update(){
         Gdx.input.setInputProcessor(inputProcessor);
-        if(PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1) {
+        if(PlayScreen.PlayScreenFlag==0) {
             CommunicationLabel.setText(CommunicationPlayScreenContents[communicationCount]);
         }
         if(PlayScreen.PlayScreenFlag==1 && gambleRoomScreen.gambleRoomFlag==0) {
@@ -124,19 +102,12 @@ public class NpcCommunication implements Disposable {
         if(PlayScreen.PlayScreenFlag==1 && SnowMapScreen.SnowMapFlag==0)
             CommunicationLabel.setText(CommunicationSnowMapScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && FireMapScreen.FireMapFlag==0)
-            CommunicationLabel.setText(CommunicationFireMapScreenContents[communicationCount]);
-        if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1)
-           CommunicationLabel.setText(CommunicationBigManContents[BigManCount]);
-        if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==0 )
-            CommunicationLabel.setText(CommunicationBigManContents1[BigManCount]);
+            CommunicationLabel.setText( CommunicationFireMapScreenContents[communicationCount]);
         if(communicationCount>5){
             communicationCount=0;
             PlayScreen.collisionFlag=0;
         }
-        if(BigManCount>5){
-            BigManCount=0;
-            BigMan.BigManFlag=false;
-        }
+
     }
     public void render() {
         batch.begin();

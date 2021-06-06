@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayScreen;
 import com.mygdx.game.powerRoomScreen;
 import com.mygdx.game.weaponRoomScreen;
 
@@ -17,6 +18,8 @@ public class powerRoomDoor extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
+        //powerRoomScreen.powerRoomScreenFlag=1;
+        PlayScreen.PlayScreenFlag=0;
         powerRoomScreen.changeToMainScreen();
     }
 

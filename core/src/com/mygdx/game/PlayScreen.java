@@ -15,10 +15,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Actor.Mario;
-import com.mygdx.game.Actor.NormalPeople;
-import com.mygdx.game.Actor.Repairman;
-import com.mygdx.game.Actor.SnowBall;
+import com.mygdx.game.Actor.*;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
 import com.mygdx.timetravel.Level;
@@ -41,10 +38,12 @@ public class PlayScreen implements Screen {
     private TextureAtlas atlas;
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasSnowBall;
+    private TextureAtlas atlasBigMan;
     private Music music;
     private Repairman repairman;
     private NormalPeople normalPeople1;
     private NormalPeople normalPeople2;
+    private BigMan bigMan;
     private SnowBall snowBall;
     private shopInterface shopInterface;
     private ChangeMapInterface changeMapInterface;
@@ -59,6 +58,7 @@ public class PlayScreen implements Screen {
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman = new TextureAtlas("character/repairman.pack");
         atlasSnowBall= new TextureAtlas("character/Ball.pack");
+        atlasBigMan= new TextureAtlas("character/BigMan.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -75,11 +75,12 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
         new B2WorldCreator(world, map);
         mario = new Mario(world, this,x,y);
-        snowBall=new SnowBall(this,32f,32f);
+        //snowBall=new SnowBall(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         repairman = new Repairman(this, 32f, 32f);
         normalPeople1 = new NormalPeople(this, 600, 500);
         normalPeople2 = new NormalPeople(this, 600, 600);
+        bigMan =new BigMan(this,950,1000);
         bagInterface=new bagInterface();
         openBagInterface=new openBagInterface();
         starEffect = new ParticleEffect();
@@ -100,7 +101,9 @@ public class PlayScreen implements Screen {
     public TextureAtlas getRepairmanAtlas() {
         return atlasRepairman;
     }
-
+    public TextureAtlas getAtlasBigMan() {
+        return atlasBigMan;
+    }
     @Override
     public void show() {
 
@@ -114,6 +117,7 @@ public class PlayScreen implements Screen {
         npcCommunication.update();
         normalPeople1.update(dt);
         normalPeople2.update(dt);
+        bigMan.update(dt);
         //snowBall.update(dt);
         if (mario.b2body.getPosition().y > 220 && mario.b2body.getPosition().y < 427 && mario.b2body.getPosition().x > 460 && mario.b2body.getPosition().x < 762)
             hud.updateToGarden();
@@ -133,7 +137,7 @@ public class PlayScreen implements Screen {
         gamecam.position.y = mario.b2body.getPosition().y;
         gamecam.update();
         renderer.setView(gamecam);
-        starEffect.setPosition(0,0);
+        starEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
         starEffect.update(dt);
         //snowEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
        //snowEffect.update(dt);
@@ -150,6 +154,7 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        bigMan.draw(game.batch);
         //if(PortalCollisionFlag==1)
         starEffect.draw(game.batch);
         //snowEffect.draw(game.batch);
@@ -188,6 +193,8 @@ public class PlayScreen implements Screen {
         }
         if (mario.b2body.getPosition().x <= 1005 && mario.b2body.getPosition().x >= 970 && mario.b2body.getPosition().y > 700 && mario.b2body.getPosition().y < 719) {
             changeToPowerRoomScreen();
+            PlayScreen.PlayScreenFlag=1;
+            powerRoomScreen.powerRoomScreenFlag=0;
         }
         if (mario.b2body.getPosition().x <= 1025 && mario.b2body.getPosition().x >= 993 && mario.b2body.getPosition().y > 344 && mario.b2body.getPosition().y < 360) {
             changeToRepairmanHomeScreen();
@@ -203,8 +210,10 @@ public class PlayScreen implements Screen {
         if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman1Flag==1&&NormalPeople.Normalman2Flag==1) {
             npcCommunication.render();
             npcCommunication.stage.draw();
-//            NormalPeople.Normalman1Flag=1;
-//            NormalPeople.Normalman2Flag=1;
+        }
+        if(BigMan.BigManFlag==true&&NpcCommunication.BigManCount<5){
+            npcCommunication.render();
+            npcCommunication.stage.draw();
         }
 //        if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman1Flag==0) {
 //            npcCommunication.render();

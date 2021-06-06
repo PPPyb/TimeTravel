@@ -35,6 +35,7 @@ public class powerRoomScreen implements Screen {
     private Mario mario;
     private TextureAtlas atlas;
     private Music music;
+    public static int powerRoomScreenFlag=1;
     public powerRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         this.game=game;
