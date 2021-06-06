@@ -43,7 +43,7 @@ public class Zeus extends Enemy{
 
         initAnime();
         this.setAcceleration(Constants.myGravatiy);
-        curHP = maxHP = 1500f;
+        curHP = maxHP = 2500f;
         walkSpeed = 50;
         enemyAI = new EnemyAIBeef(this);
     }
@@ -202,7 +202,16 @@ public class Zeus extends Enemy{
     @Override
     public void attack() {
         level.bulletLight.setPosition(new Vector2(getX(), getY()));
-        level.bulletLight.setVelocity(new Vector2(100, 0));
+        switch (walkState){
+            default:
+            case "LEFT":
+                level.bulletLight.setVelocity(new Vector2(-800, 0));
+                break;
+            case "RIGHT":
+                level.bulletLight.setVelocity(new Vector2(800, 0));
+                break;
+        }
+//        level.bulletLight.setVelocity(new Vector2(100, 0));
         attackTime = 0;
         for(int i = 0;i < 3;i++)
             attacked[i] = false;
