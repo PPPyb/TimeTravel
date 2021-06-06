@@ -23,10 +23,10 @@ public class GUIRenderer {
     {
         this.level = level;
         myfont = new BitmapFont(Gdx.files.internal("myfont.fnt"),false);
-        imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
-        imgMP = new TextureRegion(new Texture(Gdx.files.internal("GUI/MP.png")));
-        imgJP = new TextureRegion(new Texture(Gdx.files.internal("GUI/JP.png")));
-        imgDP = new TextureRegion(new Texture(Gdx.files.internal("GUI/DP.png")));
+        imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.jpg")));
+        imgMP = new TextureRegion(new Texture(Gdx.files.internal("GUI/MP.jpg")));
+        imgJP = new TextureRegion(new Texture(Gdx.files.internal("GUI/JP.jpg")));
+        imgDP = new TextureRegion(new Texture(Gdx.files.internal("GUI/DP.jpg")));
         failed = new Texture(Gdx.files.internal("GUI/failed.png"));
         warmheart = new Texture(Gdx.files.internal("GUI/warmheart.png"));
         victory = new Texture(Gdx.files.internal("GUI/victory.png"));
