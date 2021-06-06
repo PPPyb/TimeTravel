@@ -8,15 +8,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class LoadingPage {
     SpriteBatch batch;
     Texture bkg;
-    TextureRegion tiao;
+    Texture snowbkg;
+    Texture firebkg;
+    Texture greenbkg;
+    TextureRegion unload;
+    TextureRegion loaded;
     WorldController worldController;
     static String loadingTarget = "";
     double delay = 0;
 
     float tiaoX = 640;
-    float tiaoY = 100;
-    float tiaoWidth = 800;
-    float tiaoHigh = 40;
+    float tiaoY = 50;
+    float tiaoWidth = 360;
+    float tiaoHigh = 30;
 
     static boolean bigLoaded = false;
     static boolean snowLoaded = false;
@@ -25,23 +29,51 @@ public class LoadingPage {
 
     public LoadingPage(WorldController worldController)
     {
-        tiao = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+        unload = new TextureRegion(new Texture(Gdx.files.internal("MainTitle/unload.png")));
+        loaded = new TextureRegion(new Texture(Gdx.files.internal("MainTitle/alreadyload.png")));
         this.worldController = worldController;
         batch = new SpriteBatch();
-        bkg = new Texture(Gdx.files.internal("MainTitle/loading.jpg"));
+        bkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
+//        snowbkg = new Texture(Gdx.files.internal("testMap/titanic.jpg"));
+//        firebkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
+//        greenbkg = new Texture(Gdx.files.internal("MainTitle/Loading.png"));
     }
     public void render()
     {
         delay += Math.random()/20;
-        batch.begin();
-        batch.draw(bkg,0,0);
 
-        batch.setColor(0.5f,0.5f,0.5f,0.75f);
-        batch.draw(tiao,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
-        batch.setColor(1,1,1,1);
-        batch.draw(tiao,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
-
-        batch.end();
+        switch (loadingTarget)
+        {
+            default:
+            case "WORLD":
+                batch.begin();
+                batch.draw(bkg,0,0);
+                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+                batch.end();
+                break;
+//            case "SNOW":
+//                batch.begin();
+//                batch.draw(snowbkg,0,0);
+//                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+//                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+//                batch.end();
+//                break;
+//            case "FIRE":
+//                batch.begin();
+//                batch.draw(firebkg,0,0);
+//                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+//                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+//                batch.end();
+//                break;
+//            case "GREEN":
+//                batch.begin();
+//                batch.draw(greenbkg,0,0);
+//                batch.draw(unload,tiaoX-tiaoWidth/2,tiaoY,tiaoWidth,tiaoHigh);
+//                batch.draw(loaded,tiaoX-tiaoWidth/2,tiaoY,(float)(tiaoWidth*delay),tiaoHigh);
+//                batch.end();
+//                break;
+        }
 
         if(delay > 1) {
             delay = 0;
