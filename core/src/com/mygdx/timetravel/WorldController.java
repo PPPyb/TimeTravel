@@ -15,8 +15,6 @@ public class WorldController {
 
     Level curLevel;
     static Level snowLand;
-    Level testMap;
-    Level testWorld;
     static Level fireMap;
     static Level greenMap;
     static com.mygdx.game.MyGdxGame myGame;
@@ -140,13 +138,9 @@ public class WorldController {
     public void resetGame()
     {
         setCurLevelNum(0);
-        testMap = new Level("testMap/testMap.tmx","testMap/Background.tmx");
-        testWorld = new Level("testMap/testWorld.tmx","testMap/Background.tmx");
         snowLand = new Level("SnowLand/SnowLand.tmx","SnowLand/SnowLandBackGround.tmx");
         fireMap = new Level("FireMap/fire.tmx","FireMap/fireBackground.tmx");
         greenMap = new Level("GreenMap/green.tmx","GreenMap/greenBackground.tmx");
-
-        curLevel = testMap;
         Constants.myGravatiy = new Vector2(0,-10);
         myGame = new com.mygdx.game.MyGdxGame();
         myGame.create();

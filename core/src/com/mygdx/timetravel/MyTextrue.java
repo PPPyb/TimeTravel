@@ -12,6 +12,7 @@ public class MyTextrue {
     public static TextureRegion snow;
     public static TextureRegion coin;
     public static TextureRegion hp;
+    public static TextureRegion lighting;
     public static void ini()
     {
         doreamon = TextureRegion.split(new Texture(Gdx.files.internal("testMap/NBbullet.png")),new Texture(Gdx.files.internal("testMap/NBbullet.png")).getWidth()/4,new Texture(Gdx.files.internal("testMap/NBbullet.png")).getHeight()/4)[0][0];
@@ -20,5 +21,6 @@ public class MyTextrue {
         snow = new TextureRegion(new Texture(Gdx.files.internal("Weather/snow.png")));
         coin = new TextureRegion(new Texture(Gdx.files.internal("SnowLand/slice136.png")));
         hp = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+        lighting = new TextureRegion(new Texture(Gdx.files.internal("Zeus/Attack/light.png")));
     }
 }

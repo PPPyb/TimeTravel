@@ -9,7 +9,7 @@ public class BulletLight extends Bullets{
     public BulletLight(float x, float y, Level level)
     {
         super(x,y,level);
-        curFrame = new TextureRegion(new Texture(Gdx.files.internal("Zeus/Attack/light.png")));
+        curFrame = MyTextrue.lighting;
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
         damage = 40;
