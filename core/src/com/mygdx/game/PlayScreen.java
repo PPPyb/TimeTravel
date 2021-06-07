@@ -178,11 +178,11 @@ public class PlayScreen implements Screen {
         }
         //Gdx.input.setInputProcessor(bagInterface.stage);
         //bagInterface.render();
-        if(bagInterface.bag_flag==0 && NpcCommunication.communicationCount==5 && PlayScreen.PlayScreenFlag==0) {
+        if(bagInterface.bag_flag==0 && PlayScreen.PlayScreenFlag==0&&(collisionFlag==0||BigMan.BigManFlag==false)) {
             Gdx.input.setInputProcessor(openBagInterface.stage);
             openBagInterface.render();
         }
-        else if (bagInterface.bag_flag==1 && NpcCommunication.communicationCount==5 && PlayScreen.PlayScreenFlag==0){
+        else if (bagInterface.bag_flag==1 && PlayScreen.PlayScreenFlag==0&&(collisionFlag==0&&BigMan.BigManFlag==false)){
             Gdx.input.setInputProcessor(bagInterface.stage);
             bagInterface.render();
         }

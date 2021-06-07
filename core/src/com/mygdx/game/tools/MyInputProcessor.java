@@ -28,16 +28,13 @@ public class MyInputProcessor implements InputProcessor {
             onMouseDown();
             return true;
         }
-        if (button == Input.Buttons.RIGHT && CurState.curLevelNum==1) {
-            onMouseDown1();
-            return true;
-        }
         return false;
     }
-    private void onMouseDown1(){
-        NpcCommunication.BigManCount++;
-    }
+//    private void onMouseDown1(){
+//        NpcCommunication.BigManCount++;
+//    }
     private void onMouseDown() {
+        NpcCommunication.BigManCount++;
         NpcCommunication.communicationCount++;
     }
 
