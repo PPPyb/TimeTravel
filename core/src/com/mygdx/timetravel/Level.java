@@ -120,6 +120,8 @@ public class Level {
 
         backGround = new TmxMapLoader().load(backGroundRoute);
         backGroundRender = new OrthogonalTiledMapRenderer(backGround);
+
+        System.out.println("map loading ok");
         //主角
         curPlayer = new Player(0,0,this);
         azuna = new Azuna(0,0,this);

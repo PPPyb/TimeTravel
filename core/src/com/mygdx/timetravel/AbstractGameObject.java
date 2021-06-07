@@ -8,9 +8,10 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Disposable;
 
 //游戏中的抽象物体
-public abstract class AbstractGameObject{
+public abstract class AbstractGameObject implements Disposable {
     Vector2 position = new Vector2();//位置
     Vector2 velocity = new Vector2();//速度
     Vector2 acceleration = new Vector2();//加速度
@@ -107,4 +108,8 @@ public abstract class AbstractGameObject{
         return false;
     }
 
+    @Override
+    public void dispose() {
+
+    }
 }

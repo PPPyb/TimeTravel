@@ -165,7 +165,7 @@ public class Alien extends Enemy{
     @Override
     public void draw(Batch batch) {
         batch.draw(curFrame,getX()-150,getY()-25);
-        TextureRegion imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+        TextureRegion imgHP = MyTextrue.hp;
         batch.draw(imgHP,getX(),getY()+height+5,curHP*width/maxHP,5);
     }
 

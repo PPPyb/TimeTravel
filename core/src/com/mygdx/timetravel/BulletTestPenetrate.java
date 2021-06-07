@@ -30,26 +30,15 @@ public class BulletTestPenetrate extends Bullets{
 
     @Override
     public void initAnime() {
-        
-        Texture tem = new Texture(Gdx.files.internal("testMap/NBbullet.png"));
-        TextureRegion[][] temp = TextureRegion.split(tem,tem.getWidth()/4,tem.getHeight()/4);
-        boom = new TextureRegion[16];
-
-        for(int i = 0;i < 4;i++)
-            for(int j = 0;j < 4;j++)
-                boom[4*i+j] = temp[i][j];
-
-        boomAni = new Animation(0.05f, boom);
-        boomAni.setPlayMode(Animation.PlayMode.LOOP);
         curFrame = new TextureRegion();
-        curFrame = temp[0][0];
+        curFrame = MyTextrue.doreamon;
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
     }
 
     @Override
     public void updateAnime() {
-        curFrame = (TextureRegion) boomAni.getKeyFrame(stateTime);
+
     }
 
     @Override
@@ -65,5 +54,11 @@ public class BulletTestPenetrate extends Bullets{
     @Override
     public void draw(Batch batch) {
         fire.draw(batch);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        fire.dispose();
     }
 }

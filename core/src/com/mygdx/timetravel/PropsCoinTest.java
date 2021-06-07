@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class PropsCoinTest extends PropsCoin{
     public PropsCoinTest(float x,float y,Level level){
         super(x, y, level);
-        curFrame = new TextureRegion(new Texture(Gdx.files.internal("SnowLand/slice136.png")));
+        curFrame = MyTextrue.coin;
         setWidth(curFrame.getRegionWidth());
         setHeight(curFrame.getRegionHeight());
     }

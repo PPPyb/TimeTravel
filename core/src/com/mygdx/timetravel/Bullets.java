@@ -13,8 +13,6 @@ import com.badlogic.gdx.utils.Null;
 
 public class Bullets extends AbstractGameObject{
     //子弹的图像
-    Texture img;
-    TextureRegion[][] frames;
     TextureRegion curFrame;
     //子弹被销毁
     Boolean isDestructed = false;
@@ -98,6 +96,7 @@ public class Bullets extends AbstractGameObject{
         this.setVelocity(new Vector2(0,0));
         this.setPosition(new Vector2(-10000,-10000));
         isDestructed = true;
+        dispose();
     }
     public void collideEnemy()
     {
@@ -156,5 +155,10 @@ public class Bullets extends AbstractGameObject{
             if(!penetrate)
                 this.destructed();
         }
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
     }
 }

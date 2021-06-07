@@ -38,4 +38,10 @@ public class BulletTest extends Bullets{
         //super.draw(batch);
         rainbowEffect.draw(batch);
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        rainbowEffect.dispose();
+    }
 }

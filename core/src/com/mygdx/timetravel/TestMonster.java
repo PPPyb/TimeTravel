@@ -47,7 +47,7 @@ public class TestMonster extends Enemy{
     @Override
     public void draw(Batch batch) {
         super.draw(batch);
-        TextureRegion imgHP = new TextureRegion(new Texture(Gdx.files.internal("GUI/HP.png")));
+        TextureRegion imgHP = MyTextrue.hp;
         batch.draw(imgHP,getX(),getY()+height+5,curHP*width/maxHP,5);
     }
 
