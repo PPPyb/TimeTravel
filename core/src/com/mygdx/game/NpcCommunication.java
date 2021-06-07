@@ -50,8 +50,8 @@ public class NpcCommunication implements Disposable {
         CommunicationPlayScreenContents[0]="Hello, my name is Bob.";
         CommunicationPlayScreenContents[1]="I have been working as a repairman in the space station for 20 years.";
         CommunicationPlayScreenContents[2]="If you want to know about the most interesting places in the city.";
-        CommunicationPlayScreenContents[3]="you need meet me at gamble room.";
-        CommunicationPlayScreenContents[4]="Oh, this is your first time here. Here's a backpack for you.";
+        CommunicationPlayScreenContents[3]="You need meet me at gamble room.";
+        CommunicationPlayScreenContents[4]="My home is quite big. Welcome to my home.";
         CommunicationPlayScreenContents[5]="";
         CommunicationGambleScreenContents=new String[100];
         //赌博室第一次对话内容

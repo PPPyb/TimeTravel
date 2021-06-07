@@ -503,6 +503,8 @@ public class Mario extends Sprite {
         }
         else
             b2body.setLinearVelocity(0,0);
+
+
     }
     public TextureRegion getFrame(float dt){
         currentState=getState();

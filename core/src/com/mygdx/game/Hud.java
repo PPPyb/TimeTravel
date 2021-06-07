@@ -67,13 +67,8 @@ public class Hud implements Disposable {
         table.add(currentLocationLabel).expandX();
         //table.add(levelLabel).expandX();
         table.add(countdownLabel).expandX();
-//        Gdx.input.setInputProcessor(stage);
-//        upTexture = new Texture(Gdx.files.internal("Button/button1.png"));
-//        SpriteDrawable upDraw = new SpriteDrawable(new Sprite(upTexture));
-//        button = new ImageButton(upDraw);
-//        button.setPosition(0,0);
          stage.addActor(table);
-//        stage.addActor(button);
+
     }
     public void update(float dt){
         timeCount+=dt;

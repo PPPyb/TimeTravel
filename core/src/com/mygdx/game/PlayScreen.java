@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -52,6 +53,7 @@ public class PlayScreen implements Screen {
     public static int collisionFlag = 0;
     public static int PlayScreenFlag = 0;
     public static int PortalCollisionFlag = 0;
+    public SmallMapShow smallMapShow;
     //ParticleEffect snowEffect;
     ParticleEffect starEffect;
     public PlayScreen(MyGdxGame game,int x,int y) {
@@ -83,6 +85,7 @@ public class PlayScreen implements Screen {
         bigMan =new BigMan(this,950,1000);
         bagInterface=new bagInterface();
         openBagInterface=new openBagInterface();
+        smallMapShow=new SmallMapShow(game.batch);
         starEffect = new ParticleEffect();
         starEffect.load(Gdx.files.internal("particle/starBigMap.particle"),Gdx.files.internal("particle"));
         starEffect.start();
@@ -115,6 +118,7 @@ public class PlayScreen implements Screen {
         repairman.update(dt);
         hud.update(dt);
         npcCommunication.update();
+        smallMapShow.update(dt);
         normalPeople1.update(dt);
         normalPeople2.update(dt);
         bigMan.update(dt);
@@ -139,6 +143,8 @@ public class PlayScreen implements Screen {
         renderer.setView(gamecam);
         starEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
         starEffect.update(dt);
+        SmallMapShow.CurrentX=mario.b2body.getPosition().x;
+        SmallMapShow.CurrentY=mario.b2body.getPosition().y;
         //snowEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
        //snowEffect.update(dt);
     }
@@ -168,6 +174,8 @@ public class PlayScreen implements Screen {
 //            Gdx.input.setInputProcessor(shopInterface.stage);
 //            shopInterface.render();
 //        }
+        if(Gdx.input.isKeyPressed(Input.Keys.M))
+            smallMapShow.render();
         if(PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
