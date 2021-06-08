@@ -19,7 +19,7 @@ public class WeaponRoomOwner extends NPC{
         super(screen, 175, 100);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getWeaponRoomOwnerAtlas().findRegion("GambleRoomOwner"),48*i,0,48,49));
+            frames.add(new TextureRegion(screen.getWeaponRoomOwnerAtlas().findRegion("nofireWalk"),48*i,0,48,49));
         GambleRoomOwnerStand=new Animation(0.1f,frames);
         frames.clear();
         stateTime=0;

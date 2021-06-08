@@ -43,7 +43,7 @@ public class weaponRoomScreen implements Screen {
 
     public weaponRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
-        atlasWeaponRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
+        atlasWeaponRoomOwner=new TextureAtlas("character/nofireWalk.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
