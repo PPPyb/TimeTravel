@@ -1,9 +1,9 @@
 package com.mygdx.timetravel;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 public class Heart extends PropsCoin{
 
     public Heart(float x, float y, Level level) {
@@ -13,7 +13,7 @@ public class Heart extends PropsCoin{
         setHeight(curFrame.getRegionHeight());
     }
 
-    public void update(float deltaTime){
+    public void update(float deltaTime) {
         super.update(deltaTime);
         collidePlayer();
     }
