@@ -38,6 +38,7 @@ public class FireMapScreen implements Screen {
     private TextureAtlas atlas;
     private Music music;
     private Repairman repairman;
+    private SmallMapShow smallMapShow;
     private FireMapNPC fireMapNPC;
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasFireMapNPC;
@@ -67,6 +68,7 @@ public class FireMapScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
+        smallMapShow=new SmallMapShow(game.batch);
         snowBall=new SnowBall[5];
         for(int i=0;i<5;i++) {
             snowBall[i] = new SnowBall(this, 495, 20+30*i);
@@ -99,6 +101,7 @@ public class FireMapScreen implements Screen {
         mario.update(dt);
         npcCommunication.update();
         fireMapNPC.update(dt);
+        smallMapShow.update(dt);
         for(int i=0;i<5;i++)
             snowBall[i].update(dt);
         //System.out.println(mario.b2body.getPosition().x);
@@ -107,6 +110,8 @@ public class FireMapScreen implements Screen {
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
         renderer.setView(gamecam);
+        SmallMapShow.CurrentX1=mario.b2body.getPosition().x;
+        SmallMapShow.CurrentY1=mario.b2body.getPosition().y;
     }
 
     @Override
@@ -125,6 +130,8 @@ public class FireMapScreen implements Screen {
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
+        if(Gdx.input.isKeyPressed(Input.Keys.M))
+            smallMapShow.render2();
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.render();
             npcCommunication.stage.draw();

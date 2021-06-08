@@ -39,6 +39,7 @@ public class SnowMapScreen implements Screen {
     private TextureAtlas atlas;
     private Music music;
     private Repairman repairman;
+    private SmallMapShow smallMapShow;
     private SnowMapNPC snowMapNPC;
     private ChangeMapInterface changeMapInterface;
     private TextureAtlas atlasRepairman;
@@ -70,6 +71,7 @@ public class SnowMapScreen implements Screen {
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
         snowBall=new SnowBall[10];
+        smallMapShow=new SmallMapShow(game.batch);
         if(StaticBallFlag==0) {
             for (int i = 0; i < 8; i++) {
                 snowBall[i] = new SnowBall(this, 500, 20 + 20 * i);
@@ -102,22 +104,10 @@ public class SnowMapScreen implements Screen {
     public void show() {
 
     }
-    public void handleInput(float dt){
-        if(Gdx.input.isKeyPressed(Input.Keys.UP))
-            mario.b2body.applyLinearImpulse(new Vector2(0,20f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            mario.b2body.applyLinearImpulse(new Vector2(0,-40f),mario.b2body.getWorldCenter(),true);
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
-            mario.b2body.applyLinearImpulse(new Vector2(50f,0), mario.b2body.getWorldCenter(),true);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
-            mario.b2body.applyLinearImpulse(new Vector2(-100f,0), mario.b2body.getWorldCenter(),true);
-        }
-    }
     public void update(float dt){
-        handleInput(dt);
         world.step(1/60f,6,2);
         mario.update(dt);
+        smallMapShow.update(dt);
         for(int i=0;i<8;i++)
         snowBall[i].update(dt);
         npcCommunication.update();
@@ -129,6 +119,8 @@ public class SnowMapScreen implements Screen {
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
         renderer.setView(gamecam);
+        SmallMapShow.CurrentX1=mario.b2body.getPosition().x;
+        SmallMapShow.CurrentY1=mario.b2body.getPosition().y;
     }
 
     @Override
@@ -150,6 +142,8 @@ public class SnowMapScreen implements Screen {
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
+        if(Gdx.input.isKeyPressed(Input.Keys.M))
+            smallMapShow.render3();
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.render();
             npcCommunication.stage.draw();

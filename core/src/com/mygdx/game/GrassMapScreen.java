@@ -39,6 +39,7 @@ public class GrassMapScreen implements Screen {
     private Music music;
     private Repairman repairman;
     private FireMapNPC fireMapNPC;
+    private SmallMapShow smallMapShow;
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasFireMapNPC;
     private TextureAtlas atlasSnowBall;
@@ -69,6 +70,7 @@ public class GrassMapScreen implements Screen {
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
         snowBall=new SnowBall[5];
+        smallMapShow=new SmallMapShow(game.batch);
         for(int i=0;i<5;i++) {
             snowBall[i] = new SnowBall(this, 495, 20+30*i);
         }
@@ -104,6 +106,7 @@ public class GrassMapScreen implements Screen {
         npcCommunication.update();
         rainEffect.update(dt);
         //fireMapNPC.update(dt);
+        smallMapShow.update(dt);
         for(int i=0;i<5;i++)
             snowBall[i].update(dt);
         //System.out.println(mario.b2body.getPosition().x);
@@ -112,6 +115,8 @@ public class GrassMapScreen implements Screen {
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
         renderer.setView(gamecam);
+        SmallMapShow.CurrentX1=mario.b2body.getPosition().x;
+        SmallMapShow.CurrentY1=mario.b2body.getPosition().y;
     }
 
     @Override
@@ -132,6 +137,8 @@ public class GrassMapScreen implements Screen {
         //repairman.draw(game.batch);
         //gambleRoomOwner.draw(game.batch);
         game.batch.end();
+        if(Gdx.input.isKeyPressed(Input.Keys.M))
+            smallMapShow.render4();
         if(PlayScreen.collisionFlag==1) {
             npcCommunication.stage.draw();
         }
