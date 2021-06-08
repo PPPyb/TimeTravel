@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -39,6 +40,7 @@ public class PortalScreen implements Screen {
     private Mario mario;
     private TextureAtlas atlas;
     private TextureAtlas atlasRepairman;
+    private SmallMapShow smallMapShow;
     private Repairman repairman;
     private ChangeMapInterface changeMapInterface;
     public static int PortalScreenFlag=0;
@@ -62,6 +64,7 @@ public class PortalScreen implements Screen {
         mario = new Mario(world, this);
         world.setContactListener(new WorldContactListener());
         repairman = new Repairman(this, 32f, 32f);
+        smallMapShow=new SmallMapShow(game.batch);
     }
 
     public TextureAtlas getAtlas() {
@@ -83,6 +86,7 @@ public class PortalScreen implements Screen {
         repairman.update(dt);
         hud.update(dt);
         npcCommunication.update();
+        smallMapShow.update(dt);
         if (mario.b2body.getPosition().y > 220 && mario.b2body.getPosition().y < 427 && mario.b2body.getPosition().x > 460 && mario.b2body.getPosition().x < 762)
             hud.updateToGarden();
         if (mario.b2body.getPosition().y > 122 && mario.b2body.getPosition().y < 452 && mario.b2body.getPosition().x > 100 && mario.b2body.getPosition().x < 410)
@@ -101,6 +105,8 @@ public class PortalScreen implements Screen {
         gamecam.position.y = mario.b2body.getPosition().y;
         gamecam.update();
         renderer.setView(gamecam);
+        SmallMapShow.CurrentX=mario.b2body.getPosition().x;
+        SmallMapShow.CurrentY=mario.b2body.getPosition().y;
     }
 
     @Override
@@ -116,8 +122,11 @@ public class PortalScreen implements Screen {
         mario.draw(game.batch);
         repairman.draw(game.batch);
         game.batch.end();
+
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         //Gdx.input.setInputProcessor(hud.stage);
+        if(Gdx.input.isKeyPressed(Input.Keys.M))
+            smallMapShow.render1();
         hud.stage.draw();
         if (mario.b2body.getPosition().x <= 250 && mario.b2body.getPosition().x >= 239 && mario.b2body.getPosition().y > 704 && mario.b2body.getPosition().y < 711) {
             changeToWeaponRoomScreen();
