@@ -33,6 +33,7 @@ public class NpcCommunication implements Disposable {
     private String[] CommunicationSnowMapScreenContents;
     private String[] CommunicationBigManContents;
     private String[] CommunicationBigManContents1;
+    private String[] CommunicationPowerRoomScreenContents;
     private MyInputProcessor inputProcessor;
     public  Texture repairmanFace;
     private Batch batch;
@@ -84,6 +85,14 @@ public class NpcCommunication implements Disposable {
         CommunicationRepairmanHomeScreenContents[3]="Time travel,";
         CommunicationRepairmanHomeScreenContents[4]="here we come.";
         CommunicationRepairmanHomeScreenContents[5]="hh";
+        CommunicationPowerRoomScreenContents=new String[100];
+        //能源室
+        CommunicationPowerRoomScreenContents[0]="Thank you for helping me.";
+        CommunicationPowerRoomScreenContents[1]="You are now ready to teleport the matrix.";
+        CommunicationPowerRoomScreenContents[2]="I've already told him.";
+        CommunicationPowerRoomScreenContents[3]="You can go on an adventure.";
+        CommunicationPowerRoomScreenContents[4]="Good luck to you.";
+        CommunicationPowerRoomScreenContents[5]="hh";
         //守门人对话1
         CommunicationBigManContents=new String[100];
         CommunicationBigManContents[0]="This is the portal to the world of adventure.";
@@ -124,6 +133,8 @@ public class NpcCommunication implements Disposable {
             CommunicationLabel.setText(CommunicationSnowMapScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && FireMapScreen.FireMapFlag==0)
             CommunicationLabel.setText(CommunicationFireMapScreenContents[communicationCount]);
+        if(PlayScreen.PlayScreenFlag==1 && powerRoomScreen.powerRoomScreenFlag==0)
+            CommunicationLabel.setText(CommunicationPowerRoomScreenContents[communicationCount]);
         if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1)
            CommunicationLabel.setText(CommunicationBigManContents[BigManCount]);
         if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==0 )
@@ -131,6 +142,7 @@ public class NpcCommunication implements Disposable {
         if(communicationCount>5){
             communicationCount=0;
             PlayScreen.collisionFlag=0;
+            powerRoomScreen.powerRoomCollisionFlag=0;
         }
         if(BigManCount>5){
             BigManCount=0;

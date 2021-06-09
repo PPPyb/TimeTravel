@@ -22,6 +22,7 @@ import com.mygdx.game.tools.WorldContactListener;
 import com.mygdx.timetravel.Level;
 import com.mygdx.timetravel.MusicManager;
 import com.mygdx.timetravel.Weather;
+import com.mygdx.game.Actor.SnowBall;
 
 public class PlayScreen implements Screen {
     public static MyGdxGame game;
@@ -81,7 +82,7 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
         new B2WorldCreator(world, map);
         mario = new Mario(world, this,x,y);
-        //snowBall=new SnowBall(this,32f,32f);
+        snowBall=new SnowBall(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         repairman = new Repairman(this, 32f, 32f);
         normalPeople1 = new NormalPeople1(this, 600, 500);
@@ -132,7 +133,8 @@ public class PlayScreen implements Screen {
         normalPeople1.update(dt);
         normalPeople2.update(dt);
         bigMan.update(dt);
-        //snowBall.update(dt);
+        snowBall.update(dt);
+
         if (mario.b2body.getPosition().y > 220 && mario.b2body.getPosition().y < 427 && mario.b2body.getPosition().x > 460 && mario.b2body.getPosition().x < 762)
             hud.updateToGarden();
         if (mario.b2body.getPosition().y > 122 && mario.b2body.getPosition().y < 452 && mario.b2body.getPosition().x > 100 && mario.b2body.getPosition().x < 410)
@@ -145,8 +147,8 @@ public class PlayScreen implements Screen {
             hud.updateToPowerSupplyArea();
         if (mario.b2body.getPosition().y > 557 && mario.b2body.getPosition().y < 812 && mario.b2body.getPosition().x > 120 && mario.b2body.getPosition().x < 355)
             hud.updateToWeaponSupplyArea();
-        //System.out.println(mario.b2body.getPosition().x);
-        //System.out.println(mario.b2body.getPosition().y);
+        System.out.println(mario.b2body.getPosition().x);
+        System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x = mario.b2body.getPosition().x;
         gamecam.position.y = mario.b2body.getPosition().y;
         gamecam.update();
@@ -165,8 +167,11 @@ public class PlayScreen implements Screen {
         update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        renderer.render();
+
         b2dr.render(world, gamecam.combined);
+        renderer.render();
+        ///renderer.render();
+        //b2dr.render(world, gamecam.combined);
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
@@ -177,7 +182,7 @@ public class PlayScreen implements Screen {
         repairman.draw(game.batch);
         normalPeople1.draw(game.batch);
         normalPeople2.draw(game.batch);
-        //snowBall.draw(game.batch);
+        snowBall.draw(game.batch);
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 //        if(NpcCommunication.communicationCount==5) {
@@ -212,7 +217,7 @@ public class PlayScreen implements Screen {
         if (mario.b2body.getPosition().x <= 1005 && mario.b2body.getPosition().x >= 970 && mario.b2body.getPosition().y > 700 && mario.b2body.getPosition().y < 719) {
             changeToPowerRoomScreen();
             PlayScreen.PlayScreenFlag=1;
-            powerRoomScreen.powerRoomScreenFlag=0;
+
         }
         if (mario.b2body.getPosition().x <= 1025 && mario.b2body.getPosition().x >= 993 && mario.b2body.getPosition().y > 344 && mario.b2body.getPosition().y < 360) {
             changeToRepairmanHomeScreen();
@@ -232,6 +237,10 @@ public class PlayScreen implements Screen {
         if(BigMan.BigManFlag==true&&NpcCommunication.BigManCount<5){
             npcCommunication.render();
             npcCommunication.stage.draw();
+        }
+        if (snowBall.b2body.getPosition().x <= 1045 && snowBall.b2body.getPosition().x >= 970 && snowBall.b2body.getPosition().y > 680 && snowBall.b2body.getPosition().y < 719) {
+            snowBall.setBounds(0,0,0,0);
+            powerRoomScreen.powerRoomScreenFlag2=0;
         }
 //        if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman1Flag==0) {
 //            npcCommunication.render();
