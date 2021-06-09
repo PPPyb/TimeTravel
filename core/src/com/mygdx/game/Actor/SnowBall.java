@@ -16,9 +16,9 @@ public class SnowBall extends NPC{
     private boolean back=true;
     public BodyDef bdef;
     public SnowBall(PlayScreen screen, float x, float y) {
-        super(screen, 500,500);
+        super(screen, 390,588);
         frames=new Array<TextureRegion>();
-        for(int i=0;i<3;i++)
+        for(int i=10;i<12;i++)
             frames.add(new TextureRegion(screen.getSnowBallAtlas().findRegion("ball"),48*i,96,48,48));
         SnowBallRun=new Animation(0.1f,frames);
         frames.clear();
@@ -55,6 +55,19 @@ public class SnowBall extends NPC{
         stateTime=0;
         setBounds(getX(),getY(),24,24);
     }
+
+    public SnowBall(powerRoomScreen screen, float x, float y) {
+        super(screen, x,y);
+        frames=new Array<TextureRegion>();
+        for(int i=10;i<12;i++)
+            frames.add(new TextureRegion(screen.getSnowBallAtlas().findRegion("ball"),48*i,96,48,48));
+        SnowBallRun=new Animation(0.1f,frames);
+        frames.clear();
+        stateTime=0;
+        setBounds(getX(),getY(),24,24);
+    }
+
+
     public void update(float dt) {
         stateTime += dt;
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
@@ -65,12 +78,14 @@ public class SnowBall extends NPC{
         bdef=new BodyDef();
         //NPC初始位置
         bdef.position.set(x,y);
-        if(x<500) {
+        if(x<500&&PlayScreen.PlayScreenFlag==1) {
             bdef.type = BodyDef.BodyType.DynamicBody;
-            bdef.linearVelocity.set(10, 0);
+            bdef.linearVelocity.set(3, 0);
         }
-        else
+        else if(x==500&&PlayScreen.PlayScreenFlag==1)
             bdef.type=BodyDef.BodyType.StaticBody;//731,199,731,446
+        else
+            bdef.type=BodyDef.BodyType.DynamicBody;//731,199,731,446
         b2body=world.createBody(bdef);
         FixtureDef fdef=new FixtureDef();
         CircleShape shape=new CircleShape();
