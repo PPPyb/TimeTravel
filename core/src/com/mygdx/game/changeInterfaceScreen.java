@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.Mario;
-import com.mygdx.game.Actor.NormalPeople;
+import com.mygdx.game.Actor.NormalPeople1;
 import com.mygdx.game.Actor.Repairman;
 import com.mygdx.game.Actor.SnowBall;
 
@@ -36,8 +36,6 @@ public class changeInterfaceScreen implements Screen {
     private TextureAtlas atlasSnowBall;
     private Music music;
     private Repairman repairman;
-    private NormalPeople normalPeople1;
-    private NormalPeople normalPeople2;
     private SnowBall snowBall;
     private shopInterface shopInterface;
     private ChangeMapInterface changeMapInterface;

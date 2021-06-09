@@ -40,10 +40,12 @@ public class PlayScreen implements Screen {
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasSnowBall;
     private TextureAtlas atlasBigMan;
+    private TextureAtlas atlasNormalPeople1;
+    private TextureAtlas atlasNormalPeople2;
     private Music music;
     private Repairman repairman;
-    private NormalPeople normalPeople1;
-    private NormalPeople normalPeople2;
+    private NormalPeople1 normalPeople1;
+    private NormalPeople2 normalPeople2;
     private BigMan bigMan;
     private SnowBall snowBall;
     private shopInterface shopInterface;
@@ -61,6 +63,8 @@ public class PlayScreen implements Screen {
         atlasRepairman = new TextureAtlas("character/repairman.pack");
         atlasSnowBall= new TextureAtlas("character/Ball.pack");
         atlasBigMan= new TextureAtlas("character/BigMan.pack");
+        atlasNormalPeople1=new TextureAtlas("character/nomalPeople1.pack");
+        atlasNormalPeople2=new TextureAtlas("character/nomalPeople2.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -80,8 +84,8 @@ public class PlayScreen implements Screen {
         //snowBall=new SnowBall(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         repairman = new Repairman(this, 32f, 32f);
-        normalPeople1 = new NormalPeople(this, 600, 500);
-        normalPeople2 = new NormalPeople(this, 600, 600);
+        normalPeople1 = new NormalPeople1(this, 600, 500);
+        normalPeople2 = new NormalPeople2(this, 600, 600);
         bigMan =new BigMan(this,950,1000);
         bagInterface=new bagInterface();
         openBagInterface=new openBagInterface();
@@ -103,6 +107,12 @@ public class PlayScreen implements Screen {
 
     public TextureAtlas getRepairmanAtlas() {
         return atlasRepairman;
+    }
+    public TextureAtlas getNormalPeople1Atlas() {
+        return atlasNormalPeople1;
+    }
+    public TextureAtlas getNormalPeople2Atlas() {
+        return atlasNormalPeople2;
     }
     public TextureAtlas getAtlasBigMan() {
         return atlasBigMan;
@@ -215,7 +225,7 @@ public class PlayScreen implements Screen {
             PlayScreen.PlayScreenFlag = 1;
             gambleRoomScreen.gambleRoomFlag = 0;
         }
-        if (collisionFlag == 1 && NpcCommunication.communicationCount<5&&NormalPeople.Normalman1Flag==1&&NormalPeople.Normalman2Flag==1) {
+        if (collisionFlag == 1 && NpcCommunication.communicationCount<5) {
             npcCommunication.render();
             npcCommunication.stage.draw();
         }

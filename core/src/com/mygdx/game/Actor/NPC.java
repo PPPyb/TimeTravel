@@ -68,7 +68,7 @@ public abstract class NPC extends Sprite {
         this.world=screen7.getWorld();
         this.screen7=screen7;
         setPosition(x,y);
-        defineNPC(226,100);
+        defineNPC(226,160);
     }
     public NPC(FireMapScreen screen8, float x, float y){
         this.world=screen8.getWorld();

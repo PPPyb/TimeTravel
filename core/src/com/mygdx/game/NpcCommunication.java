@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Actor.BigMan;
-import com.mygdx.game.Actor.NormalPeople;
 import com.mygdx.game.tools.MyInputProcessor;
 
 public class NpcCommunication implements Disposable {

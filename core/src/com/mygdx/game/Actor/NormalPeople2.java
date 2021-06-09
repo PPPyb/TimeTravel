@@ -7,9 +7,10 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.*;
+import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PlayScreen;
 
-public class NormalPeople extends NPC {
+public class NormalPeople2 extends NPC {
     public static int Normalman1Flag=1;
     public static int Normalman2Flag=1;
     private float stateTime;
@@ -22,58 +23,33 @@ public class NormalPeople extends NPC {
     private boolean Stop=true;
     private boolean back=true;
     public BodyDef bdef;
-    public NormalPeople(PlayScreen screen, float x, float y) {
+    public NormalPeople2(PlayScreen screen, float x, float y) {
         super(screen, x, y);
         frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
+            frames.add(new TextureRegion(screen.getNormalPeople2Atlas().findRegion("nomalPeople2"),48*i,98,48,49));
         NormalPeopleRightRun=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,49,48,49));
+            frames.add(new TextureRegion(screen.getNormalPeople2Atlas().findRegion("nomalPeople2"),48*i,49,48,49));
         NormalPeopleLeftRun=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,147,48,49));
+            frames.add(new TextureRegion(screen.getNormalPeople2Atlas().findRegion("nomalPeople2"),48*i,147,48,49));
         NormalPeopleUpRun=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+            frames.add(new TextureRegion(screen.getNormalPeople2Atlas().findRegion("nomalPeople2"),48*i,0,48,49));
         NormalPeopleDownRun=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
+            frames.add(new TextureRegion(screen.getNormalPeople2Atlas().findRegion("nomalPeople2"),48*i,0,48,49));
         turnAround=new Animation(0.1f,frames);
         frames.clear();
         stateTime=0;
         setBounds(getX(),getY(),24,24);
     }
-    public NormalPeople(PortalScreen screen, float x, float y) {
-        super(screen, x, y);
-        frames=new Array<TextureRegion>();
-        for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,98,48,49));
-        NormalPeopleRightRun=new Animation(0.1f,frames);
-        frames.clear();
-        for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,49,48,49));
-        NormalPeopleLeftRun=new Animation(0.1f,frames);
-        frames.clear();
-        for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,147,48,49));
-        NormalPeopleUpRun=new Animation(0.1f,frames);
-        frames.clear();
-        for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
-        NormalPeopleDownRun=new Animation(0.1f,frames);
-        frames.clear();
-        for(int i=0;i<3;i++)
-            frames.add(new TextureRegion(screen.getRepairmanAtlas().findRegion("repairman"),48*i,0,48,49));
-        turnAround=new Animation(0.1f,frames);
-        frames.clear();
-        stateTime=0;
-        setBounds(getX(),getY(),24,24);
-    }
+
     public void update(float dt) {
         stateTime+=dt;
         if(b2body.getPosition().x<700&&back) {

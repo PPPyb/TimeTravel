@@ -491,14 +491,14 @@ public class Mario extends Sprite {
     public void update(float dt){
         setPosition(b2body.getPosition().x-getWidth()/2,b2body.getPosition().y-getHeight()/2);
         setRegion(getFrame(dt));
-        if(Gdx.input.isKeyPressed(Input.Keys.UP))
+        if(Gdx.input.isKeyPressed(Input.Keys.W))
             b2body.applyLinearImpulse(new Vector2(0,20),b2body.getWorldCenter(),true);
-        else if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
+        else if(Gdx.input.isKeyPressed(Input.Keys.S))
             b2body.applyLinearImpulse(new Vector2(0,-40),b2body.getWorldCenter(),true);
-        else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) ) {
+        else if(Gdx.input.isKeyPressed(Input.Keys.D) ) {
             b2body.applyLinearImpulse(new Vector2(50,0), b2body.getWorldCenter(),true);
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
+        else if(Gdx.input.isKeyPressed(Input.Keys.A) ) {
             b2body.applyLinearImpulse(new Vector2(-100,0), b2body.getWorldCenter(),true);
         }
         else
