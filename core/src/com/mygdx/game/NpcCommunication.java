@@ -34,6 +34,7 @@ public class NpcCommunication implements Disposable {
     private String[] CommunicationBigManContents;
     private String[] CommunicationBigManContents1;
     private String[] CommunicationPowerRoomScreenContents;
+    private String[] CommunicationGrassRoomScreenContents;
     private MyInputProcessor inputProcessor;
     public  Texture repairmanFace;
     private Batch batch;
@@ -109,6 +110,14 @@ public class NpcCommunication implements Disposable {
         CommunicationBigManContents1[3]="Your plane have enough energy access already";
         CommunicationBigManContents1[4]="Start your adventure!";
         CommunicationBigManContents1[5]="Good luck.";
+        //草地图对话
+        CommunicationGrassRoomScreenContents=new String[100];
+        CommunicationGrassRoomScreenContents[0]="I am a native of this planet.";
+        CommunicationGrassRoomScreenContents[1]="But recently minotaurs invaded us.";
+        CommunicationGrassRoomScreenContents[2]="They robbed our planet of its jewels.";
+        CommunicationGrassRoomScreenContents[3]="Adventurer, can you bring back our treasure?";
+        CommunicationGrassRoomScreenContents[4]="Waiting for your good news.";
+        CommunicationGrassRoomScreenContents[5]="Good luck.";
         table.setPosition(0,-130);
         table.setFillParent(true);
         BitmapFont font=new BitmapFont();
@@ -119,7 +128,7 @@ public class NpcCommunication implements Disposable {
     }
     public void update(){
         Gdx.input.setInputProcessor(inputProcessor);
-        if(PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1) {
+        if(PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1 && SnowMapRoomScreen.SnowMapRoomFlag==1 && GrassMapRoomScreen.GrassMapRoomFlag==1) {
             CommunicationLabel.setText(CommunicationPlayScreenContents[communicationCount]);
         }
         if(PlayScreen.PlayScreenFlag==1 && gambleRoomScreen.gambleRoomFlag==0) {
@@ -128,13 +137,17 @@ public class NpcCommunication implements Disposable {
         if(PlayScreen.PlayScreenFlag==1 && repairmanHomeScreen.repairmanHomeFlag==0)
             CommunicationLabel.setText(CommunicationRepairmanHomeScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && SnowMapRoomScreen.SnowMapRoomFlag==0)
-            CommunicationLabel.setText(CommunicationRepairmanHomeScreenContents[communicationCount]);
+            CommunicationLabel.setText(CommunicationSnowMapScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && SnowMapScreen.SnowMapFlag==0)
             CommunicationLabel.setText(CommunicationSnowMapScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && FireMapScreen.FireMapFlag==0)
             CommunicationLabel.setText(CommunicationFireMapScreenContents[communicationCount]);
         if(PlayScreen.PlayScreenFlag==1 && powerRoomScreen.powerRoomScreenFlag==0)
             CommunicationLabel.setText(CommunicationPowerRoomScreenContents[communicationCount]);
+        if(PlayScreen.PlayScreenFlag==1 && GrassMapScreen.GrassScreenFlag==0)
+            CommunicationLabel.setText(CommunicationGrassRoomScreenContents[communicationCount]);
+        if(PlayScreen.PlayScreenFlag==1 && GrassMapRoomScreen.GrassMapRoomFlag==0)
+            CommunicationLabel.setText(CommunicationGrassRoomScreenContents[communicationCount]);
         if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1)
            CommunicationLabel.setText(CommunicationBigManContents[BigManCount]);
         if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==0 )

@@ -16,7 +16,6 @@ public class GrassRoomDoor extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         GrassMapRoomScreen.changeToMainScreen();
-        //SnowMapRoomScreen.SnowMapRoomFlag=1;
-        //FireMapScreen.smallFireMapCollisionFlag=1;
+        GrassMapRoomScreen.GrassMapRoomFlag=1;
     }
 }

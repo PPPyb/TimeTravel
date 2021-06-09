@@ -49,7 +49,7 @@ public class GrassMapScreen implements Screen {
     private ChangeMapInterface changeMapInterface;
     private GrassMapNPC grassMapNPC;
     public static int smallFireMapCollisionFlag=0;
-    public static int FireScreenFlag=1;
+    public static int GrassScreenFlag=1;
     ParticleEffect rainEffect;
     public GrassMapScreen(MyGdxGame game,int x, int y){
         atlas = new TextureAtlas("character/zhy.pack");
@@ -146,6 +146,7 @@ public class GrassMapScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.M))
             smallMapShow.render4();
         if(PlayScreen.collisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
         }
         if(PlayScreen.PortalCollisionFlag==1) {
@@ -157,7 +158,7 @@ public class GrassMapScreen implements Screen {
             changeMapInterface.render();
         }
         if(mario.b2body.getPosition().x>=145 && mario.b2body.getPosition().x<=155 && mario.b2body.getPosition().y>390 && mario.b2body.getPosition().y<395) {
-            //SnowMapRoomScreen.SnowMapRoomFlag=0;
+            GrassMapRoomScreen.GrassMapRoomFlag=0;
             game.setScreen(new GrassMapRoomScreen(game));
         }
     }

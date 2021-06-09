@@ -43,7 +43,7 @@ public class GrassMapRoomScreen implements Screen {
     private GrassMapNPC grassMapNPC;
     private TextureAtlas atlasGrassNPC;
     public NpcCommunication npcCommunication;
-    public static int SnowMapRoomFlag=1;
+    public static int GrassMapRoomFlag=1;
     public GrassMapRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasSnowMapNPC=new TextureAtlas("character/SnowMapNPC.pack");
@@ -106,10 +106,6 @@ public class GrassMapRoomScreen implements Screen {
         grassMapNPC.draw(game.batch);
         //snowMapNPC.draw(game.batch);
         game.batch.end();
-        if(PlayScreen.collisionFlag==1) {
-            npcCommunication.stage.draw();
-            npcCommunication.render();
-        }
     }
 
     @Override

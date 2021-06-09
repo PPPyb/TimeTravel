@@ -78,6 +78,8 @@ public class ChangeMapInterface extends ApplicationAdapter {
                 PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
                 FireMapScreen.FireMapFlag=0;
+                GrassMapScreen.GrassScreenFlag=1;
+                SnowMapScreen.SnowMapFlag=1;
                 PlayScreen.changeToFireMapScreen();
             }
         });
@@ -86,6 +88,9 @@ public class ChangeMapInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
+                FireMapScreen.FireMapFlag=1;
+                SnowMapScreen.SnowMapFlag=1;
+                GrassMapScreen.GrassScreenFlag=0;
                 PlayScreen.changeToGrassMapScreen();
             }
         });
@@ -94,6 +99,8 @@ public class ChangeMapInterface extends ApplicationAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 PlayScreen.PlayScreenFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
+                FireMapScreen.FireMapFlag=1;
+                GrassMapScreen.GrassScreenFlag=1;
                 SnowMapScreen.SnowMapFlag=0;
                 PlayScreen.changeToSnowMapScreen();
             }

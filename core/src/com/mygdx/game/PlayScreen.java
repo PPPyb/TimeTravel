@@ -191,6 +191,11 @@ public class PlayScreen implements Screen {
 //        }
         if(Gdx.input.isKeyPressed(Input.Keys.M))
             smallMapShow.render1();
+        if(Gdx.input.isKeyPressed(Input.Keys.H)) {
+            PlayScreenFlag=1;
+            GrassMapScreen.GrassScreenFlag=0;
+            game.setScreen(new GrassMapScreen(game, 200, 100));
+        }
         if(PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
