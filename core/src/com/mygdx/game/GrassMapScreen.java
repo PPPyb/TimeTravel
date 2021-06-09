@@ -43,9 +43,11 @@ public class GrassMapScreen implements Screen {
     private TextureAtlas atlasRepairman;
     private TextureAtlas atlasFireMapNPC;
     private TextureAtlas atlasSnowBall;
+    private TextureAtlas atlasGrassNPC;
     private shopInterface shopInterface;
     private SnowBall[] snowBall;
     private ChangeMapInterface changeMapInterface;
+    private GrassMapNPC grassMapNPC;
     public static int smallFireMapCollisionFlag=0;
     public static int FireScreenFlag=1;
     ParticleEffect rainEffect;
@@ -54,6 +56,7 @@ public class GrassMapScreen implements Screen {
         atlasRepairman=new TextureAtlas("character/repairman.pack");
         atlasFireMapNPC=new TextureAtlas("character/FireMapNPC.pack");
         atlasSnowBall=new TextureAtlas("character/Ball.pack");
+        atlasGrassNPC=new TextureAtlas("character/gambleOwner.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -69,6 +72,7 @@ public class GrassMapScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this,x,y);
+        grassMapNPC=new GrassMapNPC(this,32f,32f);
         snowBall=new SnowBall[5];
         smallMapShow=new SmallMapShow(game.batch);
         for(int i=0;i<5;i++) {
@@ -87,8 +91,8 @@ public class GrassMapScreen implements Screen {
     public TextureAtlas getRepairmanAtlas(){
         return  atlasRepairman;
     }
-    public TextureAtlas getFireMapAtlas(){
-        return atlasFireMapNPC;
+    public TextureAtlas getGrassMapAtlas(){
+        return atlasGrassNPC;
     }
     public TextureAtlas getAtlas(){
         return  atlas;
@@ -107,6 +111,7 @@ public class GrassMapScreen implements Screen {
         rainEffect.update(dt);
         //fireMapNPC.update(dt);
         smallMapShow.update(dt);
+        grassMapNPC.update(dt);
         for(int i=0;i<5;i++)
             snowBall[i].update(dt);
         //System.out.println(mario.b2body.getPosition().x);
@@ -128,6 +133,7 @@ public class GrassMapScreen implements Screen {
         b2dr.render(world, gamecam.combined);
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
+        grassMapNPC.draw(game.batch);
         mario.draw(game.batch);
         rainEffect.setPosition(mario.b2body.getPosition().x,mario.b2body.getPosition().y);
         rainEffect.draw(game.batch);

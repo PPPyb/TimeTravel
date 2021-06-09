@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Actor.GrassMapNPC;
 import com.mygdx.game.Actor.Mario;
 import com.mygdx.game.Actor.SnowMapNPC;
 import com.mygdx.game.tools.B2WorldCreator;
@@ -39,11 +40,14 @@ public class GrassMapRoomScreen implements Screen {
     private TextureAtlas atlasSnowMapNPC;
     private Music music;
     private SnowMapNPC snowMapNPC;
+    private GrassMapNPC grassMapNPC;
+    private TextureAtlas atlasGrassNPC;
     public NpcCommunication npcCommunication;
     public static int SnowMapRoomFlag=1;
     public GrassMapRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasSnowMapNPC=new TextureAtlas("character/SnowMapNPC.pack");
+        atlasGrassNPC=new TextureAtlas("character/gambleOwner.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -58,6 +62,7 @@ public class GrassMapRoomScreen implements Screen {
         b2dr=new Box2DDebugRenderer();
         new B2WorldCreator(world,map);
         mario=new Mario(world,this);
+        grassMapNPC=new GrassMapNPC(this,32f,32f);
         //snowMapNPC=new SnowMapNPC(this,32f,32f);
         world.setContactListener(new WorldContactListener());
         //music=MyGdxGame.manager.get("music/backgroundMusic.mp3",Music.class);
@@ -78,6 +83,7 @@ public class GrassMapRoomScreen implements Screen {
         world.step(1/60f,6,2);
         mario.update(dt);
         //snowMapNPC.update(dt);
+        grassMapNPC.update(dt);
         npcCommunication.update();
         //System.out.println(mario.b2body.getPosition().x);
         //System.out.println(mario.b2body.getPosition().y);
@@ -97,6 +103,7 @@ public class GrassMapRoomScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
+        grassMapNPC.draw(game.batch);
         //snowMapNPC.draw(game.batch);
         game.batch.end();
         if(PlayScreen.collisionFlag==1) {
@@ -132,6 +139,9 @@ public class GrassMapRoomScreen implements Screen {
         renderer.dispose();
         b2dr.dispose();
         hud.dispose();
+    }
+    public TextureAtlas getGrassMapAtlas(){
+        return atlasGrassNPC;
     }
     public static void changeToMainScreen(){
         game.setScreen(new GrassMapScreen(game,150,385));

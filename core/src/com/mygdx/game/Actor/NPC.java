@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.*;
 
 public abstract class NPC extends Sprite {
-
     protected World world;
     protected PlayScreen screen;
     protected OutsidegambleRoomScreen screen1;
@@ -23,6 +22,7 @@ public abstract class NPC extends Sprite {
     protected SnowMapRoomScreen screen11;
     protected GrassMapScreen screen12;
     protected powerRoomScreen screen13;
+    protected GrassMapRoomScreen screen14;
     public Body b2body;
     public NPC(PlayScreen screen, float x, float y){
         this.world=screen.getWorld();
@@ -102,15 +102,18 @@ public abstract class NPC extends Sprite {
         setPosition(x,y);
         defineNPC(x,y);
     }
-
-    public NPC(powerRoomScreen screen13, float x, float y) {
+    public NPC(powerRoomScreen screen13, float x, float y){
         this.world=screen13.getWorld();
         this.screen13=screen13;
         setPosition(x,y);
         defineNPC(x,y);
     }
-
-
+    public NPC(GrassMapRoomScreen screen14, float x, float y){
+        this.world=screen14.getWorld();
+        this.screen14=screen14;
+        setPosition(x,y);
+        defineNPC(x,y);
+    }
 
     protected abstract void defineNPC(float x,float y);
     public abstract void hitOnNPC();

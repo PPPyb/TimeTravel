@@ -3,7 +3,7 @@ gambleOwner.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-gambleOwner
+GrassMapNPC
   rotate: false
   xy: 1, 1
   size: 576, 384
