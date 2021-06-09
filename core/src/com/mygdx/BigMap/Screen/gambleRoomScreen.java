@@ -54,7 +54,7 @@ public class gambleRoomScreen implements Screen {
     public gambleRoomScreen(MyGdxGame game){
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman=new TextureAtlas("character/repairman.pack");
-        atlasGambleRoomOwner=new TextureAtlas("character/GambleRoomOwner.pack");
+        atlasGambleRoomOwner=new TextureAtlas("character/gambleNPC.pack");
         this.game=game;
         gamecam=new OrthographicCamera();
         gamePort=new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);

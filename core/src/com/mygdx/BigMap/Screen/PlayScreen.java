@@ -245,7 +245,7 @@ public class PlayScreen implements Screen {
             npcCommunication.stage.draw();
         }
         if(BigMan.BigManFlag==true&&NpcCommunication.BigManCount<5){
-            npcCommunication.render();
+            npcCommunication.render6();
             npcCommunication.stage.draw();
         }
         if (snowBall.b2body.getPosition().x <= 1045 && snowBall.b2body.getPosition().x >= 970 && snowBall.b2body.getPosition().y > 680 && snowBall.b2body.getPosition().y < 719) {

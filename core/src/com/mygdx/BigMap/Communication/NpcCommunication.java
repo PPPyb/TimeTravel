@@ -37,6 +37,13 @@ public class NpcCommunication implements Disposable {
     private String[] CommunicationGrassRoomScreenContents;
     private MyInputProcessor inputProcessor;
     public  Texture repairmanFace;
+    public  Texture GambleNPCface;
+    public  Texture SnowNPCface;
+    public  Texture FireNPCface;
+    public  Texture PowerNPCface;
+    public  Texture GrassNPCface;
+    public  Texture BigManNPCface;
+    public  Texture WeaponNPCface;
     private Batch batch;
     Label CommunicationLabel;
     public NpcCommunication(SpriteBatch sb) {
@@ -45,18 +52,25 @@ public class NpcCommunication implements Disposable {
         table = new Table();
         inputProcessor = new MyInputProcessor();
         batch=new SpriteBatch();
-        repairmanFace=new Texture("Button/000.jpg");
+        repairmanFace=new Texture("Button/RepairmanNPCface.jpg");
+        GambleNPCface=new Texture("Button/GambleMapNPCface.jpg");
+        SnowNPCface=new Texture("Button/SnowMapNPCface.jpg");
+        FireNPCface= new Texture("Button/FireMapNPCface.jpg");
+        PowerNPCface= new Texture("Button/PowerMapNPCface.jpg");
+        GrassNPCface=new Texture("Button/GrassMapNPCface.jpg");
+        WeaponNPCface=new Texture("Button/WeaponMapNPCface.jpg");
+        BigManNPCface=new Texture("Button/BigManFace.png");
         CommunicationPlayScreenContents=new String[100];
         //主屏第一次对话内容
         CommunicationPlayScreenContents[0]="Hello, my name is Bob.";
-        CommunicationPlayScreenContents[1]="I have been working as a repairman in the space station for 20 years.";
-        CommunicationPlayScreenContents[2]="If you want to know about the most interesting places in the city.";
+        CommunicationPlayScreenContents[1]="I have been working as a repairman in the space station.";
+        CommunicationPlayScreenContents[2]="If you want to know about the most interesting place.";
         CommunicationPlayScreenContents[3]="You need meet me at gamble room.";
         CommunicationPlayScreenContents[4]="My home is quite big. Welcome to my home.";
         CommunicationPlayScreenContents[5]="";
         CommunicationGambleScreenContents=new String[100];
         //赌博室第一次对话内容
-        CommunicationGambleScreenContents[0]="Actually, I was held hostage by the owner of the casino room .";
+        CommunicationGambleScreenContents[0]="I was held hostage by the owner of the casino room.";
         CommunicationGambleScreenContents[1]="because I owed money";
         CommunicationGambleScreenContents[2]="Can you help me? ";
         CommunicationGambleScreenContents[3]="I can tell you some tips and tricks";
@@ -118,7 +132,7 @@ public class NpcCommunication implements Disposable {
         CommunicationGrassRoomScreenContents[3]="Adventurer, can you bring back our treasure?";
         CommunicationGrassRoomScreenContents[4]="Waiting for your good news.";
         CommunicationGrassRoomScreenContents[5]="Good luck.";
-        table.setPosition(0,-130);
+        table.setPosition(0,-120);
         table.setFillParent(true);
         BitmapFont font=new BitmapFont();
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -164,7 +178,32 @@ public class NpcCommunication implements Disposable {
     }
     public void render() {
         batch.begin();
-        batch.draw(repairmanFace,0,0,1280,100);
+        batch.draw(repairmanFace,0,0,1280,130);
+        batch.end();
+    }
+    public void render1() {
+        batch.begin();
+        batch.draw(FireNPCface,0,0,1280,130);
+        batch.end();
+    }
+    public void render2() {
+        batch.begin();
+        batch.draw(PowerNPCface,0,0,1280,130);
+        batch.end();
+    }
+    public void render3() {
+        batch.begin();
+        batch.draw(SnowNPCface,0,0,1280,130);
+        batch.end();
+    }
+    public void render5() {
+        batch.begin();
+        batch.draw(GrassNPCface,0,0,1280,130);
+        batch.end();
+    }
+    public void render6() {
+        batch.begin();
+        batch.draw(BigManNPCface,0,0,1280,130);
         batch.end();
     }
     @Override

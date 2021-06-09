@@ -141,7 +141,7 @@ public class FireMapScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.M))
             smallMapShow.render2();
         if(PlayScreen.collisionFlag==1) {
-            npcCommunication.render();
+            npcCommunication.render1();
             npcCommunication.stage.draw();
         }
         if(mario.b2body.getPosition().x>=825 && mario.b2body.getPosition().x<=835 && mario.b2body.getPosition().y>220 && mario.b2body.getPosition().y<240) {

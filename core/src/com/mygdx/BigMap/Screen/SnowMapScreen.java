@@ -153,7 +153,7 @@ public class SnowMapScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.M))
             smallMapShow.render3();
         if(PlayScreen.collisionFlag==1) {
-            npcCommunication.render();
+            npcCommunication.render3();
             npcCommunication.stage.draw();
         }
         if(mario.b2body.getPosition().x>=515 && mario.b2body.getPosition().x<=535 && mario.b2body.getPosition().y>515) {

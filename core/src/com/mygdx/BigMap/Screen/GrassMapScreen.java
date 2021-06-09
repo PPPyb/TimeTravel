@@ -155,7 +155,7 @@ public class GrassMapScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.M))
             smallMapShow.render4();
         if(PlayScreen.collisionFlag==1) {
-            npcCommunication.render();
+            npcCommunication.render5();
             npcCommunication.stage.draw();
         }
         if(PlayScreen.PortalCollisionFlag==1) {
