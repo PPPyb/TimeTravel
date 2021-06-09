@@ -15,6 +15,9 @@ import com.badlogic.gdx.math.Vector2;
 //import com.sun.org.apache.xml.internal.serializer.utils.MsgKey;
 
 public class Level {
+    public static int flagGreen=0;
+    public static int flagBlue=0;
+    public static int flagRed=0;
     float stateTime = 0;
     Boolean failed = false;
     float failedEffect = 1;
@@ -538,6 +541,19 @@ public class Level {
         victory = true;
         if(victoryTime < 0)
             victoryTime = stateTime;
+        switch (weather.weatherState)
+        {
+            default:
+            case "RAIN":
+                flagGreen=1;
+                break;
+            case "SNOW":
+                flagBlue=1;
+                break;
+            case "STONE":
+                flagRed=1;
+                break;
+        }
 
     }
     public void setWeather(String str)

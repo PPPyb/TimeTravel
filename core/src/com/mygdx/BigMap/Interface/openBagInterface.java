@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.SmallMap.LevelFrame.Level;
 
 public class openBagInterface extends ApplicationAdapter {
     private Texture upTexture;
@@ -26,14 +27,23 @@ public class openBagInterface extends ApplicationAdapter {
     private Texture down3;
     private Texture up4;
     private Texture down4;
+    private Texture up5;
+    private Texture down5;
+    private Texture up6;
+    private Texture down6;
+    private Texture up7;
+    private Texture down7;
     private Button button;
-    public Button bt1,bt2,bt3,bt4;
+    public Button bt1,bt2,bt3,bt4,bt5,bt6,bt7;
     private Texture monkeyFace;
     private Button.ButtonStyle style = new Button.ButtonStyle();
     private Button.ButtonStyle style1 = new Button.ButtonStyle();
     private Button.ButtonStyle style2 = new Button.ButtonStyle();
     private Button.ButtonStyle style3 = new Button.ButtonStyle();
     private Button.ButtonStyle style4 = new Button.ButtonStyle();
+    private Button.ButtonStyle style5 = new Button.ButtonStyle();
+    private Button.ButtonStyle style6 = new Button.ButtonStyle();
+    private Button.ButtonStyle style7 = new Button.ButtonStyle();
     public Sprite sprite;
     public  SpriteBatch batch;
     private Viewport viewport;
@@ -126,6 +136,48 @@ public class openBagInterface extends ApplicationAdapter {
 
             }
         });
+        up5 =new Texture(Gdx.files.internal("Button/gemGreen.png"));
+        down5 = new Texture(Gdx.files.internal("Button/gemGreen.png"));
+        style5.up = new TextureRegionDrawable(new TextureRegion(up5));
+        style5.down = new TextureRegionDrawable(new TextureRegion(down5));
+        bt5 = new Button(style5);
+        bt5.setPosition(933,382);
+        bt5.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("2","");
+                //bagInterface.bag_flag=1;
+
+            }
+        });
+        up6= new Texture(Gdx.files.internal("Button/gemBlue.png"));
+        down6 = new Texture(Gdx.files.internal("Button/gemBlue.png"));
+        style6.up = new TextureRegionDrawable(new TextureRegion(up6));
+        style6.down = new TextureRegionDrawable(new TextureRegion(down6));
+        bt6 = new Button(style6);
+        bt6.setPosition(1011,382);
+        bt6.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("2","");
+                //bagInterface.bag_flag=1;
+
+            }
+        });
+        up7= new Texture(Gdx.files.internal("Button/gemRed.png"));
+        down7 = new Texture(Gdx.files.internal("Button/gemRed.png"));
+        style7.up = new TextureRegionDrawable(new TextureRegion(up7));
+        style7.down = new TextureRegionDrawable(new TextureRegion(down7));
+        bt7 = new Button(style7);
+        bt7.setPosition(1089,382);
+        bt7.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.log("2","");
+                //bagInterface.bag_flag=1;
+
+            }
+        });
         if(shopInterface.bt1_flag==1)
         {
             stage.addActor(bt1);
@@ -157,6 +209,18 @@ public class openBagInterface extends ApplicationAdapter {
         //System.out.println(1);
         //Gdx.gl.glClearColor(0, 0, 0, 1);
         //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if(Level.flagGreen ==1)
+        {
+            stage.addActor(bt5);
+        }
+        if(Level.flagBlue==1)
+        {
+            stage.addActor(bt6);
+        }
+        if(Level.flagRed==1)
+        {
+            stage.addActor(bt7);
+        }
         batch.begin();
         batch.draw(monkeyFace,0,588,456,134);
         batch.end();
