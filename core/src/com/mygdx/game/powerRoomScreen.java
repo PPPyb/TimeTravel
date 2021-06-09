@@ -111,7 +111,9 @@ public class powerRoomScreen implements Screen {
             powerRoomScreen.powerRoomScreenFlag=0;
         }
         if(powerRoomScreen.powerRoomCollisionFlag==1) {
+            npcCommunication.render();
             npcCommunication.stage.draw();
+
         }
 
     }
