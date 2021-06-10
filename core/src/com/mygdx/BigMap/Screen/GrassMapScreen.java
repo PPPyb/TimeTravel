@@ -123,8 +123,8 @@ public class GrassMapScreen implements Screen {
         grassMapNPC.update(dt);
         for(int i=0;i<5;i++)
             snowBall[i].update(dt);
-        //System.out.println(mario.b2body.getPosition().x);
-        //System.out.println(mario.b2body.getPosition().y);
+        System.out.println(mario.b2body.getPosition().x);
+        System.out.println(mario.b2body.getPosition().y);
         gamecam.position.x =mario.b2body.getPosition().x;
         gamecam.position.y =mario.b2body.getPosition().y;
         gamecam.update();
@@ -138,8 +138,9 @@ public class GrassMapScreen implements Screen {
         update(delta);
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        renderer.render();
+        //renderer.render();
         b2dr.render(world, gamecam.combined);
+        renderer.render();
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         grassMapNPC.draw(game.batch);

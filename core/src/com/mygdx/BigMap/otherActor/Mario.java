@@ -12,7 +12,7 @@ import com.mygdx.BigMap.*;
 import com.mygdx.BigMap.Screen.*;
 
 public class Mario extends Sprite {
-    public enum State{STANDING,PARALLELRUNNING,UPRUNNING,DOWNRUNNING}
+    public enum State{STANDING,PARALLELRUNNING,UPRUNNING,DOWNRUNNING,PASS}
     public State currentState;
     public State previousState;
     public World world;
@@ -23,6 +23,7 @@ public class Mario extends Sprite {
     private Animation marioDownRun;
     private float stateTimer;
     private boolean runningRight;
+    private Animation kong;
     public boolean flag=true;
     public Mario(World world, PlayScreen screen,int x,int y){
         super(screen.getAtlas().findRegion("monkey"));
@@ -484,6 +485,9 @@ public class Mario extends Sprite {
             frame.add(new TextureRegion(getTexture(),48*i,0,48,49));
         marioDownRun=new Animation(0.1f,frame);
         frame.clear();
+        frame.add(new TextureRegion(getTexture(),0,0,0,0));
+        kong=new Animation(0.1f,frame);
+        frame.clear();
         marioStand=new TextureRegion(getTexture(),0,0,48,49);
         defineMario(x,y);
         setBounds(600,100,24,24);
@@ -505,7 +509,6 @@ public class Mario extends Sprite {
         else
             b2body.setLinearVelocity(0,0);
 
-
     }
     public TextureRegion getFrame(float dt){
         currentState=getState();
@@ -519,6 +522,9 @@ public class Mario extends Sprite {
                 break;
             case DOWNRUNNING:
                 region= (TextureRegion) marioDownRun.getKeyFrame(stateTimer,true);
+                break;
+            case PASS:
+                region= (TextureRegion) kong.getKeyFrame(stateTimer, true);
                 break;
             case STANDING:
             default:
@@ -538,12 +544,14 @@ public class Mario extends Sprite {
         return region;
     }
     public State getState(){
-        if(b2body.getLinearVelocity().x!=0 )
+        if(b2body.getLinearVelocity().x!=0 &&!(b2body.getPosition().x>=185 && b2body.getPosition().x<=243 && b2body.getPosition().y>230 && b2body.getPosition().y<493 && GrassMapScreen.GrassScreenFlag==0))
             return State.PARALLELRUNNING;
-        else if(b2body.getLinearVelocity().y>0)
+        else if(b2body.getLinearVelocity().y>0&&!(b2body.getPosition().x>=185 && b2body.getPosition().x<=243 && b2body.getPosition().y>230 && b2body.getPosition().y<493 && GrassMapScreen.GrassScreenFlag==0))
             return State.UPRUNNING;
-        else if(b2body.getLinearVelocity().y<0)
+        else if(b2body.getLinearVelocity().y<0&&!(b2body.getPosition().x>=185 && b2body.getPosition().x<=243 && b2body.getPosition().y>230 && b2body.getPosition().y<493 && GrassMapScreen.GrassScreenFlag==0))
             return State.DOWNRUNNING;
+        else if(b2body.getPosition().x>=185 && b2body.getPosition().x<=243 && b2body.getPosition().y>230 && b2body.getPosition().y<493 && GrassMapScreen.GrassScreenFlag==0)
+            return State.PASS;
         else
             return State.STANDING;
     }
