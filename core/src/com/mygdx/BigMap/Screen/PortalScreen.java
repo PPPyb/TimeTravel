@@ -19,11 +19,14 @@ import com.mygdx.BigMap.Communication.Hud;
 import com.mygdx.BigMap.Communication.NpcCommunication;
 import com.mygdx.BigMap.Interface.ChangeMapInterface;
 import com.mygdx.BigMap.Interface.SmallMapShow;
+import com.mygdx.BigMap.NPC.BigMan;
+import com.mygdx.BigMap.NPC.StupidNPC;
 import com.mygdx.BigMap.otherActor.Mario;
-
+import com.mygdx.BigMap.Interface.*;
 import com.mygdx.BigMap.NPC.Repairman;
 import com.mygdx.BigMap.tools.B2WorldCreator;
 import com.mygdx.BigMap.tools.WorldContactListener;
+import com.mygdx.SmallMap.LevelFrame.CurState;
 import com.mygdx.SmallMap.LevelFrame.MusicManager;
 
 import static com.mygdx.BigMap.Screen.PlayScreen.*;
@@ -44,13 +47,18 @@ public class PortalScreen implements Screen {
     private Mario mario;
     private TextureAtlas atlas;
     private TextureAtlas atlasRepairman;
+    private TextureAtlas atlasStupidNPC;
     private SmallMapShow smallMapShow;
     private Repairman repairman;
+    private StupidNPC stupidNPC;
     private ChangeMapInterface changeMapInterface;
-    public static int PortalScreenFlag=0;
+    private openBagInterface openBagInterface;
+    private bagInterface bagInterface;
+    public static int PortalScreenFlag=1;
     public PortalScreen(MyGdxGame game) {
         atlas = new TextureAtlas("character/zhy.pack");
         atlasRepairman = new TextureAtlas("character/repairman.pack");
+        atlasStupidNPC = new TextureAtlas("character/StupidNPC.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FillViewport(MyGdxGame.V_WIDTH, MyGdxGame.V_HEIGHT, gamecam);
@@ -68,7 +76,10 @@ public class PortalScreen implements Screen {
         mario = new Mario(world, this);
         world.setContactListener(new WorldContactListener());
         repairman = new Repairman(this, 32f, 32f);
+        stupidNPC = new StupidNPC(this,510,774);
         smallMapShow=new SmallMapShow(game.batch);
+        openBagInterface=new openBagInterface();
+        bagInterface=new bagInterface();
     }
 
     public TextureAtlas getAtlas() {
@@ -77,6 +88,9 @@ public class PortalScreen implements Screen {
 
     public TextureAtlas getRepairmanAtlas() {
         return atlasRepairman;
+    }
+    public TextureAtlas getStupidNPCAtlas() {
+        return atlasStupidNPC;
     }
 
     @Override
@@ -87,10 +101,11 @@ public class PortalScreen implements Screen {
     public void update(float dt) {
         world.step(1 / 60f, 6, 2);
         mario.update(dt);
-        repairman.update(dt);
+        //repairman.update(dt);
         hud.update(dt);
         npcCommunication.update();
         smallMapShow.update(dt);
+        stupidNPC.update(dt);
         if (mario.b2body.getPosition().y > 220 && mario.b2body.getPosition().y < 427 && mario.b2body.getPosition().x > 460 && mario.b2body.getPosition().x < 762)
             hud.updateToGarden();
         if (mario.b2body.getPosition().y > 122 && mario.b2body.getPosition().y < 452 && mario.b2body.getPosition().x > 100 && mario.b2body.getPosition().x < 410)
@@ -119,12 +134,14 @@ public class PortalScreen implements Screen {
         update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        renderer.render();
+        //renderer.render();
         b2dr.render(world, gamecam.combined);
+        renderer.render();
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         mario.draw(game.batch);
-        repairman.draw(game.batch);
+        //repairman.draw(game.batch);
+        stupidNPC.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -132,6 +149,14 @@ public class PortalScreen implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.M))
             smallMapShow.render1();
         hud.stage.draw();
+        if(bagInterface.bag_flag==0 &&collisionFlag==0) {
+            Gdx.input.setInputProcessor(openBagInterface.stage);
+            openBagInterface.render();
+        }
+        else if (bagInterface.bag_flag==1&& collisionFlag==0){
+            Gdx.input.setInputProcessor(bagInterface.stage);
+            bagInterface.render();
+        }
         if (mario.b2body.getPosition().x <= 250 && mario.b2body.getPosition().x >= 239 && mario.b2body.getPosition().y > 704 && mario.b2body.getPosition().y < 711) {
             changeToWeaponRoomScreen();
         }
@@ -149,9 +174,12 @@ public class PortalScreen implements Screen {
             PlayScreen.PlayScreenFlag = 1;
             gambleRoomScreen.gambleRoomFlag = 0;
         }
-        if (PlayScreen.collisionFlag == 1) {
+        if (collisionFlag == 1 && NpcCommunication.communicationCount<5) {
+            npcCommunication.render7();
             npcCommunication.stage.draw();
         }
+        //if(NpcCommunication.communicationCount==5)
+            //CurState.curLevelNum=-2;
         if(PlayScreen.PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

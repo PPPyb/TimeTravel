@@ -233,22 +233,22 @@ public class Repairman extends NPC {
 
     public void update(float dt){
         stateTime+=dt;
-        if(b2body.getPosition().x<730&&b2body.getPosition().y<=300&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
+        if(b2body.getPosition().x<730&&b2body.getPosition().y<=300&&(Stop&&PlayScreen.PlayScreenFlag==0)){
             b2body.setLinearVelocity(20,0);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanRightRun.getKeyFrame(stateTime, true));
         }
-        else if(b2body.getPosition().x>730&&b2body.getPosition().y<446&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
+        else if(b2body.getPosition().x>730&&b2body.getPosition().y<446&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0)){
             b2body.setLinearVelocity(0,20);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanUpRun.getKeyFrame(stateTime, true));
         }
-        else if(b2body.getPosition().x>470&&b2body.getPosition().y>446&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
+        else if(b2body.getPosition().x>470&&b2body.getPosition().y>446&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0)){
             b2body.setLinearVelocity(-20,0);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanLeftRun.getKeyFrame(stateTime, true));
         }
-        else if(b2body.getPosition().x<470&&b2body.getPosition().y>300&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0 ||PortalScreen.PortalScreenFlag==0)){
+        else if(b2body.getPosition().x<470&&b2body.getPosition().y>300&&Stop&&(Stop&&PlayScreen.PlayScreenFlag==0)){
             b2body.setLinearVelocity(0,-20);
             setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
             setRegion((TextureRegion) repairmanDownRun.getKeyFrame(stateTime, true));

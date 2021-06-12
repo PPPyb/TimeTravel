@@ -16,10 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.BigMap.MyGdxGame;
-import com.mygdx.BigMap.Screen.FireMapScreen;
-import com.mygdx.BigMap.Screen.GrassMapScreen;
-import com.mygdx.BigMap.Screen.PlayScreen;
-import com.mygdx.BigMap.Screen.SnowMapScreen;
+import com.mygdx.BigMap.Screen.*;
 
 public class ChangeMapInterface extends ApplicationAdapter {
     private Texture upTexture;
@@ -85,6 +82,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
                 FireMapScreen.FireMapFlag=0;
                 GrassMapScreen.GrassScreenFlag=1;
                 SnowMapScreen.SnowMapFlag=1;
+                PortalScreen.PortalScreenFlag=1;
                 PlayScreen.changeToFireMapScreen();
             }
         });
@@ -96,6 +94,7 @@ public class ChangeMapInterface extends ApplicationAdapter {
                 FireMapScreen.FireMapFlag=1;
                 SnowMapScreen.SnowMapFlag=1;
                 GrassMapScreen.GrassScreenFlag=0;
+                PortalScreen.PortalScreenFlag=1;
                 PlayScreen.changeToGrassMapScreen();
             }
         });
@@ -107,13 +106,19 @@ public class ChangeMapInterface extends ApplicationAdapter {
                 FireMapScreen.FireMapFlag=1;
                 GrassMapScreen.GrassScreenFlag=1;
                 SnowMapScreen.SnowMapFlag=0;
+                PortalScreen.PortalScreenFlag=1;
                 PlayScreen.changeToSnowMapScreen();
             }
         });
         button[3].addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                PlayScreen.PlayScreenFlag=1;
+                FireMapScreen.FireMapFlag=1;
+                GrassMapScreen.GrassScreenFlag=1;
+                SnowMapScreen.SnowMapFlag=1;
                 PlayScreen.PortalCollisionFlag=0;
+                PortalScreen.PortalScreenFlag=0;
                 PlayScreen.changeToPortalScreen();
             }
         });

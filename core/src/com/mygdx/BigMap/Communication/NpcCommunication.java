@@ -35,6 +35,7 @@ public class NpcCommunication implements Disposable {
     private String[] CommunicationBigManContents1;
     private String[] CommunicationPowerRoomScreenContents;
     private String[] CommunicationGrassRoomScreenContents;
+    private String[] CommunicationStupidNPC;
     private MyInputProcessor inputProcessor;
     public  Texture repairmanFace;
     public  Texture GambleNPCface;
@@ -44,6 +45,7 @@ public class NpcCommunication implements Disposable {
     public  Texture GrassNPCface;
     public  Texture BigManNPCface;
     public  Texture WeaponNPCface;
+    public  Texture StupidNPCface;
     private Batch batch;
     Label CommunicationLabel;
     public NpcCommunication(SpriteBatch sb) {
@@ -60,6 +62,7 @@ public class NpcCommunication implements Disposable {
         GrassNPCface=new Texture("Button/GrassMapNPCface.jpg");
         WeaponNPCface=new Texture("Button/WeaponMapNPCface.jpg");
         BigManNPCface=new Texture("Button/BigManFace.png");
+        StupidNPCface=new Texture("Button/StupidNPCface.png");
         CommunicationPlayScreenContents=new String[100];
         //主屏第一次对话内容
         CommunicationPlayScreenContents[0]="Hello, my name is Bob.";
@@ -132,6 +135,14 @@ public class NpcCommunication implements Disposable {
         CommunicationGrassRoomScreenContents[3]="Adventurer, can you bring back our treasure?";
         CommunicationGrassRoomScreenContents[4]="Waiting for your good news.";
         CommunicationGrassRoomScreenContents[5]="Good luck.";
+        //废物对话
+        CommunicationStupidNPC=new String[100];
+        CommunicationStupidNPC[0]="I'm the station master of this space station.";
+        CommunicationStupidNPC[1]="Congratulations on getting all three gems.";
+        CommunicationStupidNPC[2]="The power of three gems could trigger the Big Bang.";
+        CommunicationStupidNPC[3]="Then we can create a new earth.";
+        CommunicationStupidNPC[4]="Thank you, adventurer.";
+        CommunicationStupidNPC[5]="";
         table.setPosition(0,-120);
         table.setFillParent(true);
         BitmapFont font=new BitmapFont();
@@ -164,8 +175,10 @@ public class NpcCommunication implements Disposable {
             CommunicationLabel.setText(CommunicationGrassRoomScreenContents[communicationCount]);
         if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==1)
            CommunicationLabel.setText(CommunicationBigManContents[BigManCount]);
-        if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==0 )
+        if(BigMan.BigManFlag==true && PlayScreen.PlayScreenFlag==0 && powerRoomScreen.powerRoomScreenFlag==0)
             CommunicationLabel.setText(CommunicationBigManContents1[BigManCount]);
+        if(PlayScreen.PlayScreenFlag==1 && PortalScreen.PortalScreenFlag==0)
+            CommunicationLabel.setText(CommunicationStupidNPC[communicationCount]);
         if(communicationCount>5){
             communicationCount=0;
             PlayScreen.collisionFlag=0;
@@ -204,6 +217,11 @@ public class NpcCommunication implements Disposable {
     public void render6() {
         batch.begin();
         batch.draw(BigManNPCface,0,0,1280,130);
+        batch.end();
+    }
+    public void render7() {
+        batch.begin();
+        batch.draw(StupidNPCface,0,0,1280,130);
         batch.end();
     }
     @Override

@@ -101,8 +101,9 @@ public class powerRoomScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         b2dr.render(world, gamecam.combined);
-        renderer.render();
+        //renderer.render();
         game.batch.setProjectionMatrix(gamecam.combined);
+        renderer.render();
         game.batch.begin();
         mario.draw(game.batch);
         powerRoomOwner.draw(game.batch);
