@@ -178,8 +178,8 @@ public class PortalScreen implements Screen {
             npcCommunication.render7();
             npcCommunication.stage.draw();
         }
-        //if(NpcCommunication.communicationCount==5)
-            //CurState.curLevelNum=-2;
+        if(NpcCommunication.communicationCount==5)
+            CurState.curLevelNum=-2;
         if(PlayScreen.PortalCollisionFlag==1) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

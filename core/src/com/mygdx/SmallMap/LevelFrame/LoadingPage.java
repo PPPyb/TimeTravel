@@ -81,6 +81,7 @@ public class LoadingPage {
                 case "WORLD":
                     WorldController.myGame = new com.mygdx.BigMap.MyGdxGame();
                     WorldController.myGame.create();
+                    WorldController.ending = new Ending(worldController);
                     bigLoaded = true;
                     loadingTarget = "IDLE";
                     CurState.curLevelNum = 1;

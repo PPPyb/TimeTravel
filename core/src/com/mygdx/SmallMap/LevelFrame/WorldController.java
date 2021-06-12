@@ -15,6 +15,7 @@ public class WorldController {
     static Level fireMap;
     static Level greenMap;
     static com.mygdx.BigMap.MyGdxGame myGame;
+    static Ending ending;
     LoadingPage loadingPage;
     MainTitle mainTitle;
     Tutorials tutorials;
@@ -27,6 +28,7 @@ public class WorldController {
         loadingPage = new LoadingPage(this);
         mainTitle = new MainTitle(this);
         tutorials = new Tutorials();
+
         strangeObject = new StrangeClass();
         musicManager = new MusicManager();
     }
@@ -56,6 +58,9 @@ public class WorldController {
                 break;
             case -1:
                 loadingPage.render();
+                break;
+            case -2:
+                ending.render();
                 break;
             default:
                 curLevel.render();
